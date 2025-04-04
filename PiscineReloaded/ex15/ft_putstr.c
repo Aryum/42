@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 14:19:15 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 17:04:09 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/04 17:06:36 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/04 17:07:47 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+void ft_putchar(char c);
 
-int ft_sqrt(int nb)
+void ft_putstr(char *str)
 {
-	int x1;
-	int x2;
-	
-	x1 = nb /2 ;
-	x2 = (x1 + nb) / 2;
-	if(nb < 0)
-		return 0;
-	while( x2 < x1)
+	int i;
+	i = 0;
+	while(str[i] != '\0')
 	{
-		x1 = x2;
-		x2 = (x1 +nb /x1) /2;
-		x1 ++;
+		ft_putchar(str[i]);
+		i++;
 	}
-	if(x1 * x1 == nb)
-		return x1;
-	else
-		return 0;
-}
-
-#include <stdio.h>
-int main()
-{
-	printf("%d", ft_sqrt(2147483647));
 }
