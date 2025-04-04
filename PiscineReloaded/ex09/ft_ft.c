@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_ft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 11:26:16 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 11:41:10 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/04 11:47:18 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/04 11:52:17 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_putchar(char c);
-
-void	ft_print_alphabet(void)
+void	ft_ft(int *nbr)
 {
-	char	c;
-
-	c = 'a';
-	while (c <= 'z')
-	{
-		ft_putchar(c);
-		c++;
-	}
+	*nbr = 42;
 }
 
 /*
+#include <stdio.h>
 int main()
 {
-	ft_print_alphabet();
+	int nbr = 2;
+	ft_ft(&nbr);
+	printf("%d", nbr);
 }
 */

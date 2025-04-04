@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_is_negative.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 11:26:16 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 11:41:10 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/04 11:43:15 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/04 11:48:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_putchar(char c);
+void	ft_putchar(char c);
 
-void	ft_print_alphabet(void)
+void	ft_is_negative(int n)
 {
-	char	c;
-
-	c = 'a';
-	while (c <= 'z')
+	if (n >= 0)
 	{
-		ft_putchar(c);
-		c++;
+		ft_putchar('P');
+	}
+	else
+	{
+		ft_putchar('N');
 	}
 }
 
 /*
 int main()
 {
-	ft_print_alphabet();
+	ft_is_negative(9);
+	ft_putchar('\n');
+	ft_is_negative(-9);
 }
 */
