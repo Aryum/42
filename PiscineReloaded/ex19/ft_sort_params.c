@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:54:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/05 14:35:59 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:39:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int strcmp(char *s1, char *s2)
 
 void swap(char **a, char **b)
 {
-	char **temp;
+	char *temp;
 	
-	**temp = **a;
-	**a = **b;
-	**b = **temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-void sort(char** arr, int length)
+void sort(char** arr, int len)
 {
 	int i;
 	int h;
@@ -41,9 +41,21 @@ void sort(char** arr, int length)
 	i = 0;
 	h = 1;
 	swapped = 0;
-	while (i < length)
+	while (i < len - 1)
 	{
-		//do a bubble sort
+		while(h < len - i - 1)
+		{
+			if(strcmp(arr[h], arr[h+1] ) > 0)
+			{
+				swap(&(arr[h]), &(arr[h+1]));
+				swapped = 1;  
+			}
+			h++;
+		}
+		if(swapped == 0)
+			break;
+		h = 0;
+		i++;
 	}
 }
 
