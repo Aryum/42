@@ -6,7 +6,7 @@
 /*   By: ricardo-santos <ricardo-santos@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:24:54 by ricardo-san       #+#    #+#             */
-/*   Updated: 2025/04/07 09:28:12 by ricardo-san      ###   ########.fr       */
+/*   Updated: 2025/04/07 15:53:12 by ricardo-san      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,11 @@ typedef struct s_point
 	int y;
 } t_point;
 
+typedef struct s_test
+{
+	char c;
+	int b;
+} bananas;
+
 #endif
+
