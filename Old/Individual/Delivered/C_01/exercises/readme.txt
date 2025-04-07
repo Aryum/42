@@ -1,0 +1,1 @@
+Everything is done norminet and compiled with the flags just need to turn in
