@@ -2,5 +2,5 @@
 #include <stdio.h>
 int main()
 {
-    printf("Abs value %d", ABS(5));
+    printf("Abs value %d", ABS(-5));
 }
