@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ricardo-santos <ricardo-santos@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 16:20:51 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/05 16:30:35 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:09:16 by ricardo-san      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

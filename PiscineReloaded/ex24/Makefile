@@ -1,30 +1,39 @@
-#file paths
+#name
+NAME = libft.a
+
+#folders
 SOURCE_DIR = srcs
 
-SOURCE_FILES = 	$(SOURCE_DIR)/ft_putchar.c \
-				$(SOURCE_DIR)/ft_putstr.c \
-				$(SOURCE_DIR)/ft_strcmp.c \
-				$(SOURCE_DIR)/ft_strlen.c \
-				$(SOURCE_DIR)/ft_swap.c \
-
-				
 HEADER_DIR = includes
 
-LIB = libft.a
+#files
 
-#compile settings
+SOURCE_FILES = 	$(SOURCE_DIR)/ft_putchar \
+				$(SOURCE_DIR)/ft_putstr \
+				$(SOURCE_DIR)/ft_strcmp \
+				$(SOURCE_DIR)/ft_strlen \
+				$(SOURCE_DIR)/ft_swap 
+
+OBJECT_FILES = $(SOURCE_FILES:.c=.o)
+
+#compiler
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -I$(HEADER_DIR) -c
+FLAGS = -c -Wall -Wextra -Werror -I$(HEADER_DIR) 
 
 #rules
-all:
-	$(CC) $(FLAGS) $(SOURCE_FILES)
-	ar r $(LIB) *.o
-clean :
-	rm *.o
+all: $(NAME)
 
-fclean : clean
-	rm $(LIB)
-re: fclean all
+$(NAME) : $(OBJECT_FILES)
+	ar r $(NAME)
 
+%.o : %.c
+	$(CC) $(FLAGS) $< -o $(<:.c=.o) 
+
+clean:
+	rm $(OBJECT_FILES)
+
+fclean: clean
+	rm $(NAME)
+
+re:fclean all
