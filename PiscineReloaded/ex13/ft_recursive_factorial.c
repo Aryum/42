@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:20:54 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/08 17:17:52 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:28:35 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ int	ft_recursive_factorial(int nb)
 		return (1);
 	return (nb * ft_recursive_factorial(nb - 1));
 }
-
+/*
 #include <stdio.h>
 #include <time.h>
 int main()
 {
 	printf("%d", ft_recursive_factorial(13));	
 }
+*/
