@@ -6,17 +6,18 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:06:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 17:07:47 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:26:41 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_putchar(char c);
+void	ft_putchar(char c);
 
-void ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		ft_putchar(str[i]);
 		i++;

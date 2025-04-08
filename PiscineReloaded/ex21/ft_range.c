@@ -3,32 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo-santos <ricardo-santos@student.    +#+  +:+       +#+        */
+/*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 16:20:51 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/07 17:09:16 by ricardo-san      ###   ########.fr       */
+/*   Updated: 2025/04/08 11:34:29 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int *ft_range(int min, int max)
+int	*ft_range(int min, int max)
 {
-	int *returnVal;
-	int i;
-	
-	if(min >= max)
-		return (void *)0;
-	returnVal = malloc((max-min) * sizeof(int));
+	int	*ret_val;
+	int	i;
+
+	if (min >= max)
+		return ((void *)0);
+	ret_val = malloc((max - min) * sizeof(int));
 	i = 0;
-	while(min < max)
+	while (min < max)
 	{
-		returnVal[i] = min;
+		ret_val[i] = min;
 		i ++;
 		min ++;
 	}
-	return returnVal;
+	return (ret_val);
 }
+
+/*
 #include<stdio.h>
 int main()
 {
@@ -43,3 +45,4 @@ int main()
 		i++;
 	}
 }
+*/

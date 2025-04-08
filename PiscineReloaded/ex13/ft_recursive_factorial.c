@@ -6,17 +6,17 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:20:54 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 12:34:12 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:14:43 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_recursive_factorial(int nb)
+int	ft_recursive_factorial(int nb)
 {
-	if(nb < 0 || (long)(nb * (nb-1)) > 2147483648)
-		return 0;
-	else if(nb == 0)
-		return 1;
-	return (nb * ft_recursive_factorial(nb-1));	
+	if (nb < 0 || (long)(nb * (nb - 1)) > 2147483648)
+		return (0);
+	else if (nb == 0)
+		return (1);
+	return (nb * ft_recursive_factorial(nb - 1));
 }
 
 /*

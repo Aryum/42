@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 11:36:51 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 11:47:56 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/08 10:57:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);	
+	write(1, &c, 1);
 }

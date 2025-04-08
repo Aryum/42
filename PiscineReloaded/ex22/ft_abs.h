@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_abs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo-santos <ricardo-santos@student.    +#+  +:+       +#+        */
+/*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:35:10 by ricardo-san       #+#    #+#             */
-/*   Updated: 2025/04/07 09:35:11 by ricardo-san      ###   ########.fr       */
+/*   Updated: 2025/04/08 11:08:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define ABS(val) (abs(val))
 
-int abs(int value)
+int	abs(int value)
 {
-    if(value < 0)
-        return -value;
+    if (value < 0)
+        return (-value);
     else
-        return value;
+        return (value);
 }
-
-#define test "hello"

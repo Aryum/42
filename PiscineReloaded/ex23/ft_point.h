@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_point.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo-santos <ricardo-santos@student.    +#+  +:+       +#+        */
+/*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 09:24:54 by ricardo-san       #+#    #+#             */
-/*   Updated: 2025/04/07 15:53:12 by ricardo-san      ###   ########.fr       */
+/*   Updated: 2025/04/08 11:38:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,8 @@
 
 typedef struct s_point
 {
-	int x;
-	int y;
-} t_point;
-
-typedef struct s_test
-{
-	char c;
-	int b;
-} bananas;
+	int	x;
+	int	y;
+}	t_point;
 
 #endif
-

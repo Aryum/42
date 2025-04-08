@@ -8,6 +8,7 @@ SOURCE_FILES = 	$(SOURCE_DIR)/ft_putchar.c \
 				$(SOURCE_DIR)/ft_swap.c \
 
 OBJ_FILES = $(SOURCE_FILES:.c=.o)
+
 HEADER_DIR = includes
 
 NAME = libft.a

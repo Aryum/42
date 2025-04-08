@@ -6,45 +6,39 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 15:49:18 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/05 16:16:22 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:33:55 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
-	
-	i = 0;
-	while(str[i] != '\0')
-	{
-		i++;
-	}
+	int	i;
 
-	return i;
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
-char *ft_strdup(char *src)
+char	*ft_strdup(char *src)
 {
-	int i;
-	int len;
-	char *returnVal;
-	
-	i = 0;
+	int		i;
+	int		len;
+	char	*ret_val;
 
+	i = 0;
 	len = ft_strlen(src);
-	returnVal = malloc((len + 1) * sizeof(char));
-	
-	if(returnVal != (void *)0)
+	ret_val = malloc((len + 1) * sizeof(char));
+	if (ret_val != (void *)0)
 	{
-		while(i < len)
+		while (i < len)
 		{
-			returnVal[i] = src[i];
+			ret_val[i] = src[i];
 			i++;
 		}
-		returnVal[i] = '\0';
+		ret_val[i] = '\0';
 	}
-	return returnVal;
+	return (ret_val);
 }
-

@@ -6,29 +6,27 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:00:43 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 12:17:22 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:13:53 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_iterative_factorial(int nb)
+int	ft_iterative_factorial(int nb)
 {
-	long int	returnVal;
+	long int	ret_val;
 
-	returnVal = 1;
-
-	if(nb < 0)
+	ret_val = 1;
+	if (nb < 0)
 		return (0);
-	while(nb > 0)
+	while (nb > 0)
 	{
-		returnVal *= nb;
+		ret_val *= nb;
 		nb--;
-		if(returnVal > 2147483648)
+		if (ret_val > 2147483648)
 		{
 			return (0);
 		}
 	}
-	
-	return (returnVal);
+	return (ret_val);
 }
 
 /*

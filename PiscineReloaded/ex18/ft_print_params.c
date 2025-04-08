@@ -6,20 +6,20 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:14:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/04 17:38:36 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:28:54 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_putchar(char c);
+void	ft_putchar(char c);
 
-int main(int agrc, char** argv)
+int	main(int agrc, char **argv)
 {
-	int i;
-	int h;
-	
+	int	i;
+	int	h;
+
 	i = 1;
 	h = 0;
-	while(i < agrc)
+	while (i < agrc)
 	{
 		while (argv[i][h] != '\0')
 		{
@@ -30,5 +30,5 @@ int main(int agrc, char** argv)
 		h = 0;
 		i++;
 	}
-	return 0;
+	return (0);
 }
