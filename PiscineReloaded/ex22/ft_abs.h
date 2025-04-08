@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define ABS(val) (abs(val))
+#ifndef FT_ABS_H
+# define FT_ABS_H
+# define ABS abs
 
-int	abs(int value)
+int	abs(int val)
 {
-    if (value < 0)
-        return (-value);
-    else
-        return (value);
+	if (val < 0)
+		val *= -1;
+	return (val);
 }
+#endif
