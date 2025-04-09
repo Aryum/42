@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ricardo-santos <ricardo-santos@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:19:15 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/08 18:11:15 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/09 09:08:44 by ricardo-san      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
