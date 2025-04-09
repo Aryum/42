@@ -8,5 +8,5 @@ NAME = ft_display_file
 
 all : $(NAME)
 
-$(NAME)
-	$(cc) $(FLAGS) -o $(NAME)
+$(NAME) :
+	$(CC) $(FLAGS) $(C_FILE) -o $(NAME)
