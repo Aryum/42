@@ -1,17 +1,27 @@
-CC = cc 
+#file paths
+SOURCE_FILES = 	ft_display_file.c 
 
-FLAGS = -Wall -Wextra -Werror
-
-C_FILE = ft_display_file.c
+OBJ_FILES = $(SOURCE_FILES:.c=.o)
 
 NAME = ft_display_file
 
-all : $(NAME)
+#compile settings
+CC = cc
 
-$(NAME) :
-	$(CC) $(FLAGS) $(C_FILE) -o $(NAME)
+FLAGS = -Wall -Wextra -Werror
 
-clean :
+#rules
+all: $(NAME)
+
+$(NAME):
+	$(CC) $(FLAGS) -c  $(SOURCE_FILES) -o $(SOURCE_FILES:.c=.o)
+	$(CC) $(FLAGS)  $(OBJ_FILES) -o $(NAME)
+
+
+clean: 
+	rm -f $(OBJ_FILES)
+
+fclean: clean
 	rm -f $(NAME)
 
-fclean : clean
+re: fclean all
