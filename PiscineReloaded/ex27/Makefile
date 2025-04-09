@@ -10,3 +10,8 @@ all : $(NAME)
 
 $(NAME) :
 	$(CC) $(FLAGS) $(C_FILE) -o $(NAME)
+
+clean :
+	rm -f $(NAME)
+
+fclean : clean
