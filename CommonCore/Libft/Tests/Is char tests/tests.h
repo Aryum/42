@@ -6,11 +6,9 @@ typedef struct tests
 	int upper;
 } t_tests;
 
-t_tests createTestParams(int lower, int upper, char *name, int (*func)(int))
+t_tests createTestParams(int lower, int upper, char *name)
 {
-	t_tests retval;
-	int i = lower;
-	
+	t_tests retval;	
 	retval.name = name;
 	retval.lower = lower;
 	retval.upper = upper;
@@ -22,14 +20,18 @@ t_tests createTestParams(int lower, int upper, char *name, int (*func)(int))
 	return retval;
 }
 
-int comparefunctions(t_tests test,int (*baseFunc)(int), int (*myFunc)(int))
+int comparefunctions(t_tests test, int (*baseFunc)(int), int (*myFunc)(int))
 {
 	int i = test.lower;
 	while ( i <= test.upper)
 	{
 		if(baseFunc(i) != myFunc(i))
 		{
-			printf("%c failed", i);
+			printf("	%c failed\n", i);
+			printf("		Base result %s \n", (baseFunc(i) ? "True" : "False"));
+			printf("		My result %s \n", (myFunc(i) ? "True" : "False"));
+
+
 			return 0;				
 		}
 		i++;
@@ -41,27 +43,27 @@ void  logMessages(int (*basefunc)(int),int (*myFunc)(int))
 {
 	t_tests tests[] = 
 	{ 	
-		createTestParams(0, 32, "Special chars",basefunc), 
-		createTestParams('!', '/', "Symbols pt1",basefunc), 
-		createTestParams('0', '9', "Numbers",basefunc), 
-		createTestParams(':', '@', "Symbols pt2",basefunc), 
-		createTestParams('A', 'Z', "Upper case",basefunc), 
-		createTestParams('[', '`', "Symbols pt3",basefunc), 
-		createTestParams('a', 'z', "Lower case",basefunc), 
-		createTestParams('{', 127, "Symbols pt4",basefunc), 
-		createTestParams(-128, 0, "Negative chars",basefunc),
-		createTestParams(255, 300, "Out of range value",basefunc),
-		createTestParams(0, 0, (void *)0,basefunc),
+		createTestParams(0, 32, "Special chars"), 
+		createTestParams('!', '/', "Symbols pt1"), 
+		createTestParams('0', '9', "Numbers"), 
+		createTestParams(':', '@', "Symbols pt2"), 
+		createTestParams('A', 'Z', "Upper case"), 
+		createTestParams('[', '`', "Symbols pt3"), 
+		createTestParams('a', 'z', "Lower case"), 
+		createTestParams('{', 127, "Symbols pt4"), 
+		createTestParams(-128, 0, "Negative chars"),
+		createTestParams(255, 300, "Out of range value"),
+		createTestParams(0, 0, (void *)0),
 
 	};
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
-		if (!comparefunctions(tests[i], myFunc))
-			printf(	"	ERROR\n");
+		if (!comparefunctions(tests[i],basefunc, myFunc))
+			printf(	"			ERROR\n\n");
 		else
-			printf(	"	GOOD\n\n");
+			printf(	"			GOOD\n\n");
 		i++;
 	}
 }
