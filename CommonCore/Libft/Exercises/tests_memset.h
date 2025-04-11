@@ -78,8 +78,9 @@ int mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size
 		else
 			printf("	Passed\n");
 
-		printf("		Base %s\n", baseStr);
-		printf("		Mine %s\n", myStr);
+		printf("		Og		%s\n", test.str);
+		printf("		Base	%s\n", baseStr);
+		printf("		Mine	%s\n", myStr);
 	}
 	free(baseStr);
 	free(myStr);
@@ -93,6 +94,7 @@ void mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(
 	{ 	
 		mem_createTestParams("123456", 'a', 6, "Normal behaviour"),
 		mem_createTestParams("Teste", 'b', 3, "Smaller than total array"),
+
 		mem_createTestParams("w", 'a', 1, ((void *)0)),
 	};
 	int i = 0;

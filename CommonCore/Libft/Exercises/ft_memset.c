@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 14:13:54 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/11 16:43:18 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:07:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void *ft_memset(void *s, int c, size_t n)
 	ptr = (unsigned char *)s;
 	while (i < n)
 	{
-		ptr[i] = c;
+		ptr[i] = (char)c;
 		i++;
 	} 
 
