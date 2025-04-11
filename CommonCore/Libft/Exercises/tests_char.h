@@ -1,16 +1,19 @@
 #include <stdio.h>
-typedef struct tests
+#include "libft.h"
+
+typedef struct char_tests
 {
 	char *name;
 	int lower;
 	int upper;
-} t_tests;
+} t_char_tst;
 
-t_tests createTestParams(int lower, int upper, char *name)
+t_char_tst createTestParams(int lower, int upper, char *name)
 {
-	t_tests retval;	
-	retval.name = name;lower;
-	int upper;
+	t_char_tst retval;	
+	retval.name = name;
+	retval.lower = lower;
+	retval.upper = upper;
 	if(upper < lower)
 	{
 		printf("ERROR -> %s\nLower bound is bigger than upper (%d > %d)",name,lower, upper);		
@@ -18,20 +21,20 @@ t_tests createTestParams(int lower, int upper, char *name)
 	return retval;
 }
 
-int comparefunctions(t_tests test, int (*baseFunc)(int), int (*myFunc)(int), int printAll)
+int char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(int), int printAll)
 {
 	int i = test.lower;
-	int myResult = myFunc(i);
-	int baseResult = baseFunc(i);
 
 	while ( i <= test.upper)
 	{
+		int myResult = myFunc(i);
+		int baseResult = baseFunc(i);
 		if (printAll || myResult != baseResult)
 		{
 			if(myResult != baseResult)
-				printf("	(%c) Failed\n", i);
+				printf("	%d(%c) Failed\n", i,i);
 			else
-				printf("	(%c) Passed\n", i);
+				printf("	%d(%c) Passed\n", i,i);
 			printf("			Base result	%d \n", baseResult);
 			printf("			My result	%d \n", myResult);
 		}
@@ -42,7 +45,7 @@ int comparefunctions(t_tests test, int (*baseFunc)(int), int (*myFunc)(int), int
 
 void  logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 {
-	t_tests tests[] = 
+	t_char_tst tests[] = 
 	{ 	
 		createTestParams(0, 32, "Special chars"), 
 		createTestParams('!', '/', "Symbols pt1"), 
@@ -54,17 +57,19 @@ void  logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 		createTestParams('{', 127, "Symbols pt4"), 
 		createTestParams(-128, 0, "Negative chars"),
 		createTestParams(255, 300, "Out of range value"),
-		createTestParams(0, 0, (void *)0),
+		createTestParams(0, 0, ((void *) 0)),
 
 	};
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
-		if (!comparefunctions(tests[i],basefunc, myFunc, printAll))
+		if (!char_comparefunctions(tests[i],basefunc, myFunc, printAll))
 			printf(	"			ERROR\n\n");
 		else
 			printf(	"			GOOD\n\n");
 		i++;
 	}
 }
+
+

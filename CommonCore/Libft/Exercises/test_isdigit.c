@@ -1,8 +1,6 @@
-#include <stdio.h>
+#include "libft.h"
 #include <ctype.h>
-#include "tests.h"
-
-int ft_isdigit(int i);
+#include "tests_char.h"
 
 int main(int agrc, char **argv)
 {

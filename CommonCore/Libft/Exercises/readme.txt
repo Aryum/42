@@ -1,9 +1,9 @@
 • isalpha -> DONE
 • isdigit -> DONE
-• isalnum
-• isascii
-• isprint
-• strlen
+• isalnum -> DONE
+• isascii -> DONE
+• isprint -> DONE
+• strlen 
 • memset
 • bzero
 • memcpy
