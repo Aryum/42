@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 11:02:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/11 13:15:20 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/11 13:15:55 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	ft_isascii(int c);
 
 int ft_isprint(int c);
 
-size_t ft_strlen(const char *s)
+size_t ft_strlen(const char *s);
 #endif
 
