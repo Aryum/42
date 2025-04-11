@@ -11,6 +11,13 @@ typedef struct memset_tests
 
 } t_memset_tst;
 
+typedef struct strcmp_ret
+{
+	int success;
+	unsigned int index;
+
+} t_strcmp_ret;
+
 t_memset_tst mem_createTestParams(void * ptr, char c,size_t size, char *name)
 {
 	t_memset_tst retval;	
@@ -21,6 +28,24 @@ t_memset_tst mem_createTestParams(void * ptr, char c,size_t size, char *name)
 	return retval;
 }
 
+t_strcmp_ret strComp(char *a,char *b)
+{
+	t_strcmp_ret retVal;
+	int i = 0;
+	while ((a[i] != '\0' || b[i] != '\0')) 
+	{
+		if(a[i] != b[i])
+		{
+			retVal.index = i;
+			retVal.success = 0;
+			return retVal;
+		}
+		i++;
+	}		
+	retVal.success = 1;
+	retVal.index = 0;
+	return retVal;
+}
 
 char *createstr(char *c)
 {
@@ -42,13 +67,13 @@ int mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size
 	char *baseStr = baseFunc(createstr(test.str),test.c,test.size);
 	char *myStr = myFunc(createstr(test.str),test.c,test.size);
 
-	int isWorking = strcmp(baseStr, myStr); 
-	if(!isWorking || printAll)
+	t_strcmp_ret result = strComp(baseStr, myStr); 
+	if(!result.success || printAll)
 	{
-		if(!isWorking)
+		if(!result.success)
 		{
 			retVal = 0;
-			printf("	Failed\n");
+			printf("	Failed at index (%d)\n", result.index);
 		}
 		else
 			printf("	Passed\n");
