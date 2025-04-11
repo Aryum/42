@@ -1,5 +1,5 @@
 • isalpha -> DONE
-• isdigit
+• isdigit -> DONE
 • isalnum
 • isascii
 • isprint

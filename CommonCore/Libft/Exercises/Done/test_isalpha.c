@@ -4,8 +4,8 @@
 
 int ft_isalpha(int i);
 
-int main()
+int main(int agrc, char **argv)
 {
-	logMessages(isalpha,ft_isalpha);
+	logMessages(isalpha, ft_isalpha, agrc != 1);
 	return 0;
 }

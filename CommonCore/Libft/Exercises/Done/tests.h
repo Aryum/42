@@ -10,9 +10,8 @@ t_tests createTestParams(int lower, int upper, char *name)
 {
 	t_tests retval;	
 	retval.name = name;
-	retval.lower = lower;
 	retval.upper = upper;
-	
+	retval.lower = lower;
 	if(upper < lower)
 	{
 		printf("ERROR -> %s\nLower bound is bigger than upper (%d > %d)",name,lower, upper);		
@@ -20,26 +19,29 @@ t_tests createTestParams(int lower, int upper, char *name)
 	return retval;
 }
 
-int comparefunctions(t_tests test, int (*baseFunc)(int), int (*myFunc)(int))
+int comparefunctions(t_tests test, int (*baseFunc)(int), int (*myFunc)(int), int printAll)
 {
 	int i = test.lower;
+	int myResult = myFunc(i);
+	int baseResult = baseFunc(i);
+
 	while ( i <= test.upper)
 	{
-		if(baseFunc(i) != myFunc(i))
+		if (printAll || myResult != baseResult)
 		{
-			printf("	%c failed\n", i);
-			printf("		Base result %s \n", (baseFunc(i) ? "True" : "False"));
-			printf("		My result %s \n", (myFunc(i) ? "True" : "False"));
-
-
-			return 0;				
+			if(myResult != baseResult)
+				printf("	(%c) Failed\n", i);
+			else
+				printf("	(%c) Passed\n", i);
+			printf("			Base result	%d \n", baseResult);
+			printf("			My result	%d \n", myResult);
 		}
 		i++;
 	}
 	return 1;
 }
 
-void  logMessages(int (*basefunc)(int),int (*myFunc)(int))
+void  logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 {
 	t_tests tests[] = 
 	{ 	
@@ -60,7 +62,7 @@ void  logMessages(int (*basefunc)(int),int (*myFunc)(int))
 	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
-		if (!comparefunctions(tests[i],basefunc, myFunc))
+		if (!comparefunctions(tests[i],basefunc, myFunc, printAll))
 			printf(	"			ERROR\n\n");
 		else
 			printf(	"			GOOD\n\n");

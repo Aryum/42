@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricardo-santos <ricardo-santos@student.    +#+  +:+       +#+        */
+/*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 11:09:35 by ricardo-san       #+#    #+#             */
-/*   Updated: 2025/04/10 14:55:51 by ricardo-san      ###   ########.fr       */
+/*   Created: 2025/04/10 12:34:48 by ricardo-san       #+#    #+#             */
+/*   Updated: 2025/04/11 10:58:27 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@ static int isclass(int c, int lower, int upper)
 	return(c >= lower && c <= upper);
 }
 
-int ft_isalpha(int c)
+int ft_isdigit(int c)
 {
-	if(isclass(c, 0, 255))
-		return (isclass(c, 'a', 'z') || isclass(c, 'A', 'Z'));
+	if (isclass(c, 0, 255))
+	{
+		if(isclass(c, '0', '9'))
+			return (2048);	
+	}
 	return (0);
 }
-

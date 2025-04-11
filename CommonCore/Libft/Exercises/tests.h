@@ -4,57 +4,43 @@ typedef struct tests
 	char *name;
 	int lower;
 	int upper;
-	int expectedResult;
 } t_tests;
 
-t_tests createTestParams_BASE(int lower, int upper, char *name, int (*func)(int))
+t_tests createTestParams(int lower, int upper, char *name)
 {
-	t_tests retval;
-	int i = lower;
-	
-	retval.name = name;
-	retval.lower = lower;
-	retval.upper = upper;
-	
+	t_tests retval;	
+	retval.name = name;lower;
+	int upper;
 	if(upper < lower)
 	{
 		printf("ERROR -> %s\nLower bound is bigger than upper (%d > %d)",name,lower, upper);		
 	}
-	else
-	{
-		while ( i <= upper)
-		{
-			if(!func(i))
-			{
-				printf("%s is FALSE\n	[(%c)-(%c)]\n", name, lower,upper);
-				retval.expectedResult = 0;
-				return retval;				
-			}
-			i++;
-		}	
-		printf("%s is TRUE\n	[(%c)-(%c)]\n", name, lower,upper);
-
-		retval.expectedResult = 1;
-	}
 	return retval;
 }
 
-int comparefunctions(t_tests test, int (*func)(int))
+int comparefunctions(t_tests test, int (*baseFunc)(int), int (*myFunc)(int), int printAll)
 {
 	int i = test.lower;
+	int myResult = myFunc(i);
+	int baseResult = baseFunc(i);
+
 	while ( i <= test.upper)
 	{
-		if(func(i) != test.expectedResult)
+		if (printAll || myResult != baseResult)
 		{
-			printf("%c failed", i);
-			return 0;				
+			if(myResult != baseResult)
+				printf("	(%c) Failed\n", i);
+			else
+				printf("	(%c) Passed\n", i);
+			printf("			Base result	%d \n", baseResult);
+			printf("			My result	%d \n", myResult);
 		}
 		i++;
 	}
 	return 1;
 }
 
-void  logMessages(int (*func)(int))
+void  logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 {
 	t_tests tests[] = 
 	{ 	
@@ -75,10 +61,10 @@ void  logMessages(int (*func)(int))
 	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
-		if (!comparefunctions(tests[i], func))
-			printf(	"	ERROR\n");
+		if (!comparefunctions(tests[i],basefunc, myFunc, printAll))
+			printf(	"			ERROR\n\n");
 		else
-			printf(	"	GOOD\n\n");
+			printf(	"			GOOD\n\n");
 		i++;
 	}
 }
