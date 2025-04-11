@@ -5,7 +5,7 @@
 • isprint	-> DONE
 • strlen	-> DONE
 • memset	-> DONE
-• bzero
+• bzero		-> DONE
 • memcpy
 • memmove
 • strlcpy
