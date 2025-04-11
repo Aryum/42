@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   test_strlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 11:02:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/11 13:15:20 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/11 13:05:00 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/11 13:09:08 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
+#include <string.h>
+#include "tests_char.h"
 
-#include<string.h>
 
-
-int ft_isalpha(int i);
-
-int ft_isdigit(int c);
-
-int ft_isalnum(int c);
-
-int	ft_isascii(int c);
-
-int ft_isprint(int c);
-
-size_t ft_strlen(const char *s)
-#endif
-
+int main(int agrc, char **argv)
+{
+	logMessages(strlen, ft_strlen, agrc != 1);
+	return 0;
+}

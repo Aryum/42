@@ -18,11 +18,19 @@ t_strlen_tst creteTestParam(char *str, char *name)
 
 }
 
-int strlen_comparefunctions(t_strlen_tst test,int (*basefunc)(char *),int (*myFunc)(char *), int printAll )
+int strlen_comparefunctions(t_strlen_tst test,size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll )
 {
-	return (basefunc(test.str) != myFunc(test.str));
+	int mySize = myFunc(test.str);
+	int baseSize = basefunc(test.str);
+
+	if(mySize != baseSize)
+	{
+		printf(	"		MySize		(%d)\n");
+		printf(	"		BaseSize	(%d)\n");
+	}
+	return (mySize == baseSize);
 }
-void  strlen_logMessages(int (*basefunc)(char *),int (*myFunc)(char *), int printAll)
+void  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll)
 {
 	t_strlen_tst tests[] = 
 	{ 	

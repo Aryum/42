@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"chartests.h": "c",
-		"tests_char.h": "c"
+		"tests_char.h": "c",
+		"string.h": "c",
+		"stdio.h": "c"
 	}
 }
