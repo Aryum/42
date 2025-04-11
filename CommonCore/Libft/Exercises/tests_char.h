@@ -24,7 +24,7 @@ t_char_tst createTestParams(int lower, int upper, char *name)
 int char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(int), int printAll)
 {
 	int i = test.lower;
-
+	int retVal = 1; 
 	while ( i <= test.upper)
 	{
 		int myResult = myFunc(i);
@@ -32,7 +32,10 @@ int char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(i
 		if (printAll || myResult != baseResult)
 		{
 			if(myResult != baseResult)
+			{
+				retVal = 0;
 				printf("	%d(%c) Failed\n", i,i);
+			}
 			else
 				printf("	%d(%c) Passed\n", i,i);
 			printf("			Base result	%d \n", baseResult);
@@ -40,10 +43,10 @@ int char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(i
 		}
 		i++;
 	}
-	return 1;
+	return retVal;
 }
 
-void  logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
+void  char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 {
 	t_char_tst tests[] = 
 	{ 	
@@ -64,10 +67,11 @@ void  logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
+		printf(	"-----------------------------------------\n");
 		if (!char_comparefunctions(tests[i],basefunc, myFunc, printAll))
-			printf(	"			ERROR\n\n");
+			printf(	"------------------ERROR------------------\n\n");
 		else
-			printf(	"			GOOD\n\n");
+			printf(	"------------------GOOD------------------\n\n");
 		i++;
 	}
 }

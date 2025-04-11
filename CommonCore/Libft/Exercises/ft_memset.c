@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_isprint.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 11:42:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/11 15:32:03 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/11 14:13:54 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/11 16:43:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "tests_char.h"
-#include <ctype.h>
 
-
-
-int main(int agrc, char **argv)
+void *ft_memset(void *s, int c, size_t n)
 {
-	char_logMessages(isprint, ft_isprint, agrc != 1);
-	return 0;
+	size_t i;
+	unsigned char 	*ptr;
+	
+	i = 0;
+	ptr = (unsigned char *)s;
+	while (i < n)
+	{
+		ptr[i] = c;
+		i++;
+	} 
+
+	return ptr;
 }

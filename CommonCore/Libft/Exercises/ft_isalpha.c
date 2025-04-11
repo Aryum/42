@@ -6,9 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:09:35 by ricardo-san       #+#    #+#             */
-/*   Updated: 2025/04/11 11:28:52 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:17:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static int isclass(int c, int lower, int upper)
 {
