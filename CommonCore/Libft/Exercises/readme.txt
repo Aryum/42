@@ -1,8 +1,8 @@
 CHECK FOR THINGS THAT CAN BE SIMPLIFIED
-	strcmp -can use- memcmp
-	strcpy -can use- memcpy
-	
-	 
+	strcmp	-can use- memcmp
+	strcpy	-can use- memcpy
+	strchr	-can use- memchr
+
 • isalpha	-> DONE
 • isdigit	-> DONE
 • isalnum	-> DONE
