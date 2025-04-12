@@ -11,7 +11,8 @@ CHECK FOR THINGS THAT CAN BE SIMPLIFIED
 • strlen	-> DONE
 • memset	-> check more tests
 • bzero		-> check more tests
-• memcpy	-> needs test header (CHECK MAN)
+• memcpy	-> needs test header (CHECK MAN) attention to sobreposition on the same string 
+										pay attention to the poisition of pointers
 • memmove
 • strlcpy
 • strlcat
