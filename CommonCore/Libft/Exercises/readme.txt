@@ -4,17 +4,17 @@
 • isascii	-> DONE
 • isprint	-> DONE
 • strlen	-> DONE
-• memset	-> DONE
-• bzero		-> DONE
-• memcpy
+• memset	-> check more tests
+• bzero		-> check more tests
+• memcpy	-> needs test header
 • memmove
 • strlcpy
 • strlcat
-• toupper
-• tolower
-• strchr
-• strrchr
-• strncmp
+• toupper 	-> needs test header
+• tolower	-> needs test header
+• strchr 	-> needs test header
+• strrchr	-> needs test header
+• strncmp 	-> needs test header
 • memchr
 • memcmp
 • strnstr
