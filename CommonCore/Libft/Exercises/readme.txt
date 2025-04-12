@@ -11,7 +11,7 @@ CHECK FOR THINGS THAT CAN BE SIMPLIFIED
 • strlen	-> DONE
 • memset	-> check more tests
 • bzero		-> check more tests
-• memcpy	-> needs test header
+• memcpy	-> needs test header (CHECK MAN)
 • memmove
 • strlcpy
 • strlcat
