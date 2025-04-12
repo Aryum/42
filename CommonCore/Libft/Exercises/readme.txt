@@ -1,3 +1,8 @@
+CHECK FOR THINGS THAT CAN BE SIMPLIFIED
+	strcmp -can use- memcmp
+	strcpy -can use- memcpy
+	
+	 
 • isalpha	-> DONE
 • isdigit	-> DONE
 • isalnum	-> DONE
@@ -16,7 +21,7 @@
 • strrchr	-> needs test header
 • strncmp 	-> needs test header
 • memchr
-• memcmp
+• memcmp	-> needs test header
 • strnstr
 • atoi
 
