@@ -1,8 +1,5 @@
 CHECK FOR THINGS THAT CAN BE SIMPLIFIED
 	
-	strcpy	-might use- memcpy
-	strchr	-might use- memchr
-
 CHAR
 	• isalpha	-> DONE
 	• isdigit	-> DONE

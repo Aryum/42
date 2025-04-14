@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 02:39:38 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/12 02:50:43 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/14 10:21:28 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *memchr(const void *s, int c, size_t n)
+void *ft_memchr(const void *s, int c, size_t n)
 {
 	size_t i;
 	unsigned char *s_c;

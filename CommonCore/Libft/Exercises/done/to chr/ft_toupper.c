@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 01:55:40 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/12 01:58:39 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/12 01:58:43 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/14 09:59:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int isclass(int c, int lower, int upper)
 	return(c >= lower && c <= upper);
 }
 
-int tolower(int c)
+int ft_toupper(int c)
 {
-	if(isclass(c, 'A', 'Z'))
-		return (c + 32);
+	if(isclass(c, 'a', 'z'))
+		return (c - 32);
 	return (c);
 }
