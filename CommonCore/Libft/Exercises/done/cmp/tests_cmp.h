@@ -60,21 +60,22 @@ int cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, const void
 	return (retVal);
 }
 
-void *str_invalidchar1()
-{
-	char str[] = {-50,'\0'};
-	return str;
-}
 
-void *str_invalidchar2()
+
+void *str_invalidchar(int value)
 {
-	char str[] = {-300,'\0'};
+	int *str = malloc(2 *sizeof(int));
+	str[0] = value;
+	str[1] = '\0';
 	return str;
 }
 
 void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t), int printAll)
 {
+	void * invalidchar1 = str_invalidchar(-50);
+	void * invalidchar1_cpy = str_invalidchar(-50);
 
+	void * invalidchar2 = str_invalidchar(-300);
 	t_cmp_tst tests[] = 
 	{ 	
 		cmp_createTestParams((void *)"123456",(void *)"123456" , 7, "Same str total size"),
@@ -82,8 +83,8 @@ void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*my
 		cmp_createTestParams((void *)"123456",(void *)"123456" , 5, "Same str smaller size"),
 		cmp_createTestParams((void *)"123456",(void *)"123457" , 5, "1 Dif str smaller size"),
 		cmp_createTestParams((void *)"123456",(void *)"133457" , 5, "2 Dif str smaller size"),
-		cmp_createTestParams(str_invalidchar1(),str_invalidchar1(), 1, "Strs with same invalid char"),
-		cmp_createTestParams(str_invalidchar1(),str_invalidchar2(), 1, "Strs with dif invalid char"),
+		cmp_createTestParams(invalidchar1,invalidchar1_cpy, 1, "Strs with same invalid char"),
+		cmp_createTestParams(invalidchar1,invalidchar2, 1, "Strs with dif invalid char"),
 
 		cmp_createTestParams((void *)0,(void *)0, 0, (void *)0),
 	};
@@ -98,4 +99,7 @@ void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*my
 			printf(	"------------------GOOD------------------\n\n");
 		i++;
 	}
+	free(invalidchar1);
+	free(invalidchar2);
+
 }
