@@ -20,9 +20,8 @@ TOCHR
 	• tolower	-> DONE
 
 CPY
-	• memcpy	-> needs test header (CHECK MAN) attention to sobreposition on the same string 
-										pay attention to the poisition of pointers
-	• strlcpy
+	• memcpy	-> DONE 
+	• strlcpy	-> DONE
 	
 MEMCHR
 	• strchr 	-> DONE

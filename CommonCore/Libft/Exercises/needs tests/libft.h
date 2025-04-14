@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 11:02:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/14 14:53:27 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:31:55 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char *ft_strchr(const char *s, int c);
 char *ft_strrchr(const char *s, int c);
 
 void *ft_memcpy(void * dest, const void *src, size_t n);
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 #endif
 
