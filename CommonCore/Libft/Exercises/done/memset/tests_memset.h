@@ -13,7 +13,7 @@ typedef struct memset_tests
 
 typedef struct strcmp_ret
 {
-	int success;
+	int sucess;
 	unsigned int index;
 
 } t_strcmp_ret;
@@ -37,12 +37,12 @@ t_strcmp_ret strComp(char *a,char *b)
 		if(a[i] != b[i])
 		{
 			retVal.index = i;
-			retVal.success = 0;
+			retVal.sucess = 0;
 			return retVal;
 		}
 		i++;
 	}		
-	retVal.success = 1;
+	retVal.sucess = 1;
 	retVal.index = 0;
 	return retVal;
 }
@@ -68,9 +68,9 @@ int mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size
 	char *myStr = myFunc(createstr(test.str),test.c,test.size);
 
 	t_strcmp_ret result = strComp(baseStr, myStr); 
-	if(!result.success || printAll)
+	if(!result.sucess || printAll)
 	{
-		if(!result.success)
+		if(!result.sucess)
 		{
 			retVal = 0;
 			printf("	Failed at index (%d)\n", result.index);
