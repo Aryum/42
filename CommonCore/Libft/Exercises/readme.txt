@@ -16,8 +16,8 @@ CMP
 	• strncmp 	-> DONE
 
 TOCHR
-	• toupper 	-> needs test header
-	• tolower	-> needs test header
+	• toupper 	-> DONE
+	• tolower	-> DONE
 
 CPY
 	• memcpy	-> needs test header (CHECK MAN) attention to sobreposition on the same string 
@@ -25,9 +25,9 @@ CPY
 	• strlcpy
 	
 MEMCHR
-	• strchr 	-> needs test header
-	• strrchr	-> needs test header
-	• memchr
+	• strchr 	-> DONE
+	• strrchr	-> DONE
+	• memchr	-> DONE
 
 • memmove
 • strlcat
