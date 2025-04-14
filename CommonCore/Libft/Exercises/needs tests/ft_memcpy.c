@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 01:31:10 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/14 15:07:43 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:29:05 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void *ft_memcpy(void * dest, const void *src, size_t n)
 		i++;
 	}
 	return (dest);
+
 }
