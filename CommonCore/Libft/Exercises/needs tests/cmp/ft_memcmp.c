@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 02:01:44 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/12 02:08:15 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/12 02:27:38 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/14 09:10:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int strncmp(const char *s1, const char *s2, size_t n)
+int ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	int i;
+	int retval;
+	unsigned char * s1_c = (unsigned char *)s1;
+	unsigned char * s2_c = (unsigned char *)s2;
 
 	i = 0;
-
-	while (i < n && s1[i] == s2[i] && (s1[i] != '\0' || s2[i] != '\0'))
+	retval = 0;
+	while (i < n)
+	{
+		retval += s1_c[i] - s2_c[i];  
 		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+	return (retval);
 }

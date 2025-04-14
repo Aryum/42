@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 11:02:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/11 18:32:46 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/12 02:01:44 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/14 09:00:14 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-#include<string.h>
+int ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	int	i;
 
+	i = 0;
 
-int ft_isalpha(int i);
-
-int ft_isdigit(int c);
-
-int ft_isalnum(int c);
-
-int	ft_isascii(int c);
-
-int ft_isprint(int c);
-
-size_t ft_strlen(const char *s);
-
-void *ft_memset(void *s, int c, size_t n);
-
-void ft_bzero(void *s, size_t n);
-#endif
-
+	while (i < n && s1[i] == s2[i] && (s1[i] != '\0' || s2[i] != '\0'))
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
