@@ -6,33 +6,32 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:51:01 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/14 18:39:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/14 18:56:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-
-#include <stdio.h>
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int i;
-	int h;
-	int srclen;
+	size_t i;
+	size_t h;
+	size_t srclen;
+	size_t retval;
 	
 	i = 0;
 	h = ft_strlen(dst);
 	srclen = ft_strlen(src);
-	if (srclen + h > size)
+	retval = h + srclen;
+	if (h > size)
 		return (srclen + size);
-	printf("I am running");
-	while (h < size - 1 && src[i] != '\0')
+	while (h < size && src[i] != '\0')
 	{
-		dst[h] = src[i];
+		if (h != size - 1 )
+			dst[h] = src[i];
 		h++;
 		i++;
 	}
 	dst[h] = '\0';
-
-	return (h);
+	return (retval);
 }

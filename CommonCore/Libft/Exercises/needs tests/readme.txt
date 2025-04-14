@@ -29,7 +29,10 @@ MEMCHR
 	• memchr	-> DONE
 
 • memmove
-• strlcat
+
+• strlcat -> almost
+//METER PRINTS DOS TAMANHOS NO DEBUGS
+
 • strnstr
 • atoi
 

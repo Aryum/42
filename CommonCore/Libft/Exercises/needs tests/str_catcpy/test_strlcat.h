@@ -156,6 +156,8 @@ int strcatcpy_comparefunctions(t_strcatcpy_tst test, size_t(*baseFunc)(char *, c
 
 		printf("		Source	%s\n", nullcheck(test.src) );
 		printf("		Dst Og	%s\n", nullcheck(test.dst_og));
+		printf("		Length	%ld\n",test.size);
+
 		//not used for cpy but might be useful in the future
 		if(test.sameStr)
 		{
@@ -184,8 +186,9 @@ void strcatcpy_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size
 	t_strcatcpy_tst tests[] = 
 	{ 	
 		strcatcpy_createTestParams_Alloc("-----", "hello", 12,"Default behaviour"),
-		strcatcpy_createTestParams_Alloc("-----", "hello", 10,"Size smaller total of strings"),
-		strcatcpy_createTestParams_Alloc("-----", "hello", 3,"Dst size Size smaller than both"),
+		strcatcpy_createTestParams_Alloc("-----", "hello", 9,"Size smaller total of strings"),
+		strcatcpy_createTestParams_Alloc("-----", "hello", 3, "Size smaller than dest"),
+
 		/*
 		they are undefined
 		strcatcpy_createTestParams_SameStr ("Hello",0,1, 6, "1 Src and dest are in the same string"),
