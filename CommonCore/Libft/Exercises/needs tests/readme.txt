@@ -19,19 +19,18 @@ TOCHR
 	• toupper 	-> DONE
 	• tolower	-> DONE
 
-CPY
-	• memcpy	-> DONE 
-	• strlcpy	-> DONE
-	
 MEMCHR
 	• strchr 	-> DONE
 	• strrchr	-> DONE
 	• memchr	-> DONE
 
+
+• strlcat		-> DONE
+• strlcpy		-> DONE
+• memcpy		-> DONE 
+
 • memmove
 
-• strlcat -> almost
-//METER PRINTS DOS TAMANHOS NO DEBUGS
 
 • strnstr
 • atoi
