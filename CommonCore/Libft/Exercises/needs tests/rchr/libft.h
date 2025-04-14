@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 11:02:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/14 10:07:32 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:02:44 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ void ft_bzero(void *s, size_t n);
 int ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int ft_memcmp(const void *s1, const void *s2, size_t n);
+
+void *ft_memchr(const void *s, int c, size_t n);
+
+char *ft_strchr(const char *s, int c);
+
+char *ft_strrchr(const char *s, int c);
 
 #endif
 

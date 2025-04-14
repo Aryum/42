@@ -23,11 +23,11 @@ t_rchr_tst rchr_createTestParams(void *ptr, int c, size_t size,char *name)
 }
 
 
-int rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(void *, int, size_t), void *(*myFunc)(void *, int, size_t), int printAll)
+int rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
 {
 	int retVal = 1;
-	void *baseRet = baseFunc(test.ptr,test.c,test.size);
-	void *myRet = myFunc(test.ptr,test.c,test.size);
+	char *baseRet = (char *)baseFunc(test.ptr,test.c,test.size);
+	char *myRet = (char *)myFunc(test.ptr,test.c,test.size);
 
 	if(myRet != baseRet || printAll)
 	{
@@ -39,26 +39,27 @@ int rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(void *, int, size_t
 		else
 			printf("	Passed\n");
 
-		printf("		Base	%c\n", baseRet);
-		printf("		Mine	%c\n", myRet);
+		printf("		Base\n");
+		printf("			char	%c\n", baseRet != NULL ? *baseRet : '\0');
+		printf("			ptr		%p\n", baseRet );
+		printf("		Mine\n");
+		printf("			char	%c\n", myRet != NULL ? *myRet : '\0');
+		printf("			ptr		%p\n", myRet);
 	}
 
 	return (retVal);
 }
 
-void rchr_logMessages(void *(*baseFunc)(void *, int, size_t), void *(*myFunc)(void *, int, size_t), int printAll)
+void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
 {
 	t_rchr_tst tests[] = 
 	{ 	
-		rchr_createTestParams('w', "Lowercase"),
-		rchr_createTestParams('w', "Uppercase"),
-		rchr_createTestParams('-', "Symbol"),
-		rchr_createTestParams('\0', "Non printable"),
-		rchr_createTestParams(300, "1 Invalid char value"),
-		rchr_createTestParams(-300, "2 Invalid char value"),
-
-
-		rchr_createTestParams('w', NULL),
+		rchr_createTestParams((void *)"tester",'e', 7, "Has char"),
+		rchr_createTestParams((void *)"tester",'w', 7, "Doesnt have char"),
+		rchr_createTestParams((void *)"tester",'r', 2, "Doesnt have char cos of size "),
+		rchr_createTestParams((void *)"tester",'r', 10, "Has char and size bigger"),
+		rchr_createTestParams((void *)"tester",'w', 10, "Doesnt have char and size bigger"),
+		rchr_createTestParams((void *)0, 0, 0,NULL)
 	};
 	int i = 0;
 	while (tests[i].name != NULL)
