@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:51:01 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/14 18:56:03 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:02:34 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	h = ft_strlen(dst);
 	srclen = ft_strlen(src);
 	retval = h + srclen;
-	if (h > size)
+	if (h + 1 > size )
 		return (srclen + size);
-	while (h < size && src[i] != '\0')
+	while (h < size - 1 && src[i] != '\0')
 	{
-		if (h != size - 1 )
-			dst[h] = src[i];
+		dst[h] = src[i];
 		h++;
 		i++;
 	}
