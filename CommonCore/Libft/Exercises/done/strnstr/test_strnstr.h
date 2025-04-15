@@ -43,10 +43,10 @@ int strnstr_comparefunctions(t_strnstr_tst test, char *(*func[2])(const char *, 
 			printf("	Passed\n");
 
 		printf("		Base\n");
-		printf("			char	%c\n", baseRet != NULL ? *baseRet : '\0');
+		printf("			str		%s\n", baseRet != NULL ? baseRet : "(Empty)");
 		printf("			ptr		%p\n", baseRet );
 		printf("		Mine\n");
-		printf("			char	%c\n", myRet != NULL ? *myRet : '\0');
+		printf("			str		%s\n", myRet != NULL ? myRet : "(Empty)");
 		printf("			ptr		%p\n", myRet);
 	}
 
