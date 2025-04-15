@@ -32,8 +32,8 @@ MEMCHR
 • memmove		-> DONE
 
 
-• strnstr
-• atoi
+• strnstr		-> DONE
+• atoi			-> DONE
 
 To implement the two following functions, you will use malloc():
 • calloc
