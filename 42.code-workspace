@@ -9,7 +9,9 @@
 			"type_traits": "c",
 			"stdlib.h": "c",
 			"libft.h": "c",
-			"test_strlcpy .h": "c"
+			"test_strlcpy .h": "c",
+			"ctype.h": "c",
+			"string.h": "c"
 		}
 	}
 }

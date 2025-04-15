@@ -29,7 +29,7 @@ MEMCHR
 • strlcpy		-> DONE
 • memcpy		-> DONE 
 
-• memmove
+• memmove		-> DONE
 
 
 • strnstr

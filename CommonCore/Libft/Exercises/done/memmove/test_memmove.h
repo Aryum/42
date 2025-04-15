@@ -29,20 +29,29 @@ typedef struct strlcpy_tests
 	int index2;
 	int sameStr;
 	char *ptr;
-} t_strcatcpy_tst;
+} t_memmove_tst;
 
 
-t_strcatcpy_tst strcatcpy_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
+t_memmove_tst memmove_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
 {
-	t_strcatcpy_tst retval;
+	t_memmove_tst retval;
 	retval.name = name;
 	retval.src = src;
 
 	if(name != NULL)
 	{
-		retval.dst_mod = createstr(dst);
-		retval.dst_og = createstr(dst);
+		if(dst != NULL )
+		{
+			retval.dst_mod = createstr(dst);
+			retval.dst_og = createstr(dst);
+		}
+		else
+		{
+			retval.dst_mod = NULL;
+			retval.dst_og = NULL;
+		}
 	}
+
 	retval.size = size;
 	retval.sameStr = 0;
 	return retval;
@@ -50,9 +59,9 @@ t_strcatcpy_tst strcatcpy_createTestParams_Alloc(char* dst,char* src, size_t siz
 
 //not used for cpy since it is undefined behaviour left because it might be useful
 
-t_strcatcpy_tst strcatcpy_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
+t_memmove_tst memmove_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
 {
-	t_strcatcpy_tst retval;	
+	t_memmove_tst retval;	
 	retval.ptr = createstr(str);
 	retval.name = name;
 	retval.src = &(retval.ptr[index1]);
@@ -66,7 +75,7 @@ t_strcatcpy_tst strcatcpy_createTestParams_SameStr(char* str, int index1,int ind
 	return retval;
 }
 
-void freeAlloc(t_strcatcpy_tst tst)
+void freeAlloc(t_memmove_tst tst)
 {
 	if(tst.name != NULL)
 	{
@@ -116,28 +125,29 @@ char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-int strcatcpy_comparefunctions(t_strcatcpy_tst test, size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t), int printAll)
+int memmove_comparefunctions(t_memmove_tst test, void*(*funcs[2])(void *, const void *, size_t ),int printAll)
 {
 	int retVal = 1;
 
-	t_strcatcpy_tst basetest;
-	t_strcatcpy_tst mytest;
+	t_memmove_tst basetest;
+	t_memmove_tst mytest;
 	if(!test.sameStr)
 	{
-		basetest = strcatcpy_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
-		mytest = strcatcpy_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
+		basetest = memmove_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
+		mytest = memmove_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
 	}
 	else
 	{
 		//not used for cpy since it is undefined behaviour left because it might be useful
-		basetest = strcatcpy_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
-		mytest =  strcatcpy_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
+		basetest = memmove_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
+		mytest =  memmove_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
 
 	}
+	funcs[0](basetest.dst_mod, basetest.src, basetest.size);
 
-	size_t base_len = baseFunc(basetest.dst_mod, basetest.src, basetest.size);
-	size_t my_len = myFunc(mytest.dst_mod, mytest.src, mytest.size);
-
+	funcs[1](mytest.dst_mod, mytest.src, mytest.size);
+	size_t base_len = strlen(basetest.dst_mod); 
+	size_t my_len = strlen(mytest.dst_mod);
 	t_strcmp_ret cmp_result = strComp(mytest.dst_mod,basetest.dst_mod);
 	int sucess = cmp_result.sucess && base_len == my_len;
 	if(!(sucess) || printAll)
@@ -178,34 +188,29 @@ int strcatcpy_comparefunctions(t_strcatcpy_tst test, size_t(*baseFunc)(char *, c
 	return (retVal);
 }
 
-void strcatcpy_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t), int printAll)
+void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int printAll)
 {
 
 	//create a test that src and dest are part of the same string
-	t_strcatcpy_tst tests[] = 
+	t_memmove_tst tests[] = 
 	{ 	
-		strcatcpy_createTestParams_Alloc("-----", "hello", 12,"Default behaviour"),
-		strcatcpy_createTestParams_Alloc("-----", "hello", 9,"1 Size smaller total of strings"),
-		strcatcpy_createTestParams_Alloc("-----", "hello", 7,"2 Size smaller total of strings"),
+		memmove_createTestParams_Alloc("-----", "hello", 12,"Default behaviour"),
+		memmove_createTestParams_Alloc("-----", "hello", 9,"1 Size smaller total of strings"),
+		memmove_createTestParams_Alloc("-----", "hello", 7,"2 Size smaller total of strings"),
+		memmove_createTestParams_Alloc("-----", "hello", 3, "Size smaller than dest"),
+		memmove_createTestParams_SameStr ("Hello",0,1, 6, "1 Src and dest are in the same string"),
+		memmove_createTestParams_SameStr ("Hello",1,0, 6, "2 Src and dest are in the same string"),
+		memmove_createTestParams_SameStr ("Hello",0,1, 3, "3 Src and dest are in the same string"),
+		memmove_createTestParams_SameStr ("Hello",1,0, 3, "4 Src and dest are in the same string"),
 
-		strcatcpy_createTestParams_Alloc("-----", "hello", 3, "Size smaller than dest"),
-
-		/*
-		they are undefined
-		strcatcpy_createTestParams_SameStr ("Hello",0,1, 6, "1 Src and dest are in the same string"),
-		strcatcpy_createTestParams_SameStr ("Hello",1,0, 6, "2 Src and dest are in the same string"),
-		strcatcpy_createTestParams_SameStr ("Hello",0,1, 3, "3 Src and dest are in the same string"),
-		strcatcpy_createTestParams_SameStr ("Hello",1,0, 3, "4 Src and dest are in the same string"),
-		*/
-
-		strcatcpy_createTestParams_Alloc("","",0,NULL)
+		memmove_createTestParams_Alloc("","",0,NULL)
 	};
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!strcatcpy_comparefunctions(tests[i],baseFunc, myFunc, printAll))
+		if (!memmove_comparefunctions(tests[i],funcs, printAll))
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");
