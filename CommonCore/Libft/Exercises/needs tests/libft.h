@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 11:02:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/15 11:25:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/15 12:35:00 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ char *ft_strrchr(const char *s, int c);
 
 void *ft_memcpy(void * dest, const void *src, size_t n);
 
-void *ft_memmove(void *dest, const void *src, size_t n)
+void *ft_memmove(void *dest, const void *src, size_t n);
+
+char * ft_strnstr(const char *big, const char *little, size_t len);
 
 #endif
 
