@@ -105,12 +105,12 @@ void substr_logMessages(FUNC, int printAll)
 		subsstr_createtest("Trim after 123456789",11,9,"123456789", "Take numbers out"),
 		subsstr_createtest("1234",1,3,"234", "Trimmed start"),
 		subsstr_createtest("1234",0,4,"1234", "Returns a dupped string"),
-		subsstr_createtest("1234",5,0,NULL,"Starts in index bigger than str"),
+		subsstr_createtest("1234",5,0,"","Starts in index bigger than str"),
 
 		subsstr_createtest("",0,0,NULL,NULL)
 	};
 	int i = 0;
-	while (tests[i].out != NULL)
+	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
 		printf("	Expected %s\n", nullcheck((char *)tests[i].out));

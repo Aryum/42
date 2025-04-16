@@ -1,6 +1,7 @@
 
 #include "libft.h"
-#include "test_substr.h"
+#include "test_strjoin.h"
+
 
 void *ft_calloc(size_t nmemb, size_t size)
 {
@@ -26,5 +27,5 @@ size_t ft_strlen(const char *s)
 }
 int main(int argc, char ** agrv)
 {
-	substr_logMessages(ft_substr,argc != 1);
+	strjoin_logMessages(ft_strjoin,argc != 1);
 }

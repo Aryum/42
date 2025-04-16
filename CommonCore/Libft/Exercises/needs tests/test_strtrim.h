@@ -2,16 +2,15 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
-#define FUNC char	*(*func)(char const *, unsigned int, size_t)
-typedef struct strjoin_tests
+#define FUNC char	*(*func)(char const *, char const *)
+
+typedef struct strtrim_tests
 {
-	char const *s; 
-	unsigned int start; 
-	size_t len;
+	char const *s1;
+	char const *set;
 	char * name;
 	char *out;
-
-} t_substr_tst;
+} t_strtrim_tst;
 
 typedef struct strcmp_ret
 {
@@ -20,15 +19,14 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_substr_tst subsstr_createtest(char const *s, unsigned int start, size_t len, char *out, char* name)
+t_strtrim_tst subsstr_createtest(char const *s1,char const *set, char *out, char* name)
 {
-	t_substr_tst retval;
-	retval.s = s;
-	retval.start = start;
-	retval.len = len;
+	t_strtrim_tst retval;
+	retval.s1 = s1;
+	retval.set = set;
+
 	retval.out = out;
 	retval.name = name;
-
 
 	return retval;
 }
@@ -71,10 +69,10 @@ char *nullcheck(char *str)
 }
 
 
-int substr_comparefunctions(t_substr_tst test,FUNC , int printAll)
+int strtrim_comparefunctions(t_strtrim_tst test,FUNC , int printAll)
 {
 	int retVal = 1;
-	char *myOut = func(test.s,test.start,test.len);
+	char *myOut = func(test.s1, test.set);
 	t_strcmp_ret cmpRet;
 	cmpRet = strComp(myOut, test.out);
 	if(! cmpRet.sucess|| printAll)
@@ -87,36 +85,31 @@ int substr_comparefunctions(t_substr_tst test,FUNC , int printAll)
 		else
 			printf("	Passed\n");
 
-		printf("		Got	%s\n", nullcheck(myOut));
-		if(myOut != NULL)
-		{
-			printf("		Starting at	(%d)->%c\n", test.start ,test.s[test.start]);
-			printf("		Ending at	(%ld)->%c\n", test.start + test.len ,test.s[test.start + test.len - 1]);
-		}
+		printf("		Return %s\n", nullcheck(myOut));
 	}
-
+	free(myOut);
 	return (retVal);
 }
 
-void substr_logMessages(FUNC, int printAll)
+void strtrim_logMessages(FUNC, int printAll)
 {
-	t_substr_tst tests[] = 
+	t_strtrim_tst tests[] = 
 	{ 	
-		subsstr_createtest("Trim after 123456789",11,9,"123456789", "Take numbers out"),
-		subsstr_createtest("1234",1,3,"234", "Trimmed start"),
-		subsstr_createtest("1234",0,4,"1234", "Returns a dupped string"),
-		subsstr_createtest("1234",5,0,NULL,"Starts in index bigger than str"),
+		subsstr_createtest("ABAB","B","AA", "Test 1"),
+		subsstr_createtest("Hello is this hell","li","Heo s ths he", "Test 2"),
+		subsstr_createtest(NULL," or am i",NULL, "String is null"),
+		subsstr_createtest("I am working", NULL,"I am working", "Set is null"),
 
-		subsstr_createtest("",0,0,NULL,NULL)
+		subsstr_createtest(NULL,NULL,NULL,NULL)
 	};
 	int i = 0;
-	while (tests[i].out != NULL)
+	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
 		printf("	Expected %s\n", nullcheck((char *)tests[i].out));
 
 		printf(	"-----------------------------------------\n");
-		if (!substr_comparefunctions(tests[i],func, printAll))
+		if (!strtrim_comparefunctions(tests[i],func, printAll))
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");
