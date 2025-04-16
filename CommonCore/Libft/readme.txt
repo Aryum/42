@@ -37,4 +37,27 @@ MEMCHR
 
 To implement the two following functions, you will use malloc():
 • calloc		-> DONE
-• strdup
+• strdup		-> DONE
+
+• substr
+• strjoin
+• strtrim
+• split
+• itoa
+• strmapi
+• striteri
+• putchar_fd
+• putstr_fd
+• putendl_fd
+• putnbr_fd
+
+BONUS
+• lstnew
+• lstadd_front
+• lstsize
+• lstlast
+• lstadd_back
+• lstdelone
+• lstclear
+• lsttiter
+• lstmap

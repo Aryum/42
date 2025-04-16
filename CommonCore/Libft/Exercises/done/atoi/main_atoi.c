@@ -1,4 +1,4 @@
-#include "test_atoi.c"
+#include "test_atoi.h"
 #include <stdlib.h>
 #include "libft.h"
 

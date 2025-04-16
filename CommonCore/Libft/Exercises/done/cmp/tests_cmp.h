@@ -82,7 +82,9 @@ void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*my
 	t_cmp_tst tests[] = 
 	{ 	
 		cmp_createTestParams((void *)"123456",(void *)"123456" , 7, "Same str total size"),
-		cmp_createTestParams((void *)"123456",(void *)"023456" , 7, "Dif str total size"),
+		cmp_createTestParams((void *)"123456",(void *)"023456" , 7, "1 Dif str total size"),
+		cmp_createTestParams((void *)"123456",(void *)"128456" , 7, "2 Dif str total size"),
+
 		cmp_createTestParams((void *)"123456",(void *)"123456" , 5, "Same str smaller size"),
 		cmp_createTestParams((void *)"aa1aa",(void *)"aaaaa" , 5, "1 Dif str smaller size"),
 		cmp_createTestParams((void *)"aaaaaa1",(void *)"aaaaaaa" , 5, "2 Dif str smaller size"),

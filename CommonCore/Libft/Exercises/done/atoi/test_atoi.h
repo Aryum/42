@@ -54,7 +54,6 @@ void atoi_logMessages(int(*func[2])(const char *), int printAll)
 		atoi_createTestParams("2147483647", "Max int"),
 		atoi_createTestParams("21474836481", "Overflow"),
 
-
 		atoi_createTestParams("", NULL),
 	};
 	int i = 0;
