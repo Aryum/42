@@ -82,7 +82,7 @@ void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*my
 		cmp_createTestParams((void *)"123456",(void *)"023456" , 7, "Dif str total size"),
 		cmp_createTestParams((void *)"123456",(void *)"123456" , 5, "Same str smaller size"),
 		cmp_createTestParams((void *)"123456",(void *)"123457" , 5, "1 Dif str smaller size"),
-		cmp_createTestParams((void *)"123456",(void *)"133457" , 5, "2 Dif str smaller size"),
+		cmp_createTestParams((void *)"aaaaaa1",(void *)"aaaaaaa" , 5, "2 Dif str smaller size"),
 		cmp_createTestParams(invalidchar1,invalidchar1_cpy, 1, "Strs with same invalid char"),
 		cmp_createTestParams(invalidchar1,invalidchar2, 1, "Strs with dif invalid char"),
 
