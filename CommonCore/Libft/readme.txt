@@ -39,8 +39,8 @@ To implement the two following functions, you will use malloc():
 • calloc		-> DONE
 • strdup		-> DONE
 
-• substr
-• strjoin
+• substr		-> DONE
+• strjoin		-> DONE
 • strtrim
 • split
 • itoa
