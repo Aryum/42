@@ -52,6 +52,9 @@ int cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, const void
 		}
 		else
 			printf("	Passed\n");
+		printf("	Comparing %ld bytes\n", test.size);
+		printf("	Str1 %s\n", (char *)test.str1);
+		printf("	Str2 %s\n", (char *)test.str2);
 
 		printf("		Base	%d\n", baseRet);
 		printf("		Mine	%d\n", myRet);
@@ -81,7 +84,7 @@ void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*my
 		cmp_createTestParams((void *)"123456",(void *)"123456" , 7, "Same str total size"),
 		cmp_createTestParams((void *)"123456",(void *)"023456" , 7, "Dif str total size"),
 		cmp_createTestParams((void *)"123456",(void *)"123456" , 5, "Same str smaller size"),
-		cmp_createTestParams((void *)"123456",(void *)"123457" , 5, "1 Dif str smaller size"),
+		cmp_createTestParams((void *)"aa1aa",(void *)"aaaaa" , 5, "1 Dif str smaller size"),
 		cmp_createTestParams((void *)"aaaaaa1",(void *)"aaaaaaa" , 5, "2 Dif str smaller size"),
 		cmp_createTestParams(invalidchar1,invalidchar1_cpy, 1, "Strs with same invalid char"),
 		cmp_createTestParams(invalidchar1,invalidchar2, 1, "Strs with dif invalid char"),

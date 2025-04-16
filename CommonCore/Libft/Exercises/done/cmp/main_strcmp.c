@@ -19,4 +19,7 @@ int convert2(const void * str1,const void * str2, size_t size)
 int main(int argc, char ** agrv)
 {
 	cmp_logMessages(convert1,convert2, argc != 1);
+	printf("\n 1 - a = %d", '1' - 'a');	
+	printf("\n strcmp = %d", strncmp("aa1aa","aaaaa",5));	
+
 }
