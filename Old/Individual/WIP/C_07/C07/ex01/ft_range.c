@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:50:19 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/02/12 13:23:17 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:10:30 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,19 @@ int	*ft_range(int min, int max)
 	return ((void *)0);
 }
 
-/*
 #include <stdio.h>
 int main()
 {
 
 	int i = 0;
-	int min = -10;
-	int max = -1;
+	int min = 1147483648;
+	int max = -1147483647;
 	int *arr = ft_range(min, max);
-
+	printf("%d", max-min);
 	while(i < max - min)
 	{
 		printf("%d index is %d\n", i, arr[i]);
 		i++;
 	}
-	free(arr);
 	return 0;
 }
-*/
