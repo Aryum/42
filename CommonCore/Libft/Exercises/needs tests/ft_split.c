@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:03:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/17 17:58:43 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:33:52 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ int countwordlen (char *s, char c)
 	return i;
 }
 
+void *freearr(char **arr, int lastindex)
+{
+	while (lastindex > 0)
+	{
+		free(arr[lastindex]);
+		lastindex--;
+	}
+	free(arr);
+	return (NULL);
+}
+
 char **ft_split(char const *s, char c)
 {
 	char ** ret;
@@ -50,33 +61,33 @@ char **ft_split(char const *s, char c)
 
 	i = 0;
 	h = 0;
+	if(s == NULL)
+		return (ft_calloc(0,0));
 	wordcount  = countwords (s, c); 
 	ret = ft_calloc(wordcount + 1, sizeof(char *));
 	if(ret != NULL)
 	{
 		while (h < wordcount)
-	{
-		while (s[i] == c)
-			i++;
-		wordlen = countwordlen(&s[i],c);		
-		ret[h] = ft_strdup(ft_substr(&s[i],0,wordlen));
-		if(ret[h] != NULL)
 		{
-			i += wordlen;
-			h++;
+			while (s[i] == c)
+				i++;
+			wordlen = countwordlen(&s[i],c);		
+			ret[h] = ft_strdup(ft_substr(&s[i],0,wordlen));
+			if(ret[h] != NULL)
+			{
+				i += wordlen;
+				h++;
+			}
+			else
+				return(freearr(ret,h));				
 		}
-		else
-		{
-			//free and get out of loop
-		}
-	}
-	ret[i] = NULL;
+		ret[i] = NULL;
 	}
 	return (ret);
 }
 
 #include <stdio.h>
-
+//BUILD TESTER
 int main()
 {
 	char *str ="A b c d e";
