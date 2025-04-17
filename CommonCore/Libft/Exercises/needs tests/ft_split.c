@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:03:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/17 17:06:33 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:58:43 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,21 @@ static unsigned int countwords(char const *s, char c)
 	return (ret);
 }
 
+int countwordlen (char *s, char c)
+{
+	int i;
+	
+	i = 0;
+	while(s[i] != '\0' && s[i] != c)
+		i++;
+	return i;
+}
 
 char **ft_split(char const *s, char c)
 {
 	char ** ret;
 	unsigned int wordcount;
+	unsigned int wordlen;
 	unsigned int i;
 	unsigned int h;
 
@@ -42,17 +52,34 @@ char **ft_split(char const *s, char c)
 	h = 0;
 	wordcount  = countwords (s, c); 
 	ret = ft_calloc(wordcount + 1, sizeof(char *));
-	while (h < wordcount)
+	if(ret != NULL)
 	{
-		if (s[i] == c)
+		while (h < wordcount)
+	{
+		while (s[i] == c)
 			i++;
+		wordlen = countwordlen(&s[i],c);		
+		ret[h] = ft_strdup(ft_substr(&s[i],0,wordlen));
+		if(ret[h] != NULL)
+		{
+			i += wordlen;
+			h++;
+		}
+		else
+		{
+			//free and get out of loop
+		}
 	}
+	ret[i] = NULL;
+	}
+	return (ret);
 }
 
 #include <stdio.h>
 
 int main()
 {
-	char *str ="Hel    loihave5words    ";
+	char *str ="A b c d e";
 	printf("Word count: %d", countwords(str,' '));
+	
 }

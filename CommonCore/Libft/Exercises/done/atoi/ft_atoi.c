@@ -6,12 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:42:48 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/15 15:13:41 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:48:43 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 int ft_atoi(const char *nptr)
 {
@@ -22,9 +21,11 @@ int ft_atoi(const char *nptr)
 	sign = 1;
 	retval = 0;
 	i = 0;
-	if(nptr[0] == '-' || nptr[0] == '+')
+	while ((nptr[i] == ' ') || (nptr[i] >= '\t' && nptr[i] <= '\r'))
+		i++;
+	if(nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (nptr[0] == '-')
+		if (nptr[i] == '-')
 			sign *= -1;
 		i++;
 	}

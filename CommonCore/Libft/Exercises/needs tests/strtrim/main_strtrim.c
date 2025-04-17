@@ -24,6 +24,21 @@ size_t ft_strlen(const char *s)
 		i++;		
 	return (i);
 }
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	int	i;
+	int retval;
+	
+	i = 0;
+	retval = ft_strlen(dst) + ft_strlen(src);
+	while (i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return  (retval);
+}
 
 int main(int argc, char ** agrv)
 {

@@ -45,6 +45,11 @@ void atoi_logMessages(int(*func[2])(const char *), int printAll)
 	t_atoi_tst  tests[] = 
 	{ 	
 		atoi_createTestParams("12345", "Default behaviour"),
+		atoi_createTestParams("  12345", "Spaces"),
+		atoi_createTestParams("  +12345", "1 Spaces with simbol"),
+		atoi_createTestParams("  -12345", "2 Spaces with simbol"),
+		atoi_createTestParams("  -+12345", "3 Spaces with simbol"),
+		atoi_createTestParams("  -+123  45", "4 Spaces with simbol"),
 		atoi_createTestParams("-12345", "Negative number"),
 		atoi_createTestParams("+12345", "Positive simbol"),
 		atoi_createTestParams("a12345", "Has letter before nbr"),

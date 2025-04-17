@@ -105,6 +105,10 @@ void strtrim_logMessages(FUNC, int printAll)
 		subsstr_createtest("ABAB--++---","-+7094","ABAB", "Test 3"),
 		subsstr_createtest("--++---ABAB","+-","ABAB", "Test 4"),
 		subsstr_createtest("ABAB--++---","\0","ABAB--++---", "Charset is the null char"),
+
+		subsstr_createtest("abababab|abababababab|abababaaaaaabbbb","ab","|abababababab|", "Charset is the null char"),
+
+
 		subsstr_createtest(NULL," or am i",NULL, "String is null"),
 		subsstr_createtest("I am working", NULL,"I am working", "Set is null"),
 

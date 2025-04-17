@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:17:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/16 12:06:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:20:17 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void *ft_calloc(size_t nmemb, size_t size)
 	size_t totalsize;
 
 	totalsize = nmemb * size;
-	if (nmemb == 0)
-		return (NULL);
+	if (size > 0 && totalsize / size != nmemb)
+		return (malloc(0));
 	retval = malloc(totalsize);
 	if (retval != NULL)
 		ft_bzero(retval,totalsize);
