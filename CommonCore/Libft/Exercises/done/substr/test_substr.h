@@ -92,6 +92,10 @@ int substr_comparefunctions(t_substr_tst test,FUNC , int printAll)
 		{
 			printf("		Starting at	(%d)->%c\n", test.start ,test.s[test.start]);
 			printf("		Ending at	(%ld)->%c\n", test.start + test.len ,test.s[test.start + test.len - 1]);
+			printf("		Out Pointer (%p)\n", myOut);
+			printf("		Og Pointer	(%p)\n", test.s);
+
+
 		}
 	}
 

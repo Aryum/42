@@ -84,8 +84,10 @@ int strtrim_comparefunctions(t_strtrim_tst test,FUNC , int printAll)
 		}
 		else
 			printf("	Passed\n");
-
+		printf("		Base %s\n", nullcheck((char *)test.s1));
 		printf("		Return %s\n", nullcheck(myOut));
+		printf("		Expected %s\n", nullcheck(test.out));
+
 	}
 	free(myOut);
 	return (retVal);
@@ -93,10 +95,16 @@ int strtrim_comparefunctions(t_strtrim_tst test,FUNC , int printAll)
 
 void strtrim_logMessages(FUNC, int printAll)
 {
+	//str vazia return vazio
+	//char set \0 return str normal
 	t_strtrim_tst tests[] = 
 	{ 	
-		subsstr_createtest("ABAB","B","AA", "Test 1"),
-		subsstr_createtest("Hello is this hell","li","Heo s ths he", "Test 2"),
+		subsstr_createtest("----ABAB----","-","ABAB", "Test 1"),
+		subsstr_createtest("--++-ABAB--++---","-+","ABAB", "Test 2"),
+		subsstr_createtest("ABAB-1234","-1234","ABAB", "Test 4"),
+		subsstr_createtest("ABAB--++---","-+7094","ABAB", "Test 3"),
+		subsstr_createtest("--++---ABAB","+-","ABAB", "Test 4"),
+		subsstr_createtest("ABAB--++---","\0","ABAB--++---", "Charset is the null char"),
 		subsstr_createtest(NULL," or am i",NULL, "String is null"),
 		subsstr_createtest("I am working", NULL,"I am working", "Set is null"),
 
@@ -106,8 +114,6 @@ void strtrim_logMessages(FUNC, int printAll)
 	while (tests[i].name != NULL)
 	{
 		printf("Testing %s\n", tests[i].name);
-		printf("	Expected %s\n", nullcheck((char *)tests[i].out));
-
 		printf(	"-----------------------------------------\n");
 		if (!strtrim_comparefunctions(tests[i],func, printAll))
 			printf(	"------------------ERROR------------------\n\n");
