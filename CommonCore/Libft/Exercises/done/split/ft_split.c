@@ -30,7 +30,7 @@ static unsigned int countwords(char const *s, char c)
 	return (ret);
 }
 
-int countwordlen (char *s, char c)
+static int countwordlen (char *s, char c)
 {
 	int i;
 	
@@ -40,14 +40,15 @@ int countwordlen (char *s, char c)
 	return i;
 }
 
-void *freearr(char **arr, int lastindex)
+static void *freearr(char ***arr, int lastindex)
 {
-	while (lastindex > 0)
+	while (lastindex >= 0)
 	{
-		free(arr[lastindex]);
+		if(arr[lastindex] != NULL)
+			free((*arr)[lastindex]);
 		lastindex--;
 	}
-	free(arr);
+	free(*arr);
 	return (NULL);
 }
 
@@ -62,7 +63,7 @@ char **ft_split(char const *s, char c)
 	i = 0;
 	h = 0;
 	if(s == NULL)
-		return (ft_calloc(0,0));
+		return (NULL);
 	wordcount  = countwords (s, c); 
 	ret = ft_calloc(wordcount + 1, sizeof(char *));
 	if(ret != NULL)
@@ -72,32 +73,16 @@ char **ft_split(char const *s, char c)
 			while (s[i] == c)
 				i++;
 			wordlen = countwordlen((char *)&s[i],c);		
-			ret[h] = ft_strdup(ft_substr(&s[i],0,wordlen));
+			ret[h] = ft_substr(&s[i],0,wordlen);
 			if(ret[h] != NULL)
 			{
 				i += wordlen;
 				h++;
 			}
 			else
-				return(freearr(ret,h));				
+				return(freearr(&ret,h));				
 		}
-		ret[i] = NULL;
+		ret[h] = NULL;
 	}
 	return (ret);
-}
-
-#include <stdio.h>
-
-//BUILD TESTER
-int main()
-{
-	char *str ="A b c d e";
-	char **ret = ft_split(str, ' ');
-	int i = 0;
-	while (ret[i] != NULL)
-	{
-		printf("Current word: |%s|\n", ret[i]);
-		i++;
-	}
-	freearr(ret, i);
 }

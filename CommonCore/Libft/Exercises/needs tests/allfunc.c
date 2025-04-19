@@ -362,3 +362,107 @@ int ft_toupper(int c)
 		return (c - 32);
 	return (c);
 }
+
+ void *freesplit(char ***arr, int lastindex)
+{
+	while (lastindex >= 0)
+	{
+		if(arr[lastindex] != NULL)
+			free((*arr)[lastindex]);
+		lastindex--;
+	}
+	free(*arr);
+	return (NULL);
+}
+
+static unsigned int countwords(char const *s, char c)
+{
+	unsigned int i;
+	unsigned int ret;
+	int flag;
+	
+	i = 0;
+	ret = 0;
+	flag = 0;	
+	while (s[i] != '\0')
+	{
+		if (s[i] != c && (s[i + 1] == '\0' || s[i + 1] == c))
+			ret++;
+		i++;
+	}
+	return (ret);
+}
+
+static int countwordlen (char *s, char c)
+{
+	int i;
+	
+	i = 0;
+	while(s[i] != '\0' && s[i] != c)
+		i++;
+	return i;
+}
+
+char **ft_split(char const *s, char c)
+{
+	char ** ret;
+	unsigned int wordcount;
+	unsigned int wordlen;
+	unsigned int i;
+	unsigned int h;
+
+	i = 0;
+	h = 0;
+	if(s == NULL)
+		return (NULL);
+	wordcount  = countwords (s, c); 
+	ret = ft_calloc(wordcount + 1, sizeof(char *));
+	if(ret != NULL)
+	{
+		while (h < wordcount)
+		{
+			while (s[i] == c)
+				i++;
+			wordlen = countwordlen((char *)&s[i],c);		
+			ret[h] = ft_substr(&s[i],0,wordlen);
+			if(ret[h] != NULL)
+			{
+				i += wordlen;
+				h++;
+			}
+			else
+				return(freesplit(&ret,h));				
+		}
+		ret[h] = NULL;
+	}
+	return (ret);
+}
+
+char	*ft_itoa(int n)
+{
+	int		len;
+	char	*ret;
+	long	nbr;
+	
+	nbr = (long)n;
+	len = nbcount(nbr);
+	if (nbr < 0)
+		len++;
+	ret = ft_calloc(len + 1, sizeof(char));
+	if (ret != NULL)
+	{
+		len -= 1;
+		if (nbr< 0)
+		{
+			ret[0] = '-';
+			nbr *= -1;
+		}
+		while (len >= 0 && ret[len] != '-')
+		{
+			ret[len] = nbr % 10 + '0';
+			len -= 1;
+			nbr /= 10;
+		}
+	}
+	return (ret);
+}

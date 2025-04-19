@@ -13,7 +13,7 @@ void *ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	retval = malloc(totalsize);
 	if (retval != NULL)
-		bzero(retval,totalsize);
+		ft_bzero(retval,totalsize);
 	return (retval);
 }
 size_t ft_strlen(const char *s)

@@ -19,7 +19,7 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_strtrim_tst subsstr_createtest(char const *s1,char const *set, char *out, char* name)
+t_strtrim_tst strtrim_createtest(char const *s1,char const *set, char *out, char* name)
 {
 	t_strtrim_tst retval;
 	retval.s1 = s1;
@@ -99,20 +99,20 @@ void strtrim_logMessages(FUNC, int printAll)
 	//char set \0 return str normal
 	t_strtrim_tst tests[] = 
 	{ 	
-		subsstr_createtest("----ABAB----","-","ABAB", "Test 1"),
-		subsstr_createtest("--++-ABAB--++---","-+","ABAB", "Test 2"),
-		subsstr_createtest("ABAB-1234","-1234","ABAB", "Test 4"),
-		subsstr_createtest("ABAB--++---","-+7094","ABAB", "Test 3"),
-		subsstr_createtest("--++---ABAB","+-","ABAB", "Test 4"),
-		subsstr_createtest("ABAB--++---","\0","ABAB--++---", "Charset is the null char"),
+		strtrim_createtest("----ABAB----","-","ABAB", "Test 1"),
+		strtrim_createtest("--++-ABAB--++---","-+","ABAB", "Test 2"),
+		strtrim_createtest("ABAB-1234","-1234","ABAB", "Test 4"),
+		strtrim_createtest("ABAB--++---","-+7094","ABAB", "Test 3"),
+		strtrim_createtest("--++---ABAB","+-","ABAB", "Test 4"),
+		strtrim_createtest("ABAB--++---","\0","ABAB--++---", "Charset is the null char"),
 
-		subsstr_createtest("abababab|abababababab|abababaaaaaabbbb","ab","|abababababab|", "Charset is the null char"),
+		strtrim_createtest("abababab|abababababab|abababaaaaaabbbb","ab","|abababababab|", "Charset is the null char"),
 
 
-		subsstr_createtest(NULL," or am i",NULL, "String is null"),
-		subsstr_createtest("I am working", NULL,"I am working", "Set is null"),
+		strtrim_createtest(NULL," or am i",NULL, "String is null"),
+		strtrim_createtest("I am working", NULL,"I am working", "Set is null"),
 
-		subsstr_createtest(NULL,NULL,NULL,NULL)
+		strtrim_createtest(NULL,NULL,NULL,NULL)
 	};
 	int i = 0;
 	while (tests[i].name != NULL)
