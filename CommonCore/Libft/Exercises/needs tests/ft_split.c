@@ -71,7 +71,7 @@ char **ft_split(char const *s, char c)
 		{
 			while (s[i] == c)
 				i++;
-			wordlen = countwordlen(&s[i],c);		
+			wordlen = countwordlen((char *)&s[i],c);		
 			ret[h] = ft_strdup(ft_substr(&s[i],0,wordlen));
 			if(ret[h] != NULL)
 			{
@@ -87,10 +87,17 @@ char **ft_split(char const *s, char c)
 }
 
 #include <stdio.h>
+
 //BUILD TESTER
 int main()
 {
 	char *str ="A b c d e";
-	printf("Word count: %d", countwords(str,' '));
-	
+	char **ret = ft_split(str, ' ');
+	int i = 0;
+	while (ret[i] != NULL)
+	{
+		printf("Current word: |%s|\n", ret[i]);
+		i++;
+	}
+	freearr(ret, i);
 }
