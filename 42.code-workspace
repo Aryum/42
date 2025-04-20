@@ -12,7 +12,8 @@
 			"test_strlcpy .h": "c",
 			"ctype.h": "c",
 			"string.h": "c",
-			"random": "cpp"
+			"random": "cpp",
+			"functional": "cpp"
 		}
 	}
 }
