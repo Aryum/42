@@ -437,6 +437,20 @@ char **ft_split(char const *s, char c)
 	}
 	return (ret);
 }
+static int	nbcount(long int n)
+{
+	int	i;
+
+	i = 1;
+	if (n < 0)
+		n *= -1;
+	while (n / 10 > 0)
+	{
+		i++;
+		n /= 10;
+	}
+	return (i);
+}
 
 char	*ft_itoa(int n)
 {
@@ -465,4 +479,37 @@ char	*ft_itoa(int n)
 		}
 	}
 	return (ret);
+}
+
+char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char *ret;
+	int i;
+	if(s == NULL)
+		return (NULL);
+	ret = ft_strdup(s);
+	i = 0;
+	if (ret != NULL)
+	{
+		while (ret[i] != '\0')
+		{
+			ret[i] = f(i, ret[i]);
+			i++;
+		}
+	}
+	return (ret);
+}
+
+void ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	int	i;
+	
+	i = 0;
+	if(s == NULL)
+		return ;
+	while (s[i] != '\0')
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
