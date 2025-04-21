@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/21 15:04:19 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 09:30:39 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/21 15:45:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-void ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if(lst != NULL || new != NULL)
-		(*ft_lstlast(*lst)).next = new;
+	if (lst != NULL && new != NULL)
+	{
+		(*new).next = (*lst);
+		*lst = new;
+	}
 }

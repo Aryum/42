@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:35:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/20 10:50:58 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/21 15:22:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	if (ret != NULL)
 	{
 		len -= 1;
-		if (nbr< 0)
+		if (nbr < 0)
 		{
 			ret[0] = '-';
 			nbr *= -1;
