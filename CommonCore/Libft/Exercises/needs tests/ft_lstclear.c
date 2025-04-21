@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 10:04:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/21 10:09:57 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 10:10:55 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/21 10:12:53 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void ft_lstdelone(t_list *lst, void (*del)(void*))
+void ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	del((*lst).content);
+	//use recursion to get to the last node
+	//delete after 
+	if((*lst).next != )
 }
