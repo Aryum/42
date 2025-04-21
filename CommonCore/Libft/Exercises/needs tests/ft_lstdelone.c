@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 10:04:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/21 10:09:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:58:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	del((*lst).content);
+	if (lst != NULL &&  del != NULL)
+	{
+		del((*lst).content);
+		free (lst);	
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:56:31 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/21 10:00:14 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/21 15:13:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ t_list *ft_lstlast(t_list *lst)
 {
 	t_list	temp;
 
-	temp = (*lst);
-	while (temp.next != NULL)
-		temp = *(temp.next);
-	return (lst);
+	if(lst != NULL)
+	{
+		temp = (*lst);
+		while (temp.next != NULL)
+			temp = *(temp.next);
+		return (lst);
+	}
 }

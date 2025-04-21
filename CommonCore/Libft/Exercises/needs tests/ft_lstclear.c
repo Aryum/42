@@ -6,15 +6,23 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 10:10:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/21 11:05:42 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/21 15:11:35 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static clear(t_list **current,t_list **start, void (*del)(void*))
+{
+	if((**current).next != NULL)
+		clear(&((**current).next), start, del);
+	ft_lstdelone(*current,del);
+	if(current == start)
+		free(start);
+}
+
 void ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	//use recursion to get to the last node
-	//delete after 
-	if((**lst).next != NULL)
-		
+	if(lst != NULL && del != NULL)
+		clear(lst, lst, del);
 }
