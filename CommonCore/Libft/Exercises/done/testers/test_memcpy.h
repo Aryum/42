@@ -3,7 +3,7 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
-char *createstr(char *c)
+static char *createstr(char *c)
 {
 	int size = strlen(c);
 	char *alloc = malloc(size + 1);
@@ -33,8 +33,7 @@ typedef struct memcpy_tests
 
 } t_memcpy_tst;
 
-
-t_memcpy_tst memcpy_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
+static t_memcpy_tst memcpy_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
 {
 	t_memcpy_tst retval;
 	retval.name = name;
@@ -49,7 +48,8 @@ t_memcpy_tst memcpy_createTestParams_Alloc(char* dst,char* src, size_t size, cha
 	retval.sameStr = 0;
 	return retval;
 }
-t_memcpy_tst memcpy_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
+
+static t_memcpy_tst memcpy_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
 {
 	t_memcpy_tst retval;	
 	retval.ptr = createstr(str);
@@ -65,7 +65,7 @@ t_memcpy_tst memcpy_createTestParams_SameStr(char* str, int index1,int index2, s
 	return retval;
 }
 
-void freeAlloc(t_memcpy_tst tst)
+static void freeAlloc(t_memcpy_tst tst)
 {
 	if(tst.name != NULL)
 	{
@@ -88,7 +88,7 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -114,35 +114,44 @@ char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-int memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t), int printAll)
+typedef struct memcpy_result
 {
-	int retVal = 1;
-
 	t_memcpy_tst basetest;
 	t_memcpy_tst mytest;
+	t_strcmp_ret strcmp;
+	int retCmp;	
+} t_memcpy_result; 
+
+t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t), int printAll)
+{
+	t_memcpy_result retVal;
+
 	if(!test.sameStr)
 	{
-		basetest = memcpy_createTestParams_Alloc(test.dst_new, test.src, test.size,test.name);
-		mytest = memcpy_createTestParams_Alloc(test.dst_new, test.src, test.size,test.name);
+		retVal.basetest = memcpy_createTestParams_Alloc(test.dst_new, test.src, test.size,test.name);
+		retVal.mytest = memcpy_createTestParams_Alloc(test.dst_new, test.src, test.size,test.name);
 	}
 	else
 	{
-		basetest = memcpy_createTestParams_SameStr(test.dst_new, test.index1,test.index2, test.size,test.name);
-		mytest =  memcpy_createTestParams_SameStr(test.dst_new, test.index1,test.index2, test.size,test.name);
-
+		retVal.basetest = memcpy_createTestParams_SameStr(test.dst_new, test.index1,test.index2, test.size,test.name);
+		retVal.mytest =  memcpy_createTestParams_SameStr(test.dst_new, test.index1,test.index2, test.size,test.name);
 	}
 
-	baseFunc(basetest.dst_new, basetest.src, basetest.size);
-	myFunc(mytest.dst_new, mytest.src, mytest.size);
+	baseFunc(retVal.basetest.dst_new, retVal.basetest.src, retVal.basetest.size);
+	myFunc(retVal.mytest.dst_new, retVal.mytest.src, retVal.mytest.size);
 
-	t_strcmp_ret result = strComp(mytest.dst_new,basetest.dst_new);
-	if(!result.sucess || printAll)
+	retVal.strcmp  = strComp(retVal.mytest.dst_new, retVal.basetest.dst_new);
+	retVal.retCmp = retVal.strcmp.sucess; 
+
+	return (retVal);
+}
+
+void printresult(t_memcpy_tst test,t_memcpy_result result, int printAll)
+{
+	if(!result.retCmp || printAll)
 	{
-		if(!result.sucess)
-		{
-			retVal = 0;
-			printf("	Failed at index (%d)\n", result.index);
-		}
+		if(!result.retCmp)
+			printf("	Failed at index (%d)\n", result.strcmp.index);
 		else
 			printf("	Passed\n");
 
@@ -155,15 +164,14 @@ int memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const vo
 
 		}
 		printf("			Base\n");
-		printf("				%s\n", nullcheck(basetest.dst_new) );
+		printf("				%s\n", nullcheck(result.basetest.dst_new) );
 		printf("			Mine\n");
-		printf("				%s\n", nullcheck(mytest.dst_new) );
+		printf("				%s\n", nullcheck(result.mytest.dst_new) );
 		
 	}
 
-	freeAlloc(basetest);
-	freeAlloc(mytest);
-	return (retVal);
+	freeAlloc(result.basetest);
+	freeAlloc(result.mytest);
 }
 
 void memcpy_logMessages(void *(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t), int printAll)
@@ -189,15 +197,24 @@ void memcpy_logMessages(void *(*baseFunc)(void *, const void *, size_t), void*(*
 		memcpy_createTestParams_Alloc("","",0,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		if (!memcpy_comparefunctions(tests[i],baseFunc, myFunc, printAll))
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		t_memcpy_result current = memcpy_comparefunctions(tests[i],baseFunc, myFunc, printAll);
+		if(ret == 1 && !current.retCmp)
+			ret = 0;
+		if(!current.retCmp || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current,printAll);
+			if (!current.retCmp)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+			i++;
+		} 
 		freeAlloc(tests[i]);
-		i++;
 	}
+	return ret;
 }

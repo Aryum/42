@@ -154,15 +154,25 @@ void split_logMessages(FUNC, int printAll)
 
 		split_createtest(NULL,' ',NULL,NULL)
 	};
+	
 	int i = 0;
+	int ret = 1;
+	int current = 1;
 	while (tests[i].name != NULL)
 	{
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		if (!split_comparefunctions(tests[i],func, printAll))
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
-		i++;
+		current = split_comparefunctions(tests[i],func, printAll);
+		if(ret == 1 && !current)
+			ret = 0;
+		if(!current || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			if (!current)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+			i++;
+		} 
 	}
+	return ret;
 }

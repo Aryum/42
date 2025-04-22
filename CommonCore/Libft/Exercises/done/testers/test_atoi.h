@@ -17,30 +17,37 @@ t_atoi_tst atoi_createTestParams(char * str,char *name)
 	return retval;
 }
 
-int atoi_comparefunctions(t_atoi_tst  test, int(*func[2])(const char *), int printAll)
+typedef struct atoi_result
 {
-	int retVal = 1;
-	int baseRet = func[0](test.str);
-	int myRet = func[1](test.str);
+	int myRet;
+	int baseRet;
+	int retCmp;
+}	t_atoi_result;
 
-	if(myRet != baseRet || printAll)
-	{
-		if(myRet != baseRet)
-		{
-			retVal = 0;
-			printf("	Failed\n");
-		}
-		else
-			printf("	Passed\n");
-
-		printf("		Base	%d\n", baseRet);
-		printf("		Mine	%d\n", myRet);
-	}
+static t_atoi_result atoi_comparefunctions(t_atoi_tst  test, int(*func[2])(const char *), int printAll)
+{
+	t_atoi_result retVal;
+	retVal.baseRet = func[0](test.str);
+	retVal.myRet = func[1](test.str);
+	retVal.retCmp = retVal.myRet == retVal.baseRet;
 
 	return (retVal);
 }
 
-void atoi_logMessages(int(*func[2])(const char *), int printAll)
+static void printresult(t_atoi_result result, int printAll)
+{
+	if(!(result.retCmp) || printAll)
+	{
+		if(!result.retCmp)
+			printf("	Failed\n");
+		else
+			printf("	Passed\n");
+		printf("		Base	%d\n", result.baseRet);
+		printf("		Mine	%d\n", result.myRet);
+	}
+}
+
+int atoi_logMessages(int(*func[2])(const char *), int printAll)
 {
 	t_atoi_tst  tests[] = 
 	{ 	
@@ -62,14 +69,25 @@ void atoi_logMessages(int(*func[2])(const char *), int printAll)
 		atoi_createTestParams("", NULL),
 	};
 	int i = 0;
+	int ret = 1;
+	t_atoi_result current;
 	while (tests[i].name != NULL)
 	{
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		if (!atoi_comparefunctions(tests[i],func, printAll))
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
-		i++;
+		current = atoi_comparefunctions(tests[i],func, printAll);
+		if(ret == 1 && !current.retCmp)
+			ret = 0;
+		if(!current.retCmp || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(current,printAll);
+			if (!current.retCmp)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+			i++;
+		} 
+		
 	}
+	return ret;
 }

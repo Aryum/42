@@ -99,15 +99,25 @@ void strdup_logMessages(char *(*func[2])(const char *), int printAll)
 
 		strdup_createTestParams(0,NULL)
 	};
+	
 	int i = 0;
+	int ret = 1;
+	int current = 1;
 	while (tests[i].name != NULL)
 	{
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		if (!strdup_comparefunctions(tests[i],func, printAll))
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
-		i++;
+		current = strdup_comparefunctions(tests[i],func, printAll);
+		if(ret == 1 && !current)
+			ret = 0;
+		if(!current || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			if (!current)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+			i++;
+		} 
 	}
+	return ret;
 }

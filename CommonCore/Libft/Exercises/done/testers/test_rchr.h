@@ -22,34 +22,43 @@ t_rchr_tst rchr_createTestParams(void *ptr, int c, size_t size,char *name)
 	return retval;
 }
 
-
-int rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
+typedef struct rchr_result
 {
-	int retVal = 1;
-	char *baseRet = (char *)baseFunc(test.ptr,test.c,test.size);
-	char *myRet = (char *)myFunc(test.ptr,test.c,test.size);
+	char *baseRet;
+	char *myRet;
+	int	retCmp;
+}	t_rchr_result;
 
-	if(myRet != baseRet || printAll)
+t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
+{
+	t_rchr_result retVal;
+	retVal.baseRet = (char *)baseFunc(test.ptr,test.c,test.size);
+	retVal.myRet = (char *)myFunc(test.ptr,test.c,test.size);
+	retVal.retCmp = retVal.myRet == retVal.baseRet; 
+	
+
+	return (retVal);
+}
+
+void printresult(t_rchr_result res, int printAll)
+{
+	if(!res.retCmp || printAll)
 	{
-		if(myRet != baseRet)
+		if(!res.retCmp)
 		{
-			retVal = 0;
 			printf("	Failed\n");
 		}
 		else
 			printf("	Passed\n");
 
 		printf("		Base\n");
-		printf("			char	%c\n", baseRet != NULL ? *baseRet : '\0');
-		printf("			ptr		%p\n", baseRet );
+		printf("			char	%c\n", res.baseRet != NULL ? res.baseRet[0] : '\0');
+		printf("			ptr		%p\n", res.baseRet );
 		printf("		Mine\n");
-		printf("			char	%c\n", myRet != NULL ? *myRet : '\0');
-		printf("			ptr		%p\n", myRet);
+		printf("			char	%c\n", res.myRet != NULL ? res.myRet[0] : '\0');
+		printf("			ptr		%p\n", res.myRet);
 	}
-
-	return (retVal);
 }
-
 void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
 {
 	t_rchr_tst tests[] = 
@@ -62,14 +71,23 @@ void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFu
 		rchr_createTestParams((void *)0, 0, 0,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		if (!rchr_comparefunctions(tests[i],baseFunc, myFunc, printAll))
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
-		i++;
+		t_rchr_result current = rchr_comparefunctions(tests[i],baseFunc, myFunc, printAll);
+		if(ret == 1 && !current.retCmp)
+			ret = 0;
+		if(!current.retCmp || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(current,printAll);
+			if (!current.retCmp)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+			i++;
+		} 
 	}
+	return ret;
 }

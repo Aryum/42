@@ -2,7 +2,7 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
-char *createstr(char *c)
+static char *createstr(char *c)
 {
 	int size = strlen(c);
 	char *alloc = (char *)malloc(size + 1);
@@ -32,7 +32,7 @@ typedef struct strlcpy_tests
 } t_memmove_tst;
 
 
-t_memmove_tst memmove_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
+static t_memmove_tst memmove_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
 {
 	t_memmove_tst retval;
 	retval.name = name;
@@ -57,9 +57,7 @@ t_memmove_tst memmove_createTestParams_Alloc(char* dst,char* src, size_t size, c
 	return retval;
 }
 
-//not used for cpy since it is undefined behaviour left because it might be useful
-
-t_memmove_tst memmove_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
+static t_memmove_tst memmove_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
 {
 	t_memmove_tst retval;	
 	retval.ptr = createstr(str);
@@ -75,7 +73,7 @@ t_memmove_tst memmove_createTestParams_SameStr(char* str, int index1,int index2,
 	return retval;
 }
 
-void freeAlloc(t_memmove_tst tst)
+static void freeAlloc(t_memmove_tst tst)
 {
 	if(tst.name != NULL)
 	{
@@ -99,7 +97,7 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -118,45 +116,59 @@ t_strcmp_ret strComp(char *a,char *b)
 	return retVal;
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-int memmove_comparefunctions(t_memmove_tst test, void*(*funcs[2])(void *, const void *, size_t ),int printAll)
+typedef struct memove_result
 {
-	int retVal = 1;
-
 	t_memmove_tst basetest;
 	t_memmove_tst mytest;
+	size_t base_len;
+	size_t my_len;
+	t_strcmp_ret cmp_result;
+	int retCmp;
+}	t_memove_result;
+
+static t_memove_result memmove_comparefunctions(t_memmove_tst test, void*(*funcs[2])(void *, const void *, size_t ),int printAll)
+{
+	t_memove_result retVal;
+
+	
 	if(!test.sameStr)
 	{
-		basetest = memmove_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
-		mytest = memmove_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
+		retVal.basetest = memmove_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
+		retVal.mytest = memmove_createTestParams_Alloc(test.dst_mod, test.src, test.size,test.name);
 	}
 	else
 	{
 		//not used for cpy since it is undefined behaviour left because it might be useful
-		basetest = memmove_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
-		mytest =  memmove_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
+		retVal.basetest = memmove_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
+		retVal.mytest =  memmove_createTestParams_SameStr(test.dst_mod, test.index1,test.index2, test.size,test.name);
 
 	}
-	funcs[0](basetest.dst_mod, basetest.src, basetest.size);
+	funcs[0](retVal.basetest.dst_mod, retVal.basetest.src, retVal.basetest.size);
 
-	funcs[1](mytest.dst_mod, mytest.src, mytest.size);
-	size_t base_len = strlen(basetest.dst_mod); 
-	size_t my_len = strlen(mytest.dst_mod);
-	t_strcmp_ret cmp_result = strComp(mytest.dst_mod,basetest.dst_mod);
-	int sucess = cmp_result.sucess && base_len == my_len;
-	if(!(sucess) || printAll)
+	funcs[1](retVal.mytest.dst_mod, retVal.mytest.src, retVal.mytest.size);
+	retVal.base_len = strlen(retVal.basetest.dst_mod); 
+	retVal.my_len = strlen(retVal.mytest.dst_mod);
+	retVal.cmp_result = strComp(retVal.mytest.dst_mod,retVal.basetest.dst_mod);
+	retVal.retCmp = retVal.cmp_result.sucess && retVal.base_len == retVal.my_len;
+	
+	return (retVal);
+}
+
+static void printResult(t_memmove_tst test, t_memove_result res,int printAll)
+{
+	if(!(res.retCmp) || printAll)
 	{
-		if(!sucess)
+		if(!res.retCmp)
 		{
-			retVal = 0;
-			if(!cmp_result.sucess)
-				printf("	Failed at index (%d)\n", cmp_result.index);
+			if(!res.cmp_result.sucess)
+				printf("	Failed at index (%d)\n", res.cmp_result.index);
 			else
 				printf("	Failed at length \n");
 		}
@@ -174,24 +186,20 @@ int memmove_comparefunctions(t_memmove_tst test, void*(*funcs[2])(void *, const 
 			printf("		2nd Index	%d\n", test.index2);
 		}
 		printf("			Base\n");
-		printf("				string %s\n", nullcheck(basetest.dst_mod) );
-		printf("				return Val %ld\n", base_len);
+		printf("				string %s\n", nullcheck(res.basetest.dst_mod) );
+		printf("				return Val %ld\n", res.base_len);
 		
 		printf("			Mine\n");
-		printf("				string %s\n", nullcheck(mytest.dst_mod) );
-		printf("				return Val %ld\n", my_len);
+		printf("				string %s\n", nullcheck(res.mytest.dst_mod) );
+		printf("				return Val %ld\n", res.my_len);
 		
 	}
 
-	freeAlloc(basetest);
-	freeAlloc(mytest);
-	return (retVal);
+	freeAlloc(res.basetest);
+	freeAlloc(res.mytest);
 }
-
 void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int printAll)
 {
-
-	//create a test that src and dest are part of the same string
 	t_memmove_tst tests[] = 
 	{ 	
 		memmove_createTestParams_Alloc("-----", "hello", 12,"Default behaviour"),
@@ -205,16 +213,26 @@ void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int pr
 
 		memmove_createTestParams_Alloc("","",0,NULL)
 	};
+	
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		if (!memmove_comparefunctions(tests[i],funcs, printAll))
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		t_memove_result current = memmove_comparefunctions(tests[i],funcs, printAll);
+		if(ret == 1 && !current.retCmp)
+			ret = 0;
+		if(!current.retCmp || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printResult(tests[i],current,printAll);
+			if (!current.retCmp)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+			i++;
+		} 
 		freeAlloc(tests[i]);
-		i++;
 	}
+	return ret;
 }
