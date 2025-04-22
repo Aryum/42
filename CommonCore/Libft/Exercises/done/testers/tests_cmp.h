@@ -78,7 +78,7 @@ static void *str_invalidchar(int value)
 	return str;
 }
 
-void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t), int printAll)
+int cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t), int printAll)
 {
 	void * invalidchar1 = str_invalidchar(-50);
 	void * invalidchar1_cpy = str_invalidchar(-50);
@@ -101,19 +101,25 @@ void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*my
 		cmp_createTestParams((void *)0,(void *)0, 0, (void *)0),
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_cmp_result current = cmp_comparefunctions(tests[i],baseFunc, myFunc); 
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current,printAll);
-		if (!current.outResult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		t_cmp_result current = cmp_comparefunctions(tests[i],baseFunc, myFunc);
+		if(ret == 1 && !current.outResult)
+			ret = 0;
+		if(!current.outResult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current,printAll);
+			if (!current.outResult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
 	free(invalidchar1);
 	free(invalidchar2);
-
+	return ret;
 }

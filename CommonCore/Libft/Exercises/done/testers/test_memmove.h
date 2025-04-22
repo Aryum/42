@@ -231,8 +231,8 @@ void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int pr
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");
-			i++;
-		} 
+		}
+		i++;
 		freeAlloc(tests[i]);
 	}
 	return ret;

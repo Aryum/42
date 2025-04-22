@@ -98,7 +98,7 @@ static void printresult(t_memset_tst test,t_mem_result res, int printAll)
 	free(res.myStr);
 }
 
-void mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t), int printAll)
+int mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t), int printAll)
 {
 	t_memset_tst tests[] = 
 	{ 	
@@ -108,16 +108,24 @@ void mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(
 		mem_createTestParams("w", 'a', 1, ((void *)0)),
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
 		t_mem_result current = mem_comparefunctions(tests[i],baseFunc, myFunc); 
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current, printAll);
-		if (!current.outResult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(ret == 1 && !current.outResult)
+			ret = 0;
+		if(!current.outResult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current, printAll);
+			if (!current.outResult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
+		
 		i++;
 	}
+	return ret;
 }

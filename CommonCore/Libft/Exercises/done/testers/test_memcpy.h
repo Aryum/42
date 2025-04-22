@@ -211,8 +211,8 @@ void memcpy_logMessages(void *(*baseFunc)(void *, const void *, size_t), void*(*
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");
-			i++;
-		} 
+		}
+		i++;
 		freeAlloc(tests[i]);
 	}
 	return ret;

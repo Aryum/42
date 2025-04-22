@@ -201,8 +201,8 @@ void split_logMessages(FUNC, int printAll)
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");
-			i++;
-		} 
+		}
+		i++;
 	}
 	return ret;
 }

@@ -113,7 +113,7 @@ static char tst3(unsigned int i,char c)
 	return '-';
 }
 
-void strmapi_logMessages(FUNC, int printAll)
+int strmapi_logMessages(FUNC, int printAll)
 {
 	t_strmapi_tst tests[] = 
 	{ 	
@@ -130,13 +130,16 @@ void strmapi_logMessages(FUNC, int printAll)
 		t_strmapi_result current = strmapi_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.cmpRet.sucess)
 			ret = 0;
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current, printAll);
-		if (!current.cmpRet.sucess)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(!current.cmpRet.sucess || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current, printAll);
+			if (!current.cmpRet.sucess)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
 	return ret;

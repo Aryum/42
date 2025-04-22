@@ -111,13 +111,16 @@ void itoa_logMessages(FUNC, int printAll)
 	while (tests[i].name != NULL)
 	{
 		t_itoa_result current = itoa_comparefunctions(tests[i],func); 
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current, printAll);
-		if (!current.outResult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(!current.outResult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current, printAll);
+			if (!current.outResult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
 }

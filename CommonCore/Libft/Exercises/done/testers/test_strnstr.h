@@ -84,7 +84,7 @@ static void printresult(t_strnstr_tst test,t_strnstr_result res, int printAll)
 	freeAlloc(test);
 }
 
-void strnstr_logMessages(char *(*func[2])(const char *, const char *, size_t), int printAll)
+int strnstr_logMessages(char *(*func[2])(const char *, const char *, size_t), int printAll)
 {
 	t_strnstr_tst tests[] = 
 	{ 	
@@ -101,16 +101,23 @@ void strnstr_logMessages(char *(*func[2])(const char *, const char *, size_t), i
 		strnstr_createTestParams(0, 0, 0,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
 		t_strnstr_result current = strnstr_comparefunctions(tests[i],func); 
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i], current, printAll);
-		if (!current.outresult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(ret == 1 && !current.outresult)
+			ret = 0;
+		if(!current.outresult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i], current, printAll);
+			if (!current.outresult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
+	return ret;
 }

@@ -219,13 +219,16 @@ int strlcpy_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(
 		t_strlcpy_result current = strlcpy_comparefunctions(tests[i],baseFunc, myFunc);
 		if(ret == 1 && !current.outresult)
 			ret = 0;
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current,printAll);
-		if (!current.outresult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(!current.outresult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current,printAll);
+			if (!current.outresult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		freeAlloc(tests[i]);
 		i++;
 	}

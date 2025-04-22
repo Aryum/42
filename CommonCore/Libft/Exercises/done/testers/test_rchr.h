@@ -86,8 +86,8 @@ void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFu
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");
-			i++;
-		} 
+		}
+		i++;
 	}
 	return ret;
 }

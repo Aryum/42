@@ -99,7 +99,7 @@ static void printresult(t_strtrim_tst test,t_strtrim_result res, int printAll)
 	free(res.myOut);
 }
 
-void strtrim_logMessages(FUNC, int printAll)
+int strtrim_logMessages(FUNC, int printAll)
 {
 	t_strtrim_tst tests[] = 
 	{ 	
@@ -119,16 +119,23 @@ void strtrim_logMessages(FUNC, int printAll)
 		strtrim_createtest(NULL,NULL,NULL,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
 		t_strtrim_result current = strtrim_comparefunctions(tests[i],func); 
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current, printAll);
-		if (!current.outResult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(ret == 1 && !current.outResult)
+			ret = 0;
+		if(!current.outResult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current, printAll);
+			if (!current.outResult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
+	return ret;
 }

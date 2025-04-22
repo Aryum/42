@@ -84,9 +84,8 @@ int atoi_logMessages(int(*func[2])(const char *), int printAll)
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");
-			i++;
 		} 
-		
+		i++;
 	}
 	return ret;
 }

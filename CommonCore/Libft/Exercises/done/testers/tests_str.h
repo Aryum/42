@@ -42,7 +42,7 @@ static void printresult(t_strlen_result res, int printAll)
 	}
 }
 
-void  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll)
+int  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll)
 {
 	t_strlen_tst tests[] = 
 	{ 	
@@ -51,18 +51,25 @@ void  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const
 		createTestParam("", ((void *)0))
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
 		t_strlen_result current = strlen_comparefunctions(tests[i],basefunc, myFunc); 
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(current,printAll);
-		if (!current.outResult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(ret == 1 && !current.outResult)
+			ret = 0;
+		if(!current.outResult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(current,printAll);
+			if (!current.outResult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
+	return ret;
 }
 
 

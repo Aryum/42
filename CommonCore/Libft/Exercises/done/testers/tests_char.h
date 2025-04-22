@@ -70,7 +70,7 @@ static void printresult(t_char_tst test,t_char_result res,int printAll)
 	}
 }
 
-void  char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
+int char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 {
 	t_char_tst tests[] = 
 	{ 	
@@ -88,18 +88,25 @@ void  char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_char_result current = char_comparefunctions(tests[i],basefunc, myFunc); 
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i], current, printAll);
-		if (!current.outResult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		t_char_result current = char_comparefunctions(tests[i],basefunc, myFunc);
+		if(ret == 1 && !current.outResult)
+			ret = 0; 
+		if(!current.outResult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i], current, printAll);
+			if (!current.outResult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
+	return ret;
 }
 
 

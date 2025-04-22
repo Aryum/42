@@ -107,7 +107,7 @@ static void printresult(t_substr_tst test,t_substr_result res, int printAll)
 	}
 }
 
-void substr_logMessages(FUNC, int printAll)
+int substr_logMessages(FUNC, int printAll)
 {
 	t_substr_tst tests[] = 
 	{ 	
@@ -119,17 +119,25 @@ void substr_logMessages(FUNC, int printAll)
 		subsstr_createtest("",0,0,NULL,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_substr_result current = substr_comparefunctions(tests[i],func); 
-		printf("Testing %s\n", tests[i].name);
-		printf("	Expected %s\n", nullcheck((char *)tests[i].out));
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i], current, printAll);
-		if (!current.outResult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		t_substr_result current = substr_comparefunctions(tests[i],func);
+		if(ret == 1 && !current.outResult)
+			ret = 0;
+		if(!current.outResult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf("	Expected %s\n", nullcheck((char *)tests[i].out));
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i], current, printAll);
+			if (!current.outResult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
+	return ret;
 }
+

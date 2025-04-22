@@ -191,7 +191,7 @@ static void printresult(t_strlcat_tst test,t_strlcat_result res, int printAll)
 	freeAlloc(res.mytest);
 }
 
-void strlcat_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t), int printAll)
+int strlcat_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t), int printAll)
 {
 
 	//create a test that src and dest are part of the same string
@@ -220,15 +220,19 @@ void strlcat_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t
 		t_strlcat_result current = strlcat_comparefunctions(tests[i],baseFunc, myFunc); 
 		if(ret == 1 && !current.outresult)
 			ret = 0;
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current, printAll);
-		if (!current.outresult)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(!current.outresult || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current, printAll);
+			if (!current.outresult)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		freeAlloc(tests[i]);
 		i++;
 	}
 	return ret;
 }
+

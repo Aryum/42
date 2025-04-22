@@ -6,7 +6,6 @@
 
 typedef struct striteri_tests
 {
-
 	char  *s; 
 	void (*f)(unsigned int, char*);
 	char *out;
@@ -18,7 +17,6 @@ typedef struct strcmp_ret
 {
 	int sucess;
 	unsigned int index;
-
 } t_strcmp_ret;
 
 static char *createstr(char *c)
@@ -141,13 +139,16 @@ int striteri_logMessages(FUNC, int printAll)
 		t_strcmp_ret current = striteri_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.sucess)
 			ret = 0;
-		printf("Testing %s\n", tests[i].name);
-		printf(	"-----------------------------------------\n");
-		printresult(tests[i],current,printAll);
-		if (!current.sucess)
-			printf(	"------------------ERROR------------------\n\n");
-		else
-			printf(	"------------------GOOD------------------\n\n");
+		if(!current.sucess || printAll)
+		{
+			printf("Testing %s\n", tests[i].name);
+			printf(	"-----------------------------------------\n");
+			printresult(tests[i],current,printAll);
+			if (!current.sucess)
+				printf(	"------------------ERROR------------------\n\n");
+			else
+				printf(	"------------------GOOD------------------\n\n");
+		}
 		i++;
 	}
 	return ret;
