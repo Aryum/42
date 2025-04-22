@@ -2,6 +2,7 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
+#define FUNC 
 typedef struct atoi_tests
 {
 	char* str;

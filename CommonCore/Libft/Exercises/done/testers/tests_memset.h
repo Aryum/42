@@ -2,6 +2,7 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
+#define FUNC void * (*func[2])(void *, int, size_t)
 typedef struct memset_tests
 {
 	char *str;
@@ -70,11 +71,11 @@ static char *createstr(char *c)
 	return alloc; 
 }
 
-static t_mem_result mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t))
+static t_mem_result mem_comparefunctions(t_memset_tst test, FUNC)
 {
 	t_mem_result retVal;
-	retVal.baseStr = baseFunc(createstr(test.str),test.c,test.size);
-	retVal.myStr = myFunc(createstr(test.str),test.c,test.size);
+	retVal.baseStr = func[0](createstr(test.str),test.c,test.size);
+	retVal.myStr = func[1](createstr(test.str),test.c,test.size);
 	retVal.cmp = strComp(retVal.baseStr, retVal.myStr); 
 	retVal.outResult = retVal.cmp.sucess; 
 
@@ -98,7 +99,7 @@ static void printresult(t_memset_tst test,t_mem_result res, int printAll)
 	free(res.myStr);
 }
 
-int mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t), int printAll)
+int mem_logMessages(FUNC, int printAll)
 {
 	t_memset_tst tests[] = 
 	{ 	
@@ -111,7 +112,7 @@ int mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(v
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_mem_result current = mem_comparefunctions(tests[i],baseFunc, myFunc); 
+		t_mem_result current = mem_comparefunctions(tests[i],func); 
 		if(ret == 1 && !current.outResult)
 			ret = 0;
 		if(!current.outResult || printAll)

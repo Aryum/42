@@ -3,6 +3,7 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
+#define FUNC void*(*func[2])(void *, const void *, size_t)
 typedef struct memcpy_tests
 {
 	char *ptr;
@@ -121,7 +122,7 @@ static char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-static t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t))
+static t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, FUNC)
 {
 	t_memcpy_result retVal;
 
@@ -136,8 +137,8 @@ static t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFun
 		retVal.mytest =  memcpy_createTestParams_SameStr(test.dst_new, test.index1,test.index2, test.size,test.name);
 	}
 
-	baseFunc(retVal.basetest.dst_new, retVal.basetest.src, retVal.basetest.size);
-	myFunc(retVal.mytest.dst_new, retVal.mytest.src, retVal.mytest.size);
+	func[0](retVal.basetest.dst_new, retVal.basetest.src, retVal.basetest.size);
+	func[1](retVal.mytest.dst_new, retVal.mytest.src, retVal.mytest.size);
 
 	retVal.strcmp  = strComp(retVal.mytest.dst_new, retVal.basetest.dst_new);
 	retVal.outResult = retVal.strcmp.sucess; 
@@ -173,7 +174,7 @@ static void printresult(t_memcpy_tst test,t_memcpy_result result, int printAll)
 	freeAlloc(result.mytest);
 }
 
-void memcpy_logMessages(void *(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t), int printAll)
+void memcpy_logMessages(FUNC, int printAll)
 {
 
 	//create a test that src and dest are part of the same string
@@ -199,7 +200,7 @@ void memcpy_logMessages(void *(*baseFunc)(void *, const void *, size_t), void*(*
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_memcpy_result current = memcpy_comparefunctions(tests[i],baseFunc, myFunc);
+		t_memcpy_result current = memcpy_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.outResult)
 			ret = 0;
 		if(!current.outResult || printAll)

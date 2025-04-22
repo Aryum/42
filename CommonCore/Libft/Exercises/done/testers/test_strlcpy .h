@@ -2,7 +2,7 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
-
+#define FUNC size_t(*func[2])(char *, const char *, size_t)
 typedef struct strlcpy_tests
 {
 	char* dst_mod;
@@ -128,7 +128,7 @@ static char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-static t_strlcpy_result strlcpy_comparefunctions(t_strlcpy_tst test, size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t))
+static t_strlcpy_result strlcpy_comparefunctions(t_strlcpy_tst test, FUNC)
 {
 	t_strlcpy_result retVal;
 
@@ -145,8 +145,8 @@ static t_strlcpy_result strlcpy_comparefunctions(t_strlcpy_tst test, size_t(*bas
 
 	}
 
-	retVal.base_len = baseFunc(retVal.basetest.dst_mod, retVal.basetest.src, retVal.basetest.size);
-	retVal.my_len = myFunc(retVal.mytest.dst_mod, retVal.mytest.src, retVal.mytest.size);
+	retVal.base_len = func[0](retVal.basetest.dst_mod, retVal.basetest.src, retVal.basetest.size);
+	retVal.my_len = func[1](retVal.mytest.dst_mod, retVal.mytest.src, retVal.mytest.size);
 
 	retVal.cmp_result = strComp(retVal.mytest.dst_mod, retVal.basetest.dst_mod);
 	retVal.outresult = retVal.cmp_result.sucess && retVal.base_len == retVal.my_len;
@@ -190,7 +190,7 @@ static void printresult(t_strlcpy_tst test,t_strlcpy_result res, int printAll)
 	freeAlloc(res.mytest);
 }
 
-int strlcpy_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t), int printAll)
+int strlcpy_logMessages(FUNC, int printAll)
 {
 
 	//create a test that src and dest are part of the same string
@@ -216,7 +216,7 @@ int strlcpy_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(
 	int ret = 1; 
 	while (tests[i].name != NULL)
 	{
-		t_strlcpy_result current = strlcpy_comparefunctions(tests[i],baseFunc, myFunc);
+		t_strlcpy_result current = strlcpy_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.outresult)
 			ret = 0;
 		if(!current.outresult || printAll)

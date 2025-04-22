@@ -2,6 +2,7 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
+#define FUNC char *(*func[2])(const char *)
 typedef struct strdup_tests
 {
 	char *str;
@@ -65,7 +66,7 @@ static void freeAlloc(t_strdup_tst test)
 	free(test.str);
 }
 
-static t_strdup_result strdup_comparefunctions(t_strdup_tst test, char *(*func[2])(const char *))
+static t_strdup_result strdup_comparefunctions(t_strdup_tst test, FUNC)
 {
 	t_strdup_result retVal;
 	retVal.baseRet = func[0](test.str);
@@ -98,7 +99,7 @@ static void printresult(t_strdup_tst test,t_strdup_result res, int printAll)
 	free(res.myRet);
 }
 
-int strdup_logMessages(char *(*func[2])(const char *), int printAll)
+int strdup_logMessages(FUNC, int printAll)
 {
 	t_strdup_tst tests[] = 
 	{ 	

@@ -2,6 +2,7 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
+#define FUNC int(*func[2])(const void *, const void *, size_t)
 typedef struct cmp_tests
 {
 	void *str1;
@@ -43,11 +44,11 @@ static char *createstr(char *c)
 	return alloc; 
 }
 
-static t_cmp_result cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t))
+static t_cmp_result cmp_comparefunctions(t_cmp_tst test,FUNC)
 {
 	t_cmp_result retVal;
-	retVal.baseRet = baseFunc(test.str1, test.str2 ,test.size);
-	retVal.myRet = myFunc(test.str1, test.str2 ,test.size);
+	retVal.baseRet = func[0](test.str1, test.str2 ,test.size);
+	retVal.myRet = func[1](test.str1, test.str2 ,test.size);
 	retVal.outResult = retVal.myRet == retVal.baseRet;
 	return (retVal);
 }
@@ -78,7 +79,7 @@ static void *str_invalidchar(int value)
 	return str;
 }
 
-int cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t), int printAll)
+int cmp_logMessages(FUNC, int printAll)
 {
 	void * invalidchar1 = str_invalidchar(-50);
 	void * invalidchar1_cpy = str_invalidchar(-50);
@@ -104,7 +105,7 @@ int cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*myF
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_cmp_result current = cmp_comparefunctions(tests[i],baseFunc, myFunc);
+		t_cmp_result current = cmp_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.outResult)
 			ret = 0;
 		if(!current.outResult || printAll)

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "libft.h"
 
+#define FUNC int (*func[2])(int)
 typedef struct char_tests
 {
 	char *name;
@@ -27,7 +28,7 @@ static t_char_tst createTestParams(int lower, int upper, char *name)
 	return retval;
 }
 
-static t_char_result char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(int))
+static t_char_result char_comparefunctions(t_char_tst test, FUNC)
 {
 	int i = test.lower;
 	t_char_result retVal; 
@@ -70,7 +71,7 @@ static void printresult(t_char_tst test,t_char_result res,int printAll)
 	}
 }
 
-int char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
+int char_logMessages(FUNC, int printAll)
 {
 	t_char_tst tests[] = 
 	{ 	
@@ -91,7 +92,7 @@ int char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_char_result current = char_comparefunctions(tests[i],basefunc, myFunc);
+		t_char_result current = char_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.outResult)
 			ret = 0; 
 		if(!current.outResult || printAll)
@@ -108,5 +109,3 @@ int char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 	}
 	return ret;
 }
-
-

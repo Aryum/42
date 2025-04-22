@@ -96,8 +96,6 @@ static void printresult(t_itoa_tst test,t_itoa_result res,int printAll)
 }
 void itoa_logMessages(FUNC, int printAll)
 {
-	//str vazia return vazio
-	//char set \0 return str normal
 	t_itoa_tst tests[] = 
 	{ 	
 		itoa_createtest(1234,"1234", "Test 1"),

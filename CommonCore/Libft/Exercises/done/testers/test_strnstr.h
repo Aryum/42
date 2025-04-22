@@ -2,6 +2,8 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
+#define FUNC char *(*func[2])(const char *, const char *, size_t)
+
 typedef struct strnstr_tests
 {
 	char *little;
@@ -55,7 +57,7 @@ static void  freeAlloc(t_strnstr_tst tst)
 	free(tst.little);
 }
 
-static t_strnstr_result strnstr_comparefunctions(t_strnstr_tst test, char *(*func[2])(const char *, const char *, size_t))
+static t_strnstr_result strnstr_comparefunctions(t_strnstr_tst test, FUNC)
 {
 	t_strnstr_result retVal;
 	retVal.baseRet = func[0](test.big,test.little,test.size);
@@ -84,7 +86,7 @@ static void printresult(t_strnstr_tst test,t_strnstr_result res, int printAll)
 	freeAlloc(test);
 }
 
-int strnstr_logMessages(char *(*func[2])(const char *, const char *, size_t), int printAll)
+int strnstr_logMessages(FUNC, int printAll)
 {
 	t_strnstr_tst tests[] = 
 	{ 	

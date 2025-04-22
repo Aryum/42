@@ -2,6 +2,7 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
+#define FUNC void *(*func[2])(const void *, int, size_t)
 typedef struct rchr_tests
 {
 	void * ptr;
@@ -28,11 +29,11 @@ typedef struct rchr_result
 	int	outResult;
 }	t_rchr_result;
 
-static t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t))
+static t_rchr_result rchr_comparefunctions(t_rchr_tst test, FUNC)
 {
 	t_rchr_result retVal;
-	retVal.baseRet = (char *)baseFunc(test.ptr,test.c,test.size);
-	retVal.myRet = (char *)myFunc(test.ptr,test.c,test.size);
+	retVal.baseRet = (char *)func[0](test.ptr,test.c,test.size);
+	retVal.myRet = (char *)func[1](test.ptr,test.c,test.size);
 	retVal.outResult = retVal.myRet == retVal.baseRet; 
 	
 
@@ -59,7 +60,7 @@ static void printresult(t_rchr_result res, int printAll)
 	}
 }
 
-void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
+void rchr_logMessages(FUNC, int printAll)
 {
 	t_rchr_tst tests[] = 
 	{ 	
@@ -74,7 +75,7 @@ void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFu
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_rchr_result current = rchr_comparefunctions(tests[i],baseFunc, myFunc);
+		t_rchr_result current = rchr_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.outResult)
 			ret = 0;
 		if(!current.outResult || printAll)

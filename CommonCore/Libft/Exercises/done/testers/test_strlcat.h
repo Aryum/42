@@ -2,6 +2,7 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
+#define FUNC size_t(*func[2])(char *, const char *, size_t)
 
 typedef struct strlcat_result
 {
@@ -127,7 +128,7 @@ static char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-static t_strlcat_result strlcat_comparefunctions(t_strlcat_tst test, size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t))
+static t_strlcat_result strlcat_comparefunctions(t_strlcat_tst test, FUNC )
 {
 	t_strlcat_result retVal;
 
@@ -191,7 +192,7 @@ static void printresult(t_strlcat_tst test,t_strlcat_result res, int printAll)
 	freeAlloc(res.mytest);
 }
 
-int strlcat_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t), int printAll)
+int strlcat_logMessages(FUNC, int printAll)
 {
 
 	//create a test that src and dest are part of the same string
@@ -217,7 +218,7 @@ int strlcat_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_strlcat_result current = strlcat_comparefunctions(tests[i],baseFunc, myFunc); 
+		t_strlcat_result current = strlcat_comparefunctions(tests[i], func); 
 		if(ret == 1 && !current.outresult)
 			ret = 0;
 		if(!current.outresult || printAll)

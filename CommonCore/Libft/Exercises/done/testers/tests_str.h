@@ -2,6 +2,8 @@
 #include <string.h>
 #include "libft.h"
 
+#define FUNC size_t (*func[2])(const char *)
+
 typedef struct strlen_test
 {
 	char *str;
@@ -24,11 +26,11 @@ static t_strlen_tst createTestParam(char *str, char *name)
 	return retval;
 }
 
-static t_strlen_result strlen_comparefunctions(t_strlen_tst test,size_t (*basefunc)(const char *),size_t (*myFunc)(const char *))
+static t_strlen_result strlen_comparefunctions(t_strlen_tst test, FUNC)
 {
 	t_strlen_result retVal;
-	retVal.mySize = myFunc(test.str);
-	retVal.baseSize = basefunc(test.str);
+	retVal.mySize = func[0](test.str);
+	retVal.baseSize = func[1](test.str);
 	retVal.outResult = retVal.mySize == retVal.baseSize; 
 	return (retVal);
 }
@@ -42,7 +44,7 @@ static void printresult(t_strlen_result res, int printAll)
 	}
 }
 
-int  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll)
+int  strlen_logMessages(FUNC, int printAll)
 {
 	t_strlen_tst tests[] = 
 	{ 	
@@ -54,7 +56,7 @@ int  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const 
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_strlen_result current = strlen_comparefunctions(tests[i],basefunc, myFunc); 
+		t_strlen_result current = strlen_comparefunctions(tests[i],func); 
 		if(ret == 1 && !current.outResult)
 			ret = 0;
 		if(!current.outResult || printAll)

@@ -3,6 +3,7 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
+#define FUNC int(*func[2])(int)
 typedef struct tochr_tests
 {
 	int c;
@@ -26,7 +27,7 @@ static t_tochr_tst tochr_createTestParams(int c,char *name)
 	return retval;
 }
 
-static t_tochr_result tochr_comparefunctions(t_tochr_tst test, int(*baseFunc)(int), int(*myFunc)(int))
+static t_tochr_result tochr_comparefunctions(t_tochr_tst test, FUNC)
 {
 	t_tochr_result retVal;
 	retVal.baseRet = baseFunc(test.c);
@@ -50,7 +51,7 @@ static void printresult(t_tochr_result res,int printAll)
 	}
 }
 
-int tochr_logMessages(int(*baseFunc)(int), int(*myFunc)(int), int printAll)
+int tochr_logMessages(FUNC, int printAll)
 {
 	t_tochr_tst tests[] = 
 	{ 	
@@ -68,7 +69,7 @@ int tochr_logMessages(int(*baseFunc)(int), int(*myFunc)(int), int printAll)
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_tochr_result current = tochr_comparefunctions(tests[i],baseFunc, myFunc);
+		t_tochr_result current = tochr_comparefunctions(tests[i],func);
 		if(ret == 1 && !current.outResult)
 			ret = 0; 
 		if(!current.outResult || printAll)
