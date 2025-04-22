@@ -3,21 +3,6 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
-static char *createstr(char *c)
-{
-	int size = strlen(c);
-	char *alloc = malloc(size + 1);
-	int i = 0;
-	
-	while(c[i] != '\0')
-	{
-		alloc[i] = c[i];
-		i++;
-	}
-	alloc[i] = '\0';
-	return alloc; 
-}
-
 typedef struct memcpy_tests
 {
 	char *ptr;
@@ -32,6 +17,34 @@ typedef struct memcpy_tests
 
 
 } t_memcpy_tst;
+typedef struct memcpy_result
+{
+	t_memcpy_tst basetest;
+	t_memcpy_tst mytest;
+	t_strcmp_ret strcmp;
+	int outResult;	
+} t_memcpy_result; 
+typedef struct strcmp_ret
+{
+	int sucess;
+	unsigned int index;
+
+} t_strcmp_ret;
+
+static char *createstr(char *c)
+{
+	int size = strlen(c);
+	char *alloc = malloc(size + 1);
+	int i = 0;
+	
+	while(c[i] != '\0')
+	{
+		alloc[i] = c[i];
+		i++;
+	}
+	alloc[i] = '\0';
+	return alloc; 
+}
 
 static t_memcpy_tst memcpy_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
 {
@@ -81,12 +94,6 @@ static void freeAlloc(t_memcpy_tst tst)
 		}
 	}
 }
-typedef struct strcmp_ret
-{
-	int sucess;
-	unsigned int index;
-
-} t_strcmp_ret;
 
 static t_strcmp_ret strComp(char *a,char *b)
 {
@@ -107,22 +114,14 @@ static t_strcmp_ret strComp(char *a,char *b)
 	return retVal;
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-typedef struct memcpy_result
-{
-	t_memcpy_tst basetest;
-	t_memcpy_tst mytest;
-	t_strcmp_ret strcmp;
-	int outResult;	
-} t_memcpy_result; 
-
-t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t))
+static t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t))
 {
 	t_memcpy_result retVal;
 
@@ -146,7 +145,7 @@ t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void
 	return (retVal);
 }
 
-void printresult(t_memcpy_tst test,t_memcpy_result result, int printAll)
+static void printresult(t_memcpy_tst test,t_memcpy_result result, int printAll)
 {
 	if(!result.outResult || printAll)
 	{

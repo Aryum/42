@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #define FUNC char	*(*func)(char const *, unsigned int, size_t)
+
 typedef struct substr_tests
 {
 	char const *s; 
@@ -20,7 +21,14 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_substr_tst subsstr_createtest(char const *s, unsigned int start, size_t len, char *out, char* name)
+typedef struct substr_result
+{
+	char *myOut;
+	t_strcmp_ret cmpRet;
+	int outResult;
+} t_substr_result;
+
+static t_substr_tst subsstr_createtest(char const *s, unsigned int start, size_t len, char *out, char* name)
 {
 	t_substr_tst retval;
 	retval.s = s;
@@ -33,8 +41,7 @@ t_substr_tst subsstr_createtest(char const *s, unsigned int start, size_t len, c
 	return retval;
 }
 
-
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -63,21 +70,14 @@ t_strcmp_ret strComp(char *a,char *b)
 
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-typedef struct substr_result
-{
-	char *myOut;
-	t_strcmp_ret cmpRet;
-	int outResult;
-} t_substr_result;
-
-t_substr_result substr_comparefunctions(t_substr_tst test,FUNC)
+static t_substr_result substr_comparefunctions(t_substr_tst test,FUNC)
 {
 	t_substr_result retVal;
 	retVal.myOut = func(test.s,test.start,test.len);
@@ -87,7 +87,7 @@ t_substr_result substr_comparefunctions(t_substr_tst test,FUNC)
 	return (retVal);
 }
 
-void printresult(t_substr_tst test,t_substr_result res, int printAll)
+static void printresult(t_substr_tst test,t_substr_result res, int printAll)
 {
 	if(! res.outResult || printAll)
 	{
@@ -106,6 +106,7 @@ void printresult(t_substr_tst test,t_substr_result res, int printAll)
 		}
 	}
 }
+
 void substr_logMessages(FUNC, int printAll)
 {
 	t_substr_tst tests[] = 

@@ -9,8 +9,22 @@ typedef struct strdup_tests
 
 } t_strdup_tst;
 
+typedef struct strcmp_ret
+{
+	int sucess;
+	unsigned int index;
 
-t_strdup_tst strdup_createTestParams(char *str,char *name)
+} t_strcmp_ret;
+
+typedef struct strdup_result
+{
+	char *baseRet;
+	char *myRet;
+	t_strcmp_ret cmp;
+	int outResult;
+} t_strdup_result;
+
+static t_strdup_tst strdup_createTestParams(char *str,char *name)
 {
 	t_strdup_tst retval;	
 	retval.name = name;
@@ -19,15 +33,7 @@ t_strdup_tst strdup_createTestParams(char *str,char *name)
 	return retval;
 }
 
-typedef struct strcmp_ret
-{
-	int sucess;
-	unsigned int index;
-
-} t_strcmp_ret;
-
-
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -47,28 +53,19 @@ t_strcmp_ret strComp(char *a,char *b)
 	return retVal;
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-void freeAlloc(t_strdup_tst test)
+static void freeAlloc(t_strdup_tst test)
 {
 	free(test.str);
 }
 
-
-typedef struct strdup_result
-{
-	char *baseRet;
-	char *myRet;
-	t_strcmp_ret cmp;
-	int outResult;
-} t_strdup_result;
-
-t_strdup_result strdup_comparefunctions(t_strdup_tst test, char *(*func[2])(const char *))
+static t_strdup_result strdup_comparefunctions(t_strdup_tst test, char *(*func[2])(const char *))
 {
 	t_strdup_result retVal;
 	retVal.baseRet = func[0](test.str);
@@ -79,7 +76,7 @@ t_strdup_result strdup_comparefunctions(t_strdup_tst test, char *(*func[2])(cons
 	return (retVal);
 }
 
-void printresult(t_strdup_tst test,t_strdup_result res, int printAll)
+static void printresult(t_strdup_tst test,t_strdup_result res, int printAll)
 {
 	if(!res.cmp.sucess || printAll)
 	{

@@ -11,8 +11,7 @@ typedef struct rchr_tests
 
 } t_rchr_tst;
 
-
-t_rchr_tst rchr_createTestParams(void *ptr, int c, size_t size,char *name)
+static t_rchr_tst rchr_createTestParams(void *ptr, int c, size_t size,char *name)
 {
 	t_rchr_tst retval;	
 	retval.name = name;
@@ -29,7 +28,7 @@ typedef struct rchr_result
 	int	outResult;
 }	t_rchr_result;
 
-t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t))
+static t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t))
 {
 	t_rchr_result retVal;
 	retVal.baseRet = (char *)baseFunc(test.ptr,test.c,test.size);
@@ -40,7 +39,7 @@ t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const voi
 	return (retVal);
 }
 
-void printresult(t_rchr_result res, int printAll)
+static void printresult(t_rchr_result res, int printAll)
 {
 	if(!res.outResult || printAll)
 	{
@@ -59,6 +58,7 @@ void printresult(t_rchr_result res, int printAll)
 		printf("			ptr		%p\n", res.myRet);
 	}
 }
+
 void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
 {
 	t_rchr_tst tests[] = 

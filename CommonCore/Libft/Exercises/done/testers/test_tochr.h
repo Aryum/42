@@ -10,8 +10,14 @@ typedef struct tochr_tests
 
 } t_tochr_tst;
 
+typedef struct tochr_result
+{
+	int baseRet;
+	int myRet;
+	int outResult;
+}	t_tochr_result;
 
-t_tochr_tst tochr_createTestParams(int c,char *name)
+static t_tochr_tst tochr_createTestParams(int c,char *name)
 {
 	t_tochr_tst retval;	
 	retval.name = name;
@@ -20,14 +26,7 @@ t_tochr_tst tochr_createTestParams(int c,char *name)
 	return retval;
 }
 
-typedef struct tochr_result
-{
-	int baseRet;
-	int myRet;
-	int outResult;
-}	t_tochr_result;
-
-t_tochr_result tochr_comparefunctions(t_tochr_tst test, int(*baseFunc)(int), int(*myFunc)(int))
+static t_tochr_result tochr_comparefunctions(t_tochr_tst test, int(*baseFunc)(int), int(*myFunc)(int))
 {
 	t_tochr_result retVal;
 	retVal.baseRet = baseFunc(test.c);
@@ -37,7 +36,7 @@ t_tochr_result tochr_comparefunctions(t_tochr_tst test, int(*baseFunc)(int), int
 	return (retVal);
 }
 
-void printresult(t_tochr_result res,int printAll)
+static void printresult(t_tochr_result res,int printAll)
 {
 	if(!res.outResult || printAll)
 	{
@@ -50,6 +49,7 @@ void printresult(t_tochr_result res,int printAll)
 		printf("		Mine	%c\n", res.myRet);
 	}
 }
+
 void tochr_logMessages(int(*baseFunc)(int), int(*myFunc)(int), int printAll)
 {
 	t_tochr_tst tests[] = 

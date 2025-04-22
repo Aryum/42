@@ -21,7 +21,7 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-char *createstr(char *c)
+static char *createstr(char *c)
 {
 	if(c == NULL)
 		return NULL;
@@ -37,7 +37,7 @@ char *createstr(char *c)
 	return alloc; 
 }
 
-t_striteri_tst striteri_createtest(char *s, void (*f)(unsigned int, char*), char *out,char * name)
+static t_striteri_tst striteri_createtest(char *s, void (*f)(unsigned int, char*), char *out,char * name)
 {
 	t_striteri_tst retval;
 	if(name != NULL)
@@ -49,8 +49,7 @@ t_striteri_tst striteri_createtest(char *s, void (*f)(unsigned int, char*), char
 	return retval;
 }
 
-
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -76,18 +75,16 @@ t_strcmp_ret strComp(char *a,char *b)
 		retVal.index = retVal.sucess ? 0 : i;
 	}
 	return retVal;
-
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-
-t_strcmp_ret striteri_comparefunctions(t_striteri_tst test,FUNC)
+static t_strcmp_ret striteri_comparefunctions(t_striteri_tst test,FUNC)
 {
 	func(test.s,test.f);
 	t_strcmp_ret cmpRet;
@@ -96,7 +93,7 @@ t_strcmp_ret striteri_comparefunctions(t_striteri_tst test,FUNC)
 	return (cmpRet);
 }
 
-void printresult(t_striteri_tst test, t_strcmp_ret cmpRet, int printAll)
+static void printresult(t_striteri_tst test, t_strcmp_ret cmpRet, int printAll)
 {
 	if(! cmpRet.sucess|| printAll)
 	{
@@ -112,19 +109,21 @@ void printresult(t_striteri_tst test, t_strcmp_ret cmpRet, int printAll)
 		free(test.s);
 }
 
-void tst1(unsigned int i,char *c)
+static void tst1(unsigned int i,char *c)
 {
 	(*c) += 1;
 }
 
-void tst2(unsigned int i,char *c)
+static void tst2(unsigned int i,char *c)
 {
 	(*c) -= 1;
 }
-void tst3(unsigned int i,char *c)
+
+static void tst3(unsigned int i,char *c)
 {
 	(*c) = '-';
 }
+
 int striteri_logMessages(FUNC, int printAll)
 {
 	t_striteri_tst tests[] = 

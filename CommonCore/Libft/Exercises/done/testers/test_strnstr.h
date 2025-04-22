@@ -12,7 +12,15 @@ typedef struct strnstr_tests
 
 } t_strnstr_tst;
 
-char *createstr(char *c)
+typedef struct strnstr_result
+{
+	char *baseRet;
+	char *myRet;
+	int outresult;
+
+} t_strnstr_result;
+
+static char *createstr(char *c)
 {
 	int size = 0;
 	while(c[size] != '\0')
@@ -29,7 +37,7 @@ char *createstr(char *c)
 	return alloc; 
 }
 
-t_strnstr_tst strnstr_createTestParams(char *little,char *big,  size_t size,char *name)
+static t_strnstr_tst strnstr_createTestParams(char *little,char *big,  size_t size,char *name)
 {
 	t_strnstr_tst retval;	
 	retval.name = name;
@@ -41,21 +49,13 @@ t_strnstr_tst strnstr_createTestParams(char *little,char *big,  size_t size,char
 	return retval;
 }
 
-void  freeAlloc(t_strnstr_tst tst)
+static void  freeAlloc(t_strnstr_tst tst)
 {
 	free(tst.big);
 	free(tst.little);
 }
 
-typedef struct strnstr_result
-{
-	char *baseRet;
-	char *myRet;
-	int outresult;
-
-} t_strnstr_result;
-
-t_strnstr_result strnstr_comparefunctions(t_strnstr_tst test, char *(*func[2])(const char *, const char *, size_t))
+static t_strnstr_result strnstr_comparefunctions(t_strnstr_tst test, char *(*func[2])(const char *, const char *, size_t))
 {
 	t_strnstr_result retVal;
 	retVal.baseRet = func[0](test.big,test.little,test.size);
@@ -65,7 +65,7 @@ t_strnstr_result strnstr_comparefunctions(t_strnstr_tst test, char *(*func[2])(c
 	return (retVal);
 }
 
-void printresult(t_strnstr_tst test,t_strnstr_result res, int printAll)
+static void printresult(t_strnstr_tst test,t_strnstr_result res, int printAll)
 {
 	if(!res.outresult || printAll)
 	{

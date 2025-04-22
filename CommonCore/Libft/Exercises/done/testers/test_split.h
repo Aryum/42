@@ -20,7 +20,7 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_split_tst split_createtest(char const *str,char  c, char **out, char* name)
+static t_split_tst split_createtest(char const *str,char  c, char **out, char* name)
 {
 	t_split_tst retval;
 	retval.str = str;
@@ -32,7 +32,7 @@ t_split_tst split_createtest(char const *str,char  c, char **out, char* name)
 	return retval;
 }
 
-t_split_tst split_createEnd()
+static t_split_tst split_createEnd()
 {
 	t_split_tst retval;
 	retval.end = 1;
@@ -42,7 +42,7 @@ t_split_tst split_createEnd()
 	return retval;
 }
 
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -71,12 +71,13 @@ t_strcmp_ret strComp(char *a,char *b)
 
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
+
 static void *freearr(char ***arr, int lastindex)
 {
 	while (lastindex >= 0)
@@ -89,7 +90,7 @@ static void *freearr(char ***arr, int lastindex)
 	return (NULL);
 }
 
-int split_comparefunctions(t_split_tst test,FUNC )
+static int split_comparefunctions(t_split_tst test,FUNC )
 {
 	char **myOut = func(test.str, test.c);
 
@@ -117,7 +118,7 @@ int split_comparefunctions(t_split_tst test,FUNC )
 	return (retVal);
 }
 
-void printresult(t_split_tst test,FUNC , int printAll)
+static void printresult(t_split_tst test,FUNC , int printAll)
 {
 	char **myOut = func(test.str, test.c);
 
@@ -164,6 +165,7 @@ void printresult(t_split_tst test,FUNC , int printAll)
 	}
 	return (retVal);
 }
+
 void split_logMessages(FUNC, int printAll)
 {
 	char *tst1[] = {"A","B","C","D","E","F", NULL};

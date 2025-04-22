@@ -2,21 +2,11 @@
 #include <string.h>
 #include "libft.h"
 
-
 typedef struct strlen_test
 {
 	char *str;
 	char *name;
 } t_strlen_tst;
-
-t_strlen_tst createTestParam(char *str, char *name)
-{
-	t_strlen_tst retval;
-
-	retval.str = str;
-	retval.name = name;
-	return retval;
-}
 
 typedef struct strlen_result
 {
@@ -25,7 +15,16 @@ typedef struct strlen_result
 	int outResult;
 } t_strlen_result;
 
-t_strlen_result strlen_comparefunctions(t_strlen_tst test,size_t (*basefunc)(const char *),size_t (*myFunc)(const char *))
+static t_strlen_tst createTestParam(char *str, char *name)
+{
+	t_strlen_tst retval;
+
+	retval.str = str;
+	retval.name = name;
+	return retval;
+}
+
+static t_strlen_result strlen_comparefunctions(t_strlen_tst test,size_t (*basefunc)(const char *),size_t (*myFunc)(const char *))
 {
 	t_strlen_result retVal;
 	retVal.mySize = myFunc(test.str);
@@ -34,7 +33,7 @@ t_strlen_result strlen_comparefunctions(t_strlen_tst test,size_t (*basefunc)(con
 	return (retVal);
 }
 
-void printresult(t_strlen_result res, int printAll)
+static void printresult(t_strlen_result res, int printAll)
 {
 	if(printAll || res.outResult)
 	{
@@ -42,6 +41,7 @@ void printresult(t_strlen_result res, int printAll)
 		printf(	"		BaseSize	(%d)\n", res.baseSize);
 	}
 }
+
 void  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll)
 {
 	t_strlen_tst tests[] = 

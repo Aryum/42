@@ -31,7 +31,6 @@ typedef struct strlcpy_tests
 	char *ptr;
 } t_memmove_tst;
 
-
 static t_memmove_tst memmove_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
 {
 	t_memmove_tst retval;
@@ -90,6 +89,7 @@ static void freeAlloc(t_memmove_tst tst)
 		}
 	}
 }
+
 typedef struct strcmp_ret
 {
 	int sucess;
@@ -198,6 +198,7 @@ static void printResult(t_memmove_tst test, t_memove_result res,int printAll)
 	freeAlloc(res.basetest);
 	freeAlloc(res.mytest);
 }
+
 void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int printAll)
 {
 	t_memmove_tst tests[] = 

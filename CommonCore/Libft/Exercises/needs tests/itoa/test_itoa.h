@@ -19,7 +19,14 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_itoa_tst itoa_createtest(int nbr,char *out, char* name)
+typedef struct itoa_result
+{
+	char *myOut;
+	t_strcmp_ret cmp;
+	int outResult;
+} t_itoa_result;
+
+static t_itoa_tst itoa_createtest(int nbr,char *out, char* name)
 {
 	t_itoa_tst retval;
 	retval.nbr = nbr; 
@@ -29,8 +36,7 @@ t_itoa_tst itoa_createtest(int nbr,char *out, char* name)
 	return retval;
 }
 
-
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -59,37 +65,35 @@ t_strcmp_ret strComp(char *a,char *b)
 
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-
-int itoa_comparefunctions(t_itoa_tst test,FUNC , int printAll)
+static t_itoa_result itoa_comparefunctions(t_itoa_tst test,FUNC)
 {
-	int retVal = 1;
-	char *myOut = func(test.nbr);
-	t_strcmp_ret cmpRet;
-	cmpRet = strComp(myOut, test.out);
-	if(! cmpRet.sucess|| printAll)
+	t_itoa_result retVal;
+	retVal.myOut = func(test.nbr);
+	retVal.cmp = strComp(retVal.myOut, test.out);
+	retVal.outResult = retVal.cmp.sucess;
+	return (retVal);
+}
+static void printresult(t_itoa_tst test,t_itoa_result res,int printAll)
+{
+	if(!res.outResult || printAll)
 	{
-		if(!cmpRet.sucess)
-		{
-			retVal = 0;
-			printf("	Failed at index %d\n", cmpRet.index);
-		}
+		if(!res.outResult)
+			printf("	Failed at index %d\n", res.cmp.index);
 		else
 			printf("	Passed\n");
-		printf("		Return %s\n", nullcheck(myOut));
+		printf("		Return %s\n", nullcheck(res.myOut));
 		printf("		Expected %s\n", nullcheck(test.out));
 
 	}
-	free(myOut);
-	return (retVal);
+	free(res.myOut);
 }
-
 void itoa_logMessages(FUNC, int printAll)
 {
 	//str vazia return vazio
@@ -106,9 +110,11 @@ void itoa_logMessages(FUNC, int printAll)
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_itoa_result current = itoa_comparefunctions(tests[i],func); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!itoa_comparefunctions(tests[i],func, printAll))
+		printresult(tests[i],current, printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

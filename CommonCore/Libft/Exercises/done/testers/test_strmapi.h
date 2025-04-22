@@ -21,7 +21,13 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_strmapi_tst strmapi_createtest(char const *s, char (*f)(unsigned int, char), char *out,char * name)
+typedef struct strmapi_result
+{
+	char *myOut;
+	t_strcmp_ret cmpRet;
+} t_strmapi_result;
+
+static t_strmapi_tst strmapi_createtest(char const *s, char (*f)(unsigned int, char), char *out,char * name)
 {
 	t_strmapi_tst retval;
 	retval.s = s;
@@ -32,8 +38,7 @@ t_strmapi_tst strmapi_createtest(char const *s, char (*f)(unsigned int, char), c
 	return retval;
 }
 
-
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -62,20 +67,14 @@ t_strcmp_ret strComp(char *a,char *b)
 
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-typedef struct strmapi_result
-{
-	char *myOut;
-	t_strcmp_ret cmpRet;
-} t_strmapi_result;
-
-t_strmapi_result strmapi_comparefunctions(t_strmapi_tst test,FUNC)
+static t_strmapi_result strmapi_comparefunctions(t_strmapi_tst test,FUNC)
 {
 	t_strmapi_result retVal;
 	retVal.myOut = func(test.s,test.f);
@@ -83,7 +82,8 @@ t_strmapi_result strmapi_comparefunctions(t_strmapi_tst test,FUNC)
 	
 	return (retVal);
 }
-void printresult(t_strmapi_tst test,t_strmapi_result res,int printAll)
+
+static void printresult(t_strmapi_tst test,t_strmapi_result res,int printAll)
 {
 	if(! res.cmpRet.sucess|| printAll)
 	{
@@ -97,19 +97,22 @@ void printresult(t_strmapi_tst test,t_strmapi_result res,int printAll)
 	}
 	free(res.myOut);
 }
-char tst1(unsigned int i,char c)
+
+static char tst1(unsigned int i,char c)
 {
 	return c + 1;
 }
 
-char tst2(unsigned int i,char c)
+static char tst2(unsigned int i,char c)
 {
 	return c - 1;
 }
-char tst3(unsigned int i,char c)
+
+static char tst3(unsigned int i,char c)
 {
 	return '-';
 }
+
 void strmapi_logMessages(FUNC, int printAll)
 {
 	t_strmapi_tst tests[] = 

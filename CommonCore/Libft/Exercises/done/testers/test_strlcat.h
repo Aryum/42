@@ -2,20 +2,18 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
-char *createstr(char *c)
+
+typedef struct strlcat_result
 {
-	int size = strlen(c);
-	char *alloc = (char *)malloc(size + 1);
-	int i = 0;
-	
-	while(c[i] != '\0')
-	{
-		alloc[i] = c[i];
-		i++;
-	}
-	alloc[i] = '\0';
-	return alloc; 
-}
+	t_strlcat_tst basetest;
+	t_strlcat_tst mytest;
+	size_t base_len;
+	size_t my_len;
+	t_strcmp_ret cmp_result;
+
+	int outresult;
+
+} t_strlcat_result;
 
 typedef struct strlcpy_tests
 {
@@ -31,8 +29,29 @@ typedef struct strlcpy_tests
 	char *ptr;
 } t_strlcat_tst;
 
+typedef struct strcmp_ret
+{
+	int sucess;
+	unsigned int index;
 
-t_strlcat_tst strlcat_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
+} t_strcmp_ret;
+
+static char *createstr(char *c)
+{
+	int size = strlen(c);
+	char *alloc = (char *)malloc(size + 1);
+	int i = 0;
+	
+	while(c[i] != '\0')
+	{
+		alloc[i] = c[i];
+		i++;
+	}
+	alloc[i] = '\0';
+	return alloc; 
+}
+
+static t_strlcat_tst strlcat_createTestParams_Alloc(char* dst,char* src, size_t size, char *name)
 {
 	t_strlcat_tst retval;
 	retval.name = name;
@@ -48,9 +67,7 @@ t_strlcat_tst strlcat_createTestParams_Alloc(char* dst,char* src, size_t size, c
 	return retval;
 }
 
-//not used for cpy since it is undefined behaviour left because it might be useful
-
-t_strlcat_tst strlcat_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
+static t_strlcat_tst strlcat_createTestParams_SameStr(char* str, int index1,int index2, size_t size, char *name)
 {
 	t_strlcat_tst retval;	
 	retval.ptr = createstr(str);
@@ -66,7 +83,7 @@ t_strlcat_tst strlcat_createTestParams_SameStr(char* str, int index1,int index2,
 	return retval;
 }
 
-void freeAlloc(t_strlcat_tst tst)
+static void freeAlloc(t_strlcat_tst tst)
 {
 	if(tst.name != NULL)
 	{
@@ -83,14 +100,8 @@ void freeAlloc(t_strlcat_tst tst)
 		}
 	}
 }
-typedef struct strcmp_ret
-{
-	int sucess;
-	unsigned int index;
 
-} t_strcmp_ret;
-
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -109,26 +120,14 @@ t_strcmp_ret strComp(char *a,char *b)
 	return retVal;
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-typedef struct strlcat_result
-{
-	t_strlcat_tst basetest;
-	t_strlcat_tst mytest;
-	size_t base_len;
-	size_t my_len;
-	t_strcmp_ret cmp_result;
-
-	int outresult;
-
-} t_strlcat_result;
-
-t_strlcat_result strlcat_comparefunctions(t_strlcat_tst test, size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t))
+static t_strlcat_result strlcat_comparefunctions(t_strlcat_tst test, size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t))
 {
 	t_strlcat_result retVal;
 
@@ -153,7 +152,8 @@ t_strlcat_result strlcat_comparefunctions(t_strlcat_tst test, size_t(*baseFunc)(
 	
 	return (retVal);
 }
-void printresult(t_strlcat_tst test,t_strlcat_result res, int printAll)
+
+static void printresult(t_strlcat_tst test,t_strlcat_result res, int printAll)
 {
 	if(!(res.outresult) || printAll)
 	{
@@ -190,6 +190,7 @@ void printresult(t_strlcat_tst test,t_strlcat_result res, int printAll)
 	freeAlloc(res.basetest);
 	freeAlloc(res.mytest);
 }
+
 void strlcat_logMessages(size_t(*baseFunc)(char *, const char *, size_t), size_t(*myFunc)(char *, const char *, size_t), int printAll)
 {
 

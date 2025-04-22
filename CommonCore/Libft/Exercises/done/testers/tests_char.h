@@ -8,7 +8,13 @@ typedef struct char_tests
 	int upper;
 } t_char_tst;
 
-t_char_tst createTestParams(int lower, int upper, char *name)
+typedef struct char_result
+{
+	int i;
+	int outResult;
+}	t_char_result;
+
+static t_char_tst createTestParams(int lower, int upper, char *name)
 {
 	t_char_tst retval;	
 	retval.name = name;
@@ -21,12 +27,7 @@ t_char_tst createTestParams(int lower, int upper, char *name)
 	return retval;
 }
 
-typedef struct char_result
-{
-	int i;
-	int outResult;
-}	t_char_result;
-t_char_result char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(int))
+static t_char_result char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(int))
 {
 	int i = test.lower;
 	t_char_result retVal; 
@@ -47,7 +48,7 @@ t_char_result char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (
 	return retVal;
 }
 
-void printresult(t_char_tst test,t_char_result res,int printAll)
+static void printresult(t_char_tst test,t_char_result res,int printAll)
 {
 	if(!res.outResult || printAll)
 	{

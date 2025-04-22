@@ -18,7 +18,15 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_memset_tst mem_createTestParams(void * ptr, char c,size_t size, char *name)
+typedef struct mem_result
+{
+	char *baseStr;
+	char *myStr;
+	t_strcmp_ret cmp;
+	int outResult;
+}	t_mem_result;
+
+static t_memset_tst mem_createTestParams(void * ptr, char c,size_t size, char *name)
 {
 	t_memset_tst retval;	
 	retval.name = name;
@@ -28,7 +36,7 @@ t_memset_tst mem_createTestParams(void * ptr, char c,size_t size, char *name)
 	return retval;
 }
 
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -47,7 +55,7 @@ t_strcmp_ret strComp(char *a,char *b)
 	return retVal;
 }
 
-char *createstr(char *c)
+static char *createstr(char *c)
 {
 	int size = strlen(c);
 	char *alloc = malloc(size + 1);
@@ -62,15 +70,7 @@ char *createstr(char *c)
 	return alloc; 
 }
 
-typedef struct mem_result
-{
-	char *baseStr;
-	char *myStr;
-	t_strcmp_ret cmp;
-	int outResult;
-}	t_mem_result;
-
-t_mem_result mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t))
+static t_mem_result mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t))
 {
 	t_mem_result retVal;
 	retVal.baseStr = baseFunc(createstr(test.str),test.c,test.size);
@@ -81,7 +81,7 @@ t_mem_result mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, 
 	return (retVal);
 }
 
-void printresult(t_memset_tst test,t_mem_result res, int printAll)
+static void printresult(t_memset_tst test,t_mem_result res, int printAll)
 {
 	if(!res.outResult || printAll)
 	{
@@ -97,6 +97,7 @@ void printresult(t_memset_tst test,t_mem_result res, int printAll)
 	free(res.baseStr);
 	free(res.myStr);
 }
+
 void mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t), int printAll)
 {
 	t_memset_tst tests[] = 

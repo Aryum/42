@@ -11,8 +11,14 @@ typedef struct cmp_tests
 
 } t_cmp_tst;
 
+typedef struct cmp_result
+{
+	int baseRet;
+	int myRet;
+	int outResult;
+}	t_cmp_result;
 
-t_cmp_tst cmp_createTestParams(void * ptr1, void * ptr2, size_t size,char *name)
+static t_cmp_tst cmp_createTestParams(void * ptr1, void * ptr2, size_t size,char *name)
 {
 	t_cmp_tst retval;	
 	retval.name = name;
@@ -22,8 +28,7 @@ t_cmp_tst cmp_createTestParams(void * ptr1, void * ptr2, size_t size,char *name)
 	return retval;
 }
 
-
-char *createstr(char *c)
+static char *createstr(char *c)
 {
 	int size = strlen(c);
 	char *alloc = (char *)malloc(size + 1);
@@ -38,13 +43,7 @@ char *createstr(char *c)
 	return alloc; 
 }
 
-typedef struct cmp_result
-{
-	int baseRet;
-	int myRet;
-	int outResult;
-}	t_cmp_result;
-t_cmp_result cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t))
+static t_cmp_result cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t))
 {
 	t_cmp_result retVal;
 	retVal.baseRet = baseFunc(test.str1, test.str2 ,test.size);
@@ -53,7 +52,7 @@ t_cmp_result cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, c
 	return (retVal);
 }
 
-void printresult(t_cmp_tst test,t_cmp_result res, int printAll)
+static void printresult(t_cmp_tst test,t_cmp_result res, int printAll)
 {
 	if(!res.outResult || printAll)
 	{
@@ -71,7 +70,7 @@ void printresult(t_cmp_tst test,t_cmp_result res, int printAll)
 
 }
 
-void *str_invalidchar(int value)
+static void *str_invalidchar(int value)
 {
 	int *str = malloc(2 *sizeof(int));
 	str[0] = value;

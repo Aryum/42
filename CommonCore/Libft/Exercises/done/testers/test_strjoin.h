@@ -19,7 +19,14 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
-t_strjoin_tst subsstr_createtest(char const *s1,char const *s2, char *out, char* name)
+typedef struct strjoin_result
+{
+	char *myOut;
+	t_strcmp_ret cmpRet;
+	int outResult;
+} t_strjoin_result;
+
+static t_strjoin_tst subsstr_createtest(char const *s1,char const *s2, char *out, char* name)
 {
 	t_strjoin_tst retval;
 	retval.s1 = s1;
@@ -30,8 +37,7 @@ t_strjoin_tst subsstr_createtest(char const *s1,char const *s2, char *out, char*
 	return retval;
 }
 
-
-t_strcmp_ret strComp(char *a,char *b)
+static t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
 	int i = 0;
@@ -60,21 +66,14 @@ t_strcmp_ret strComp(char *a,char *b)
 
 }
 
-char *nullcheck(char *str)
+static char *nullcheck(char *str)
 {
 	if(str != NULL)
 		return str;
 	return "(string is null)";
 }
 
-typedef struct strjoin_result
-{
-	char *myOut;
-	t_strcmp_ret cmpRet;
-	int outResult;
-} t_strjoin_result;
-
-t_strjoin_result strjoin_comparefunctions(t_strjoin_tst test,FUNC )
+static t_strjoin_result strjoin_comparefunctions(t_strjoin_tst test,FUNC )
 {
 	t_strjoin_result retVal;
 	retVal.myOut = func(test.s1, test.s2);
@@ -84,7 +83,7 @@ t_strjoin_result strjoin_comparefunctions(t_strjoin_tst test,FUNC )
 	return (retVal);
 }
 
-void printresult(t_strjoin_tst test,t_strjoin_result res, int printAll)
+static void printresult(t_strjoin_tst test,t_strjoin_result res, int printAll)
 {
 	if(! res.cmpRet.sucess|| printAll)
 	{
