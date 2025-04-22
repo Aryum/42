@@ -2,7 +2,8 @@
 #include	<stdio.h>
 #include <stdlib.h>
 
-#define FUNC 
+#define FUNC int(*func[2])(const char *)
+
 typedef struct atoi_tests
 {
 	char* str;
@@ -24,7 +25,7 @@ typedef struct atoi_result
 	int outResult;
 }	t_atoi_result;
 
-static t_atoi_result atoi_comparefunctions(t_atoi_tst  test, int(*func[2])(const char *))
+static t_atoi_result atoi_comparefunctions(t_atoi_tst  test, FUNC)
 {
 	t_atoi_result retVal;
 	retVal.baseRet = func[0](test.str);
@@ -34,7 +35,7 @@ static t_atoi_result atoi_comparefunctions(t_atoi_tst  test, int(*func[2])(const
 	return (retVal);
 }
 
-static void printresult(t_atoi_result result, int printAll)
+static void atoi_printresult(t_atoi_result result, int printAll)
 {
 	if(!(result.outResult) || printAll)
 	{
@@ -47,7 +48,7 @@ static void printresult(t_atoi_result result, int printAll)
 	}
 }
 
-int atoi_logMessages(int(*func[2])(const char *), int printAll)
+int atoi_logMessages(FUNC, int printAll)
 {
 	t_atoi_tst  tests[] = 
 	{ 	

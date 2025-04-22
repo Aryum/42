@@ -1,24 +1,4 @@
-#pragma region TestHeader
-#include "test_atoi.h"
-#include "test_memcpy.h"
-#include "test_memmove.h"
-#include "test_rchr.h"
-#include "test_split.h"
-#include "test_strdup.h"
-#include "test_striteri.h"
-#include "test_strjoin.h"
-#include "test_strlcpy.h"
-#include "test_strmapi.h"
-#include "test_strnstr.h"
-#include "test_strtrim.h"
-#include "test_substr.h"
-#include "test_tochr.h"
-#include "test_char.h"
-#include "test_cmp.h"
-#include "test_memset.h"
-#include "test_str.h"
-#pragma endregion
-
+#include "header_test.h"
 #include <stdlib.h>
 #include <ctype.h>
 #include <bsd/string.h>
@@ -206,7 +186,6 @@ int main(int argc, char** agrv)
 
 		//to...
 		create("ToUpper",tochr_logMessages(f_upper, argc != 1)),
-		create("ToLower",tochr_logMessages(f_lower, argc != 1)),
-
+		create("ToLower",tochr_logMessages(f_lower, argc != 1))
 	};
 }

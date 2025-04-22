@@ -60,7 +60,7 @@ static void printresult(t_rchr_result res, int printAll)
 	}
 }
 
-void rchr_logMessages(FUNC, int printAll)
+int rchr_logMessages(FUNC, int printAll)
 {
 	t_rchr_tst tests[] = 
 	{ 	
