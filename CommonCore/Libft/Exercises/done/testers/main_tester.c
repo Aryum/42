@@ -186,6 +186,9 @@ int main(int argc, char** agrv)
 
 		//to...
 		create("ToUpper",tochr_logMessages(f_upper, argc != 1)),
-		create("ToLower",tochr_logMessages(f_lower, argc != 1))
+		create("ToLower",tochr_logMessages(f_lower, argc != 1)),
+
+		//itoa
+		create("Itoa", itoa_logMessages(ft_itoa, argc != 1))
 	};
 }

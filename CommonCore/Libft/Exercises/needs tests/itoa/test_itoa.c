@@ -94,7 +94,7 @@ static void printresult(t_itoa_tst test,t_itoa_result res,int printAll)
 	}
 	free(res.myOut);
 }
-void itoa_logMessages(FUNC, int printAll)
+int itoa_logMessages(FUNC, int printAll)
 {
 	t_itoa_tst tests[] = 
 	{ 	
@@ -106,9 +106,12 @@ void itoa_logMessages(FUNC, int printAll)
 		itoa_createtest(0,NULL,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
 		t_itoa_result current = itoa_comparefunctions(tests[i],func); 
+		if(ret == 1 && !current.outResult)
+			ret = 0; 
 		if(!current.outResult || printAll)
 		{
 			printf("Testing %s\n", tests[i].name);
@@ -121,4 +124,5 @@ void itoa_logMessages(FUNC, int printAll)
 		}
 		i++;
 	}
+	return ret;
 }
