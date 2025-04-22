@@ -2,6 +2,7 @@
 #include	<stdio.h>
 #include 	<stdlib.h>
 
+
 static char *createstr(char *c)
 {
 	int size = strlen(c);
@@ -199,7 +200,7 @@ static void printResult(t_memmove_tst test, t_memove_result res,int printAll)
 	freeAlloc(res.mytest);
 }
 
-void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int printAll)
+int memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int printAll)
 {
 	t_memmove_tst tests[] = 
 	{ 	
@@ -233,7 +234,7 @@ void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int pr
 				printf(	"------------------GOOD------------------\n\n");
 		}
 		i++;
-		freeAlloc(tests[i]);
+		memove_freeAlloc(tests[i]);
 	}
 	return ret;
 }

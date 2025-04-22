@@ -79,7 +79,7 @@ static t_memcpy_tst memcpy_createTestParams_SameStr(char* str, int index1,int in
 	return retval;
 }
 
-static void freeAlloc(t_memcpy_tst tst)
+static void memcpy_freeAlloc(t_memcpy_tst tst)
 {
 	if(tst.name != NULL)
 	{
@@ -174,7 +174,7 @@ static void printresult(t_memcpy_tst test,t_memcpy_result result, int printAll)
 	freeAlloc(result.mytest);
 }
 
-void memcpy_logMessages(FUNC, int printAll)
+int memcpy_logMessages(FUNC, int printAll)
 {
 
 	//create a test that src and dest are part of the same string
@@ -214,7 +214,7 @@ void memcpy_logMessages(FUNC, int printAll)
 				printf(	"------------------GOOD------------------\n\n");
 		}
 		i++;
-		freeAlloc(tests[i]);
+		memcpy_freeAlloc(tests[i]);
 	}
 	return ret;
 }

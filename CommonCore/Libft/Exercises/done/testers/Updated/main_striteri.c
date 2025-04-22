@@ -3,5 +3,5 @@
 
 int main(int agrc, char ** argv)
 {
-	striteri_logMessages(ft_striteri,agrc != 1);
+	striteri_logMessages(ft_striteri, agrc != 1);
 }

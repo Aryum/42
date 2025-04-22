@@ -166,7 +166,7 @@ static void printresult(t_split_tst test,FUNC , int printAll)
 	return (retVal);
 }
 
-void split_logMessages(FUNC, int printAll)
+int split_logMessages(FUNC, int printAll)
 {
 	char *tst1[] = {"A","B","C","D","E","F", NULL};
 	char *tst2[] = {"Aa","Bb","Cc","Dd","Ee","Ff", NULL};

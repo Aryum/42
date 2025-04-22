@@ -14,5 +14,5 @@ size_t ft_strlen(const char *s)
 
 int main(int argc, char ** agrv)
 {
-	strcatcpy_logMessages(strlcpy,ft_strlcpy, argc != 1);
+	strlcpy_logMessages(strlcpy,ft_strlcpy, argc != 1);
 }

@@ -17,5 +17,5 @@ size_t	strlcat(char *dst, const char *src, size_t size);
 
 int main(int argc, char ** agrv)
 {
-	strcatcpy_logMessages(strlcat,ft_strlcat, argc != 1);
+	strlcat_logMessages(strlcat,ft_strlcat, argc != 1);
 }
