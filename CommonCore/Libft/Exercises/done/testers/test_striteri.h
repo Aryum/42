@@ -87,19 +87,21 @@ char *nullcheck(char *str)
 }
 
 
-int striteri_comparefunctions(t_striteri_tst test,FUNC , int printAll)
+t_strcmp_ret striteri_comparefunctions(t_striteri_tst test,FUNC)
 {
-	int retVal = 1;
 	func(test.s,test.f);
 	t_strcmp_ret cmpRet;
 	cmpRet = strComp(test.s, test.out);
+	
+	return (cmpRet);
+}
+
+void printresult(t_striteri_tst test, t_strcmp_ret cmpRet, int printAll)
+{
 	if(! cmpRet.sucess|| printAll)
 	{
 		if(!cmpRet.sucess)
-		{
-			retVal = 0;
 			printf("	Failed at index %d\n", cmpRet.index);
-		}
 		else
 			printf("	Passed\n");
 		printf("		Return %s\n", nullcheck(test.s));
@@ -108,8 +110,8 @@ int striteri_comparefunctions(t_striteri_tst test,FUNC , int printAll)
 	}
 	if(test.s != NULL)
 		free(test.s);
-	return (retVal);
 }
+
 void tst1(unsigned int i,char *c)
 {
 	(*c) += 1;
@@ -123,7 +125,7 @@ void tst3(unsigned int i,char *c)
 {
 	(*c) = '-';
 }
-void striteri_logMessages(FUNC, int printAll)
+int striteri_logMessages(FUNC, int printAll)
 {
 	t_striteri_tst tests[] = 
 	{ 	
@@ -134,14 +136,20 @@ void striteri_logMessages(FUNC, int printAll)
 		striteri_createtest("",tst1,NULL,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
+		t_strcmp_ret current = striteri_comparefunctions(tests[i],func);
+		if(ret == 1 && !current.sucess)
+			ret = 0;
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!striteri_comparefunctions(tests[i],func, printAll))
+		printresult(tests[i],current,printAll);
+		if (!current.sucess)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");
 		i++;
 	}
+	return ret;
 }

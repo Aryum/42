@@ -119,10 +119,10 @@ typedef struct memcpy_result
 	t_memcpy_tst basetest;
 	t_memcpy_tst mytest;
 	t_strcmp_ret strcmp;
-	int retCmp;	
+	int outResult;	
 } t_memcpy_result; 
 
-t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t), int printAll)
+t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void *, const void *, size_t), void*(*myFunc)(void *, const void *, size_t))
 {
 	t_memcpy_result retVal;
 
@@ -141,16 +141,16 @@ t_memcpy_result memcpy_comparefunctions(t_memcpy_tst test, void*(*baseFunc)(void
 	myFunc(retVal.mytest.dst_new, retVal.mytest.src, retVal.mytest.size);
 
 	retVal.strcmp  = strComp(retVal.mytest.dst_new, retVal.basetest.dst_new);
-	retVal.retCmp = retVal.strcmp.sucess; 
+	retVal.outResult = retVal.strcmp.sucess; 
 
 	return (retVal);
 }
 
 void printresult(t_memcpy_tst test,t_memcpy_result result, int printAll)
 {
-	if(!result.retCmp || printAll)
+	if(!result.outResult || printAll)
 	{
-		if(!result.retCmp)
+		if(!result.outResult)
 			printf("	Failed at index (%d)\n", result.strcmp.index);
 		else
 			printf("	Passed\n");
@@ -200,15 +200,15 @@ void memcpy_logMessages(void *(*baseFunc)(void *, const void *, size_t), void*(*
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_memcpy_result current = memcpy_comparefunctions(tests[i],baseFunc, myFunc, printAll);
-		if(ret == 1 && !current.retCmp)
+		t_memcpy_result current = memcpy_comparefunctions(tests[i],baseFunc, myFunc);
+		if(ret == 1 && !current.outResult)
 			ret = 0;
-		if(!current.retCmp || printAll)
+		if(!current.outResult || printAll)
 		{
 			printf("Testing %s\n", tests[i].name);
 			printf(	"-----------------------------------------\n");
 			printresult(tests[i],current,printAll);
-			if (!current.retCmp)
+			if (!current.outResult)
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");

@@ -37,33 +37,39 @@ char *createstr(char *c)
 	alloc[i] = '\0';
 	return alloc; 
 }
-int cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t), int printAll)
-{
-	int retVal = 1;
-	int baseRet = baseFunc(test.str1, test.str2 ,test.size);
-	int myRet = myFunc(test.str1, test.str2 ,test.size);
 
-	if(myRet != baseRet || printAll)
+typedef struct cmp_result
+{
+	int baseRet;
+	int myRet;
+	int outResult;
+}	t_cmp_result;
+t_cmp_result cmp_comparefunctions(t_cmp_tst test, int(*baseFunc)(const void *, const void *, size_t), int(*myFunc)(const void *, const void *, size_t))
+{
+	t_cmp_result retVal;
+	retVal.baseRet = baseFunc(test.str1, test.str2 ,test.size);
+	retVal.myRet = myFunc(test.str1, test.str2 ,test.size);
+	retVal.outResult = retVal.myRet == retVal.baseRet;
+	return (retVal);
+}
+
+void printresult(t_cmp_tst test,t_cmp_result res, int printAll)
+{
+	if(!res.outResult || printAll)
 	{
-		if(myRet != baseRet)
-		{
-			retVal = 0;
+		if(!res.outResult)
 			printf("	Failed\n");
-		}
 		else
 			printf("	Passed\n");
 		printf("	Comparing %ld bytes\n", test.size);
 		printf("	Str1 %s\n", (char *)test.str1);
 		printf("	Str2 %s\n", (char *)test.str2);
 
-		printf("		Base	%d\n", baseRet);
-		printf("		Mine	%d\n", myRet);
+		printf("		Base	%d\n", res.baseRet);
+		printf("		Mine	%d\n", res.myRet);
 	}
 
-	return (retVal);
 }
-
-
 
 void *str_invalidchar(int value)
 {
@@ -98,9 +104,11 @@ void cmp_logMessages(int(*baseFunc)(const void *, const void *, size_t), int(*my
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_cmp_result current = cmp_comparefunctions(tests[i],baseFunc, myFunc); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!cmp_comparefunctions(tests[i],baseFunc, myFunc, printAll))
+		printresult(tests[i],current,printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

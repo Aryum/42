@@ -69,28 +69,33 @@ char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-
-int strmapi_comparefunctions(t_strmapi_tst test,FUNC , int printAll)
+typedef struct strmapi_result
 {
-	int retVal = 1;
-	char *myOut = func(test.s,test.f);
+	char *myOut;
 	t_strcmp_ret cmpRet;
-	cmpRet = strComp(myOut, test.out);
-	if(! cmpRet.sucess|| printAll)
+} t_strmapi_result;
+
+t_strmapi_result strmapi_comparefunctions(t_strmapi_tst test,FUNC)
+{
+	t_strmapi_result retVal;
+	retVal.myOut = func(test.s,test.f);
+	retVal.cmpRet = strComp(retVal.myOut, test.out);
+	
+	return (retVal);
+}
+void printresult(t_strmapi_tst test,t_strmapi_result res,int printAll)
+{
+	if(! res.cmpRet.sucess|| printAll)
 	{
-		if(!cmpRet.sucess)
-		{
-			retVal = 0;
-			printf("	Failed at index %d\n", cmpRet.index);
-		}
+		if(!res.cmpRet.sucess)
+			printf("	Failed at index %d\n", res.cmpRet.index);
 		else
 			printf("	Passed\n");
-		printf("		Return %s\n", nullcheck(myOut));
+		printf("		Return %s\n", nullcheck(res.myOut));
 		printf("		Expected %s\n", nullcheck(test.out));
 
 	}
-	free(myOut);
-	return (retVal);
+	free(res.myOut);
 }
 char tst1(unsigned int i,char c)
 {
@@ -116,14 +121,20 @@ void strmapi_logMessages(FUNC, int printAll)
 		strmapi_createtest("",tst1,NULL,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
+		t_strmapi_result current = strmapi_comparefunctions(tests[i],func);
+		if(ret == 1 && !current.cmpRet.sucess)
+			ret = 0;
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!strmapi_comparefunctions(tests[i],func, printAll))
+		printresult(tests[i],current, printAll);
+		if (!current.cmpRet.sucess)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");
 		i++;
 	}
+	return ret;
 }

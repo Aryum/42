@@ -46,31 +46,42 @@ void  freeAlloc(t_strnstr_tst tst)
 	free(tst.big);
 	free(tst.little);
 }
-int strnstr_comparefunctions(t_strnstr_tst test, char *(*func[2])(const char *, const char *, size_t), int printAll)
-{
-	int retVal = 1;
-	char *baseRet = func[0](test.big,test.little,test.size);
-	char *myRet = func[1](test.big,test.little,test.size);
 
-	if(myRet != baseRet || printAll)
+typedef struct strnstr_result
+{
+	char *baseRet;
+	char *myRet;
+	int outresult;
+
+} t_strnstr_result;
+
+t_strnstr_result strnstr_comparefunctions(t_strnstr_tst test, char *(*func[2])(const char *, const char *, size_t))
+{
+	t_strnstr_result retVal;
+	retVal.baseRet = func[0](test.big,test.little,test.size);
+	retVal.myRet = func[1](test.big,test.little,test.size);
+	retVal.outresult = retVal.myRet == retVal.baseRet;
+	
+	return (retVal);
+}
+
+void printresult(t_strnstr_tst test,t_strnstr_result res, int printAll)
+{
+	if(!res.outresult || printAll)
 	{
-		if(myRet != baseRet)
-		{
-			retVal = 0;
+		if(!res.outresult)
 			printf("	Failed\n");
-		}
 		else
 			printf("	Passed\n");
 
 		printf("		Base\n");
-		printf("			str		%s\n", baseRet != NULL ? baseRet : "(Empty)");
-		printf("			ptr		%p\n", baseRet );
+		printf("			str		%s\n", res.baseRet != NULL ? res.baseRet : "(Empty)");
+		printf("			ptr		%p\n", res.baseRet );
 		printf("		Mine\n");
-		printf("			str		%s\n", myRet != NULL ? myRet : "(Empty)");
-		printf("			ptr		%p\n", myRet);
+		printf("			str		%s\n", res.myRet != NULL ? res.myRet : "(Empty)");
+		printf("			ptr		%p\n", res.myRet);
 	}
 	freeAlloc(test);
-	return (retVal);
 }
 
 void strnstr_logMessages(char *(*func[2])(const char *, const char *, size_t), int printAll)
@@ -92,9 +103,11 @@ void strnstr_logMessages(char *(*func[2])(const char *, const char *, size_t), i
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_strnstr_result current = strnstr_comparefunctions(tests[i],func); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!strnstr_comparefunctions(tests[i],func, printAll))
+		printresult(tests[i], current, printAll);
+		if (!current.outresult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

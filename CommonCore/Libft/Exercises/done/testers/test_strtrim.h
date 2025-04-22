@@ -68,35 +68,40 @@ char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-
-int strtrim_comparefunctions(t_strtrim_tst test,FUNC , int printAll)
+typedef struct strtrim_result
 {
-	int retVal = 1;
-	char *myOut = func(test.s1, test.set);
+	char *myOut;
 	t_strcmp_ret cmpRet;
-	cmpRet = strComp(myOut, test.out);
-	if(! cmpRet.sucess|| printAll)
+	int outResult;
+} t_strtrim_result;
+
+t_strtrim_result strtrim_comparefunctions(t_strtrim_tst test,FUNC)
+{
+	t_strtrim_result retVal;
+	retVal.myOut = func(test.s1, test.set);
+	retVal.cmpRet = strComp(retVal.myOut, test.out);
+	retVal.outResult = retVal.cmpRet.sucess; 
+	return (retVal);
+}
+
+void printresult(t_strtrim_tst test,t_strtrim_result res, int printAll)
+{
+	if(! res.outResult|| printAll)
 	{
-		if(!cmpRet.sucess)
-		{
-			retVal = 0;
-			printf("	Failed at index %d\n", cmpRet.index);
-		}
+		if(!res.outResult)
+			printf("	Failed at index %d\n", res.cmpRet.index);
 		else
 			printf("	Passed\n");
 		printf("		Base %s\n", nullcheck((char *)test.s1));
-		printf("		Return %s\n", nullcheck(myOut));
+		printf("		Return %s\n", nullcheck(res.myOut));
 		printf("		Expected %s\n", nullcheck(test.out));
 
 	}
-	free(myOut);
-	return (retVal);
+	free(res.myOut);
 }
 
 void strtrim_logMessages(FUNC, int printAll)
 {
-	//str vazia return vazio
-	//char set \0 return str normal
 	t_strtrim_tst tests[] = 
 	{ 	
 		strtrim_createtest("----ABAB----","-","ABAB", "Test 1"),
@@ -117,9 +122,11 @@ void strtrim_logMessages(FUNC, int printAll)
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_strtrim_result current = strtrim_comparefunctions(tests[i],func); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!strtrim_comparefunctions(tests[i],func, printAll))
+		printresult(tests[i],current, printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

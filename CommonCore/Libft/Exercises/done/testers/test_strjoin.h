@@ -67,30 +67,38 @@ char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-
-int strjoin_comparefunctions(t_strjoin_tst test,FUNC , int printAll)
+typedef struct strjoin_result
 {
-	int retVal = 1;
-	char *myOut = func(test.s1, test.s2);
+	char *myOut;
 	t_strcmp_ret cmpRet;
-	cmpRet = strComp(myOut, test.out);
-	if(! cmpRet.sucess|| printAll)
-	{
-		if(!cmpRet.sucess)
-		{
-			retVal = 0;
-			printf("	Failed at index %d\n", cmpRet.index);
-		}
-		else
-			printf("	Passed\n");
+	int outResult;
+} t_strjoin_result;
 
-		printf("		Return %s\n", nullcheck(myOut));
-	}
-	free(myOut);
+t_strjoin_result strjoin_comparefunctions(t_strjoin_tst test,FUNC )
+{
+	t_strjoin_result retVal;
+	retVal.myOut = func(test.s1, test.s2);
+	retVal.cmpRet = strComp(retVal.myOut, test.out);
+	retVal.outResult = retVal.cmpRet.sucess;
+
 	return (retVal);
 }
 
-void strjoin_logMessages(FUNC, int printAll)
+void printresult(t_strjoin_tst test,t_strjoin_result res, int printAll)
+{
+	if(! res.cmpRet.sucess|| printAll)
+	{
+		if(!res.cmpRet.sucess)
+			printf("	Failed at index %d\n", res.cmpRet.index);
+		else
+			printf("	Passed\n");
+
+		printf("		Return %s\n", nullcheck(res.myOut));
+	}
+	free(res.myOut);
+}
+
+int strjoin_logMessages(FUNC, int printAll)
 {
 	t_strjoin_tst tests[] = 
 	{ 	
@@ -99,21 +107,24 @@ void strjoin_logMessages(FUNC, int printAll)
 		subsstr_createtest(NULL," or am i",NULL, "1st string is null"),
 		subsstr_createtest("I am working", NULL,NULL, "2nd string is null"),
 
-
-
 		subsstr_createtest(NULL,NULL,NULL,NULL)
 	};
 	int i = 0;
+	int ret = 1;
 	while (tests[i].name != NULL)
 	{
+		t_strjoin_result current = strjoin_comparefunctions(tests[i],func); 
+		if(ret == 1 && !current.outResult)
+			ret = 0;
 		printf("Testing %s\n", tests[i].name);
 		printf("	Expected %s\n", nullcheck((char *)tests[i].out));
-
 		printf(	"-----------------------------------------\n");
-		if (!strjoin_comparefunctions(tests[i],func, printAll))
+		printresult(tests[i],current,printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");
 		i++;
 	}
+	return ret;
 }

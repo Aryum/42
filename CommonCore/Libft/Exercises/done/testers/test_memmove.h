@@ -130,10 +130,10 @@ typedef struct memove_result
 	size_t base_len;
 	size_t my_len;
 	t_strcmp_ret cmp_result;
-	int retCmp;
+	int outResult;
 }	t_memove_result;
 
-static t_memove_result memmove_comparefunctions(t_memmove_tst test, void*(*funcs[2])(void *, const void *, size_t ),int printAll)
+static t_memove_result memmove_comparefunctions(t_memmove_tst test, void*(*funcs[2])(void *, const void *, size_t ))
 {
 	t_memove_result retVal;
 
@@ -156,16 +156,16 @@ static t_memove_result memmove_comparefunctions(t_memmove_tst test, void*(*funcs
 	retVal.base_len = strlen(retVal.basetest.dst_mod); 
 	retVal.my_len = strlen(retVal.mytest.dst_mod);
 	retVal.cmp_result = strComp(retVal.mytest.dst_mod,retVal.basetest.dst_mod);
-	retVal.retCmp = retVal.cmp_result.sucess && retVal.base_len == retVal.my_len;
+	retVal.outResult = retVal.cmp_result.sucess && retVal.base_len == retVal.my_len;
 	
 	return (retVal);
 }
 
 static void printResult(t_memmove_tst test, t_memove_result res,int printAll)
 {
-	if(!(res.retCmp) || printAll)
+	if(!(res.outResult) || printAll)
 	{
-		if(!res.retCmp)
+		if(!res.outResult)
 		{
 			if(!res.cmp_result.sucess)
 				printf("	Failed at index (%d)\n", res.cmp_result.index);
@@ -218,15 +218,15 @@ void memmove_logMessages(void*(*funcs[2])(void *, const void *, size_t ), int pr
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_memove_result current = memmove_comparefunctions(tests[i],funcs, printAll);
-		if(ret == 1 && !current.retCmp)
+		t_memove_result current = memmove_comparefunctions(tests[i],funcs);
+		if(ret == 1 && !current.outResult)
 			ret = 0;
-		if(!current.retCmp || printAll)
+		if(!current.outResult || printAll)
 		{
 			printf("Testing %s\n", tests[i].name);
 			printf(	"-----------------------------------------\n");
 			printResult(tests[i],current,printAll);
-			if (!current.retCmp)
+			if (!current.outResult)
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");

@@ -21,29 +21,52 @@ t_char_tst createTestParams(int lower, int upper, char *name)
 	return retval;
 }
 
-int char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(int), int printAll)
+typedef struct char_result
+{
+	int i;
+	int outResult;
+}	t_char_result;
+t_char_result char_comparefunctions(t_char_tst test, int (*baseFunc)(int), int (*myFunc)(int))
 {
 	int i = test.lower;
-	int retVal = 1; 
+	t_char_result retVal; 
+	retVal.outResult = 1;
+	retVal.i = 0;
 	while ( i <= test.upper)
 	{
 		int myResult = myFunc(i);
 		int baseResult = baseFunc(i);
-		if (printAll || myResult != baseResult)
+		if (myResult != baseResult)
 		{
-			if(myResult != baseResult)
-			{
-				retVal = 0;
-				printf("	%d(%c) Failed\n", i,i);
-			}
-			else
-				printf("	%d(%c) Passed\n", i,i);
-			printf("			Base result	%d \n", baseResult);
-			printf("			My result	%d \n", myResult);
+			retVal.outResult = 0;
+			retVal.i = i;
+			break ;
 		}
 		i++;
 	}
 	return retVal;
+}
+
+void printresult(t_char_tst test,t_char_result res,int printAll)
+{
+	if(!res.outResult || printAll)
+	{
+		while (res.i <= test.upper)
+		{
+			int myResult = myFunc(res.i);
+			int baseResult = baseFunc(res.i);
+			if (printAll || myResult != baseResult)
+			{
+				if(myResult != baseResult)
+					printf("	%d(%c) Failed\n", res.i,res.i);
+				else
+					printf("	%d(%c) Passed\n", res.i,res.i);
+				printf("			Base result	%d \n", baseResult);
+				printf("			My result	%d \n", myResult);
+			}
+			res.i++;
+		}
+	}
 }
 
 void  char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
@@ -66,9 +89,11 @@ void  char_logMessages(int (*basefunc)(int),int (*myFunc)(int), int printAll)
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_char_result current = char_comparefunctions(tests[i],basefunc, myFunc); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!char_comparefunctions(tests[i],basefunc, myFunc, printAll))
+		printresult(tests[i], current, printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

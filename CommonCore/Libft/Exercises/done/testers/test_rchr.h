@@ -26,15 +26,15 @@ typedef struct rchr_result
 {
 	char *baseRet;
 	char *myRet;
-	int	retCmp;
+	int	outResult;
 }	t_rchr_result;
 
-t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t), int printAll)
+t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const void *, int, size_t), void *(*myFunc)(const void *, int, size_t))
 {
 	t_rchr_result retVal;
 	retVal.baseRet = (char *)baseFunc(test.ptr,test.c,test.size);
 	retVal.myRet = (char *)myFunc(test.ptr,test.c,test.size);
-	retVal.retCmp = retVal.myRet == retVal.baseRet; 
+	retVal.outResult = retVal.myRet == retVal.baseRet; 
 	
 
 	return (retVal);
@@ -42,9 +42,9 @@ t_rchr_result rchr_comparefunctions(t_rchr_tst test, void *(*baseFunc)(const voi
 
 void printresult(t_rchr_result res, int printAll)
 {
-	if(!res.retCmp || printAll)
+	if(!res.outResult || printAll)
 	{
-		if(!res.retCmp)
+		if(!res.outResult)
 		{
 			printf("	Failed\n");
 		}
@@ -74,15 +74,15 @@ void rchr_logMessages(void *(*baseFunc)(const void *, int, size_t), void *(*myFu
 	int ret = 1;
 	while (tests[i].name != NULL)
 	{
-		t_rchr_result current = rchr_comparefunctions(tests[i],baseFunc, myFunc, printAll);
-		if(ret == 1 && !current.retCmp)
+		t_rchr_result current = rchr_comparefunctions(tests[i],baseFunc, myFunc);
+		if(ret == 1 && !current.outResult)
 			ret = 0;
-		if(!current.retCmp || printAll)
+		if(!current.outResult || printAll)
 		{
 			printf("Testing %s\n", tests[i].name);
 			printf(	"-----------------------------------------\n");
 			printresult(current,printAll);
-			if (!current.retCmp)
+			if (!current.outResult)
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");

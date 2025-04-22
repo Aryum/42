@@ -61,33 +61,42 @@ char *createstr(char *c)
 	alloc[i] = '\0';
 	return alloc; 
 }
-int mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t), int printAll)
+
+typedef struct mem_result
 {
-	int retVal = 1;
-	char *baseStr = baseFunc(createstr(test.str),test.c,test.size);
-	char *myStr = myFunc(createstr(test.str),test.c,test.size);
+	char *baseStr;
+	char *myStr;
+	t_strcmp_ret cmp;
+	int outResult;
+}	t_mem_result;
 
-	t_strcmp_ret result = strComp(baseStr, myStr); 
-	if(!result.sucess || printAll)
-	{
-		if(!result.sucess)
-		{
-			retVal = 0;
-			printf("	Failed at index (%d)\n", result.index);
-		}
-		else
-			printf("	Passed\n");
-
-		printf("		Og		%s\n", test.str);
-		printf("		Base	%s\n", baseStr);
-		printf("		Mine	%s\n", myStr);
-	}
-	free(baseStr);
-	free(myStr);
+t_mem_result mem_comparefunctions(t_memset_tst test, void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t))
+{
+	t_mem_result retVal;
+	retVal.baseStr = baseFunc(createstr(test.str),test.c,test.size);
+	retVal.myStr = myFunc(createstr(test.str),test.c,test.size);
+	retVal.cmp = strComp(retVal.baseStr, retVal.myStr); 
+	retVal.outResult = retVal.cmp.sucess; 
 
 	return (retVal);
 }
 
+void printresult(t_memset_tst test,t_mem_result res, int printAll)
+{
+	if(!res.outResult || printAll)
+	{
+		if(!res.outResult)
+			printf("	Failed at index (%d)\n", res.cmp.index);
+		else
+			printf("	Passed\n");
+
+		printf("		Og		%s\n", test.str);
+		printf("		Base	%s\n", res.baseStr);
+		printf("		Mine	%s\n", res.myStr);
+	}
+	free(res.baseStr);
+	free(res.myStr);
+}
 void mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(void *, int, size_t), int printAll)
 {
 	t_memset_tst tests[] = 
@@ -100,9 +109,11 @@ void mem_logMessages(void * (*baseFunc)(void *, int, size_t), void *  (*myFunc)(
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_mem_result current = mem_comparefunctions(tests[i],baseFunc, myFunc); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!mem_comparefunctions(tests[i],baseFunc, myFunc, printAll))
+		printresult(tests[i],current, printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

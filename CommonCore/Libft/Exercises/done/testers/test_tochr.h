@@ -20,30 +20,36 @@ t_tochr_tst tochr_createTestParams(int c,char *name)
 	return retval;
 }
 
-
-int tochr_comparefunctions(t_tochr_tst test, int(*baseFunc)(int), int(*myFunc)(int), int printAll)
+typedef struct tochr_result
 {
-	int retVal = 1;
-	int baseRet = baseFunc(test.c);
-	int myRet = myFunc(test.c);
+	int baseRet;
+	int myRet;
+	int outResult;
+}	t_tochr_result;
 
-	if(myRet != baseRet || printAll)
-	{
-		if(myRet != baseRet)
-		{
-			retVal = 0;
-			printf("	Failed\n");
-		}
-		else
-			printf("	Passed\n");
-
-		printf("		Base	%c\n", baseRet);
-		printf("		Mine	%c\n", myRet);
-	}
+t_tochr_result tochr_comparefunctions(t_tochr_tst test, int(*baseFunc)(int), int(*myFunc)(int))
+{
+	t_tochr_result retVal;
+	retVal.baseRet = baseFunc(test.c);
+	retVal.myRet = myFunc(test.c);
+	retVal.outResult = retVal.myRet == retVal.baseRet;
 
 	return (retVal);
 }
 
+void printresult(t_tochr_result res,int printAll)
+{
+	if(!res.outResult || printAll)
+	{
+		if(!res.outResult)
+			printf("	Failed\n");
+		else
+			printf("	Passed\n");
+
+		printf("		Base	%c\n", res.baseRet);
+		printf("		Mine	%c\n", res.myRet);
+	}
+}
 void tochr_logMessages(int(*baseFunc)(int), int(*myFunc)(int), int printAll)
 {
 	t_tochr_tst tests[] = 
@@ -61,9 +67,11 @@ void tochr_logMessages(int(*baseFunc)(int), int(*myFunc)(int), int printAll)
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_tochr_result current = tochr_comparefunctions(tests[i],baseFunc, myFunc); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!tochr_comparefunctions(tests[i],baseFunc, myFunc, printAll))
+		printresult(current,printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

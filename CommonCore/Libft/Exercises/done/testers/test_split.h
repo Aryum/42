@@ -89,7 +89,35 @@ static void *freearr(char ***arr, int lastindex)
 	return (NULL);
 }
 
-int split_comparefunctions(t_split_tst test,FUNC , int printAll)
+int split_comparefunctions(t_split_tst test,FUNC )
+{
+	char **myOut = func(test.str, test.c);
+
+	t_strcmp_ret cmpRet;
+	int i = 0;
+	int retVal = 1;
+	if(test.out != NULL)
+	{
+		while (myOut[i] != NULL && test.out[i] != NULL)
+		{
+			cmpRet = strComp(myOut[i], test.out[i]);
+			if(! cmpRet.sucess)
+			{
+				retVal = 0;
+				break;
+			}
+			i++;
+		}
+		freearr(&myOut,i);
+	}
+	else if(!test.end)
+	{
+		retVal = test.out == NULL && myOut == NULL;
+	}
+	return (retVal);
+}
+
+void printresult(t_split_tst test,FUNC , int printAll)
 {
 	char **myOut = func(test.str, test.c);
 
@@ -136,7 +164,6 @@ int split_comparefunctions(t_split_tst test,FUNC , int printAll)
 	}
 	return (retVal);
 }
-
 void split_logMessages(FUNC, int printAll)
 {
 	char *tst1[] = {"A","B","C","D","E","F", NULL};
@@ -160,13 +187,14 @@ void split_logMessages(FUNC, int printAll)
 	int current = 1;
 	while (tests[i].name != NULL)
 	{
-		current = split_comparefunctions(tests[i],func, printAll);
+		current = split_comparefunctions(tests[i],func);
 		if(ret == 1 && !current)
 			ret = 0;
 		if(!current || printAll)
 		{
 			printf("Testing %s\n", tests[i].name);
 			printf(	"-----------------------------------------\n");
+			printresult(tests[i],func,printAll);
 			if (!current)
 				printf(	"------------------ERROR------------------\n\n");
 			else

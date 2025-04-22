@@ -70,38 +70,42 @@ char *nullcheck(char *str)
 	return "(string is null)";
 }
 
-
-int substr_comparefunctions(t_substr_tst test,FUNC , int printAll)
+typedef struct substr_result
 {
-	int retVal = 1;
-	char *myOut = func(test.s,test.start,test.len);
+	char *myOut;
 	t_strcmp_ret cmpRet;
-	cmpRet = strComp(myOut, test.out);
-	if(! cmpRet.sucess|| printAll)
-	{
-		if(!cmpRet.sucess)
-		{
-			retVal = 0;
-			printf("	Failed at index %d\n", cmpRet.index);
-		}
-		else
-			printf("	Passed\n");
+	int outResult;
+} t_substr_result;
 
-		printf("		Got	%s\n", nullcheck(myOut));
-		if(myOut != NULL)
-		{
-			printf("		Starting at	(%d)->%c\n", test.start ,test.s[test.start]);
-			printf("		Ending at	(%ld)->%c\n", test.start + test.len ,test.s[test.start + test.len - 1]);
-			printf("		Out Pointer (%p)\n", myOut);
-			printf("		Og Pointer	(%p)\n", test.s);
-
-
-		}
-	}
+t_substr_result substr_comparefunctions(t_substr_tst test,FUNC)
+{
+	t_substr_result retVal;
+	retVal.myOut = func(test.s,test.start,test.len);
+	retVal.cmpRet = strComp(retVal.myOut, test.out);
+	retVal.outResult = retVal.cmpRet.sucess; 
 
 	return (retVal);
 }
 
+void printresult(t_substr_tst test,t_substr_result res, int printAll)
+{
+	if(! res.outResult || printAll)
+	{
+		if(!res.outResult)
+			printf("	Failed at index %d\n", res.cmpRet.index);
+		else
+			printf("	Passed\n");
+
+		printf("		Got	%s\n", nullcheck(res.myOut));
+		if(res.myOut != NULL)
+		{
+			printf("		Starting at	(%d)->%c\n", test.start ,test.s[test.start]);
+			printf("		Ending at	(%ld)->%c\n", test.start + test.len ,test.s[test.start + test.len - 1]);
+			printf("		Out Pointer (%p)\n", res.myOut);
+			printf("		Og Pointer	(%p)\n", test.s);
+		}
+	}
+}
 void substr_logMessages(FUNC, int printAll)
 {
 	t_substr_tst tests[] = 
@@ -116,11 +120,12 @@ void substr_logMessages(FUNC, int printAll)
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_substr_result current = substr_comparefunctions(tests[i],func); 
 		printf("Testing %s\n", tests[i].name);
 		printf("	Expected %s\n", nullcheck((char *)tests[i].out));
-
 		printf(	"-----------------------------------------\n");
-		if (!substr_comparefunctions(tests[i],func, printAll))
+		printresult(tests[i], current, printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

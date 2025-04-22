@@ -18,17 +18,29 @@ t_strlen_tst createTestParam(char *str, char *name)
 	return retval;
 }
 
-int strlen_comparefunctions(t_strlen_tst test,size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll )
+typedef struct strlen_result
 {
-	int mySize = myFunc(test.str);
-	int baseSize = basefunc(test.str);
+	int mySize;
+	int baseSize;
+	int outResult;
+} t_strlen_result;
 
-	if(printAll || mySize != baseSize )
+t_strlen_result strlen_comparefunctions(t_strlen_tst test,size_t (*basefunc)(const char *),size_t (*myFunc)(const char *))
+{
+	t_strlen_result retVal;
+	retVal.mySize = myFunc(test.str);
+	retVal.baseSize = basefunc(test.str);
+	retVal.outResult = retVal.mySize == retVal.baseSize; 
+	return (retVal);
+}
+
+void printresult(t_strlen_result res, int printAll)
+{
+	if(printAll || res.outResult)
 	{
-		printf(	"		MySize		(%d)\n", mySize);
-		printf(	"		BaseSize	(%d)\n", baseSize);
+		printf(	"		MySize		(%d)\n", res.mySize);
+		printf(	"		BaseSize	(%d)\n", res.baseSize);
 	}
-	return (mySize == baseSize);
 }
 void  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const char *), int printAll)
 {
@@ -41,9 +53,11 @@ void  strlen_logMessages(size_t (*basefunc)(const char *),size_t (*myFunc)(const
 	int i = 0;
 	while (tests[i].name != NULL)
 	{
+		t_strlen_result current = strlen_comparefunctions(tests[i],basefunc, myFunc); 
 		printf("Testing %s\n", tests[i].name);
 		printf(	"-----------------------------------------\n");
-		if (!strlen_comparefunctions(tests[i],basefunc, myFunc, printAll))
+		printresult(current,printAll);
+		if (!current.outResult)
 			printf(	"------------------ERROR------------------\n\n");
 		else
 			printf(	"------------------GOOD------------------\n\n");

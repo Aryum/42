@@ -21,24 +21,24 @@ typedef struct atoi_result
 {
 	int myRet;
 	int baseRet;
-	int retCmp;
+	int outResult;
 }	t_atoi_result;
 
-static t_atoi_result atoi_comparefunctions(t_atoi_tst  test, int(*func[2])(const char *), int printAll)
+static t_atoi_result atoi_comparefunctions(t_atoi_tst  test, int(*func[2])(const char *))
 {
 	t_atoi_result retVal;
 	retVal.baseRet = func[0](test.str);
 	retVal.myRet = func[1](test.str);
-	retVal.retCmp = retVal.myRet == retVal.baseRet;
+	retVal.outResult = retVal.myRet == retVal.baseRet;
 
 	return (retVal);
 }
 
 static void printresult(t_atoi_result result, int printAll)
 {
-	if(!(result.retCmp) || printAll)
+	if(!(result.outResult) || printAll)
 	{
-		if(!result.retCmp)
+		if(!result.outResult)
 			printf("	Failed\n");
 		else
 			printf("	Passed\n");
@@ -73,15 +73,15 @@ int atoi_logMessages(int(*func[2])(const char *), int printAll)
 	t_atoi_result current;
 	while (tests[i].name != NULL)
 	{
-		current = atoi_comparefunctions(tests[i],func, printAll);
-		if(ret == 1 && !current.retCmp)
+		current = atoi_comparefunctions(tests[i],func);
+		if(ret == 1 && !current.outResult)
 			ret = 0;
-		if(!current.retCmp || printAll)
+		if(!current.outResult || printAll)
 		{
 			printf("Testing %s\n", tests[i].name);
 			printf(	"-----------------------------------------\n");
 			printresult(current,printAll);
-			if (!current.retCmp)
+			if (!current.outResult)
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");

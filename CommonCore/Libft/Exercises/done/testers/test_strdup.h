@@ -26,6 +26,7 @@ typedef struct strcmp_ret
 
 } t_strcmp_ret;
 
+
 t_strcmp_ret strComp(char *a,char *b)
 {
 	t_strcmp_ret retVal;
@@ -57,62 +58,72 @@ void freeAlloc(t_strdup_tst test)
 {
 	free(test.str);
 }
-int strdup_comparefunctions(t_strdup_tst test, char *(*func[2])(const char *), int printAll)
-{
-	int retVal = 1;
-	char *baseRet = func[0](test.str);
-	char *myRet = func[1](test.str);
 
-	t_strcmp_ret cmp = strComp(baseRet,myRet);
-	if(!cmp.sucess|| printAll)
+
+typedef struct strdup_result
+{
+	char *baseRet;
+	char *myRet;
+	t_strcmp_ret cmp;
+	int outResult;
+} t_strdup_result;
+
+t_strdup_result strdup_comparefunctions(t_strdup_tst test, char *(*func[2])(const char *))
+{
+	t_strdup_result retVal;
+	retVal.baseRet = func[0](test.str);
+	retVal.myRet = func[1](test.str);
+
+	retVal.cmp = strComp(retVal.baseRet,retVal.myRet);
+	retVal.outResult = retVal.cmp.sucess;
+	return (retVal);
+}
+
+void printresult(t_strdup_tst test,t_strdup_result res, int printAll)
+{
+	if(!res.cmp.sucess || printAll)
 	{
-		if(!cmp.sucess)
-		{
-			retVal = 0;
+		if(!res.cmp.sucess)
 			printf("	Failed\n");
-		}
 		else
 			printf("	Passed\n");
 		printf("	Og str %s\n", nullcheck(test.str));
 		printf("	Og ptr %p\n", test.str);
 		printf("			Base\n");
-		printf("				string %s\n", nullcheck(baseRet) );
-		printf("				new ptr %p\n", baseRet);
+		printf("				string %s\n", nullcheck(res.baseRet) );
+		printf("				new ptr %p\n", res.baseRet);
 		
 		printf("			Mine\n");
-		printf("				string %s\n", nullcheck(myRet) );
-		printf("				new ptr %p\n", myRet);
+		printf("				string %s\n", nullcheck(res.myRet) );
+		printf("				new ptr %p\n", res.myRet);
 	}
-	free(baseRet);
-	free(myRet);
-	return (retVal);
+	free(res.baseRet);
+	free(res.myRet);
 }
 
-void strdup_logMessages(char *(*func[2])(const char *), int printAll)
+int strdup_logMessages(char *(*func[2])(const char *), int printAll)
 {
 	t_strdup_tst tests[] = 
 	{ 	
 		strdup_createTestParams("Hello I am working", "Default Behaviour"),
 		strdup_createTestParams("", "Empty str"),
 
-
-
 		strdup_createTestParams(0,NULL)
 	};
 	
 	int i = 0;
 	int ret = 1;
-	int current = 1;
 	while (tests[i].name != NULL)
 	{
-		current = strdup_comparefunctions(tests[i],func, printAll);
-		if(ret == 1 && !current)
+		t_strdup_result current = strdup_comparefunctions(tests[i],func);
+		if(ret == 1 && !current.outResult)
 			ret = 0;
-		if(!current || printAll)
+		if(!current.outResult || printAll)
 		{
 			printf("Testing %s\n", tests[i].name);
 			printf(	"-----------------------------------------\n");
-			if (!current)
+			printresult(tests[i],current,printAll);
+			if (!current.outResult)
 				printf(	"------------------ERROR------------------\n\n");
 			else
 				printf(	"------------------GOOD------------------\n\n");
