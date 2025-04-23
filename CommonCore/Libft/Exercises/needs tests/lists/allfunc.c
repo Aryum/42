@@ -513,3 +513,101 @@ void ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	if (lst != NULL && new != NULL)
+		(*ft_lstlast(*lst)).next = new;
+}
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst != NULL && new != NULL)
+	{
+		(*new).next = (*lst);
+		*lst = new;
+	}
+}
+
+static void	clear(t_list **current, void (*del)(void*))
+{
+	if ((**current).next != NULL)
+		clear(&((**current).next), del);
+	ft_lstdelone(*current, del);
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	if (lst != NULL && del != NULL)
+		clear(lst, del);
+}
+
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
+{
+	if (lst != NULL && del != NULL)
+	{
+		del((*lst).content);
+		free (lst);
+	}
+}
+
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list	temp;
+
+	if (lst != NULL && f != NULL)
+	{
+		temp = *lst;
+		while (temp.next != NULL)
+		{
+			f(temp.content);
+			temp = *(temp.next);
+		}
+		f(temp.content);
+	}
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*temp;
+
+	if (lst != NULL)
+	{
+		temp = lst;
+		while ((*temp).next != NULL)
+			temp = (*temp).next;
+		return (temp);
+	}
+}
+
+
+
+
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*ret;
+
+	ret = ft_calloc(1, sizeof(t_list));
+	if (ret != NULL)
+	{
+		(*ret).content = content;
+		(*ret).next = NULL;
+	}
+	return (ret);
+}
+
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
+	t_list	*temp;
+
+	i = 1;
+	temp = lst;
+	while ((*temp).next != NULL)
+	{
+		temp = (*temp).next;
+		i++;
+	}
+	return (i);
+}
+
