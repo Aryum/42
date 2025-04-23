@@ -38,15 +38,7 @@ int substr_logMessages(char	*(*func)(char const *, unsigned int, size_t), int pr
 
 int tochr_logMessages(int(*func[2])(int), int printAll);
 
-
-
-
-
-
-
-
-
-
+int lst_logMessages(int printAll);
 
 
 

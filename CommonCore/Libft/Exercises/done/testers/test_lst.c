@@ -261,8 +261,3 @@ int lst_logMessages(int printAll)
 	//lst new tested by creation
 	//clear and delone is tested with valgrind
 }
-
-int main()
-{
-	lst_logMessages(1);
-}
