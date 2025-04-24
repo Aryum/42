@@ -15,10 +15,8 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*retval;
-	size_t	i;
 	size_t	size;
 
-	i = 0;
 	size = ft_strlen(s);
 	if (start >= size)
 		return (ft_strdup(""));

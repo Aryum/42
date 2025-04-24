@@ -38,7 +38,7 @@ static int	charsetcount(char const *s1, unsigned int s1_len, char const *set)
 		retval ++;
 	if (retval != s1_len)
 	{
-		while (s1_len >= 0 && ischarset(s1[s1_len - 1], set))
+		while (ischarset(s1[s1_len - 1], set))
 		{
 			s1_len --;
 			retval++;
@@ -51,12 +51,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*retval;
 	int		i;
-	int		h;
 	int		len;
 
 	if (s1 == NULL)
 		return (NULL);
-	h = 0;
 	i = 0;
 	len = ft_strlen(s1);
 	len = len - charsetcount(s1, len, set) + 1;

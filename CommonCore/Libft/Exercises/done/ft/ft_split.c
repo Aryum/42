@@ -16,11 +16,9 @@ static unsigned int	countwords(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	ret;
-	int				flag;
 
 	i = 0;
 	ret = 0;
-	flag = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] != c && (s[i + 1] == '\0' || s[i + 1] == c))
@@ -52,7 +50,7 @@ static void	*freearr(char ***arr, int lastindex)
 	return (NULL);
 }
 
-static void	fill(char const *s, char c, char ***ret, int wordcount)
+static void	fill(char const *s, char c, char **ret, int wordcount)
 {
 	int		i;
 	int		h;
@@ -72,7 +70,10 @@ static void	fill(char const *s, char c, char ***ret, int wordcount)
 			h++;
 		}
 		else
-			return (freearr(&ret, h));
+		{
+			freearr(&ret, h);
+			return ;
+		}
 	}
 	ret[h] = NULL;
 }
@@ -87,6 +88,6 @@ char	**ft_split(char const *s, char c)
 	wordcount = countwords(s, c);
 	ret = ft_calloc(wordcount + 1, sizeof(char *));
 	if (ret != NULL)
-		fill(s, c, &ret, wordcount);
+		fill(s, c, ret, wordcount);
 	return (ret);
 }
