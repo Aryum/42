@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 11:35:16 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/23 18:40:26 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/24 11:44:21 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	temp;
-
 	if (lst != NULL && f != NULL)
 	{
-		temp = *lst;
-		while (temp.next != NULL)
+		while (lst != NULL)
 		{
-			f(temp.content);
-			temp = *(temp.next);
+			f((*lst).content);
+			lst = (*lst).next;
 		}
-		f(temp.content);
 	}
 }

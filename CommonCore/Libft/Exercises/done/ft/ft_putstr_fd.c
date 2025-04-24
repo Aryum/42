@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:49:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/24 11:46:06 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 08:54:35 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/21 15:26:36 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
-	while (lst != NULL)
+	while (*s != fd)
 	{
-		lst = (*lst).next;
-		i++;
+		ft_putchar_fd(*s, fd);
+		s++;
 	}
-	return (i);
 }

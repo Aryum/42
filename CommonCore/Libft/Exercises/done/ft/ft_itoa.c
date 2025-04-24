@@ -1,26 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:49:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/24 11:46:06 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/19 14:35:27 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/24 11:37:54 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+static int	nbcount(long int n)
 {
 	int	i;
 
-	i = 0;
-	while (lst != NULL)
+	i = 1;
+	if (n < 0)
+		n *= -1;
+	while (n / 10 > 0)
 	{
-		lst = (*lst).next;
 		i++;
+		n /= 10;
 	}
 	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	int		len;
+	char	*ret;
+	long	nbr;
+
+	nbr = (long)n;
+	len = nbcount(nbr);
+	if (nbr < 0)
+		len++;
+	ret = ft_calloc(len + 1, sizeof(char));
+	if (ret != NULL)
+	{
+		len -= 1;
+		if (nbr < 0)
+		{
+			ret[0] = '-';
+			nbr *= -1;
+		}
+		while (len >= 0 && ret[len] != '-')
+		{
+			ret[len] = nbr % 10 + '0';
+			len -= 1;
+			nbr /= 10;
+		}
+	}
+	return (ret);
 }
