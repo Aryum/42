@@ -91,7 +91,7 @@ char	**ft_split(char const *s, char c)
 	ret = ft_calloc(wordcount + 1, sizeof(char *));
 	if (ret != NULL)
 	{
-		if(!fill(s, c, ret, wordcount))
+		if (!fill(s, c, ret, wordcount))
 			return (NULL);
 	}
 	return (ret);

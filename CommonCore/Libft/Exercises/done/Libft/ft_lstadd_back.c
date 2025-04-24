@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/24 15:18:58 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:53:16 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	if (lst == NULL && new == NULL)
 		return ;
-	if(*lst == NULL)
+	if (*lst == NULL)
 		*lst = new;
 	else
 		(*ft_lstlast(*lst)).next = new;
