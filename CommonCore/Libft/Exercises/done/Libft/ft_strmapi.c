@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 10:33:28 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/21 16:49:09 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/26 12:40:45 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	ret = ft_strdup(s);
 	i = 0;
-	if (ret != NULL)
+	if (ret != NULL && f != NULL)
 	{
 		while (ret[i] != '\0')
 		{
