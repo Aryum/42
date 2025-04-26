@@ -38,7 +38,7 @@ static void	*mv(char *dest, const char *src, size_t n)
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	if (dest == NULL && src == NULL)
-		return (NULL);
+	if (dest == src)
+		return (dest);
 	return (mv((char *)dest, (const char *)src, n));
 }
