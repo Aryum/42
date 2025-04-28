@@ -1,13 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prtf.h                                             :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/28 11:16:22 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/28 11:24:03 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/28 11:24:09 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+//•%c Prints a single character.
+char *print_char(char c)
+{
+	ft_putchar_fd(c,1);
+}

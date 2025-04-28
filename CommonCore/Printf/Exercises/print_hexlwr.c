@@ -1,13 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prtf.h                                             :+:      :+:    :+:   */
+/*   ft_print_hexlwr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/28 11:16:22 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/28 11:26:29 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/28 11:26:30 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+//•%x Prints a number in hexadecimal (base 16) lowercase format.
+//just use to upper to print %X
+char *print_hexlwr(int i)
+{}

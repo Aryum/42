@@ -1,13 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prtf.h                                             :+:      :+:    :+:   */
+/*   ft_print_decimal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/28 11:16:22 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/28 11:25:07 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/28 11:25:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+//•%d Prints a decimal (base 10) number.
+char *print_decimal(int i)
+{
+	ft_putnbr_fd(i,1);
+}
