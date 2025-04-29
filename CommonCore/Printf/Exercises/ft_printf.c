@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 12:46:02 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:11:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@
 int	ft_printf(int n, ...)
 {
 	va_list args;
+	//check what protection it needs
+	//->if str is just %
+	//->if in the middle it just finds % without anything after
 	
+
+
+
 	va_start(args,n);
 
-	//go through string
-	//print until it finds %-
-	//when it finds check which one is it
-	//print the arg
-	//skip %- char
-	//print repeat until profit
 	va_end(args);
 }
 

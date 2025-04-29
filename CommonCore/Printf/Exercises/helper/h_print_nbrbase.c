@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_print_ulong_base.c                               :+:      :+:    :+:   */
+/*   h_print_nbrbase.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 13:19:38 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 13:19:39 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/29 19:39:30 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "prtf.h"
 
@@ -37,7 +38,7 @@ static int	is_base_valid(char *str)
 	return (1);
 }
 
-void h_print_ulong_base(unsigned long int nbr, char *base, int *counter)
+void	h_print_nbrbase(unsigned long int nbr, char *base, int *counter)
 {
 	int		base_sz;
 	
