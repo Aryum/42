@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 10:33:28 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/26 12:40:45 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 20:29:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*ret;
-	int		i;
+	size_t	i;
 
 	if (s == NULL)
 		return (NULL);
