@@ -29,9 +29,9 @@ static int	ischarset(char c, char const *set)
 	return (0);
 }
 
-static int	charsetcount(char const *s1, unsigned int s1_len, char const *set)
+static size_t	charsetcount(char const *s1, size_t s1_len, char const *set)
 {
-	unsigned int	retval;
+	size_t	retval;
 
 	retval = 0;
 	while (s1[retval] != '\0' && ischarset(s1[retval], set))
@@ -49,9 +49,9 @@ static int	charsetcount(char const *s1, unsigned int s1_len, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*retval;
-	int		i;
-	int		len;
+	char		*retval;
+	size_t		i;
+	size_t		len;
 
 	if (s1 == NULL)
 		return (NULL);

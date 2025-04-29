@@ -14,9 +14,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned int	i;
-	unsigned int	s1_len;
-	char			*retval;
+	size_t	i;
+	size_t	s1_len;
+	char	*retval;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
