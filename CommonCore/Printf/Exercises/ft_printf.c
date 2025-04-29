@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/28 23:36:51 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:46:02 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,21 @@ void test(char *str)
 				write (1, "chr", 4);
 			if(str[i + 1] == 's')
 				write (1, "str", 4);
+			if(str[i + 1] == 'p')
+				write (1, "ptr", 4);
 			if(str[i + 1] == 'd')
 				write (1, "dec", 4); //convert a number in a base to decimal
+			if(str[i + 1] == 'i')
+				write (1,"int",1);
+			if(str[i + 1] == 'u') 
+				write (1, "uns", 4);
 			if(str[i + 1] == 'x')
 				write (1, "hex", 4);
 			if(str[i + 1] == 'X')
 				write (1, "HEX", 4);
-			if(str[i + 1] == 'u') 
-				write (1, "uns", 4);
 			if(str[i + 1] == '%')
 				write (1, "per", 4);
-			if(str[i + 1] == 'p')
-				write (1, "ptr", 4);
+			
 			i++;
 		}
 		i++;
@@ -112,33 +115,33 @@ int main()
 	//printf("Pointer adress int\n");
 	//printf("%ls\n", &a);
 	int d = 10;
-	printf("Decimal %d\n", d);
-	printf("Decimal Ptr %d\n", &d);
-	printf("Int %i\n", d);
-	printf("Int Ptr %d\n", &d);
-	
-	printf("Unsigned + %u\n", d);
-	printf("Unsigned - %u\n", -d);
-
-
-	printf("Pointer at memory %p\n", &d);
-	printf("Pointer at value %p\n", d);
-
+	printf("\nString size %i\n",printf("Decimal %d\nDecimal Ptr %d\nInt %i\nInt Ptr %d\nUnsigned + %u\nUnsigned - %u\nPointer at memory %p\nPointer at value %p\nhex positive %x\nhex negative %x\n", 
+		d, &d, d, &d, d, -d, &d, d, d, -d));
 
 	/*
 		Decimal 10
-	Decimal Ptr -1618011808
-	Int 10
-	Int Ptr -1618011808
-	Unsigned + 10
-	Unsigned - 4294967286
-	Pointer at memory 0x7fff9f8f1960
-	Pointer at value 0xa
+		Decimal Ptr 1418255024
+		Int 10
+		Int Ptr 1418255024
+		Unsigned + 10
+		Unsigned - 4294967286
+		Pointer at memory 0x7ffd5488dab0
+		Pointer at value 0xa
+		hex positive a
+		hex negative fffffff6
+
+		String size 187
+
+
 
 	conclusions
 		%d and %i does the same thing
 		%u is unsigned if it is positive it loops arround and subracts value
 		%p just converts int value to hexadecimal with 0x at the beginning
+		%x uses unsigned int to convert number
+
+		7fff654702d0
+		ffffffffffff
 	*/
 
 }

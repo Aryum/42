@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_base.c                                     :+:      :+:    :+:   */
+/*   h_print_ulong_base.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 23:24:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 11:02:07 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/29 13:19:38 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/29 13:19:39 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "prtf.h"
 
 static int	is_base_valid(char *str)
 {
@@ -37,48 +37,20 @@ static int	is_base_valid(char *str)
 	return (1);
 }
 
-static int alloc_size(unsigned int nbr, int base_size)
+void h_print_ulong_base(unsigned long int nbr, char *base, int *counter)
 {
-	int	i;
-
-	i = 1;
-	while (nbr / base_size != 0)
-	{
-		nbr /= base_size;
-		i++;
-	}
-	return (i);
-}
-#include <stdio.h>
-
-char *uint_tobase(unsigned int nbr, char *base)
-{
-	char	*ret;
-	int		ret_sz;
 	int		base_sz;
 	
 	if(is_base_valid(base))
 	{
 		base_sz =  ft_strlen(base);
-		ret_sz = alloc_size(nbr, base_sz);
-		ret = ft_calloc(ret_sz + 1, sizeof(char));
-		if(ret != NULL)
-		{			
-			ret_sz --;
-			while(nbr / base_sz > 0)
-			{
-				ret[ret_sz] = base[nbr % base_sz];
-				nbr /= base_sz;
-				ret_sz--;
-			}
-			ret[ret_sz] = base[nbr % base_sz];
-			return (ret);
+		while(nbr / base_sz > 0)
+		{
+			write(1, &base[nbr % base_sz],1);
+			nbr /= base_sz;
+			(*counter)++;
 		}
+		write(1, &base[nbr % base_sz],1);
+		(*counter)++;
 	}
-	return (ft_calloc(0,0));
-}
-
-int main()
-{
-	printf("Test %s", int_tobase(2147483648,"0123456789abcdef"));
 }

@@ -6,14 +6,14 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:24:28 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 11:06:05 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:33:08 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "prtf.h"
 
 //•%s Prints a string (as defined by the common C convention).
-void print_string(char *s)
+void print_string(char *s, int *counter)
 {
-	ft_putstr_fd(s,1);
+	h_print_str(s, counter);
 }

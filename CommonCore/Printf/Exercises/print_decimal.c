@@ -6,14 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:25:07 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 11:05:46 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:36:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "prtf.h"
 
 //•%d Prints a decimal (base 10) number.
-char *print_decimal(int i)
+void	print_decimal(int i, int *counter)
 {
+	(*counter) = h_count_nbr((long)i);
 	ft_putnbr_fd(i,1);
 }

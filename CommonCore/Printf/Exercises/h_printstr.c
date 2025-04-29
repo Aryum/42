@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   h_printstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:24:03 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 12:59:48 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/29 12:31:14 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/29 12:37:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "prtf.h"
 
-//•%c Prints a single character.
-void print_char(char c, int *counter)
+void	h_print_str(char *str, int *counter)
 {
-	(*counter)++;
-	ft_putchar_fd(c,1);
+	int	i;
+
+	i = 0;
+	if(str != NULL)
+	{
+		while(str[i] != NULL)
+		{
+			write(1,&str[i],1);
+			(*counter)++;
+		}
+	}
 }

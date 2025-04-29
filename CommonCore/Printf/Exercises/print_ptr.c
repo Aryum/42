@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:24:03 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 12:59:48 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/29 11:52:01 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/29 13:32:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "prtf.h"
 
-//•%c Prints a single character.
-void print_char(char c, int *counter)
+void	print_ptr(void *ptr, int *counter)
 {
-	(*counter)++;
-	ft_putchar_fd(c,1);
+	h_print_str("0x", counter);
+	h_print_ulong_base((unsigned long)ptr, "0123456789abcdef", counter);
 }

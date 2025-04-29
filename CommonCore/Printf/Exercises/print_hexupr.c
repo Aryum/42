@@ -6,19 +6,14 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:27:26 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 11:13:17 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:31:32 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "prtf.h"
 
 //•%X Prints a number in hexadecimal (base 16) uppercase format.
-void print_hexupr(unsigned int i)
+void print_hexupr(unsigned int i, int *counter)
 {
-	char *str;
-
-	str =  uint_tobase(i, "0123456789ABCDEF");
-	ft_putstr_fd(str, 1);
-	free(str);
+	h_print_ulong_base((unsigned long)i, "0123456789ABCDEF",counter);
 }

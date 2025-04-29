@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   h_count_nbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:24:03 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 12:59:48 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/29 13:17:59 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/29 13:34:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
-//•%c Prints a single character.
-void print_char(char c, int *counter)
+int	h_count_nbr(long int nbr)
 {
-	(*counter)++;
-	ft_putchar_fd(c,1);
+	int	counter;
+
+	counter = 1;
+	if(nbr < 0)
+	{
+		counter ++;
+		nbr *= -1;
+	}
+	while(nbr / 10 > 0)
+	{
+		nbr /= 10;
+		counter++;
+	}
+	return (counter);
 }
