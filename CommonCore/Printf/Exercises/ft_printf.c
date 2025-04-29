@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/28 11:33:16 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/28 23:36:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,36 @@ void test(char *str)
 int main()
 {
 	int a = 1;
-	printf("Pointer adress int\n");
-	printf("%ls\n", &a);
+	//printf("Pointer adress int\n");
+	//printf("%ls\n", &a);
+	int d = 10;
+	printf("Decimal %d\n", d);
+	printf("Decimal Ptr %d\n", &d);
+	printf("Int %i\n", d);
+	printf("Int Ptr %d\n", &d);
+	
+	printf("Unsigned + %u\n", d);
+	printf("Unsigned - %u\n", -d);
+
+
+	printf("Pointer at memory %p\n", &d);
+	printf("Pointer at value %p\n", d);
+
+
+	/*
+		Decimal 10
+	Decimal Ptr -1618011808
+	Int 10
+	Int Ptr -1618011808
+	Unsigned + 10
+	Unsigned - 4294967286
+	Pointer at memory 0x7fff9f8f1960
+	Pointer at value 0xa
+
+	conclusions
+		%d and %i does the same thing
+		%u is unsigned if it is positive it loops arround and subracts value
+		%p just converts int value to hexadecimal with 0x at the beginning
+	*/
+
 }

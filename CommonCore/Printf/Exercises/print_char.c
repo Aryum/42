@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:24:03 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/28 11:24:09 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 11:04:31 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 //•%c Prints a single character.
-char *print_char(char c)
+void print_char(char c)
 {
 	ft_putchar_fd(c,1);
 }
