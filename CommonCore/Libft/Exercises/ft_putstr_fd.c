@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 08:54:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/26 12:49:06 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:53:28 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (s == NULL)
+	if (s == NULL || fd < 0)
 		return ;
 	while (*s != '\0')
 	{
-		ft_putchar_fd(*s, fd);
+		write(fd, s, 1);
 		s++;
 	}
 }
