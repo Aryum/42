@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_count_nbr.c                                      :+:      :+:    :+:   */
+/*   h_strlen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 13:17:59 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 13:34:03 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 12:22:52 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 12:23:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	h_count_nbr(long int nbr)
-{
-	int	counter;
+#include "prtf.h"
 
-	counter = 1;
-	if(nbr < 0)
-	{
-		counter ++;
-		nbr *= -1;
-	}
-	while(nbr / 10 > 0)
-	{
-		nbr /= 10;
-		counter++;
-	}
-	return (counter);
+size_t	h_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

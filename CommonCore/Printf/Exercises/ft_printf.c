@@ -6,12 +6,9 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 19:11:01 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:45:10 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
-#include "prtf.h"
 
 /*
 	•%c Prints a single character.
@@ -45,6 +42,7 @@
 
 int	ft_printf(int n, ...)
 {
+	/*
 	va_list args;
 	//check what protection it needs
 	//->if str is just %
@@ -56,6 +54,7 @@ int	ft_printf(int n, ...)
 	va_start(args,n);
 
 	va_end(args);
+	*/
 }
 
 
@@ -114,9 +113,11 @@ int main()
 	int a = 1;
 	//printf("Pointer adress int\n");
 	//printf("%ls\n", &a);
-	int d = 10;
-	printf("\nString size %i\n",printf("Decimal %d\nDecimal Ptr %d\nInt %i\nInt Ptr %d\nUnsigned + %u\nUnsigned - %u\nPointer at memory %p\nPointer at value %p\nhex positive %x\nhex negative %x\n", 
-		d, &d, d, &d, d, -d, &d, d, d, -d));
+	int d = 96;
+	long ln = 9223372036854775807;
+	int chr = 300;
+	printf("\nString size %i\n",printf("char %c\nchar overflow val %c\nDecimal %d\nDecimal Ptr %d\nInt %i\nInt Ptr %d\nUnsigned + %u\nUnsigned - %u\nPointer at memory %p\nPointer at value %p\nhex positive %x\nhex negative %x\nhexadecimal on long %x\n", 
+		d,chr,d, &d, d, &d, d, -d, &d, d, d, -d,ln));
 
 	/*
 		Decimal 10
@@ -129,7 +130,8 @@ int main()
 		Pointer at value 0xa
 		hex positive a
 		hex negative fffffff6
-
+		hexadecimal on long ffffffff
+		
 		String size 187
 
 
@@ -138,7 +140,7 @@ int main()
 		%d and %i does the same thing
 		%u is unsigned if it is positive it loops arround and subracts value
 		%p just converts int value to hexadecimal with 0x at the beginning
-		%x uses unsigned int to convert number
+		%x uses unsigned int to convert number it its a long just converts to max int
 
 		7fff654702d0
 		ffffffffffff

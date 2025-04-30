@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_printstr.c                                       :+:      :+:    :+:   */
+/*   h_put_nbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 12:31:14 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 12:37:51 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 12:40:28 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 12:40:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prtf.h"
-
-void	h_print_str(char *str, int *counter)
+void h_put_nbr()
 {
-	int	i;
+	int		correction;
+	char	c;
 
-	i = 0;
-	if(str != NULL)
+	correction = 0;
+	if (fd >= 0)
 	{
-		while(str[i] != NULL)
+		if (n < 0)
 		{
-			write(1,&str[i],1);
-			(*counter)++;
+			write(fd, "-", 1);
+			if (n == -2147483648)
+				correction = 1;
+			n = -1 * (n + correction);
 		}
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		c = n % 10 + '0' + correction;
+		write(fd, &c, 1);
 	}
 }

@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_percent.c                                    :+:      :+:    :+:   */
+/*   print_unsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:28:05 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 18:10:33 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/28 11:25:54 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 12:11:55 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prtf.h"
 
-//•%% Prints a percent sign.
-void	print_percent(int *counter)
+static void print(unsigned int i)
 {
-	h_addtocounter(counter, 1);
-	ft_putchar_fd('%',1);
+	char	c;
+	if (i > 9)
+		print(i / 10);
+	c = i % 10 + '0';
+	print_char
+}
+//•%u Prints an unsigned decimal (base 10) number.
+void print_unsigned(unsigned int i, int *counter)
+{
+	h_addtocounter(counter, i);
+	print(i);
 }

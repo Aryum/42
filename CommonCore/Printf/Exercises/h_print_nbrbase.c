@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 19:39:30 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:22:23 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static int	is_base_valid(char *str)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	if (str == NULL)
 		return (0);
@@ -40,18 +40,16 @@ static int	is_base_valid(char *str)
 
 void	h_print_nbrbase(unsigned long int nbr, char *base, int *counter)
 {
-	int		base_sz;
+	size_t	base_sz;
 	
 	if(is_base_valid(base))
 	{
 		base_sz =  ft_strlen(base);
 		while(nbr / base_sz > 0)
 		{
-			write(1, &base[nbr % base_sz],1);
+			h_putchar(base[nbr % base_sz], counter);
 			nbr /= base_sz;
-			(*counter)++;
 		}
-		write(1, &base[nbr % base_sz],1);
-		(*counter)++;
+		h_putchar(base[nbr % base_sz], counter);
 	}
 }

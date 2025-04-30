@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prtf.h                                             :+:      :+:    :+:   */
+/*   print_percent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 19:37:39 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/28 11:28:05 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 11:49:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRTF_H
-# define PRTF_H
+#include "prtf.h"
 
-# include <stdarg.h>
-# include "libft.h"
-# include "helpers.h"
-# include "print.h"
-
-
-#endif
+//•%% Prints a percent sign.
+void	print_percent(int *counter)
+{
+	h_addtocounter(counter, 1);
+	ft_putchar_fd('%',1);
+}

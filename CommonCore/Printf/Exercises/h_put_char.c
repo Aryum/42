@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_addtocounter.c                                   :+:      :+:    :+:   */
+/*   h_put_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 17:18:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 19:18:34 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 12:15:01 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 12:27:14 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void h_addtocounter(int *counter, int value)
+#include "prtf.h"
+
+void	h_put_char(int c, int *counter)
 {
-	(*counter) += value;
+	(*counter)++;
+	write(1, &c, 1);
 }

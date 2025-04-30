@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   prtf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:24:03 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 19:17:12 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 12:30:24 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#ifndef PRTF_H
+# define PRTF_H
 
-//•%c Prints a single character.
-void print_char(char c, int *counter)
-{
-	h_addtocounter(counter, 1);
-	ft_putchar_fd(c,1);
-}
+# include <unistd.h>
+# include <stddef.h>
+# include <stdarg.h>
+# include "print.h"
+
+#pragma region Helpers
+size_t	h_strlen(const char *s);
+
+void	h_put_char(int c, int *counter);
+
+void	h_print_str(char *str, int *counter);
+
+void	h_print_nbrbase(unsigned long int nbr, char *base, int *counter);
+#pragma endregion
+
+#pragma region Print
+
+#pragma endregion
+#endif
