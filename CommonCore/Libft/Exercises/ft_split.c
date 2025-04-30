@@ -51,7 +51,7 @@ static void	freearr(char **arr, int lastindex)
 	free(arr);
 }
 
-static int	fill(char const *s, char c, char **ret, int wordcount)
+static int	fill(char const *s, char c, char **ret, size_t wordcount)
 {
 	size_t	i;
 	size_t	h;
@@ -83,7 +83,7 @@ static int	fill(char const *s, char c, char **ret, int wordcount)
 char	**ft_split(char const *s, char c)
 {
 	char	**ret;
-	int		wordcount;
+	size_t	wordcount;
 
 	if (s == NULL)
 		return (NULL);

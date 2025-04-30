@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:35:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 10:51:03 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:08:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static unsigned int	nbcount(long int n)
 
 char	*ft_itoa(int n)
 {
-	unsigned int	len;
-	char			*ret;
-	long			nbr;
+	int		len;
+	char	*ret;
+	long	nbr;
 
 	nbr = (long)n;
 	len = nbcount(nbr);
