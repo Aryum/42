@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 11:45:10 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:26:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,7 @@
 */
 
 
-
-
-
-
-
-
-
-
+#include "prtf.h"
 
 
 int	ft_printf(int n, ...)
@@ -60,9 +53,11 @@ int	ft_printf(int n, ...)
 
 void test(char *str)
 {
+	int	counter;
 	int i;
 
 	i = 0;
+	counter = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] != '%')
@@ -70,24 +65,21 @@ void test(char *str)
 		else
 		{
 			if(str[i + 1] == 'c')
-				write (1, "chr", 4);
+				h_put_char(,&counter);
 			if(str[i + 1] == 's')
-				write (1, "str", 4);
+				h_put_str(,&counter);
 			if(str[i + 1] == 'p')
-				write (1, "ptr", 4);
-			if(str[i + 1] == 'd')
-				write (1, "dec", 4); //convert a number in a base to decimal
-			if(str[i + 1] == 'i')
-				write (1,"int",1);
+				h_put_ptr(,&counter);
+			if(str[i + 1] == 'd' || str[i + 1] == 'i')
+				h_put_int(,&counter);
 			if(str[i + 1] == 'u') 
-				write (1, "uns", 4);
+				h_put_uint(,&counter);
 			if(str[i + 1] == 'x')
-				write (1, "hex", 4);
+				h_print_nbrbase(,"0123456789abcdef",&counter);
 			if(str[i + 1] == 'X')
-				write (1, "HEX", 4);
+				h_print_nbrbase(,"0123456789ABCDEF",&counter);
 			if(str[i + 1] == '%')
-				write (1, "per", 4);
-			
+				h_put_char('%',&counter);
 			i++;
 		}
 		i++;

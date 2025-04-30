@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:22:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 12:23:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:20:07 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prtf.h"
 
-size_t	h_strlen(const char *s)
+int	h_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')

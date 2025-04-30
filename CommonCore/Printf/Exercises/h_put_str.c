@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:09:25 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 13:09:28 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:20:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	h_put_str(char *str, int *counter)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if(str != NULL)

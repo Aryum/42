@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_print_nbrbase.c                                  :+:      :+:    :+:   */
+/*   h_put_nbrbase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 12:22:23 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:21:56 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static int	is_base_valid(char *str)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	if (str == NULL)
 		return (0);
@@ -40,7 +40,7 @@ static int	is_base_valid(char *str)
 
 void	h_print_nbrbase(unsigned long int nbr, char *base, int *counter)
 {
-	size_t	base_sz;
+	int	base_sz;
 	
 	if(is_base_valid(base))
 	{
