@@ -15,12 +15,10 @@
 char	*ft_strdup(const char *s)
 {
 	char	*retval;
-	size_t	len;
 	size_t	i;
 
 	i = 0;
-	len = ft_strlen(s);
-	retval = ft_calloc(len + 1, sizeof(char));
+	retval = ft_calloc(ft_strlen(s) + 1, sizeof(char));
 	if (retval != NULL)
 	{
 		while (s[i] != '\0')

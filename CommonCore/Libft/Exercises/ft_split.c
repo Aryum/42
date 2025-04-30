@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static unsigned int	countwords(char const *s, char c)
+static size_t	countwords(char const *s, char c)
 {
-	unsigned int	i;
-	unsigned int	ret;
+	size_t	i;
+	size_t	ret;
 
 	i = 0;
 	ret = 0;
@@ -28,9 +28,9 @@ static unsigned int	countwords(char const *s, char c)
 	return (ret);
 }
 
-static int	countwordlen(char *s, char c)
+static size_t	countwordlen(char *s, char c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i] != '\0' && s[i] != c)
@@ -53,9 +53,9 @@ static void	freearr(char **arr, int lastindex)
 
 static int	fill(char const *s, char c, char **ret, int wordcount)
 {
-	int		i;
-	int		h;
-	int		wordlen;
+	size_t	i;
+	size_t	h;
+	size_t	wordlen;
 
 	i = 0;
 	h = 0;
