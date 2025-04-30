@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_unsigned.c                                   :+:      :+:    :+:   */
+/*   h_put_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:25:54 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 12:11:55 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 13:07:54 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 13:08:02 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prtf.h"
 
-static void print(unsigned int i)
+void	h_put_ptr(void *ptr, int *counter)
 {
-	char	c;
-	if (i > 9)
-		print(i / 10);
-	c = i % 10 + '0';
-	print_char
-}
-//•%u Prints an unsigned decimal (base 10) number.
-void print_unsigned(unsigned int i, int *counter)
-{
-	h_addtocounter(counter, i);
-	print(i);
+	h_print_str("0x", counter);
+	h_print_ulong_base((unsigned long)ptr, "0123456789abcdef", counter);
 }

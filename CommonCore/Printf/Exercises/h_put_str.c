@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hexlwr.c                                     :+:      :+:    :+:   */
+/*   h_put_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:26:29 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 18:10:17 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 13:09:25 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 13:09:28 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prtf.h"
 
-//•%x Prints a number in hexadecimal (base 16) lowercase format.
-void print_hexlwr(unsigned int i, int *counter)
+void	h_put_str(char *str, int *counter)
 {
-	h_print_ulong_base((unsigned long)i, "0123456789abcdef",counter);
+	size_t	i;
+
+	i = 0;
+	if(str != NULL)
+	{
+		while(str[i] != '\0')
+		{
+			h_put_char(str[i], counter);
+			i++;
+		}
+	}
 }

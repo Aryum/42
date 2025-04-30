@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   h_put_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 11:24:03 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 11:49:27 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 12:40:28 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 12:48:02 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
-//•%c Prints a single character.
-void print_char(int c, int *counter)
+void h_put_int(int n, int *counter)
 {
-	h_addtocounter(counter, 1);
-	write(1, &c, 1);
+	int		correction;
+
+	correction = 0;
+	if (n < 0)
+	{
+		h_putchar("-", counter);
+		if (n == -2147483648)
+			correction = 1;
+		n = -1 * (n + correction);
+	}
+	if (n > 9)
+		print_nbr(n / 10, counter);
+	h_putchar(n % 10 + '0' + correction, counter);
 }
