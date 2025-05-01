@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 14:46:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:25:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,11 @@ int main()
 	char *str10 ="%    i hello am i working\n";
 
 	char *str11 ="\nString size of %% with whitespaces between %i\n\n";
-	char *str12 ="% \n   i hello am i working\n";
+	char *str12 ="% \n   \n";
+	
+	char *str13 ="\nString size of %% with whitespaces between  and more %i\n\n";
+	char *str14 ="% \ni hello am i working\n";
+	
 	printf(str1,printf(str2, d,chr,d, &d, d, &d, d, -d, &d, d, d, -d,ln));
 	printf("-------------------------------------------------------------------\n");
 	printf(str3, printf(str4));
@@ -146,25 +150,64 @@ int main()
 	printf("-------------------------------------------------------------------\n");
 	printf(str9, printf(str10,d));
 	printf("-------------------------------------------------------------------\n");
-
+	printf(str11, printf(str12,d));
+	printf("-------------------------------------------------------------------\n");
+	printf(str13, printf(str14,d));
+	printf("-------------------------------------------------------------------\n");
 	printf("\n\n\n");
 	
 	//test(str1,test(str2, d,chr,d, &d, d, &d, d, -d, &d, d, d, -d,ln));
 
 	/*
-		Decimal 10
-		Decimal Ptr 1418255024
-		Int 10
-		Int Ptr 1418255024
-		Unsigned + 10
-		Unsigned - 4294967286
-		Pointer at memory 0x7ffd5488dab0
-		Pointer at value 0xa
-		hex positive a
-		hex negative fffffff6
+		char `
+		char overflow val ,
+		Decimal 96
+		Decimal Ptr 726993012
+		Int 96
+		Int Ptr 726993012
+		Unsigned + 96
+		Unsigned - 4294967200
+		Pointer at memory 0x7ffe2b550874
+		Pointer at value 0x60
+		hex positive 60
+		hex negative ffffffa0
 		hexadecimal on long ffffffff
+
+		String size 243
+
+		-------------------------------------------------------------------
+
+		String size of just % -1
+
+		-------------------------------------------------------------------
+		0x0.07ffe2b55081p-1022ve more
+
+		String size of % and more 31
+
+		-------------------------------------------------------------------
+		0x0.07ffe2b55081p-1022ve more and a valid int 96
+
+		String size of % with param 50
+
+		-------------------------------------------------------------------
+		96 hello am i working
+
+		String size of % with spaces between 23
+
+		-------------------------------------------------------------------
+		% 
 		
-		String size 187
+
+		String size of % with whitespaces between 7
+
+		-------------------------------------------------------------------
+		% 
+		i hello am i working
+
+		String size of % with whitespaces between  and more 24
+
+		-------------------------------------------------------------------
+
 
 
 

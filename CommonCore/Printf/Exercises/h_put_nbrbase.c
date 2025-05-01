@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 14:31:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:17:35 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,5 @@ void	h_print_nbrbase(unsigned long int nbr, char *base, int *counter)
 		h_putchar(base[nbr % base_sz], counter);
 	}
 }
+
+
