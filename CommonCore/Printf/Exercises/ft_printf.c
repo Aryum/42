@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 15:25:18 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:04:08 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,12 @@ int main()
 	char *str3 = "\nString size of just %% %i\n\n";
 	char *str4 ="%";
 	
+	//undefined behaviour
 	char *str5 ="\nString size of %% and more %i\n\n";
-	char *str6 ="% I have more\n";
+	char *str6 ="%   have more\n";
 	
 	char *str7 ="\nString size of %% with param %i\n\n";
-	char *str8 ="% I have more and a valid int %d\n";
+	char *str8 ="%    gwa have more and a valid int %d\n";
 	
 	char *str9 ="\nString size of %% with spaces between %i\n\n";
 	char *str10 ="%    i hello am i working\n";
@@ -140,73 +141,116 @@ int main()
 	char *str13 ="\nString size of %% with whitespaces between  and more %i\n\n";
 	char *str14 ="% \ni hello am i working\n";
 	
+	printf("___________________________________________________________________\n");
+	printf("\ntest 1\n");
+	printf("-------------------------------------------------------------------\n");
 	printf(str1,printf(str2, d,chr,d, &d, d, &d, d, -d, &d, d, d, -d,ln));
+	printf("___________________________________________________________________\n");
+	printf("\ntest 2\n");
 	printf("-------------------------------------------------------------------\n");
 	printf(str3, printf(str4));
+	printf("___________________________________________________________________\n");
+	printf("\ntest 3 - Undifined\n");
 	printf("-------------------------------------------------------------------\n");
 	printf(str5, printf(str6));
+	printf("___________________________________________________________________\n");
+	printf("\ntest 4 - Undifined\n");
 	printf("-------------------------------------------------------------------\n");
 	printf(str7, printf(str8,d));
+	printf("___________________________________________________________________\n");
+	printf("\ntest 5\n");
 	printf("-------------------------------------------------------------------\n");
 	printf(str9, printf(str10,d));
+	printf("___________________________________________________________________\n");
+	printf("\ntest 6\n");
 	printf("-------------------------------------------------------------------\n");
 	printf(str11, printf(str12,d));
+	printf("___________________________________________________________________\n");
+	printf("\ntest 7\n");
 	printf("-------------------------------------------------------------------\n");
 	printf(str13, printf(str14,d));
-	printf("-------------------------------------------------------------------\n");
+	printf("___________________________________________________________________\n");
+
 	printf("\n\n\n");
 	
 	//test(str1,test(str2, d,chr,d, &d, d, &d, d, -d, &d, d, d, -d,ln));
 
 	/*
-		char `
-		char overflow val ,
-		Decimal 96
-		Decimal Ptr 726993012
-		Int 96
-		Int Ptr 726993012
-		Unsigned + 96
-		Unsigned - 4294967200
-		Pointer at memory 0x7ffe2b550874
-		Pointer at value 0x60
-		hex positive 60
-		hex negative ffffffa0
-		hexadecimal on long ffffffff
+		___________________________________________________________________$
+		$
+		test 1$
+		-------------------------------------------------------------------$
+		char `$
+		char overflow val ,$
+		Decimal 96$
+		Decimal Ptr -816798524$
+		Int 96$
+		Int Ptr -816798524$
+		Unsigned + 96$
+		Unsigned - 4294967200$
+		Pointer at memory 0x7ffdcf50a4c4$
+		Pointer at value 0x60$
+		hex positive 60$
+		hex negative ffffffa0$
+		hexadecimal on long ffffffff$
+		$
+		String size 245$
+		$
+		___________________________________________________________________$
+		$
+		test 2$
+		-------------------------------------------------------------------$
+		$
+		String size of just % -1$
+		$
+		___________________________________________________________________$
+		$
+		test 3 - Undifined$
+		-------------------------------------------------------------------$
+		0x0.000030000009ep-1022ve more$
+		$
+		String size of % and more 32$
+		$
+		___________________________________________________________________$
+		$
+		test 4 - Undifined$
+		-------------------------------------------------------------------$
+		6.36599e-314wa have more and a valid int 96$
+		$
+		String size of % with param 45$
+		$
+		___________________________________________________________________$
+		$
+		test 5$
+		-------------------------------------------------------------------$
+		96 hello am i working$
+		$
+		String size of % with spaces between 23$
+		$
+		___________________________________________________________________$
+		$
+		test 6$
+		-------------------------------------------------------------------$
+		% $
+		$
+		$
+		String size of % with whitespaces between 7$
+		$
+		___________________________________________________________________$
+		$
+		test 7$
+		-------------------------------------------------------------------$
+		% $
+		i hello am i working$
+		$
+		String size of % with whitespaces between  and more 24$
+		$
+		___________________________________________________________________$
+		$
+		$
+		$
 
-		String size 243
 
-		-------------------------------------------------------------------
-
-		String size of just % -1
-
-		-------------------------------------------------------------------
-		0x0.07ffe2b55081p-1022ve more
-
-		String size of % and more 31
-
-		-------------------------------------------------------------------
-		0x0.07ffe2b55081p-1022ve more and a valid int 96
-
-		String size of % with param 50
-
-		-------------------------------------------------------------------
-		96 hello am i working
-
-		String size of % with spaces between 23
-
-		-------------------------------------------------------------------
-		% 
-		
-
-		String size of % with whitespaces between 7
-
-		-------------------------------------------------------------------
-		% 
-		i hello am i working
-
-		String size of % with whitespaces between  and more 24
-
-		-------------------------------------------------------------------
 
 
 
@@ -216,9 +260,12 @@ int main()
 		%u is unsigned if it is positive it loops arround and subracts value
 		%p just converts int value to hexadecimal with 0x at the beginning
 		%x uses unsigned int to convert number it its a long just converts to max int
-
+		
 		7fff654702d0
 		ffffffffffff
+
+		if its just % returns -1
+		% with spaces puts a space before variable
 	*/
 
 }
