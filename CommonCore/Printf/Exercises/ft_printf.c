@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 16:04:08 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:06:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,7 @@ int main()
 
 		if its just % returns -1
 		% with spaces puts a space before variable
+		% with non flag is undefined behaviour just return -1
 	*/
 
 }
