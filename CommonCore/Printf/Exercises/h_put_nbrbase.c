@@ -6,12 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 13:21:56 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:31:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "prtf.h"
+#include "printf.h"
 
 static int	is_base_valid(char *str)
 {
@@ -44,7 +43,7 @@ void	h_print_nbrbase(unsigned long int nbr, char *base, int *counter)
 	
 	if(is_base_valid(base))
 	{
-		base_sz =  ft_strlen(base);
+		base_sz =  h_strlen(base);
 		while(nbr / base_sz > 0)
 		{
 			h_putchar(base[nbr % base_sz], counter);

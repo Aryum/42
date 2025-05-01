@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prtf.h                                             :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 13:22:49 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:30:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRTF_H
-# define PRTF_H
+#ifndef PRINTF_H
+# define PRINTF_H
 
 # include <unistd.h>
 # include <stddef.h>
@@ -31,6 +31,6 @@ void	h_put_uint(unsigned int i, int *counter);
 
 int		h_strlen(const char *s);
 
-int		ft_printf(int n, ...);
+int		ft_printf(const char *, ...);
 
 #endif

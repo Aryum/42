@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:22:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 13:20:07 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:31:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prtf.h"
+#include "printf.h"
 
 int	h_strlen(const char *s)
 {

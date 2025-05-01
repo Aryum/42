@@ -1,33 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   h_count_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 10:33:28 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 15:01:23 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/05/01 13:34:39 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/01 14:31:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+static int isarg(char c)
 {
-	char			*ret;
-	unsigned int	i;
+	char	*args;
+	int		i;
 
-	if (s == NULL)
-		return (NULL);
-	ret = ft_strdup(s);
 	i = 0;
-	if (ret != NULL && f != NULL)
+	args = "cspdiuxX%";
+	while (args[i] != '\0')
 	{
-		while (ret[i] != '\0')
+		if(c == args[i])
+			return (1);
+	}
+	return 0;
+
+}
+int h_count_args(const char *str)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	counter = 0;
+	while (str[i] != '\0')
+	{
+		if(str[i] == '%' && isarg(str[i + 1]))
 		{
-			ret[i] = f(i, ret[i]);
+			counter++;
 			i++;
 		}
+		i++;
 	}
-	return (ret);
+	return (counter);
 }

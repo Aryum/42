@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:09:25 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 13:20:15 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:31:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prtf.h"
+#include "printf.h"
 
 void	h_put_str(char *str, int *counter)
 {
