@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 14:30:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:56:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	h_put_uint(unsigned int i, int *counter);
 
 int		h_strlen(const char *s);
 
-int		ft_printf(const char *, ...);
+int		h_count_args(const char *str);
+
+int		ft_printf(const char *string, ...);
 
 #endif
