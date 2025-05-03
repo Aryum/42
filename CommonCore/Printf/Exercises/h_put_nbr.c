@@ -1,49 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_count_args.c                                     :+:      :+:    :+:   */
+/*   h_put_nbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 13:34:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/03 12:23:30 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 12:40:28 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/03 15:40:02 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int isarg(char c)
+void h_put_int(int n, int *counter)
 {
-	char	*args;
-	int		i;
+	int		correction;
 
-	i = 0;
-	args = "cspdiuxX%";
-	while (args[i] != '\0')
+	correction = 0;
+	if (n < 0)
 	{
-		if(c == args[i])
-			return (1);
+		h_put_char('-', counter);
+		if (n == -2147483648)
+			correction = 1;
+		n = -1 * (n + correction);
 	}
-	return (0);
+	if (n > 9)
+		h_put_int(n / 10, counter);
+	h_put_char(n % 10 + '0' + correction, counter);
 }
 
-int h_count_args(const char *str)
+void h_put_uint(unsigned int i, int *counter)
 {
-	int	i;
-	int	counter;
-
-	i = 0;
-	counter = 0;
-	while (str[i] != '\0')
-	{
-		if(str[i] == '%' && isarg(str[i + 1]))
-		{
-			counter++;
-			i++;
-		}
-		else
-			return (-1);
-		i++;
-	}
-	return (counter);
+	if (i > 9)
+		h_put_uint(i / 10, counter);
+	h_put_char(i % 10 + '0', counter);
 }

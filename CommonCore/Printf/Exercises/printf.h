@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/03 12:56:11 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:56:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	h_put_char(int c, int *counter);
 
 void	h_put_int(int n, int *counter);
 
-void	h_print_nbrbase(unsigned long int nbr, char *base, int *counter);
+void	h_put_nbrbase(unsigned long int nbr, char *base, int *counter);
 
 void	h_put_ptr(void *ptr, int *counter);
 
@@ -31,7 +31,7 @@ void	h_put_uint(unsigned int i, int *counter);
 
 int		h_strlen(const char *s);
 
-int		h_count_args(const char *str);
+int		h_checkvalid_agrs(const char *str);
 
 int		ft_printf(const char *string, ...);
 

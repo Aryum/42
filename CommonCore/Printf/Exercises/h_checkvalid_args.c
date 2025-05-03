@@ -1,20 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_put_uint.c                                       :+:      :+:    :+:   */
+/*   h_count_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 12:57:25 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 14:31:09 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/05/01 13:34:39 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/03 15:56:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void h_put_uint(unsigned int i, int *counter)
+static int isarg(char c)
 {
-	if (i > 9)
-		h_put_uint(i / 10, counter);
-	h_putchar(i % 10 + '0', counter);
+	char	*args;
+	int		i;
+
+	i = 0;
+	args = "cspdiuxX%";
+	while (args[i] != '\0')
+	{
+		if(c == args[i])
+			return (1);
+	}
+	return (0);
+}
+
+int h_checkvalid_agrs(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if(str[i] == '%')
+		{
+			if(!isarg(str[i + 1]))
+				return (0);
+			i++;
+		}
+		i++;
+	}
+	return (1);
 }
