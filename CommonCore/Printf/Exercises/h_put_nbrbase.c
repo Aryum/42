@@ -37,14 +37,14 @@ static int	is_base_valid(char *str)
 	return (1);
 }
 
-static void print_ulong(unsigned long long nbr, char *base, int sz, int *c)
+static void print_ulong(unsigned long nbr, char *base, int sz, int *c)
 {
 	if (nbr / sz != 0)
 		print_ulong (nbr / sz, base, sz, c);
 	h_put_char(base[nbr % sz], c);
 }
 
-void	h_put_ulongbase(unsigned long long nbr, char *base, int *counter)
+void	h_put_ulongbase(unsigned long nbr, char *base, int *counter)
 {
 	int	base_sz;
 	
