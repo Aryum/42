@@ -6,12 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:07:54 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/03 15:37:22 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/04 13:05:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
+#include "ft_printf.h"
 
 void	h_put_ptr(void *ptr, int *counter)
 {
@@ -20,6 +19,6 @@ void	h_put_ptr(void *ptr, int *counter)
 	else
 	{
 		h_put_str("0x", counter);
-		h_put_nbrbase((unsigned long)ptr, "0123456789abcdef", counter);
+		h_put_ulongbase((unsigned long long)ptr, "0123456789abcdef", counter);
 	}
 }

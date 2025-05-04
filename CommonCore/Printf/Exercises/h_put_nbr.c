@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:40:28 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/03 15:40:02 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/04 13:04:44 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void h_put_int(int n, int *counter)
 {

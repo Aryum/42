@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/03 15:56:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/04 13:04:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,28 @@
 */
 
 
-#include "printf.h"
-
+#include "ft_printf.h"
 
 static void formatstr(char c, va_list args, int *counter)
 {
-	if(c == 'c')
+	if (c == 'c')
 		h_put_char(va_arg(args, int),counter);
-	if(c == 's')
+	else if (c == 's')
 		h_put_str(va_arg(args, char *),counter);
-	if(c == 'p')
+	else if (c == 'p')
 		h_put_ptr(va_arg(args, void *),counter);
-	if(c == 'd' || c == 'i')
+	else if (c == 'd' || c == 'i')
 		h_put_int(va_arg(args, int),counter);
-	if(c == 'u') 
+	else if (c == 'u') 
 		h_put_uint(va_arg(args, unsigned int),counter);
-	if(c == 'x')
-		h_put_nbrbase(va_arg(args, unsigned int),"0123456789abcdef",counter);
-	if(c == 'X')
-		h_put_nbrbase(va_arg(args, unsigned int),"0123456789ABCDEF",counter);
-	if(c == '%')
+	else if (c == 'x')
+		h_put_uintbase(va_arg(args, unsigned int),"0123456789abcdef",counter);
+	else if (c == 'X')
+		h_put_uintbase(va_arg(args, unsigned int),"0123456789ABCDEF",counter);
+	else if (c == '%')
 		h_put_char('%',counter);
+	else
+		*counter = -1;
 }
 
 int ft_printf(const char *str, ...)
@@ -58,29 +59,25 @@ int ft_printf(const char *str, ...)
 	int		ret;
 	int		i;
 	va_list	arg_v;
-	int		agr_c;
 	
 	if(str == NULL)
 		return (-1);
 	ret = 0;
 	i = 0;
-	agr_c = h_checkvalid_agrs(str);
-	if (ret != -1)
+	va_start(arg_v, str);
+	while (str[i] != '\0')
 	{
-		va_start(arg_v, str);
-		while (str[i] != '\0')
+		if (str[i] != '%')
+			h_put_char(str[i], &ret);
+		else
 		{
-			if (str[i] != '\0')
-				h_put_char(str[i], &ret);
-			else
-			{
-				formatstr(str[i + 1], arg_v, &ret);
+			formatstr(str[i + 1], arg_v, &ret);
+			if(ret != -1)
 				i++;
-			}
-			i++;
 		}
-		va_end(arg_v);
+		i++;
 	}
+	va_end(arg_v);
 	return (ret);
 }
 /*

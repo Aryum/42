@@ -6,7 +6,7 @@
 #    By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 19:21:29 by ricsanto          #+#    #+#              #
-#    Updated: 2025/05/03 15:45:33 by ricsanto         ###   ########.fr        #
+#    Updated: 2025/05/04 11:22:21 by ricsanto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := libftprintf.a
 
 FLAGS := -Wall -Wextra -Werror
 
-SRC :=	ft_printf.c	h_count_args.c	h_put_char.c	h_put_nbr.c	h_put_nbrbase.c	\
+SRC :=	ft_printf.c	h_put_char.c	h_put_nbr.c	h_put_nbrbase.c	\
 		h_put_ptr.c	h_put_str.c		h_strlen.c
 
 OBJ := $(SRC:.c=.o)

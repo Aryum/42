@@ -6,13 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:15:01 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/01 14:31:52 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/04 13:04:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	h_put_char(int c, int *counter)
 {
-	(*counter) += write(1, &c, 1);
+	if(*counter != -1)
+		(*counter) += 1;
+	write(1, &c, 1);
 }

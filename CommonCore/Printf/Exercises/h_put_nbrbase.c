@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/03 15:38:19 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/04 13:04:54 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static int	is_base_valid(char *str)
 {
@@ -37,22 +37,30 @@ static int	is_base_valid(char *str)
 	return (1);
 }
 
-void	h_put_ulongbase(unsigned long int nbr, char *base, int *counter)
+static void print_ulong(unsigned long long nbr, char *base, int sz, int *c)
+{
+	if (nbr / sz != 0)
+		print_ulong (nbr / sz, base, sz, c);
+	h_put_char(base[nbr % sz], c);
+}
+
+void	h_put_ulongbase(unsigned long long nbr, char *base, int *counter)
 {
 	int	base_sz;
 	
 	if(is_base_valid(base))
 	{
 		base_sz =  h_strlen(base);
-		while(nbr / base_sz > 0)
-		{
-			h_put_char(base[nbr % base_sz], counter);
-			nbr /= base_sz;
-		}
-		h_put_char(base[nbr % base_sz], counter);
+		print_ulong (nbr, base, base_sz,counter);
 	}
 }
 
+static void print_uint(unsigned int nbr, char *base, int sz, int *c)
+{
+	if (nbr / sz != 0)
+		print_uint (nbr / sz, base, sz, c);
+	h_put_char(base[nbr % sz], c);
+}
 
 void	h_put_uintbase(unsigned int nbr, char *base, int *counter)
 {
@@ -61,12 +69,7 @@ void	h_put_uintbase(unsigned int nbr, char *base, int *counter)
 	if(is_base_valid(base))
 	{
 		base_sz =  h_strlen(base);
-		while(nbr / base_sz > 0)
-		{
-			h_put_char(base[nbr % base_sz], counter);
-			nbr /= base_sz;
-		}
-		h_put_char(base[nbr % base_sz], counter);
+		print_uint(nbr, base, base_sz,counter);
 	}
 }
 

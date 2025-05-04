@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:09:25 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/03 13:16:43 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/04 13:05:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static int print_str (char *str, int *counter)
+static void print_str (char *str, int *counter)
 {
 	int	i;
 
