@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:56:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/04 12:43:28 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/05 12:22:27 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	h_put_char(int c, int *counter);
 
 void	h_put_int(int n, int *counter);
 
-void	h_put_ulongbase(unsigned long long nbr, char *base, int *counter);
+void	h_put_ulongbase(unsigned long nbr, char *base, int *counter);
 
 void	h_put_uintbase(unsigned int nbr, char *base, int *counter);
 
@@ -32,8 +32,6 @@ void	h_put_str(char *str, int *counter);
 void	h_put_uint(unsigned int i, int *counter);
 
 int		h_strlen(const char *s);
-
-int		h_checkvalid_agrs(const char *str);
 
 int		ft_printf(const char *string, ...);
 

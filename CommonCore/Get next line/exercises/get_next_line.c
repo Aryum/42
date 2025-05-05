@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_put_ptr.c                                        :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 13:07:54 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/05 13:05:02 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/05/05 12:36:52 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/05 13:02:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-void	h_put_ptr(void *ptr, int *counter)
+char *get_next_line(int fd)
 {
-	if (ptr == NULL)
-		h_put_str("(nil)",counter);
-	else
+	static int line;
+	
+	if (fd >= 0)
 	{
-		h_put_str("0x", counter);
-		h_put_ulongbase((unsigned long)ptr, "0123456789abcdef", counter);
+		
 	}
 }
+
+/*
+	aaabbbaaa
+	012345678
+	6 trim
+	3 b
+	
+
+*/
