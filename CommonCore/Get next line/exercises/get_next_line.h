@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 12:45:44 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/06 16:26:56 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/05/06 18:52:26 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/06 21:00:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFERSIZE
-#  define BUFFERSIZE 50000
+# define BUFFERSIZE 3
 # endif
- 
+
 #include <unistd.h>
 #include <stdlib.h>
-
-typedef struct s_strinfo
-{
-	size_t	size;
-	int 	endline;
-} t_strinfo;
-
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:36:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/06 18:36:41 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:05:16 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	get_startindex(int fd, char **buffer, int targetline)
 	int i;
 	int currentline;
 	
-	i = 0;
 	currentline = 0;
 	readbytes = 1;
 	while (readbytes > 0)
 	{
 		readbytes = read(fd, *buffer, BUFFERSIZE);
+		i = 0;
 		while((*buffer)[i] != '\0')
 		{
 			if(currentline == targetline)
@@ -50,9 +50,9 @@ int	get_startindex(int fd, char **buffer, int targetline)
 	return (-1);
 }
 
-int get_strlen(char *str)
+size_t get_strlen(char *str)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	if(str != NULL)
@@ -63,10 +63,10 @@ int get_strlen(char *str)
 	return (i);
 }
 
-void	cleanbuffer(char **buffer)
+int	cleanbuffer(char **buffer)
 {
 	char *temp;
-	int	len;
+	size_t	len;
 	int	i;
 	int h;
 	
@@ -75,21 +75,21 @@ void	cleanbuffer(char **buffer)
 	while ((*buffer)[len - i - 1] != '\n' && i < len)
 		i++;
 	if ((*buffer)[len - i - 1] != '\n')
-		return ;
+		return (0);
 	temp = malloc(len - i + 1);
-	if(temp != NULL)
+	if(temp == NULL)
+		return (-1);
+	i = 0;
+	while((*buffer)[i] != '\n')
 	{
-		i = 0;
-		while((*buffer)[i] != '\n')
-		{
-			temp[i] = (*buffer)[i];
-			i++;
-		}
-		temp[i] = '\n';
-		temp[i + 1] = '\0';
+		temp[i] = (*buffer)[i];
+		i++;
 	}
+	temp[i] = '\n';
+	temp[i + 1] = '\0';
 	free(*buffer);
 	*buffer = temp;
+	return (1);
 }
 
 
@@ -98,9 +98,11 @@ void appendstr(int start, char **last, char* buffer)
 {
 	char	*temp;
 	int		i;
-	int		total_len;
+	int		h;
+	size_t	total_len;
 
 	i = 0;
+	h = 0;
 	total_len = get_strlen(*last) + get_strlen(buffer) - start + 1;
 	temp = malloc(total_len);
 	if(temp == NULL)
@@ -110,10 +112,10 @@ void appendstr(int start, char **last, char* buffer)
 		temp[i] = (*last)[i];
 		i++;
 	}
-	while (i + start < total_len - 1)
+	while (i + h < total_len - 1)
 	{
-		temp[i + start] = buffer[start];
-		start++;
+		temp[i + h] = buffer[start + h];
+		h++;
 	}
 	temp[i + start] = buffer[start];
 	free(*last);
@@ -123,22 +125,24 @@ void appendstr(int start, char **last, char* buffer)
 
 char *get_line(int fd, char **buffer, int start)
 {
-	int readbytes;
+	size_t readbytes;
 	char *ret;
+	int	clearedbuffer;
 	
 	readbytes = 1;
 	ret =  NULL;
 	while (readbytes > 0 && start != -1)
 	{
 		readbytes = read(fd, *buffer, BUFFERSIZE);
-		cleanbuffer(buffer);
+		printf("%s\n",*buffer);
+		clearedbuffer = cleanbuffer(buffer);
 		if(buffer == NULL)
 			break ;
 		appendstr(start,&ret, *buffer);
+		start = 0;
 		if(ret == NULL)
 			break;
-		start = 0;
-		if (ret[get_strlen(ret) - 1] == '\n')
+		if (clearedbuffer)
 			break ;
 	}
 	if (buffer != NULL)
@@ -156,25 +160,18 @@ char *get_next_line(int fd)
 	buffer = malloc(BUFFERSIZE + 1);
 	buffer[BUFFERSIZE] = '\0';
 	startindex = get_startindex(fd, &buffer, line);
-	ret = get_line(fd,&buffer,startindex);
-	if (ret != NULL)
-		line ++;
-	return (ret);
+	printf("start index %d (%c)\n", startindex, buffer[startindex]);
+	//ret = get_line(fd,&buffer,startindex);
+	line ++;
+	return (NULL);
 }
 
 #include <fcntl.h>
 int main()
 {
-	char *str = NULL;
-	char *str1 = "Hello";
-	char *str2 = " World";
-	char *str3 = "wa I am working";
-	
-	appendstr(0,&str,str1);
-	printf("%s\n", str);
-	appendstr(0,&str,str2);
-	printf("%s\n", str);
-	appendstr(2,&str,str3);
+	int fd =  open("test.txt",O_RDONLY);
+	char *str = get_next_line(fd);
+	str = get_next_line(fd);
 	printf("%s\n", str);
 
 	free(str);
