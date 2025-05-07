@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:36:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/06 21:05:16 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:12:50 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ size_t get_strlen(char *str)
 	return (i);
 }
 
-int	cleanbuffer(char **buffer)
+int	cleanstr(char **str)
 {
 	char *temp;
 	size_t	len;
@@ -71,24 +71,24 @@ int	cleanbuffer(char **buffer)
 	int h;
 	
 	i = 0;
-	len = get_strlen(*buffer);
-	while ((*buffer)[len - i - 1] != '\n' && i < len)
+	len = get_strlen(*str);
+	while ((*str)[len - i - 1] != '\n' && i < len)
 		i++;
-	if ((*buffer)[len - i - 1] != '\n')
+	if ((*str)[len - i - 1] != '\n')
 		return (0);
 	temp = malloc(len - i + 1);
 	if(temp == NULL)
 		return (-1);
 	i = 0;
-	while((*buffer)[i] != '\n')
+	while((*str)[i] != '\n')
 	{
-		temp[i] = (*buffer)[i];
+		temp[i] = (*str)[i];
 		i++;
 	}
 	temp[i] = '\n';
 	temp[i + 1] = '\0';
-	free(*buffer);
-	*buffer = temp;
+	free(*str);
+	*str = temp;
 	return (1);
 }
 
@@ -127,22 +127,22 @@ char *get_line(int fd, char **buffer, int start)
 {
 	size_t readbytes;
 	char *ret;
-	int	clearedbuffer;
-	
+	int	finalstr;
+	int res;
+		
 	readbytes = 1;
 	ret =  NULL;
 	while (readbytes > 0 && start != -1)
 	{
 		readbytes = read(fd, *buffer, BUFFERSIZE);
-		printf("%s\n",*buffer);
-		clearedbuffer = cleanbuffer(buffer);
-		if(buffer == NULL)
-			break ;
 		appendstr(start,&ret, *buffer);
-		start = 0;
-		if(ret == NULL)
+		res = cleanstr(ret);
+		if(res != 0)
+		{
+			if(es)
 			break;
-		if (clearedbuffer)
+		}
+		if (finalstr)
 			break ;
 	}
 	if (buffer != NULL)
@@ -169,6 +169,7 @@ char *get_next_line(int fd)
 #include <fcntl.h>
 int main()
 {
+	/**/
 	int fd =  open("test.txt",O_RDONLY);
 	char *str = get_next_line(fd);
 	str = get_next_line(fd);

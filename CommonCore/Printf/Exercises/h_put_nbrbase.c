@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/07 10:03:53 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:52:14 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,25 @@ void	h_put_uintbase(unsigned int nbr, char *base, int *counter)
 	}
 }
 
+
+/*
+	base -> string sem chars repetidos
+	01 binario -> 2
+	012345679 decimal -> 10
+	013456789abcdef hexa -> 16
+	
+	1
+	0123456789abcdef
+	base size 16
+	nbr 78
+	
+	index de 1st char
+	78 / basesize = 78 % 16 = 14
+	1st char = base[14] = e 
+
+	78 / 16 = 64
+
+	char c;
+
+	c = base[nbr % basesize]
+*/

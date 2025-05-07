@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:44:46 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/04 13:04:20 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:13:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int ft_printf(const char *str, ...)
 	int		i;
 	va_list	arg_v;
 	
-	if(str == NULL)
+	if(str == NULL || write(1,0,0) == -1)
 		return (-1);
 	ret = 0;
 	i = 0;
