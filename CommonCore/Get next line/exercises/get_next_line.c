@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:36:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/07 13:33:08 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:31:40 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,27 @@ int	get_startindex(int fd, char **buffer, int targetline)
 	int i;
 	int currentline;
 	
-	currentline = 1;
+	currentline = 0;
 	readbytes = 1;
-	while (readbytes > 0)
+	i = 0;
+	while (readbytes > 0 && targetline != 0)
 	{
 		readbytes = read(fd, *buffer, BUFFERSIZE);
 		i = 0;
-		if(currentline > targetline || readbytes == 0)
-			break ;
+		if(currentline == targetline)
+				return (0);
 		while((*buffer)[i] != '\0')
 		{
 			if((*buffer)[i] == '\n')
+			{
 				currentline++;
+				if ((*buffer)[i + 1] != '\0')
+					return (i + 1);
+			}
 			i++;
 		}
 	}
-	return (i);
+	return (0);
 }
 
 size_t get_strlen(char *str)
@@ -57,85 +62,54 @@ size_t get_strlen(char *str)
 	i = 0;
 	if(str != NULL)
 	{
-		while(str[i] != '\0' || str[i] != '\n')
+		while(str[i] != '\0' && str[i] != '\n')
 			i++;
 	}
 	return (i);
 }
 
-void	strjoin(char **last, char const *buffer)
+void	appendstr(int start, char **last, char *buffer)
 {
 	size_t	i;
 	size_t	h;
-	int		correction;
+	size_t	total_len;
 	char	*retval;
 
 	i = 0;
-	h = ft_strlen(buffer);
-	retval = malloc(ft_strlen(*last) + h + 1 + (buffer[h - 1] == '\n'));
-	if (retval != NULL)
+	h = get_strlen(buffer);
+	total_len = get_strlen(*last) + h - start + 1 + (buffer[h - 1] == '\n');
+	retval = malloc(total_len);
+	if (retval == NULL)
 		return ;
-	while ((*last)[i] != '\0')
+	while ((*last) != NULL && (*last)[i] != '\0')
 	{
 		retval[i] = (*last)[i];
 		i++;
 	}
 	h = 0;
-	while (buffer[h] != '\0' && buffer[h] != '\n')
+	while (h + i < total_len)
 	{
 		retval[h + i] = buffer[h];
-		i++;
+		h++;
 	}
-	retval[h + i + 1] = '\0';
 	free(*last);
 	*last = retval;
 }
-void appendstr(int start, char **last, char* buffer)
-{
-	char	*temp;
-	int		i;
-	int		h;
-	size_t	total_len;
-
-	i = 0;
-	h = 0;
-	total_len = get_strlen(*last) + get_strlen(buffer) - start + 1;
-	temp = malloc(total_len);
-	if(temp == NULL)
-		return ;
-	while (*last != NULL && (*last)[i] !=  '\0')
-	{
-		temp[i] = (*last)[i];
-		i++;
-	}
-	while (i + h < total_len - 1)
-	{
-		temp[i + h] = buffer[start + h];
-		h++;
-	}
-	temp[i + start] = buffer[start];
-	free(*last);
-	*last = temp;
-}
-
 
 char *get_line(int fd, char **buffer, int start)
 {
 	size_t readbytes;
 	char *ret;
-	int	finalstr;
 	int res;
 		
 	readbytes = 1;
 	ret =  NULL;
-	while (readbytes > 0 && start != -1)
+	while (readbytes > 0)
 	{
 		readbytes = read(fd, *buffer, BUFFERSIZE);
 		appendstr(start,&ret, *buffer);
 		if(res != 0)
 			break;
-		if (finalstr)
-			break ;
 	}
 	if (buffer != NULL)
 		free(*buffer);
@@ -152,10 +126,9 @@ char *get_next_line(int fd)
 	buffer = malloc(BUFFERSIZE + 1);
 	buffer[BUFFERSIZE] = '\0';
 	startindex = get_startindex(fd, &buffer, line);
-	printf("target line %d\n	start index %d (%c)\n", line,startindex, buffer[startindex]);
-	//ret = get_line(fd,&buffer,startindex);
+	ret = get_line(fd,&buffer,startindex);
 	line ++;
-	return (NULL);
+	return (ret);
 }
 
 char *strdup(char *str)
@@ -164,7 +137,10 @@ char *strdup(char *str)
 	int i;
 
 	i= 0;
-	ret = malloc(get_strlen(str) + 1);
+	while(str[i] != '\0')
+		i++;
+	ret = malloc(i + 1);
+	i = 0;
 	while (str[i] != '\0')
 	{
 		ret[i] = str[i];
@@ -176,9 +152,30 @@ char *strdup(char *str)
 #include <fcntl.h>
 int main()
 {
-	int fd = open("test.txt",O_RDONLY);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
+	char *str1;
+	char *str2;
+	char *str3;
+	
+	str1 = strdup("hello");
+	str2 = strdup(" i am working");
+	str3 = strdup(" this is showing\nthis is not");
+
+	strjoin(&str1, str2);
+	printf("%s\n", str1);
+	strjoin(&str1, str3);
+	printf("%s\n", str1);
+	free(str1);
+	free(str2);
+	free(str3);
+	/*
+
+	int fd =  open("test.txt",O_RDONLY);
+	char *str = get_next_line(fd);
+	printf("%s\n",str);
+	free(str);
+	str = get_next_line(fd);
+	printf("%s\n",str);
+	*/
+	free(str);
 	close(fd);
 }
