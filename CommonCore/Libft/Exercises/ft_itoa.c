@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static unsigned int	nbcount(long int n)
+static int	nbcount(long int n)
 {
 	int	i;
 
