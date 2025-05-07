@@ -38,7 +38,7 @@ static size_t	countwordlen(char *s, char c)
 	return (i);
 }
 
-static void	freearr(char **arr, int lastindex)
+static void	freearr(char **arr, size_t lastindex)
 {
 	size_t	i;
 
