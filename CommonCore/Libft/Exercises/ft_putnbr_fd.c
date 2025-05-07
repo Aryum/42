@@ -6,17 +6,17 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 08:59:29 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/30 12:43:34 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 08:39:29 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void print_nbr(int n, int fd)
+static void	print_nbr(int n, int fd)
 {
 	int		correction;
 	char	c;
-	
+
 	correction = 0;
 	if (n < 0)
 	{
