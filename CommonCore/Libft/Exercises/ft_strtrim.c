@@ -14,7 +14,7 @@
 
 static int	ischarset(char c, char const *set)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	if (set != NULL)

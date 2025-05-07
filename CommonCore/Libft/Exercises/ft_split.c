@@ -40,7 +40,7 @@ static size_t	countwordlen(char *s, char c)
 
 static void	freearr(char **arr, int lastindex)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i <= lastindex)

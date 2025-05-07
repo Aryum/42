@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 10:10:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/24 17:57:54 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 08:49:41 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ static void	clear(t_list **current, void (*del)(void*))
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if (lst != NULL && del != NULL)
+	if (lst != NULL && *lst != NULL && del != NULL)
 	{
-		if (*lst != NULL)
-			clear(lst, del);
+		clear(lst, del);
 		*lst = NULL;
 	}
 }
