@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:52:26 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/06 21:00:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:24:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFERSIZE
-# define BUFFERSIZE 3
+# define BUFFERSIZE 1
 # endif
 
 #include <unistd.h>
