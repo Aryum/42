@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/04 13:04:54 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:03:53 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	is_base_valid(char *str)
 	return (1);
 }
 
-static void print_ulong(unsigned long nbr, char *base, int sz, int *c)
+static void print_base(unsigned long nbr, char *base, int sz, int *c)
 {
 	if (nbr / sz != 0)
 		print_ulong (nbr / sz, base, sz, c);
@@ -51,16 +51,10 @@ void	h_put_ulongbase(unsigned long nbr, char *base, int *counter)
 	if(is_base_valid(base))
 	{
 		base_sz =  h_strlen(base);
-		print_ulong (nbr, base, base_sz,counter);
+		print_base(nbr, base, base_sz,counter);
 	}
 }
 
-static void print_uint(unsigned int nbr, char *base, int sz, int *c)
-{
-	if (nbr / sz != 0)
-		print_uint (nbr / sz, base, sz, c);
-	h_put_char(base[nbr % sz], c);
-}
 
 void	h_put_uintbase(unsigned int nbr, char *base, int *counter)
 {
@@ -69,7 +63,7 @@ void	h_put_uintbase(unsigned int nbr, char *base, int *counter)
 	if(is_base_valid(base))
 	{
 		base_sz =  h_strlen(base);
-		print_uint(nbr, base, base_sz,counter);
+		print_base(nbr, base, base_sz,counter);
 	}
 }
 
