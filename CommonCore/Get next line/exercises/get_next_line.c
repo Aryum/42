@@ -5,55 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 12:36:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/08 09:56:51 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/05/08 13:55:11 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/08 16:09:28 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+
 #include <stdio.h>
-
-//1st
-//	find target line
-//2nd
-//	at atarget line find the ammount to alloc
-//3rd
-//	allo and return desired string and increase line
-//when it finds a new line 
-
-
-//end index is i
-
-//creates string
-
-int	get_startindex(int fd, char **buffer, int targetline)
-{
-	int readbytes;
-	int i;
-	int currentline;
-	
-	currentline = 0;
-	readbytes = read(fd, *buffer, BUFFERSIZE);
-	while (readbytes > 0 && targetline != 0)
-	{
-		i = 0;
-		if(currentline == targetline)
-				return (0);
-		while((*buffer)[i] != '\0')
-		{
-			if((*buffer)[i] == '\n')
-			{
-				currentline++;
-				printf("found a new line at %d (%c)\n",i,(*buffer)[i] );
-				if(currentline == targetline)
-					return (i + 1);
-			}
-			i++;
-		}
-		readbytes = read(fd, *buffer, BUFFERSIZE);
-	}
-	return (0);
-}
+#include <fcntl.h>
 
 size_t get_strlen(char *str)
 {
@@ -68,7 +29,7 @@ size_t get_strlen(char *str)
 	return (i);
 }
 
-void	appendstr(int start, char **last, char *buffer)
+void	appendstr(char **last, char *buffer)
 {
 	size_t	i;
 	size_t	h;
@@ -77,8 +38,7 @@ void	appendstr(int start, char **last, char *buffer)
 
 	i = 0;
 	h = get_strlen(buffer);
-	total_len = get_strlen(*last) + h - start + (buffer[h] == '\n');
-	//printf("total length %d\n", total_len);
+	total_len = get_strlen(*last) + h + (buffer[h] == '\n');
 	retval = malloc(total_len + 1);
 	if (retval == NULL)
 		return ;
@@ -90,7 +50,7 @@ void	appendstr(int start, char **last, char *buffer)
 	h = 0;
 	while (h + i < total_len)
 	{
-		retval[h + i] = buffer[h + start];
+		retval[h + i] = buffer[h];
 		h++;
 	}
 	retval[h + i] = '\0';
@@ -98,47 +58,52 @@ void	appendstr(int start, char **last, char *buffer)
 	*last = retval;
 }
 
-char *get_line(int fd, char **buffer, int start)
+void resetbuffer(char *buffer)
 {
-	size_t readbytes;
-	char *ret;
-	int res;
-		
-	readbytes = 1;
-	ret =  NULL;
-	while (readbytes > 0)
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (buffer[i] != '\0')
 	{
-		appendstr(start,&ret, *buffer);
-		//printf("char at retsize - 1 = (%c)\n", ret[get_strlen(ret)] );
-		if(ret[get_strlen(ret)] == '\n' || ret == NULL)
-			break;
-		readbytes = read(fd, *buffer, BUFFERSIZE);
+		if(buffer[i] == '\n' && buffer[i + 1] != '\0' && j == 0)
+			j = i + 1;
+		else if(j != 0)
+			buffer[i - j] = buffer[i];
+		i++;
 	}
-	return (ret);
+	buffer[i - j] = '\0';
 }
 
+
+//make it work with 1 read size
+//if readsize is 1 and 
 char *get_next_line(int fd)
 {
-	static int line = 0;
-	char *buffer;
-	int startindex;
+	static char buffer[BUFFERSIZE +1];
+	size_t readbytes;
 	char *ret;
+	int start;
 	
-	buffer = malloc(BUFFERSIZE + 1);
-	if(buffer == NULL)
-		return (NULL);
 	buffer[BUFFERSIZE] = '\0';
-	startindex = get_startindex(fd, &buffer, line);
-	printf("-------------------------\n");
-	printf("%d line\n|%s|buffer\nstart at %d (%c)\n", line,buffer, startindex, buffer[startindex]);
-	printf("-------------------------\n");
-	ret = get_line(fd,&buffer,startindex);
-	free(buffer);
-	line ++;
-	
-	return (ret);
+	ret = malloc(1);
+	ret[0] = '\0';
+	readbytes = 1;
+	if(buffer[0] != '\n')
+		appendstr(&ret,buffer);
+	readbytes = read(fd, buffer, BUFFERSIZE);
+	while (readbytes > 0)
+	{
+		appendstr(&ret,buffer);
+		if(ret[get_strlen(ret)] == '\n' || ret == NULL)
+			break;
+		readbytes = read(fd, buffer, BUFFERSIZE);
+	}
+	resetbuffer(buffer);
+	printf("ret |%s|\n\n",ret);
+	return ret;
 }
-
 char *strdup(char *str)
 {
 	char * ret;
@@ -157,34 +122,16 @@ char *strdup(char *str)
 	ret[i] = str[i];
 	return ret;
 }
-#include <fcntl.h>
+
 int main()
 {
-	/*
-	char *str1;
-	char *str2;
-	char *str3;
-	
-	str1 = strdup("hello");
-	str2 = strdup(" i am working");
-	str3 = strdup("not this is showing\nthis is not");
-
-	appendstr(0,&str1, str2);
-	printf("%s\n", str1);
-	appendstr(3,&str1, str3);
-	printf("%s\n", str1);
-	free(str1);
-	free(str2);
-	free(str3);
-	*/
-
 	int fd =  open("test.txt",O_RDONLY);
 	char *str = get_next_line(fd);
-	printf("%s\n",str);
 	free(str);
 	str = get_next_line(fd);
-	printf("%s\n",str);
 	free(str);
-	close(fd);
-	
+	str = get_next_line(fd);
+	free(str);
+	str = get_next_line(fd);
+	free(str);
 }
