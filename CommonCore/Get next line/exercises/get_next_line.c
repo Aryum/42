@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:55:11 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/08 16:09:28 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:23:48 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t get_strlen(char *str)
 	return (i);
 }
 
-void	appendstr(char **last, char *buffer)
+int	appendstr(char **last, char *buffer)
 {
 	size_t	i;
 	size_t	h;
@@ -41,7 +41,7 @@ void	appendstr(char **last, char *buffer)
 	total_len = get_strlen(*last) + h + (buffer[h] == '\n');
 	retval = malloc(total_len + 1);
 	if (retval == NULL)
-		return ;
+		return (1);
 	while ((*last) != NULL && (*last)[i] != '\0')
 	{
 		retval[i] = (*last)[i];
@@ -55,7 +55,7 @@ void	appendstr(char **last, char *buffer)
 	}
 	retval[h + i] = '\0';
 	free(*last);
-	*last = retval;
+	return (*last = retval, retval[h + i - 1] == '\n');
 }
 
 void resetbuffer(char *buffer)
@@ -89,7 +89,6 @@ char *get_next_line(int fd)
 	buffer[BUFFERSIZE] = '\0';
 	ret = malloc(1);
 	ret[0] = '\0';
-	readbytes = 1;
 	if(buffer[0] != '\n')
 		appendstr(&ret,buffer);
 	readbytes = read(fd, buffer, BUFFERSIZE);
