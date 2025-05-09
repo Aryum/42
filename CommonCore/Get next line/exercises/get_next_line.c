@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 10:41:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/09 10:44:46 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 11:36:59 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	appendstr(char **last, char *buffer)
 	return (*last = retval, retval[h + i - 1] == '\n');
 }
 
-void resetbuffer(char *buffer)
+void resetbuffer(char *buffer, size_t readbytes)
 {
 	int i;
 	int j;
@@ -72,30 +72,39 @@ void resetbuffer(char *buffer)
 			buffer[i - j] = buffer[i];
 		i++;
 	}
+	if(j == 0)
+		buffer[0] = '\0';
 	buffer[i - j] = '\0';
 }
 
-
+void readfile(int fd,char *buffer,size_t *readbytes)
+{
+	*readbytes = read(fd, buffer, BUFFERSIZE); 
+	if(*readbytes < BUFFERSIZE)
+		buffer[(*readbytes)] = '\0';
+}
 //make it work with 1 read size
 //if readsize is 1 and 
 char *get_next_line(int fd)
 {
 	static char buffer[BUFFERSIZE +1];
-	size_t readbytes;
-	char *ret;
+	char 	*ret;
+	size_t	readbytes;
 	
 	ret = malloc(1);
 	ret[0] = '\0';
 	if(buffer[0] != '\n')
 		appendstr(&ret,buffer);
-	readbytes = read(fd, buffer, BUFFERSIZE);
+	readfile(fd, buffer,&readbytes);
 	while (readbytes > 0)
 	{
 		if(appendstr(&ret,buffer))
 			break;
-		readbytes = read(fd, buffer, BUFFERSIZE);
+		readfile(fd, buffer,&readbytes);
 	}
-	resetbuffer(buffer);
+	resetbuffer(buffer,readbytes);
+	if(ret[0] == '\0')
+		return (free(ret), NULL);
 	return ret;
 }
 char *strdup(char *str)
@@ -120,7 +129,8 @@ void print(int fd)
 {
 	char *str = get_next_line(fd);
 	printf("ret |%s|\n\n",str);
-	free(str);
+	if(str != NULL)
+		free(str);
 }
 int main()
 {
