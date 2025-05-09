@@ -4,5 +4,10 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"fcntl.h": "c",
+			"stdlib.h": "c"
+		}
+	}
 }
