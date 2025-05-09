@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 12:07:14 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/09 12:13:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:48:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static size_t h_strlen(char *str)
 {
@@ -33,8 +33,8 @@ int	h_appendstr(char **last, char *buffer)
 	char	*retval;
 
 	i = 0;
-	h = get_strlen(buffer);
-	total_len = get_strlen(*last) + h + (buffer[h] == '\n');
+	h = h_strlen(buffer);
+	total_len = h_strlen(*last) + h + (buffer[h] == '\n');
 	retval = malloc(total_len + 1);
 	if (retval == NULL)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:52:26 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/09 14:26:58 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:47:17 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 int	h_appendstr(char **last, char *buffer);
 
-int	h_appendstr(char **last, char *buffer);
+void h_readfile(int fd,char *buffer,size_t *readbytes);
 
 void h_resetbuffer(char *buffer, size_t readbytes);
 
