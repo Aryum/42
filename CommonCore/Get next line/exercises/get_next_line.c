@@ -5,17 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 13:55:11 by ricsanto          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/09 10:39:04 by ricsanto         ###   ########.fr       */
-=======
-/*   Updated: 2025/05/09 09:02:59 by ricsanto         ###   ########.fr       */
->>>>>>> 879decd862fddde2fa8e1f781f97c829a1cc2fa2
+/*   Created: 2025/05/09 10:41:02 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/09 10:44:46 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 #include <stdio.h>
 #include <fcntl.h>
@@ -88,23 +83,19 @@ char *get_next_line(int fd)
 	static char buffer[BUFFERSIZE +1];
 	size_t readbytes;
 	char *ret;
-	int start;
 	
-	buffer[BUFFERSIZE] = '\0';
 	ret = malloc(1);
 	ret[0] = '\0';
-	if(buffer[0] != '\n' && appendstr(&ret,buffer))
-		ret;
+	if(buffer[0] != '\n')
+		appendstr(&ret,buffer);
 	readbytes = read(fd, buffer, BUFFERSIZE);
 	while (readbytes > 0)
 	{
-		appendstr(&ret,buffer);
-		if(ret[get_strlen(ret)] == '\n' || ret == NULL)
+		if(appendstr(&ret,buffer))
 			break;
 		readbytes = read(fd, buffer, BUFFERSIZE);
 	}
 	resetbuffer(buffer);
-	printf("ret |%s|\n\n",ret);
 	return ret;
 }
 char *strdup(char *str)
@@ -125,38 +116,22 @@ char *strdup(char *str)
 	ret[i] = str[i];
 	return ret;
 }
-
+void print(int fd)
+{
+	char *str = get_next_line(fd);
+	printf("ret |%s|\n\n",str);
+	free(str);
+}
 int main()
 {
-	/*
 	int fd =  open("test.txt",O_RDONLY);
-	char *str = get_next_line(fd);
-	free(str);
-	str = get_next_line(fd);
-	free(str);
-	str = get_next_line(fd);
-	free(str);
-	str = get_next_line(fd);
-	free(str);
-<<<<<<< HEAD
-	str = get_next_line(fd);
-	free(str);
-	str = get_next_line(fd);
-	free(str);
-	str = get_next_line(fd);
-	free(str);
-	close(fd);
-=======
-	*/
+	print( fd);
+	print( fd);
+	print( fd);
+	print( fd);
+	print( fd);
+	print( fd);
+	print( fd);
 
-	static char test[BUFFERSIZE+1];
-	test[BUFFERSIZE] = '\0';
-	
-	int i = 0;
-	while(i < BUFFERSIZE)
-	{
-		printf("is null terminated? %s", test[i] == '\n')
-		if();
-	}
->>>>>>> 879decd862fddde2fa8e1f781f97c829a1cc2fa2
+
 }
