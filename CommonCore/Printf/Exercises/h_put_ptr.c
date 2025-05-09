@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:07:54 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/05 13:05:02 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 08:45:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	h_put_ptr(void *ptr, int *counter)
 {
 	if (ptr == NULL)
-		h_put_str("(nil)",counter);
+		h_put_str("(nil)", counter);
 	else
 	{
 		h_put_str("0x", counter);

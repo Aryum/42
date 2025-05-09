@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:15:01 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/04 13:04:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 08:47:59 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	h_put_char(int c, int *counter)
 {
-	if(*counter != -1)
+	if (*counter != -1)
 		(*counter) += 1;
 	write(1, &c, 1);
 }

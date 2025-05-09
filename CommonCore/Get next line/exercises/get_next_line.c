@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:55:11 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/08 16:23:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 09:02:59 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ char *get_next_line(int fd)
 	buffer[BUFFERSIZE] = '\0';
 	ret = malloc(1);
 	ret[0] = '\0';
-	if(buffer[0] != '\n')
-		appendstr(&ret,buffer);
+	if(buffer[0] != '\n' && appendstr(&ret,buffer))
+		ret;
 	readbytes = read(fd, buffer, BUFFERSIZE);
 	while (readbytes > 0)
 	{
@@ -124,6 +124,7 @@ char *strdup(char *str)
 
 int main()
 {
+	/*
 	int fd =  open("test.txt",O_RDONLY);
 	char *str = get_next_line(fd);
 	free(str);
@@ -133,4 +134,15 @@ int main()
 	free(str);
 	str = get_next_line(fd);
 	free(str);
+	*/
+
+	static char test[BUFFERSIZE+1];
+	test[BUFFERSIZE] = '\0';
+	
+	int i = 0;
+	while(i < BUFFERSIZE)
+	{
+		printf("is null terminated? %s", test[i] == '\n')
+		if();
+	}
 }

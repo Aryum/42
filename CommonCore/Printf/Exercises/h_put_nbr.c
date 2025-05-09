@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:40:28 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/04 13:04:44 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 08:46:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void h_put_int(int n, int *counter)
+void	h_put_int(int n, int *counter)
 {
-	int		correction;
+	int	correction;
 
 	correction = 0;
 	if (n < 0)
@@ -29,7 +29,7 @@ void h_put_int(int n, int *counter)
 	h_put_char(n % 10 + '0' + correction, counter);
 }
 
-void h_put_uint(unsigned int i, int *counter)
+void	h_put_uint(unsigned int i, int *counter)
 {
 	if (i > 9)
 		h_put_uint(i / 10, counter);
