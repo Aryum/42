@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 10:41:02 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/09 11:36:59 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/05/09 12:07:14 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/09 12:13:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include <stdio.h>
-#include <fcntl.h>
-
-size_t get_strlen(char *str)
+static size_t h_strlen(char *str)
 {
 	size_t i;
 
@@ -28,7 +25,7 @@ size_t get_strlen(char *str)
 	return (i);
 }
 
-int	appendstr(char **last, char *buffer)
+int	h_appendstr(char **last, char *buffer)
 {
 	size_t	i;
 	size_t	h;
@@ -57,7 +54,7 @@ int	appendstr(char **last, char *buffer)
 	return (*last = retval, retval[h + i - 1] == '\n');
 }
 
-void resetbuffer(char *buffer, size_t readbytes)
+void h_resetbuffer(char *buffer, size_t readbytes)
 {
 	int i;
 	int j;
@@ -77,71 +74,9 @@ void resetbuffer(char *buffer, size_t readbytes)
 	buffer[i - j] = '\0';
 }
 
-void readfile(int fd,char *buffer,size_t *readbytes)
+void h_readfile(int fd,char *buffer,size_t *readbytes)
 {
 	*readbytes = read(fd, buffer, BUFFERSIZE); 
 	if(*readbytes < BUFFERSIZE)
 		buffer[(*readbytes)] = '\0';
-}
-//make it work with 1 read size
-//if readsize is 1 and 
-char *get_next_line(int fd)
-{
-	static char buffer[BUFFERSIZE +1];
-	char 	*ret;
-	size_t	readbytes;
-	
-	ret = malloc(1);
-	ret[0] = '\0';
-	if(buffer[0] != '\n')
-		appendstr(&ret,buffer);
-	readfile(fd, buffer,&readbytes);
-	while (readbytes > 0)
-	{
-		if(appendstr(&ret,buffer))
-			break;
-		readfile(fd, buffer,&readbytes);
-	}
-	resetbuffer(buffer,readbytes);
-	if(ret[0] == '\0')
-		return (free(ret), NULL);
-	return ret;
-}
-char *strdup(char *str)
-{
-	char * ret;
-	int i;
-
-	i= 0;
-	while(str[i] != '\0')
-		i++;
-	ret = malloc(i + 1);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		ret[i] = str[i];
-		i++;
-	}
-	ret[i] = str[i];
-	return ret;
-}
-void print(int fd)
-{
-	char *str = get_next_line(fd);
-	printf("ret |%s|\n\n",str);
-	if(str != NULL)
-		free(str);
-}
-int main()
-{
-	int fd =  open("test.txt",O_RDONLY);
-	print( fd);
-	print( fd);
-	print( fd);
-	print( fd);
-	print( fd);
-	print( fd);
-	print( fd);
-
-
 }

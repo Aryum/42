@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:52:26 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/09 11:28:27 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/09 12:12:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+
+int	h_appendstr(char **last, char *buffer);
 
 
 #endif
