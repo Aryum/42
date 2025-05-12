@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 12:07:14 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/09 12:13:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/12 09:45:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	h_appendstr(char **last, char *buffer)
 	char	*retval;
 
 	i = 0;
-	h = get_strlen(buffer);
-	total_len = get_strlen(*last) + h + (buffer[h] == '\n');
+	h = h_strlen(buffer);
+	total_len = h_strlen(*last) + h + (buffer[h] == '\n');
 	retval = malloc(total_len + 1);
 	if (retval == NULL)
-		return (1);
+		return (free(*last), 1);
 	while ((*last) != NULL && (*last)[i] != '\0')
 	{
 		retval[i] = (*last)[i];
@@ -54,7 +54,7 @@ int	h_appendstr(char **last, char *buffer)
 	return (*last = retval, retval[h + i - 1] == '\n');
 }
 
-void h_resetbuffer(char *buffer, size_t readbytes)
+void h_resetbuffer(char *buffer)
 {
 	int i;
 	int j;
@@ -76,7 +76,10 @@ void h_resetbuffer(char *buffer, size_t readbytes)
 
 void h_readfile(int fd,char *buffer,size_t *readbytes)
 {
-	*readbytes = read(fd, buffer, BUFFERSIZE); 
-	if(*readbytes < BUFFERSIZE)
+	*readbytes = read(fd, buffer, BUFFER_SIZE); 
+	if(*readbytes < BUFFER_SIZE)
 		buffer[(*readbytes)] = '\0';
 }
+
+
+
