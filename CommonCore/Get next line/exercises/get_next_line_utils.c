@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 12:07:14 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/09 14:48:04 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/05/12 17:13:09 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/05/12 19:09:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
+#include "get_next_line.h"
+#include <stdio.h>
 static size_t h_strlen(char *str)
 {
 	size_t i;
@@ -37,7 +37,7 @@ int	h_appendstr(char **last, char *buffer)
 	total_len = h_strlen(*last) + h + (buffer[h] == '\n');
 	retval = malloc(total_len + 1);
 	if (retval == NULL)
-		return (1);
+		return (free(*last), 1);
 	while ((*last) != NULL && (*last)[i] != '\0')
 	{
 		retval[i] = (*last)[i];
@@ -51,10 +51,10 @@ int	h_appendstr(char **last, char *buffer)
 	}
 	retval[h + i] = '\0';
 	free(*last);
-	return (*last = retval, retval[h + i - 1] == '\n');
+	return (*last = retval, total_len != 0 && retval[h + i - 1] == '\n');
 }
 
-void h_resetbuffer(char *buffer, size_t readbytes)
+void h_resetbuffer(char *buffer)
 {
 	int i;
 	int j;
@@ -74,9 +74,9 @@ void h_resetbuffer(char *buffer, size_t readbytes)
 	buffer[i - j] = '\0';
 }
 
-void h_readfile(int fd,char *buffer,size_t *readbytes)
+ssize_t	h_readfile(int fd, char *buffer,ssize_t *readbytes)
 {
-	*readbytes = read(fd, buffer, BUFFERSIZE); 
-	if(*readbytes < BUFFERSIZE)
-		buffer[(*readbytes)] = '\0';
+	*readbytes = read(fd, buffer, BUFFER_SIZE);
+	buffer[*readbytes] = '\0';
+	return *readbytes;
 }
