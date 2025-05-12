@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:55:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/12 20:39:41 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:40:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[FOPEN_MAX][BUFFER_SIZE + 1];
 	ssize_t		readbytes;
 	char		*ret;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX || read(fd, 0, 0) < 0)
 		return (NULL);
 	ret = malloc(1);
 	ret[0] = '\0';
-	if (!h_appendstr(&ret, buffer))
+	if (!h_appendstr(&ret, buffer[fd]))
 	{
-		while (h_readfile(fd, buffer, &readbytes) > 0)
+		while (h_readfile(fd, buffer[fd], &readbytes) > 0)
 		{
-			if (h_appendstr(&ret, buffer) || readbytes < BUFFER_SIZE)
+			if (h_appendstr(&ret, buffer[fd]) || readbytes < BUFFER_SIZE)
 				break ;
 		}
 	}
 	if (ret[0] == '\0')
 		return (free(ret), NULL);
 	else
-		return (h_resetbuffer(buffer), ret);
+		return (h_resetbuffer(buffer[fd]), ret);
 }

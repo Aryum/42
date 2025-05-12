@@ -11,7 +11,7 @@ void print(int fd)
 
 int main()
 {
-	int fd =  open("test copy.txt",O_RDONLY);
+	int fd =  open("read_error.txt",O_RDONLY);
 
 	char *str = get_next_line(fd);
 	while(str != NULL)
