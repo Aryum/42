@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:55:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 10:25:52 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:17:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,25 @@ char	*get_next_line(int fd)
 	ssize_t		readbytes;
 	char		*ret;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || fd >= FOPEN_MAX || read(fd, 0, 0) < 0)
-		return (NULL);
 	ret = malloc(1);
+	if (fd < 0 || fd >= FOPEN_MAX || BUFFER_SIZE < 1 || ret == NULL)
+		return (h_updateret(&ret, NULL));
 	ret[0] = '\0';
+	readbytes = 0;
 	if (!h_appendbuffer(&ret, buffer[fd]))
 	{
-		while (h_readfile(fd, buffer[fd], &readbytes) > 0)
+		readbytes = read(fd, buffer[fd], BUFFER_SIZE);
+		buffer[fd][readbytes] = '\0';
+		while (readbytes > 0)
 		{
 			if (h_appendbuffer(&ret, buffer[fd]) || readbytes < BUFFER_SIZE)
 				break ;
+			readbytes = read(fd, buffer[fd], BUFFER_SIZE);
+			buffer[fd][readbytes] = '\0';
 		}
 	}
-	if (ret[0] == '\0')
-		return (free(ret), NULL);
+	if (ret == NULL || ret[0] == '\0' || readbytes < 0)
+		return (h_updateret(&ret, NULL));
 	else
 		return (h_resetbuffer(buffer[fd]), ret);
 }

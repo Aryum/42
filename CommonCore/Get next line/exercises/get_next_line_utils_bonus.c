@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:13:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 09:31:18 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:17:36 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static ssize_t	h_strlen(char *str)
 {
@@ -37,8 +37,8 @@ int	h_appendbuffer(char **last, char *buffer)
 	total_len = h_strlen(*last) + h + (buffer[h] == '\n');
 	retval = malloc(total_len + 1);
 	if (retval == NULL)
-		return (free(*last), 1);
-	while ((*last) != NULL && (*last)[i] != '\0')
+		return (h_updateret(last, NULL), 1);
+	while ((*last)[i] != '\0')
 	{
 		retval[i] = (*last)[i];
 		i++;
@@ -50,8 +50,8 @@ int	h_appendbuffer(char **last, char *buffer)
 		h++;
 	}
 	retval[h + i] = '\0';
-	free(*last);
-	return (*last = retval, total_len != 0 && retval[h + i - 1] == '\n');
+	h_updateret(last, retval);
+	return (total_len != 0 && retval[h + i - 1] == '\n');
 }
 
 void	h_resetbuffer(char *buffer)
@@ -74,9 +74,13 @@ void	h_resetbuffer(char *buffer)
 	buffer[i - j] = '\0';
 }
 
-ssize_t	h_readfile(int fd, char *buffer, ssize_t *readbytes)
+char	*h_updateret(char **last, char *updated)
 {
-	*readbytes = read(fd, buffer, BUFFER_SIZE);
-	buffer[*readbytes] = '\0';
-	return (*readbytes);
+	if (last != NULL && *last != NULL)
+	{
+		free(*last);
+		*last = updated;
+		return (*last);
+	}
+	return (NULL);
 }

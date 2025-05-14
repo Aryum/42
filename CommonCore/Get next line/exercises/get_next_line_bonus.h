@@ -6,12 +6,12 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:58:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 09:28:32 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:18:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -27,6 +27,6 @@ char	*get_next_line(int fd);
 
 void	h_resetbuffer(char *buffer);
 
-ssize_t	h_readfile(int fd, char *buffer, ssize_t *readbytes);
+char	*h_updateret(char **last, char *updated);
 
 #endif
