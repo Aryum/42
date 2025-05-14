@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:13:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/12 20:32:24 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/14 09:32:14 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static size_t	h_strlen(char *str)
 	return (i);
 }
 
-int	h_appendstr(char **last, char *buffer)
+int	h_appendbuffer(char **last, char *buffer)
 {
 	size_t	i;
 	size_t	h;
@@ -56,8 +56,8 @@ int	h_appendstr(char **last, char *buffer)
 
 void	h_resetbuffer(char *buffer)
 {
-	int	i;
-	int	j;
+	ssize_t	i;
+	ssize_t	j;
 
 	i = 0;
 	j = 0;

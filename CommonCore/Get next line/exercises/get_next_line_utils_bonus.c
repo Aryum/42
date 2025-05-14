@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:13:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/12 20:40:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/14 09:31:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static size_t	h_strlen(char *str)
+static ssize_t	h_strlen(char *str)
 {
-	size_t	i;
+	ssize_t	i;
 
 	i = 0;
 	if (str != NULL)
@@ -25,11 +25,11 @@ static size_t	h_strlen(char *str)
 	return (i);
 }
 
-int	h_appendstr(char **last, char *buffer)
+int	h_appendbuffer(char **last, char *buffer)
 {
-	size_t	i;
-	size_t	h;
-	size_t	total_len;
+	ssize_t	i;
+	ssize_t	h;
+	ssize_t	total_len;
 	char	*retval;
 
 	i = 0;
@@ -56,8 +56,8 @@ int	h_appendstr(char **last, char *buffer)
 
 void	h_resetbuffer(char *buffer)
 {
-	int	i;
-	int	j;
+	ssize_t	i;
+	ssize_t	j;
 
 	i = 0;
 	j = 0;

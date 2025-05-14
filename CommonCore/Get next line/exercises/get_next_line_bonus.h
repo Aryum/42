@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:58:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 08:43:26 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/14 09:28:32 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-int		h_appendstr(char **last, char *buffer);
+int		h_appendbuffer(char **last, char *buffer);
 
 char	*get_next_line(int fd);
 
