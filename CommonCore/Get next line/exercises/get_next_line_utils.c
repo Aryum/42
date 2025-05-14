@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:13:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 09:32:14 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/14 10:30:45 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	h_strlen(char *str)
+static ssize_t	h_strlen(char *str)
 {
-	size_t	i;
+	ssize_t	i;
 
 	i = 0;
 	if (str != NULL)
@@ -27,9 +27,9 @@ static size_t	h_strlen(char *str)
 
 int	h_appendbuffer(char **last, char *buffer)
 {
-	size_t	i;
-	size_t	h;
-	size_t	total_len;
+	ssize_t	i;
+	ssize_t	h;
+	ssize_t	total_len;
 	char	*retval;
 
 	i = 0;
