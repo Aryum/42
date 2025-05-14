@@ -17,13 +17,15 @@ void print(int fd, char **str)
 int main()
 {
 	int fd1 =  open("main.c",O_RDONLY);
-	int fd2 =  open("get_next_line_utils.c",O_RDONLY);
+	//int fd2 =  open("get_next_line_utils.c",O_RDONLY);
 
 	char *str1 = get_next_line(fd1);
-	char *str2 = get_next_line(fd2);
-	while(str1 != NULL || str2 != NULL)
+	//char *str2 = get_next_line(fd2);
+	while(str1 != NULL )//|| str2 != NULL
 	{
 		print(fd1,&str1);
-		print(fd2,&str2);	
+		//print(fd2,&str2);	
 	}
+	close(fd1);
+	//close(fd2);
 }
