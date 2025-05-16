@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:58:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 15:17:58 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/16 08:32:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		h_appendbuffer(char **last, char *buffer);
 
 char	*get_next_line(int fd);
 
-void	h_resetbuffer(char *buffer);
+void	h_resetbuffer(char *buffer, int failed);
 
 char	*h_updateret(char **last, char *updated);
 

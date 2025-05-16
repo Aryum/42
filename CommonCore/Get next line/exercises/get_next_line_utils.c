@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:13:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 15:17:42 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/16 08:29:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	h_appendbuffer(char **last, char *buffer)
 	return (total_len != 0 && retval[h + i - 1] == '\n');
 }
 
-void	h_resetbuffer(char *buffer)
+void	h_resetbuffer(char *buffer, int failed)
 {
 	ssize_t	i;
 	ssize_t	j;
 
 	i = 0;
 	j = 0;
-	while (buffer[i] != '\0')
+	while (buffer[i] != '\0' && !failed)
 	{
 		if (buffer[i] == '\n' && buffer[i + 1] != '\0' && j == 0)
 			j = i + 1;
@@ -69,7 +69,7 @@ void	h_resetbuffer(char *buffer)
 			buffer[i - j] = buffer[i];
 		i++;
 	}
-	if (j == 0)
+	if (j == 0 || failed)
 		buffer[0] = '\0';
 	buffer[i - j] = '\0';
 }

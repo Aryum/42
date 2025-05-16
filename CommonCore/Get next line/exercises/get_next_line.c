@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:55:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/14 15:09:12 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/05/16 08:32:29 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_next_line(int fd)
 		}
 	}
 	if (ret == NULL || ret[0] == '\0' || readbytes < 0)
-		return (h_updateret(&ret, NULL));
+		return (h_resetbuffer(buffer, 1), h_updateret(&ret, NULL));
 	else
-		return (h_resetbuffer(buffer), ret);
+		return (h_resetbuffer(buffer, 0), ret);
 }
