@@ -1,17 +1,23 @@
 #!/bin/bash
 arc=$(uname -a)
+printf "#Architecture: $arc\n"
 
-cpu_P=$(grep "physical id" /proc/cpuinfo | uniq | wc -l)
+cpu_P=$(grep "^physical id" /proc/cpuinfo | uniq | wc -l)
+printf "#CPU physical: $cpu_P\n"
+
 cpu_V=$(grep "^processor" /proc/cpuinfo | wc -l)
+printf "#vCPU: $cpu_V\n"
 
 ram_Free=$(free -m | awk '$1 == "Mem:" {print $2}')
 ram_Used=$(free -m | awk '$1 == "Mem:" {print $3}')
 ram_Percent=$(printf("%.2f"), ($(ram_Used)/$(ram_Free))*100})
+printf "#Memory Usage: $ram_Used/$ram_Free%s (%.2f%%)\n" "MB" "$ram_Percent"
 
-disk_Free=$(df -h --total | grep "total" | awk {print $4})
-disk_Used=$(df -h --total | grep "total" | awk {print $3})
-disk_Percent=$(printf("%.2f"), ($(disk_Used)/$(disk_Free))*100})
 
+disk_Total=$(df -h --total | grep "total" | awk {print $2} | cut -d G -f1)
+disk_Used=$(df -h --total | grep "total" | awk {print $3} | cut -d G -f1)
+disk_Percent=$(printf("%.2f"), ($(disk_Used)/$(disk_Total))*100})
+printf "#Disk Usage: $disk_Used/$disk_Total%s (%.2f%%)\n" "Gb" "$disk_Percent"
 
 CHECK THIS AND UPDATE 
 https://github.com/Chaudbrush/Born2beRoot/blob/main/monitoring.sh 
