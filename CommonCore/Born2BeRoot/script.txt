@@ -8,14 +8,15 @@ printf "#CPU physical: $cpu_P\n"
 cpu_V=$(grep "^processor" /proc/cpuinfo | wc -l)
 printf "#vCPU: $cpu_V\n"
 
+
 ram_Free=$(free -m | awk '$1 == "Mem:" {print $2}')
 ram_Used=$(free -m | awk '$1 == "Mem:" {print $3}')
 ram_Percent=$(((ram_Used/ram_Free)*100))
 printf "#Memory Usage: $ram_Used/$ram_Free%s (%.2f%%)\n" "MB" "$ram_Percent"
 
-
-disk_Total=$(df -h --total | grep "total" | awk END'{print$2}' | cut -d G -f1)
-disk_Used=$(df -h --total | grep "total" | awk END'{print$3}' | cut -d G -f1)
+#check whats the block size that should be used 
+disk_Total=$(df -hBG --total | grep "total" | awk END'{print$2}' | cut -d G -f1)
+disk_Used=$(df -hBG --total | grep "total" | awk END'{print$3}' | cut -d G -f1)
 disk_Percent=$(((disk_Used/disk_Total)*100))
 printf "#Disk Usage: $disk_Used/$disk_Total%s (%.2f%%)\n" "Gb" "$disk_Percent"
 
