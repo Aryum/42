@@ -10,14 +10,14 @@ printf "#vCPU: $cpu_V\n"
 
 ram_Free=$(free -m | awk '$1 == "Mem:" {print $2}')
 ram_Used=$(free -m | awk '$1 == "Mem:" {print $3}')
-ram_Percent=$(printf("%.2f"), ($(ram_Used)/$(ram_Free))*100})
+ram_Percent=$(((ram_Used/ram_Free)*100))
 printf "#Memory Usage: $ram_Used/$ram_Free%s (%.2f%%)\n" "MB" "$ram_Percent"
 
 
-disk_Total=$(df -h --total | grep "total" | awk {print $2} | cut -d G -f1)
-disk_Used=$(df -h --total | grep "total" | awk {print $3} | cut -d G -f1)
-disk_Percent=$(printf("%.2f"), ($(disk_Used)/$(disk_Total))*100})
+disk_Total=$(df -h --total | grep "total" | awk END'{print$2}' | cut -d G -f1)
+disk_Used=$(df -h --total | grep "total" | awk END'{print$3}' | cut -d G -f1)
+disk_Percent=$(((disk_Used/disk_Total)*100))
 printf "#Disk Usage: $disk_Used/$disk_Total%s (%.2f%%)\n" "Gb" "$disk_Percent"
 
-CHECK THIS AND UPDATE 
-https://github.com/Chaudbrush/Born2beRoot/blob/main/monitoring.sh 
+#CHECK THIS AND UPDATE 
+#https://github.com/Chaudbrush/Born2beRoot/blob/main/monitoring.sh 
