@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	ssize_t		readbytes;
 	char		*ret;
 
-	ret = malloc(1);
+	ret = malloc(1); 
 	if (fd < 0 || BUFFER_SIZE < 1 || ret == NULL)
 		return (h_updateret(&ret, NULL));
 	ret[0] = '\0';
