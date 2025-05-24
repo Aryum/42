@@ -1,24 +1,95 @@
 #!/bin/bash
+
+#checks system info -a for all
 arc=$(uname -a)
 printf "#Architecture: $arc\n"
 
+#gets physical processor, since it has multiple virtual cpus it will list the physical processor
+#multiple times, thus we used the uniq to get the lines that differs and count them
 cpu_P=$(grep "^physical id" /proc/cpuinfo | uniq | wc -l)
 printf "#CPU physical: $cpu_P\n"
 
+#gets the virtual cpus and counts how many of them there are
 cpu_V=$(grep "^processor" /proc/cpuinfo | wc -l)
 printf "#vCPU: $cpu_V\n"
 
-
+#uses comand free to check free memory 
+#and then uses awk to format string we set the 1st variable to "Mem:" and then we know that s2 and s3
+#will be the things that appear after it (new variables are separated through newlines)
 ram_Free=$(free -m | awk '$1 == "Mem:" {print $2}')
 ram_Used=$(free -m | awk '$1 == "Mem:" {print $3}')
-ram_Percent=$(((ram_Used/ram_Free)*100))
-printf "#Memory Usage: $ram_Used/$ram_Free%s (%.2f%%)\n" "MB" "$ram_Percent"
+ram_Percent=$(free -m | grep Mem | awk '{print $3/$2 * 100}')
+printf "#Memory Usage: $ram_Used/$ram_Free MB (%.2f%%)\n" "$ram_Percent"
 
-#check whats the block size that should be used 
-disk_Total=$(df -hBG --total | grep "total" | awk END'{print$2}' | cut -d G -f1)
-disk_Used=$(df -hBG --total | grep "total" | awk END'{print$3}' | cut -d G -f1)
-disk_Percent=$(((disk_Used/disk_Total)*100))
-printf "#Disk Usage: $disk_Used/$disk_Total%s (%.2f%%)\n" "Gb" "$disk_Percent"
+#uses df to report file system disk space usage
+#-h to be human redable
+#-BG to make the block size be read in Gigabytes
+#tr -d G to truncate G
+disk_Total=$(df -hBG --total | grep "total" | awk '{print$2}' | tr -d G)
+disk_Used=$(df -hBG --total | grep "total" | awk '{print$3}' | tr -d G)
+disk_Percent=$(df -hBG --total | grep "total" | awk '{print $3/$2 * 100}')
+printf "#Disk Usage: $disk_Used/$disk_Total Gb (%.2f%%)\n" "$disk_Percent"
+
+#for the cpu I installed a package sysstat that has the command mpstat
+#then tail that gets the last n line for the output
+#and then $NF to get the last variable that you get through mpstat (idle %) and subtract by 100
+cpu_load=$(mpstat | tail -n 1 | awk '{print 100-$NF}')
+printf "#CPU load: %.1f%%\n" "$cpu_load"
+
+#we use who to get the last login with the flag -b to get last boot
+boot=$(who -b | awk '{print $3" "$4}')
+printf "#Last boot: $boot\n"
+
+#checks if LVM is being used by checking if there a partition using it
+#-eq is just == in bash
+lvm=$(lsblk | grep "lvm" | wc -l)
+if [ $lvm -eq 0 ]
+then
+        printf "#LVM use: no\n"
+else
+        printf "#LVM use: yes\n"
+fi
+
+tcp_Count=$(ss | grep "tcp" | wc -l)
+printf "#Connections TCP: $tcp_Count ESTABLISHED\n"
+
+usr_Count=$(users | wc -w)
+printf "#User log: $usr\n"
+
+#gets the ip adress of the machine
+ip=$(hostname -i')
+mac_Adress=$(ip address | grep "ether" | awk '{print $2}')
+printf "#Network: IP $ip ($mac_Adress)\n"
+
+#goes to the sudo logs setuped before and gets how many lines there are with the word command 
+sudo=$(cat /var/log/sudo/sudo.log | grep "COMMAND" | wc -l)
+printf "#Sudo: $sudo\n"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #CHECK THIS AND UPDATE 
 #https://github.com/Chaudbrush/Born2beRoot/blob/main/monitoring.sh 
