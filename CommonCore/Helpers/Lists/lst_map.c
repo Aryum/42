@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   lst_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 11:39:01 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/18 19:27:08 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:16:16 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lst.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*lst_map(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*ret;
 	t_list	*cur_node;
@@ -24,14 +24,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst != NULL)
 	{
 		cur_content = f((*lst).content);
-		cur_node = ft_lstnew(cur_content);
+		cur_node = lst_new(cur_content);
 		if (cur_node == NULL)
 		{
 			del(cur_content);
-			ft_lstclear(&ret, del);
+			lst_clear(&ret, del);
 			break ;
 		}
-		ft_lstadd_back(&ret, cur_node);
+		lst_add_back(&ret, cur_node);
 		lst = ((*lst).next);
 	}
 	return (ret);

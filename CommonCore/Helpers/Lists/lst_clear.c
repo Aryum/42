@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   lst_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:20:07 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/25 01:56:38 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 10:10:55 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/04 17:16:16 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lst.h"
 
-t_list	*ft_lstnew(void *content)
+static void	clear(t_list **current, void (*del)(void*))
 {
-	t_list	*ret;
+	if ((**current).next != NULL)
+		clear(&((**current).next), del);
+	lst_delone(*current, del);
+}
 
-	ret = malloc(sizeof(t_list));
-	if (ret != NULL)
+void	lst_clear(t_list **lst, void (*del)(void*))
+{
+	if (lst != NULL && *lst != NULL && del != NULL)
 	{
-		(*ret).content = content;
-		(*ret).next = NULL;
+		clear(lst, del);
+		*lst = NULL;
 	}
-	return (ret);
 }

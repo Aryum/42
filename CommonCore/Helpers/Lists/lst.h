@@ -6,13 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:33:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/04 16:36:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:16:16 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef LST_H
 # define LST_H
+
+# include <stdlib.h>
 
 typedef struct s_list
 {
@@ -21,20 +23,20 @@ typedef struct s_list
 	struct s_list	*last;
 }	t_list;
 
-t_list	*ft_lstnew(void *content);
+t_list	*lst_new(void *content);
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*lst_map(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-t_list	*ft_lstlast(t_list *lst);
+t_list	*lst_last(t_list *lst);
 
-void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	lst_iter(t_list *lst, void (*f)(void *));
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*));
+void	lst_delone(t_list *lst, void (*del)(void*));
 
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	lst_add_back(t_list **lst, t_list *new);
 
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	lst_add_front(t_list **lst, t_list *new);
 
-void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	lst_clear(t_list **lst, void (*del)(void*));
 
 #endif

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   lst_add_back.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 10:10:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/05/07 08:49:41 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/04 17:16:02 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lst.h"
 
-static void	clear(t_list **current, void (*del)(void*))
+void	lst_add_back(t_list **lst, t_list *new)
 {
-	if ((**current).next != NULL)
-		clear(&((**current).next), del);
-	ft_lstdelone(*current, del);
-}
-
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	if (lst != NULL && *lst != NULL && del != NULL)
+	if (lst == NULL || new == NULL)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
 	{
-		clear(lst, del);
-		*lst = NULL;
+		t_list *last = lst_last(*lst);
+		(*last).next = new;
+		(*new).last = last;
 	}
 }

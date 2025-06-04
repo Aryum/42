@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   lst_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/29 16:17:49 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 09:20:07 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/04 17:15:26 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lst.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_list	*lst_new(void *content)
 {
-	if (lst == NULL || new == NULL)
-		return ;
-	if (*lst == NULL)
-		*lst = new;
-	else
-		(*ft_lstlast(*lst)).next = new;
+	t_list	*ret;
+
+	ret = malloc(sizeof(t_list));
+	if (ret != NULL)
+	{
+		(*ret).content = content;
+		(*ret).next = NULL;
+	}
+	return (ret);
 }
