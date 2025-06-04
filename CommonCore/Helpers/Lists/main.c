@@ -23,7 +23,7 @@ char *createstr(char *c)
 }
 int main()
 {
-	t_list list = *lst_new("Hello");
+	t_list *list = lst_new("Hello");
 
 	lst_add_back(&list,lst_new("world"));
 

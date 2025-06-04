@@ -1,4 +1,4 @@
-NAME := lst_.a
+NAME := lst.a
 
 FLAGS := -Wall -Wextra -Werror
 
