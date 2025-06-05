@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 12:03:55 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/05 12:15:21 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	lst_add_back(t_list **lst, int nbr)
 {
 	t_list	*new_node;
 	t_list	*last_node;
+
 	if (lst == NULL)
 		return ;
 	new_node = lst_new(nbr);
