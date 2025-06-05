@@ -6,10 +6,9 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:33:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 11:41:44 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/05 12:18:29 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LST_H
 # define LST_H

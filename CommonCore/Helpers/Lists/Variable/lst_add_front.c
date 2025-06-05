@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_add_back.c                                     :+:      :+:    :+:   */
+/*   lst_add_front.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/04 17:16:02 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 09:30:39 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/05 12:14:58 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lst.h"
 
-void	lst_add_back(t_list **lst, t_list *new)
+void	lst_add_front(t_list **lst, int nbr)
 {
-	if (lst == NULL || new == NULL)
-		return ;
-	if (*lst == NULL)
-		*lst = new;
-	else
+	t_list	*new_node;
+
+	if (lst != NULL)
 	{
-		t_list *last = lst_last(*lst);
-		(*last).next = new;
-		(*new).last = last;
+		new_node = lst_new(nbr);
+		(*new_node).next = (*lst);
+		(**lst).last = new_node;
+		*lst = new_node;
 	}
 }

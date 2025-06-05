@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_add_back.c                                     :+:      :+:    :+:   */
+/*   lst_delone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 12:03:55 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 10:04:09 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/05 12:14:30 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lst.h"
 
-void	lst_add_back(t_list **lst, int nbr)
+void	lst_delone(t_list **start, t_list *node)
 {
-	t_list	*new_node;
-	t_list	*last_node;
-	if (lst == NULL)
-		return ;
-	new_node = lst_new(nbr);
-	if (*lst == NULL)
-		*lst = new_node;
-	else
+	t_list	*current;
+
+	if (start != NULL && *start != NULL && node != NULL)
 	{
-		last_node = lst_last(*lst);
-		(*last_node).next = new_node ;
-		(*new_node).last = last_node;
+		current = node;
+		if (*start == node)
+			*start = (**start).next;
+		if (current->last != NULL)
+			current->last->next = current->next;
+		else
+			node = current->next;
+		if (current->next != NULL)
+			current->next->last = current->last;
+		free (current);
 	}
 }
