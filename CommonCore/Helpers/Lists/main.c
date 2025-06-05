@@ -1,9 +1,9 @@
 #include "lst.h"
 #include <stdio.h>
 #include <stdlib.h>
-void print(char * c)
+void print(void * c)
 {
-	printf(c);
+	printf((char *)c);
 }
 
 char *createstr(char *c)
@@ -23,11 +23,26 @@ char *createstr(char *c)
 }
 int main()
 {
-	t_list *list = lst_new("Hello");
+	t_list *list = lst_new(createstr("Hello"));
+	t_list *working = lst_new(createstr("I am working "));
+	t_list *world = lst_new(createstr(" world"));
+	t_list *goobye = lst_new(createstr(" Goodbye"));
+	lst_add_front(&list,working);
+	lst_add_back(&list,world);
+	lst_add_back(&list,goobye);
 
-	lst_add_back(&list,lst_new("world"));
+	lst_iter(list,print);
 
-	lst_iter(&list,print);
+
+	printf("\n\n1st NEXT ONE\n\n");
+	lst_delone(&list,&world, free);
+	lst_iter(list,print);
+	printf("\n\n2nd NEXT ONE\n\n");
+	lst_delone(&list,&goobye, free);
+	lst_iter(list,print);
+	printf("\n\n3rd NEXT ONE\n\n");
+	lst_delone(&list,&working, free);
+	lst_iter(list,print);
 
 	lst_clear(&list, free);
 }
