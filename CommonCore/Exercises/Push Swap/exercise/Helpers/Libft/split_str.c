@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 static size_t	countwords(char const *s, char c)
 {
@@ -80,7 +80,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**split_str(char const *s, char c)
 {
 	char	**ret;
 	size_t	wordcount;
