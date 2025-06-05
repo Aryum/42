@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_number.c                                       :+:      :+:    :+:   */
+/*   try_add_number.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 11:57:11 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/05 12:44:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./Helpers/Lst/lst.h"
+#include "parser.h"
 
-int try_add_number(t_list *lst, int nbr)
+int try_add_number(t_list **lst, int nbr)
 {
-	while(lst != NULL)
+	t_list	*current;
+	
+	current = lst;
+	while(current != NULL)
 	{
-		if(*(int *)(lst->content) == nbr)
+		if(*(int *)(current->content) == nbr)
+		{
+			lst_clear(lst);
 			return (0);
-		lst = lst->next;
+		}
+		current = current->next;
 	}
-	lst_add_back(&lst,lst_new(&nbr));
+	lst_add_back(&current,lst_new(&nbr));
+	return (1);
 }
