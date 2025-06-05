@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_delone.c                                       :+:      :+:    :+:   */
+/*   lst_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 10:04:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 11:46:06 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 10:10:55 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/05 09:05:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lst.h"
 
-void	lst_delone(t_list **start, t_list *node, void (*del)(void*))
+static void	clear(t_list **current, void (*del)(void*))
 {
-	t_list *current;
-	if (start != NULL && *start != NULL && node != NULL && del != NULL)
-	{
-		current = node;
-		if(*start == node)
-			*start = (**start).next;
-		if (current->last != NULL)
-			current->last->next = current->next;
-		else
-			node = current->next;
-		if (current->next != NULL)
-			current->next->last = current->last;
-		del(current->content);
-		free (current);
-	}
+	if ((**current).next != NULL)
+		clear(&((**current).next), del);
+	del((**current).content);
+	free (*current);
 }
 
+void	lst_clear(t_list **lst, void (*del)(void*))
+{
+	if (lst != NULL && *lst != NULL && del != NULL)
+	{
+		clear(lst, del);
+		*lst = NULL;
+	}
+}

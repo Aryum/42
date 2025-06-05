@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_parser.c                                         :+:      :+:    :+:   */
+/*   parser_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:57:12 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/04 16:19:29 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/05 11:31:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int is_int(long i)
 {
 	return i >= -2147483648 && i <= 2147483647;
 }
-int	is_validnumber(char *c, long *nbr)
+
+int	get_number(char *c, long *nbr)
 {
 	int	i;
 	int	signal;

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_delone.c                                       :+:      :+:    :+:   */
+/*   lst_add_front.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 10:04:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 11:46:06 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 09:30:39 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/05 11:07:54 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lst.h"
 
-void	lst_delone(t_list **start, t_list *node, void (*del)(void*))
+void	lst_add_front(t_list **lst, t_list *new)
 {
-	t_list *current;
-	if (start != NULL && *start != NULL && node != NULL && del != NULL)
+	if (lst != NULL && new != NULL)
 	{
-		current = node;
-		if(*start == node)
-			*start = (**start).next;
-		if (current->last != NULL)
-			current->last->next = current->next;
-		else
-			node = current->next;
-		if (current->next != NULL)
-			current->next->last = current->last;
-		del(current->content);
-		free (current);
+		(*new).next = (*lst);
+		(**lst).last = new; 
+		*lst = new;
 	}
 }
-

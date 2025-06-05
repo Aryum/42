@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_delone.c                                       :+:      :+:    :+:   */
+/*   lst_iter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 10:04:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 11:46:06 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 11:35:16 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/04 17:15:47 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lst.h"
 
-void	lst_delone(t_list **start, t_list *node, void (*del)(void*))
+void	lst_iter(t_list *lst, void (*f)(void *))
 {
-	t_list *current;
-	if (start != NULL && *start != NULL && node != NULL && del != NULL)
+	if (lst != NULL && f != NULL)
 	{
-		current = node;
-		if(*start == node)
-			*start = (**start).next;
-		if (current->last != NULL)
-			current->last->next = current->next;
-		else
-			node = current->next;
-		if (current->next != NULL)
-			current->next->last = current->last;
-		del(current->content);
-		free (current);
+		while (lst != NULL)
+		{
+			f((*lst).content);
+			lst = (*lst).next;
+		}
 	}
 }
-
