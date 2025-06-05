@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   lb_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 14:03:55 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/04/17 19:33:52 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/05 14:18:15 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/05 14:18:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "lb.h"
 
 static size_t	countwords(char const *s, char c)
 {
@@ -64,7 +64,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 		while (s[i] == c)
 			i++;
 		wordlen = countwordlen((char *)&s[i], c);
-		ret[h] = ft_substr(&s[i], 0, wordlen);
+		ret[h] = lb_substr(&s[i], 0, wordlen);
 		if (ret[h] != NULL)
 		{
 			i += wordlen;
@@ -80,7 +80,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 	return (1);
 }
 
-char	**split_str(char const *s, char c)
+char	**lb_split(char const *s, char c)
 {
 	char	**ret;
 	size_t	wordcount;
@@ -88,7 +88,7 @@ char	**split_str(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	wordcount = countwords(s, c);
-	ret = ft_calloc(wordcount + 1, sizeof(char *));
+	ret = lb_calloc(wordcount + 1, sizeof(char *));
 	if (ret != NULL)
 	{
 		if (!fill(s, c, ret, wordcount))
