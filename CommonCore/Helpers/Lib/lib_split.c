@@ -60,7 +60,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 		}
 		else
 		{
-			freearr(ret, h);
+			lib_split_clean(ret, h);
 			return (0);
 		}
 	}
