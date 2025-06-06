@@ -73,7 +73,7 @@ void	lib_split_clean(char **arr, size_t lastindex)
 	size_t	i;
 
 	i = 0;
-	while (i <= lastindex)
+	while (i <= lastindex && arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;

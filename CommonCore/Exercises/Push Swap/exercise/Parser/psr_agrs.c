@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:35:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/06 10:30:16 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/06 11:25:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	psr_agrs(t_list **lst, int argc, char **argv)
 			}
 			h++;
 		}
+		lib_split_clean(nbr_str,h);
 		i++;
 	}
 	return (1);
