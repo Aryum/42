@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lb_split.c                                         :+:      :+:    :+:   */
+/*   lib_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lb.h"
+#include "lib.h"
 
 static size_t	countwords(char const *s, char c)
 {
@@ -38,18 +38,6 @@ static size_t	countwordlen(char *s, char c)
 	return (i);
 }
 
-static void	freearr(char **arr, size_t lastindex)
-{
-	size_t	i;
-
-	i = 0;
-	while (i <= lastindex)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
 
 static int	fill(char const *s, char c, char **ret, size_t wordcount)
 {
@@ -64,7 +52,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 		while (s[i] == c)
 			i++;
 		wordlen = countwordlen((char *)&s[i], c);
-		ret[h] = lb_substr(&s[i], 0, wordlen);
+		ret[h] = lib_substr(&s[i], 0, wordlen);
 		if (ret[h] != NULL)
 		{
 			i += wordlen;
@@ -72,7 +60,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 		}
 		else
 		{
-			freearr(ret, h);
+			lib_split_clean(ret, h);
 			return (0);
 		}
 	}
@@ -80,7 +68,20 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 	return (1);
 }
 
-char	**lb_split(char const *s, char c)
+void	lib_split_clean(char **arr, size_t lastindex)
+{
+	size_t	i;
+
+	i = 0;
+	while (i <= lastindex)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+char	**lib_split(char const *s, char c)
 {
 	char	**ret;
 	size_t	wordcount;
@@ -88,7 +89,7 @@ char	**lb_split(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	wordcount = countwords(s, c);
-	ret = lb_calloc(wordcount + 1, sizeof(char *));
+	ret = lib_calloc(wordcount + 1, sizeof(char *));
 	if (ret != NULL)
 	{
 		if (!fill(s, c, ret, wordcount))

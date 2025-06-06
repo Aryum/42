@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lb.h                                               :+:      :+:    :+:   */
+/*   lib.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,25 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LB
-# define LB
+#ifndef lib
+# define lib
 
 #include <stdlib.h>
 
-void	lb_bzero(void *s, size_t n);
+void	lib_bzero(void *s, size_t n);
 
-void	*lb_calloc(size_t nmemb, size_t size);
+void	*lib_calloc(size_t nmemb, size_t size);
 
-void	*lb_memset(void *s, int c, size_t n);
+void	*lib_memset(void *s, int c, size_t n);
 
-char	**lb_split(char const *s, char c);
+char	**lib_split(char const *s, char c);
 
-char	*lb_substr(char const *s, unsigned int start, size_t len);
+void	lib_split_clean(char **arr, size_t lastindex);
 
-size_t	lb_strlen(const char *s);
+char	*lib_substr(char const *s, unsigned int start, size_t len);
 
-size_t	lb_strlcpy(char *dst, const char *src, size_t size);
+size_t	lib_strlen(const char *s);
 
-char	*lb_strdup(const char *s);
+size_t	lib_strlcpy(char *dst, const char *src, size_t size);
+
+char	*lib_strdup(const char *s);
 
 #endif

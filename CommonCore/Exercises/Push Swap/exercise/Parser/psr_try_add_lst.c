@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   psr_try_add_lst.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:27:05 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 12:44:54 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/06 10:07:25 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER
-# define PARSER
+#include "psr.h"
 
-#include "./Helpers/Lst/lst.h"
-
-int try_add_number(t_list **lst, int nbr);
-
-int	try_get_number(char *c, long *nbr);
-
-#endif
+int psr_try_add_number(t_list **lst, int nbr)
+{
+	t_list	*current;
+	
+	current = lst;
+	while(current != NULL)
+	{
+		if(*(int *)(current->content) == nbr)
+		{
+			lst_clear(lst);
+			return (0);
+		}
+		current = current->next;
+	}
+	lst_add_back(&current,lst_new(&nbr));
+	return (1);
+}

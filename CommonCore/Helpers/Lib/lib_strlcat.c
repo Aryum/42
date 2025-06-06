@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lb_memset.c                                        :+:      :+:    :+:   */
+/*   lib_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 14:18:07 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 14:18:07 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/14 17:51:01 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/15 10:46:24 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lb.h"
+#include "lib.h"
 
-void	*lb_memset(void *s, int c, size_t n)
+size_t	lib_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t			i;
-	unsigned char	*ptr;
+	size_t	i;
+	size_t	dest_len;
+	size_t	src_len;
 
+	src_len = lib_strlen(src);
+	if (size == 0)
+		return (src_len + size);
 	i = 0;
-	ptr = (unsigned char *)s;
-	while (i < n)
+	dest_len = lib_strlen(dst);
+	if (dest_len + 1 > size)
+		return (src_len + size);
+	while (dest_len + i < size - 1 && src[i] != '\0')
 	{
-		ptr[i] = (char)c;
+		dst[dest_len + i] = src[i];
 		i++;
 	}
-	return (s);
+	dst[dest_len + i] = '\0';
+	return (dest_len + src_len);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   try_get_number.c                                   :+:      :+:    :+:   */
+/*   psr_try_get_number.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:57:12 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 13:56:26 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/06 10:08:45 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "psr.h"
 
 static int is_digit(char c)
 {
@@ -22,7 +22,7 @@ static int is_int(long i)
 	return i >= -2147483648 && i <= 2147483647;
 }
 
-int	try_get_number(char *c, long *nbr)
+int	psr_try_get_number(char *c, long *nbr)
 {
 	int	i;
 	int	signal;

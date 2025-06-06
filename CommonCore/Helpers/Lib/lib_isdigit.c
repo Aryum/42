@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lb_strlcpy.c                                       :+:      :+:    :+:   */
+/*   lib_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 14:27:56 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 14:27:56 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/10 12:34:48 by ricardo-san       #+#    #+#             */
+/*   Updated: 2025/04/11 12:06:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "lb.h"
-
-size_t	lb_strlcpy(char *dst, const char *src, size_t size)
+static int	isclass(int c, int lower, int upper)
 {
-	size_t	i;
-	size_t	retval;
+	return (c >= lower && c <= upper);
+}
 
-	i = 0;
-	retval = lb_strlen(src);
-	if (size != 0)
-	{
-		while (src[i] != '\0' && i < size - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (retval);
+int	lib_isdigit(int c)
+{
+	if (isclass(c, '0', '9'))
+		return (2048);
+	return (0);
 }

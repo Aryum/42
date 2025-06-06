@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lb_substr.c                                        :+:      :+:    :+:   */
+/*   lib_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 14:28:14 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 14:28:14 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/11 11:16:37 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/11 11:28:50 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "lb.h"
-
-char	*lb_substr(char const *s, unsigned int start, size_t len)
+static int	isclass(int c, int lower, int upper)
 {
-	char	*retval;
-	size_t	size;
+	return (c >= lower && c <= upper);
+}
 
-	if (s == NULL)
-		return (NULL);
-	size = lb_strlen(s);
-	if (start >= size)
-		return (lb_strdup(""));
-	if (len > size - start)
-		len = size - start ;
-	retval = lb_calloc(len + 1, sizeof(char));
-	if (retval != NULL)
-		lb_strlcpy(retval, &s[start], len + 1);
-	return (retval);
+int	lib_isascii(int c)
+{
+	if (isclass(c, 0, 127))
+		return (1);
+	return (0);
 }

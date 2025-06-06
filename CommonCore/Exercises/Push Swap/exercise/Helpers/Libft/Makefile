@@ -1,9 +1,9 @@
-NAME := lb.a
+NAME := lib.a
 
 FLAGS := -Wall -Wextra -Werror
 
-SRC := 	lb_bzero.c		lb_calloc.c	lb_memset.c	lb_split.c \
-		lb_strlcpy.c	lb_strdup.c	lb_strlen.c	lb_substr.c
+SRC := 	lib_bzero.c		lib_calloc.c	lib_memset.c	lib_split.c \
+		lib_strlcpy.c	lib_strdup.c	lib_strlen.c	lib_substr.c
 
 OBJ := $(SRC:.c=.o)
 

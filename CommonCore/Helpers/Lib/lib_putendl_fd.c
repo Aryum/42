@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   try_add_number.c                                   :+:      :+:    :+:   */
+/*   lib_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 13:56:31 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/21 08:57:30 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/04/30 10:56:53 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "lib.h"
 
-int try_add_number(t_list **lst, int nbr)
+void	lib_putendl_fd(char *s, int fd)
 {
-	t_list	*current;
-	
-	current = lst;
-	while(current != NULL)
+	if (fd >= 0 && s != NULL)
 	{
-		if(*(int *)(current->content) == nbr)
-		{
-			lst_clear(lst);
-			return (0);
-		}
-		current = current->next;
+		write(fd, s, lib_strlen(s));
+		write(fd, "\n", 1);
 	}
-	lst_add_back(&current,lst_new(&nbr));
-	return (1);
 }
