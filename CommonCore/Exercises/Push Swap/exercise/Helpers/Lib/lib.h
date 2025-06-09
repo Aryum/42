@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                               :+:      :+:    :+:   */
+/*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 14:01:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 14:30:05 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/09 17:37:16 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/09 17:38:53 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef lib
-# define lib
+#ifndef LIB_H
+# define LIB_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
 void	lib_bzero(void *s, size_t n);
 

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:27:05 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 13:05:07 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:09:31 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include "lst.h"
 
-int	psr_h_try_add_number(t_list **lst, long nbr);
+int	psr_h_try_add_number(t_list **lst, int nbr);
 
 int	psr_h_try_get_number(char *c, long *nbr);
 

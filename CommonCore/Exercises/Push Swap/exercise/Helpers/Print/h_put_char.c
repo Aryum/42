@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_size.c                                         :+:      :+:    :+:   */
+/*   print_h_put_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 09:49:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 17:34:09 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 12:15:01 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/09 17:41:13 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lst.h"
+#include "print.h"
 
-int	ft_lstsize(t_list *lst)
+void	h_put_char(int c, int *counter)
 {
-	int	i;
-
-	i = 0;
-	while (lst != NULL)
-	{
-		lst = (*lst).next;
-		i++;
-	}
-	return (i);
+	if (*counter != -1)
+		(*counter) += 1;
+	write(1, &c, 1);
 }

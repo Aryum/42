@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_split.c                                         :+:      :+:    :+:   */
+/*   lib_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -37,7 +37,6 @@ static size_t	countwordlen(char *s, char c)
 		i++;
 	return (i);
 }
-
 
 static int	fill(char const *s, char c, char **ret, size_t wordcount)
 {

@@ -10,9 +10,9 @@ HLP_ARC := $(HLP_DIR)/Lib/lib.a $(HLP_DIR)/Lst/lst.a $(HLP_DIR)/Print/print.a
 PSR_DIR := Parser
 PSR_ARC := $(PSR_DIR)/psr.a
 
-
-
 ALL_ARC := $(HLP_ARC) $(PSR_ARC)
+
+ALL_C := $(foreach arc, $(ALL_ARC), $(wildcard $(dir $(arc))*.c))
 
 #Vars
 MAKEFLAGS += --no-print-directory
@@ -31,28 +31,31 @@ COLOUR_GREEN := \033[1;32m
 COLOUR_RED := \033[1;31m
 COLOUR_YELLOW := \033[1;33m
 COLOUR_BLUE := \033[1;34m
+COLOR_WHITE := \033[0m
 
 all: $(NAME)
 
 $(NAME): $(ALL_ARC) $(NAME_C)
-	@echo "$(COLOUR_GREEN)Made main file"
+	@echo "$(COLOUR_GREEN)Made main file$(COLOR_WHITE)"
 	@cc $(FLAGS) -o $@ -I$(HDR_DIR) $(NAME_C) $(PSR_ARC) $(HLP_ARC)
 
-%.a:
+%.a: $(ALL_C)
+ifeq ($($?),)
+	@echo "$(COLOUR_BLUE)Updating archives of $@$(COLOR_WHITE)"
 	@cd $(dir $@ ) && make && make clean
-
+endif
 clean:
-	@echo "$(COLOUR_YELLOW)Cleaning objects"
-	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make clean$(NEWLINE))
+	@echo "$(COLOUR_YELLOW)Cleaning objects$(COLOR_WHITE)"
+	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make clean && echo$(NEWLINE)$(NEWLINE))
 
 fclean: 
-	@echo "$(COLOUR_YELLOW)Cleaning everything"
+	@echo "$(COLOUR_YELLOW)Cleaning everything$(COLOR_WHITE)"
 	@$(RM) $(NAME)
-	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make fclean$(NEWLINE))
+	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make fclean && echo$(NEWLINE)$(NEWLINE))
 
 re: re_libs all
 	
 re_libs:
-	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make re$(NEWLINE) )
+	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make re && make clean && echo$(NEWLINE)$(NEWLINE))
 
 .PHONY: all clean fclean re

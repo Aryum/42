@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:22:52 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/06 11:53:09 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:41:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print.h"
 
-int	print_h_strlen(const char *s)
+int	h_strlen(const char *s)
 {
 	int	i;
 

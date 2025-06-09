@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:57:12 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/06 18:38:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:27:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 static int is_digit(char c)
 {
-	return c >= '0' && c <= '9';
+	if(c >= '0' && c <= '9')
+		return (1);
+	else
+	{
+		print_f("There is an argument that isn't just digits\n");
+		return (0);
+	}
 }
 
 static int is_int(long i)
 {
-	return i >= -2147483648 && i <= 2147483647;
-}
+	if(i >= -2147483648 && i <= 2147483647)
+		return (1);
+	else
+	{
+		print_f("There is a number that isn't a int\n");
+		return (0);
+	}
+} 
 
 int	psr_h_try_get_number(char *c, long *nbr)
 {
