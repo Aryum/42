@@ -1,10 +1,8 @@
-NAME := lst.a
+NAME := psr.a
 
-SRC := 	lst_new.c		lst_add_front.c	lst_size.c	lst_last.c	\
-		lst_add_back.c	lst_delone.c	lst_clear.c	lst_iter.c	\
-		lst_map.c
+SRC := 	psr_agrs.c	psr_h_try_add_lst.c	psr_h_try_get_number.c
 
-HDR_DIR := .
+HDR_DIR := Headers
 
 OBJ := $(SRC:.c=.o)
 

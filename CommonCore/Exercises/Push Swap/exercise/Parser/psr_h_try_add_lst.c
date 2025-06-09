@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_map.c                                          :+:      :+:    :+:   */
+/*   psr_h_try_add_lst.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 11:39:01 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/06 15:22:43 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/06 18:38:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lst.h"
+#include "Headers/psr.h"
 
-t_list	*lst_map(t_list *lst, int (*f)(int))
+int psr_h_try_add_number(t_list **lst, long nbr)
 {
-	t_list	*ret;
-	int		cur_content;
-
-	if (lst == NULL || f == NULL)
-		return (NULL);
-	ret = NULL;
-	while (lst != NULL)
+	t_list	*current;
+	
+	current = *lst;
+	while(current != NULL)
 	{
-		cur_content = f((*lst).content);
-		lst_add_back(&ret, cur_content);
-		lst = ((*lst).next);
+		if((current->content) == nbr)
+		{
+			lst_clear(lst);
+			return (0);
+		}
+		current = current->next;
 	}
-	return (ret);
+	lst_add_back(&current, nbr);
+	return (1);
 }

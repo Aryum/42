@@ -10,7 +10,10 @@
 			"array": "c",
 			"string_view": "c",
 			"initializer_list": "c",
-			"lb.h": "c"
+			"lb.h": "c",
+			"lst.h": "c",
+			"stdlib.h": "c",
+			"psr.h": "c"
 		}
 	}
 }

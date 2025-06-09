@@ -1,8 +1,7 @@
-NAME := lst.a
+NAME := lib.a
 
-SRC := 	lst_new.c		lst_add_front.c	lst_size.c	lst_last.c	\
-		lst_add_back.c	lst_delone.c	lst_clear.c	lst_iter.c	\
-		lst_map.c
+SRC := 	lib_bzero.c		lib_calloc.c	lib_memset.c	lib_split.c \
+		lib_strlcpy.c	lib_strdup.c	lib_strlen.c	lib_substr.c
 
 HDR_DIR := .
 

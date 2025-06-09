@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psr_try_add_lst.c                                  :+:      :+:    :+:   */
+/*   print_h_put_ptr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/06 10:07:25 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 13:07:54 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/06 11:53:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "psr.h"
+#include "print.h"
 
-int psr_try_add_number(t_list **lst, int nbr)
+void	print_h_put_ptr(void *ptr, int *counter)
 {
-	t_list	*current;
-	
-	current = lst;
-	while(current != NULL)
+	if (ptr == NULL)
+		print_h_put_str("(nil)", counter);
+	else
 	{
-		if(*(int *)(current->content) == nbr)
-		{
-			lst_clear(lst);
-			return (0);
-		}
-		current = current->next;
+		print_h_put_str("0x", counter);
+		print_h_put_ulongbase((unsigned long)ptr, "0123456789abcdef", counter);
 	}
-	lst_add_back(&current,lst_new(&nbr));
-	return (1);
 }
