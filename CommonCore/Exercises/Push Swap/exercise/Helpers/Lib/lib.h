@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:37:16 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 17:38:53 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:08:35 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*lib_memset(void *s, int c, size_t n);
 
 char	**lib_split(char const *s, char c);
 
-void	lib_split_clean(char **arr, size_t lastindex);
+void	lib_split_clean(char **arr);
 
 char	*lib_substr(char const *s, unsigned int start, size_t len);
 

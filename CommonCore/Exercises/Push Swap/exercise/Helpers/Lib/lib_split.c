@@ -59,7 +59,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 		}
 		else
 		{
-			lib_split_clean(ret, h);
+			lib_split_clean(ret);
 			return (0);
 		}
 	}
@@ -67,12 +67,12 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 	return (1);
 }
 
-void	lib_split_clean(char **arr, size_t lastindex)
+void	lib_split_clean(char **arr)
 {
 	size_t	i;
 
 	i = 0;
-	while (i <= lastindex && arr[i] != NULL)
+	while (arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;

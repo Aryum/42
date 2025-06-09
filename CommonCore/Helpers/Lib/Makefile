@@ -1,18 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/24 11:57:37 by ricsanto          #+#    #+#              #
-#    Updated: 2025/06/06 11:02:04 by ricsanto         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME := lib.a
-
-FLAGS := -Wall -Wextra -Werror
 
 SRC :=	lib_isalpha.c	lib_isdigit.c	lib_isalnum.c	lib_isascii.c	lib_isprint.c	\
 		lib_strlen.c		lib_memset.c		lib_bzero.c		lib_memcpy.c		lib_memmove.c	\
@@ -24,13 +10,17 @@ SRC :=	lib_isalpha.c	lib_isdigit.c	lib_isalnum.c	lib_isascii.c	lib_isprint.c	\
 
 HDR_DIR := .
 
-OBJ := $(SRC:.c=.o)
-
 FLAGS := -Wall -Wextra -Werror
 
 AR := ar -rcs
 
 RM := rm -f
+
+blank :=
+define NEWLINE
+
+$(blank)
+endef
 
 COLOUR_GREEN := \033[1;32m
 COLOUR_RED := \033[1;31m
@@ -39,15 +29,13 @@ COLOUR_BLUE := \033[1;34m
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(AR) $@ $^
+$(NAME): $(SRC)
+	@$(foreach cfile,$(SRC), cc $(FLAGS) -o $(cfile:.c=.o) -c $(cfile) -I$(HDR_DIR) $(NEWLINE))
+	@$(AR) $@ $(SRC:.c=.o)
 	@echo "$(COLOUR_GREEN)	Making $(NAME)"
 
-%.o: %.c $(HEADER)
-	@cc $(FLAGS) -o $@ -c $< -I$(HDR_DIR)
-
 clean:
-	@$(RM) $(OBJ) 
+	@$(RM) $(SRC:.c=.o)
 	@echo "$(COLOUR_YELLOW)	Cleaning objects of $(NAME)"
 
 fclean: clean
@@ -55,6 +43,5 @@ fclean: clean
 	@echo "$(COLOUR_RED)	Cleaning $(NAME)"
 
 re: fclean all
-	@echo "$(COLOUR_BLUE)	Remaking $(NAME)"
 
 .PHONY: all clean fclean re

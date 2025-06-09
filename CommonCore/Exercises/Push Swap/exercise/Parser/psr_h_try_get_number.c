@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:57:12 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 15:27:12 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:17:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Headers/psr.h"
 
-static int is_digit(char c)
+static int	is_digit(char c)
 {
-	if(c >= '0' && c <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	else
 	{
@@ -23,16 +23,16 @@ static int is_digit(char c)
 	}
 }
 
-static int is_int(long i)
+static int	is_int(long i)
 {
-	if(i >= -2147483648 && i <= 2147483647)
+	if (i >= -2147483648 && i <= 2147483647)
 		return (1);
 	else
 	{
 		print_f("There is a number that isn't a int\n");
 		return (0);
 	}
-} 
+}
 
 int	psr_h_try_get_number(char *c, long *nbr)
 {
@@ -51,7 +51,7 @@ int	psr_h_try_get_number(char *c, long *nbr)
 		if (is_digit(c[i]) && is_int(*nbr))
 		{
 			*nbr = *nbr * (*nbr != 0) * 10 + c[i] - '0';
-			if(!is_int(*nbr * signal))
+			if (!is_int(*nbr * signal))
 				return (0);
 		}
 		else

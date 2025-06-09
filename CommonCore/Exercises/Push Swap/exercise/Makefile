@@ -42,8 +42,12 @@ $(NAME): $(ALL_ARC) $(NAME_C)
 %.a: $(ALL_C)
 ifeq ($($?),)
 	@echo "$(COLOUR_BLUE)Updating archives of $@$(COLOR_WHITE)"
-	@cd $(dir $@ ) && make && make clean
+	@cd $(dir $@ ) && make
 endif
+
+obj:
+	@echo "$(COLOUR_GREEN)Making objects$(COLOR_WHITE)"
+	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make obj && echo$(NEWLINE)$(NEWLINE))
 clean:
 	@echo "$(COLOUR_YELLOW)Cleaning objects$(COLOR_WHITE)"
 	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make clean && echo$(NEWLINE)$(NEWLINE))
@@ -56,6 +60,7 @@ fclean:
 re: re_libs all
 	
 re_libs:
-	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make re && make clean && echo$(NEWLINE)$(NEWLINE))
+	@echo "$(COLOUR_BLUE)Remaking everything$(COLOR_WHITE)"
+	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make re && echo$(NEWLINE)$(NEWLINE))
 
 .PHONY: all clean fclean re

@@ -6,20 +6,20 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 17:28:11 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:16:13 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Headers/psr.h"
 
-int psr_h_try_add_number(t_list **lst, int nbr)
+int	psr_h_try_add_number(t_list **lst, int nbr)
 {
 	t_list	*current;
-	
+
 	current = *lst;
-	while(current != NULL)
-	{  
-		if((current->content) == nbr)
+	while (current != NULL)
+	{
+		if ((current->content) == nbr)
 		{
 			lst_clear(lst);
 			print_f("Multiple instances of the same number\n");

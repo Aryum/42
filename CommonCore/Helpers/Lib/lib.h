@@ -69,7 +69,7 @@ char	*lib_strjoin(char const *s1, char const *s2);
 
 char	*lib_strtrim(char const *s1, char const *set);
 
-void	lib_split_clean(char **arr, size_t lastindex);
+void	lib_split_clean(char **arr);
 
 char	**lib_split(char const *s, char c);
 

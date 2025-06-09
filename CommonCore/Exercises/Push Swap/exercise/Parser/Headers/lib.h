@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                               :+:      :+:    :+:   */
+/*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 14:01:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 14:30:05 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/09 17:37:16 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/09 18:09:33 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef lib
-# define lib
+#ifndef LIB_H
+# define LIB_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
 void	lib_bzero(void *s, size_t n);
 
@@ -23,7 +23,7 @@ void	*lib_memset(void *s, int c, size_t n);
 
 char	**lib_split(char const *s, char c);
 
-void	lib_split_clean(char **arr, size_t lastindex);
+void	lib_split_clean(char **arr);
 
 char	*lib_substr(char const *s, unsigned int start, size_t len);
 

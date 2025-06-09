@@ -38,12 +38,12 @@ static size_t	countwordlen(char *s, char c)
 	return (i);
 }
 
-static void	freearr(char **arr, size_t lastindex)
+static void	freearr(char **arr)
 {
 	size_t	i;
 
 	i = 0;
-	while (i <= lastindex)
+	while (arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;
@@ -72,7 +72,7 @@ static int	fill(char const *s, char c, char **ret, size_t wordcount)
 		}
 		else
 		{
-			freearr(ret, h);
+			freearr(ret);
 			return (0);
 		}
 	}

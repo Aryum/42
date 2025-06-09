@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   print_h_put_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:25:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 18:14:38 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/04/30 12:15:01 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/09 17:41:13 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "print.h"
 
-# include "Helpers/Lst/lst.h"
-
-int	print_f(const char *string, ...);
-
-int	psr_agrs(t_list **lst, int argc, char **argv);
-
-#endif
+void	h_put_char(int c, int *counter)
+{
+	if (*counter != -1)
+		(*counter) += 1;
+	write(1, &c, 1);
+}

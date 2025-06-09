@@ -27,6 +27,7 @@ $(NAME): $(SRC)
 	@$(foreach cfile,$(SRC), cc $(FLAGS) -o $(cfile:.c=.o) -c $(cfile) -I$(HDR_DIR) $(NEWLINE))
 	@$(AR) $@ $(SRC:.c=.o)
 	@echo "$(COLOUR_GREEN)	Making $(NAME)"
+	@$(RM) $(SRC:.c=.o)
 
 clean:
 	@$(RM) $(SRC:.c=.o)
@@ -39,3 +40,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

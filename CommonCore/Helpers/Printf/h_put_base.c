@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:31:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/06 11:53:22 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:41:56 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ static void	print_base(unsigned long nbr, char *base, int sz, int *c)
 {
 	if (nbr / sz != 0)
 		print_base(nbr / sz, base, sz, c);
-	print_h_put_char(base[nbr % sz], c);
+	h_put_char(base[nbr % sz], c);
 }
 
 void	print_h_put_ulongbase(unsigned long nbr, char *base, int *counter)
 {
 	if (is_base_valid(base))
-		print_base(nbr, base, print_h_strlen(base), counter);
+		print_base(nbr, base, h_strlen(base), counter);
 }
 
-void	print_h_put_uintbase(unsigned int nbr, char *base, int *counter)
+void	h_uintbase(unsigned int nbr, char *base, int *counter)
 {
 	if (is_base_valid(base))
-		print_base(nbr, base, print_h_strlen(base), counter);
+		print_base(nbr, base, h_strlen(base), counter);
 }
