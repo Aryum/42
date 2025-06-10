@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:25:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 18:14:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:24:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "Helpers/Lst/lst.h"
+# include "Sorter/Headers/srt.h"
 
 int	print_f(const char *string, ...);
 

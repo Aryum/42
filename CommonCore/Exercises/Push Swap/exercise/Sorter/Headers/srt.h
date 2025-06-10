@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:15:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 13:11:51 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:01:58 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,40 @@
 
 # include "lst.h"
 
+typedef struct s_stacks
+{
+	t_list	*a;
+	t_list	*b;
+} t_stacks;
+
 int	print_f(const char *string, ...);
 
-int	srt_h_is_lstnull(t_list **lst);
+void	srt_h_print(char *str, char c);
 
-int	srt_h_is_first(t_list **lst);
+//push
+void srt_push_a(t_stacks *lsts);
 
-void	srt_h_print(char *str);
+void srt_push_b(t_stacks *lsts);
+
+//rotate
+void	srt_rotate_a(t_stacks *lsts);
+
+void	srt_rotate_b(t_stacks *lsts);
+
+void	srt_rotate_both(t_stacks *lsts);
+
+//rev rotate
+void	srt_rotate_rev_a(t_stacks *lsts);
+
+void	srt_rotate_rev_b(t_stacks *lsts);
+
+void	srt_rotate_rev_both(t_stacks *lsts);
+
+//swap
+void	srt_swap_a(t_stacks *lsts);
+
+void	srt_swap_b(t_stacks *lsts);
+
+void	srt_swap_both(t_stacks *lsts);
 
 #endif

@@ -1,6 +1,6 @@
-NAME := psr.a
+NAME := srt.a
 
-SRC := 	psr_agrs.c	psr_h_try_add_lst.c	psr_h_try_get_number.c
+SRC := 	srt_helper.c	srt_push.c	srt_rotate.c	srt_rotate_rev.c	srt_swap.c
 
 HDR_DIR := Headers
 

@@ -6,27 +6,33 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:34:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 13:12:20 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:19:17 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Headers/srt.h"
 
-static void push_first(t_list **lst_add, t_list **lst_take, char *str)
+static void push_first(t_list **lst_add, t_list **lst_take, char c)
 {
 	if (lst_take == NULL || *lst_take == NULL)
+	{
+		print_f("Trying to push from list %c that is empty\n", c);
 		return ;
-	lst_add_front(lst_add, (*lst_take)->content);
+	}
+	if(*lst_add != NULL)
+		lst_add_front(lst_add, (*lst_take)->content);
+	else
+		*lst_add = lst_new((*lst_take)->content);
 	lst_delone(lst_take, *lst_take);
-	srt_h_print(str);
+	srt_h_print("p", c);
 }
 
-void srt_push_a(t_list **lst_a, t_list **lst_b)
+void srt_push_a(t_stacks *lsts)
 {
-	push_first(lst_a, lst_b, "pa");
+	push_first(&(lsts->a), &(lsts->b), 'a'); 
 }
 
-void srt_push_a(t_list **lst_b, t_list **lst_a)
+void srt_push_b(t_stacks *lsts)
 {
-	push_first(lst_b, lst_a, "pb");
+	push_first(&(lsts->b), &(lsts->a), 'b');
 }

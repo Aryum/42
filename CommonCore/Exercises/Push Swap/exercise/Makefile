@@ -10,7 +10,10 @@ HLP_ARC := $(HLP_DIR)/Lib/lib.a $(HLP_DIR)/Lst/lst.a $(HLP_DIR)/Print/print.a
 PSR_DIR := Parser
 PSR_ARC := $(PSR_DIR)/psr.a
 
-ALL_ARC := $(HLP_ARC) $(PSR_ARC)
+SRT_DIR := Sorter
+SRT_ARC := $(SRT_DIR)/srt.a
+
+ALL_ARC := $(PSR_ARC) $(SRT_ARC) $(HLP_ARC) 
 
 ALL_C := $(foreach arc, $(ALL_ARC), $(wildcard $(dir $(arc))*.c))
 
@@ -37,12 +40,13 @@ all: $(NAME)
 
 $(NAME): $(ALL_ARC) $(NAME_C)
 	@echo "$(COLOUR_GREEN)Made main file$(COLOR_WHITE)"
-	@cc $(FLAGS) -o $@ -I$(HDR_DIR) $(NAME_C) $(PSR_ARC) $(HLP_ARC)
+	@cc $(FLAGS) -o $@ -I$(HDR_DIR) $(NAME_C) $(ALL_ARC)
 
 %.a: $(ALL_C)
 ifeq ($($?),)
 	@echo "$(COLOUR_BLUE)Updating archives of $@$(COLOR_WHITE)"
 	@cd $(dir $@ ) && make
+	@touch $@
 endif
 
 obj:

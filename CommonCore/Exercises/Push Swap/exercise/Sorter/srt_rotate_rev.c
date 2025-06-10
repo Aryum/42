@@ -1,61 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srt_rotate.c                                       :+:      :+:    :+:   */
+/*   srt_rotate_rev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 12:24:15 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 17:14:39 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/10 13:20:09 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/10 17:14:43 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Headers/srt.h"
 
-static int rotate(t_list *lst, char c)
+static int rev_rotate(t_list *lst, char c)
 {
-	t_list	*lst_tmp;	
-	int		nbr_tmp;
-
+	t_list *lst_tmp;	
+	int	nbr_tmp;
+	
 	if (lst == NULL)
-		return (0);
-	lst_tmp = lst;
-	nbr_tmp = lst->content;
-	while (lst_tmp->next != NULL)
 	{
-		lst_tmp->content = lst_tmp->next->content;
-		lst_tmp = lst_tmp->next;
+		print_f("Trying to rotate list %c that is empty\n", c);
+		return (0);
+	}
+	lst_tmp = lst_last(lst);
+	nbr_tmp = lst_tmp->content;
+	while (lst_tmp->last != NULL)
+	{
+		lst_tmp->content = lst_tmp->last->content;
+		lst_tmp = lst_tmp->last;
 	}
 	lst_tmp->content = nbr_tmp;
-	srt_h_print("r", c);
+	srt_h_print("rr", c);
 	return (1);
 }
 
-void	srt_rotate_a(t_stacks *lsts)
+void	srt_rotate_rev_a(t_stacks *lsts)
 {
-	rotate(lsts->a, 'a');
+	rev_rotate(lsts->a, 'a');
 }
 
-void	srt_rotate_b(t_stacks *lsts)
+void	srt_rotate_rev_b(t_stacks *lsts)
 {
-	rotate(lsts->b, 'b');
+	rev_rotate(lsts->b, 'b');
 }
 
-void	srt_rotate_both(t_stacks *lsts)
+void	srt_rotate_rev_both(t_stacks *lsts)
 {
 	int	rot_a;
 	int	rot_b;
 
-	rot_a = rotate(lsts->a, '\0');
-	rot_b = rotate(lsts->b, '\0');
+	rot_a = rev_rotate(lsts->a, '\0');
+	rot_b = rev_rotate(lsts->b, '\0');
 	if(rot_a && rot_b)
-		srt_h_print("r", 'r');
+		srt_h_print("rr", 'r');
 	else
 	{
 		if (rot_a)
-			srt_h_print("r", 'a');
+			srt_h_print("rr", 'a');
 		else
-			srt_h_print("r", 'b');
+			srt_h_print("rr", 'b');
 		print_f("Rotating both when you shouldn't\n");
 	}
 }

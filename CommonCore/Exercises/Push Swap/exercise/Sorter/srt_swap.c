@@ -6,38 +6,51 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:15:22 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 13:12:47 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:17:40 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Headers/srt.h"
 
-static void swap_top(t_list *lst, char *str)
+static int swap_top(t_list *lst, char c)
 {
 	int	temp;
 
 	if (lst == NULL || lst->next == NULL)
-		return ;
+		return (print_f("List %c is empty or just has 1 item"), 0);
 	temp = lst->content;
 	lst->content = lst->next->content;
 	lst->next->content = temp;
-	if (str != NULL)
-		srt_h_print(str);
+	srt_h_print("s", c);
+	return (1);
 }
 
-void	srt_swap_a(t_list *lst_a)
+void	srt_swap_a(t_stacks *lsts)
 {
-	swap_top(lst_a, "sa");
+	swap_top(lsts->a, 'a');
 }
 
-void	srt_swap_b(t_list *lst_b)
+void	srt_swap_b(t_stacks *lsts)
 {
-	swap_top(lst_b, "sb");
+	swap_top(lsts->b, 'b');
 }
 
-void	srt_swap_ss(t_list *lst_a, t_list *lst_b)
+void	srt_swap_both(t_stacks *lsts)
 {
-	swap_top(lst_a, NULL);
-	swap_top(lst_b, NULL);
-	print_f("ss\n");
+
+	int	swap_a;
+	int	swap_b;
+
+	swap_a = swap_top(lsts->a, '\0');
+	swap_b = swap_top(lsts->b, '\0');
+	if(swap_a && swap_b)
+		srt_h_print("s", 's');
+	else
+	{
+		if (swap_a)
+			srt_h_print("s", 'a');
+		else
+			srt_h_print("s", 'b');
+		print_f("Swaping both when you shouldn't\n");
+	}
 }
