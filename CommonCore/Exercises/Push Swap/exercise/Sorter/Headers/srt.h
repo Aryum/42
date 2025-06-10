@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psr_h_try_add_lst.c                                :+:      :+:    :+:   */
+/*   srt.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 11:10:20 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/10 11:15:36 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/10 13:11:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers/psr.h"
+#ifndef SRT_H
+# define SRT_H
 
-int	psr_h_try_add_number(t_list **lst, int nbr)
-{
-	t_list	*current;
+# include "lst.h"
 
-	current = *lst;
-	while (current != NULL)
-	{
-		if ((current->content) == nbr)
-			return (lst_clear(lst), 0);
-		current = current->next;
-	}
-	lst_add_back(lst, nbr);
-	return (1);
-}
+int	print_f(const char *string, ...);
+
+int	srt_h_is_lstnull(t_list **lst);
+
+int	srt_h_is_first(t_list **lst);
+
+void	srt_h_print(char *str);
+
+#endif

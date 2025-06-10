@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:35:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/09 18:18:54 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/10 11:10:24 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ int	psr_agrs(t_list **lst, int argc, char **argv)
 	int		i;
 
 	if (argc == 1)
-		return (print_f("No arguments passed\n"), 0);
+		return (print_f("Error\n"), 0);
 	i = 1;
 	while (i < argc)
 	{
 		if (!get_nbrs(lst, argv[i]))
-			return (lst_clear(lst), 0);
+		{
+			print_f("Error\n");
+			lst_clear(lst);
+			return (0);
+		}
 		i++;
 	}
 	return (1);
