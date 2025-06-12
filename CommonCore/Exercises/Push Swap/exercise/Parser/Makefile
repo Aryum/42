@@ -1,6 +1,6 @@
 NAME := psr.a
 
-SRC := 	psr_agrs.c	psr_h_try_add_lst.c	psr_h_try_get_number.c
+SRC := 	psr_agrs.c	psr_h_try_add_lst.c	psr_h_try_get_number.c	psr_h_indexer.c
 
 HDR_DIR := .
 

@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:35:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/12 14:15:40 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:01:32 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "psr.h"
 
-static int	get_nbrs(t_list **lst, char *c, int *last_index)
+static int	get_nbrs(t_list **lst, char *c)
 {
 	int		i;
 	char	**nbr_str;
@@ -25,7 +25,7 @@ static int	get_nbrs(t_list **lst, char *c, int *last_index)
 		current = 0;
 		if (psr_h_try_get_number(nbr_str[i], &current))
 		{
-			if (!psr_h_try_add_number(lst, (int)current, last_index))
+			if (!psr_h_try_add_number(lst, (int)current))
 				return (lib_split_clean(nbr_str), 0);
 		}
 		else
@@ -38,15 +38,13 @@ static int	get_nbrs(t_list **lst, char *c, int *last_index)
 int	psr_agrs(t_list **lst, int argc, char **argv)
 {
 	int	arg_i;
-	int	lst_i;
 
-	lst_i = 0;
 	if (argc == 1)
 		return (print_f("Error\n"), 0);
 	arg_i = 1;
 	while (arg_i < argc)
 	{
-		if (!get_nbrs(lst, argv[arg_i], &lst_i))
+		if (!get_nbrs(lst, argv[arg_i]))
 		{
 			print_f("Error\n");
 			lst_clear(lst);
@@ -54,5 +52,6 @@ int	psr_agrs(t_list **lst, int argc, char **argv)
 		}
 		arg_i++;
 	}
+	psr_h_indexer(*lst);
 	return (1);
 }

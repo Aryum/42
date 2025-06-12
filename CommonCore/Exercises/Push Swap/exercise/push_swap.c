@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/11 08:52:42 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:06:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print(int i)
+void	print(t_nbr *i)
 {
-	print_f("	%d\n", i);
+	print_f("%d index	%d\n",i->index,i->value);
 }
 
 void	printlists(t_stacks stacks, char *str)
@@ -27,18 +27,16 @@ void	printlists(t_stacks stacks, char *str)
 	lst_iter(stacks.b, print);
 	print_f("---------------------------------------\n\n\n");
 }
-//int	main(int argc, char **argv)
-
-int	main()
+int	main(int argc, char **argv)
 {
 	t_stacks stacks;
 
 	stacks.a = NULL; 
 	stacks.b = NULL;
 
-	//psr_agrs(&(stacks.a), argc, argv);
+	psr_agrs(&(stacks.a), argc, argv);
 	printlists(stacks, "Og list");
-	
+	/*
 	srt_push_b(&stacks);
 	printlists(stacks, "Push b");
 
@@ -53,9 +51,7 @@ int	main()
 	
 	srt_swap_a(&stacks);
 	printlists(stacks, "Swap a");
-
-
-	
+	*/
 	lst_clear(&stacks.a);
 	lst_clear(&stacks.b);
 

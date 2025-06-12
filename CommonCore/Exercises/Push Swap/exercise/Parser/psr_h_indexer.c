@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:13:44 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/12 14:10:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:12:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "psr.h"
 
-void	swap_nbr(int *a, int *b)
+static void	swap_nbr(int *a, int *b)
 {
 	int	temp;
 
@@ -21,28 +21,82 @@ void	swap_nbr(int *a, int *b)
 	*b = temp;
 }
 
-static void	psr_h_indexer(t_list *tab)
+static void	sort_arr(int *tab, int size)
 {
-	t_list	*lst_tmp;
-	int		swapped;
+	int	i;
+	int	h;
+	int	swapped;
 
-	swapped = 0;
-	while (tab != NULL)
+	i = 0;
+	h = 0;
+	swapped = 1;
+	while (i < size)
 	{
-		lst_tmp = tab;
-		while (lst_tmp != NULL)
+		while (h < size - i - 1)
 		{
-			if (lst_tmp->content.value > lst_tmp->next->content.value)
+			if (tab[h] > tab[h + 1])
 			{
-				swap_nbr(&(lst_tmp->content.index), &(lst_tmp->next->content.index));
-				swapped = 1;
+				swap_nbr(&tab[h], &tab[h + 1]);
+				swapped = 0;
 			}
-			lst_tmp = lst_tmp->next;
+			h++;
 		}
-		if (swapped == 0)
+		if (swapped == 1)
 			break ;
-		tab = tab->next;
+		h = 0;
+		i++;
 	}
 }
 
+static int	*get_arr(t_list *lst, int lst_sz)
+{
+	int	*ret;
+	int	i;
 
+	i = 0;
+	ret = calloc(sizeof(int *), lst_sz);
+	if (ret != NULL)
+	{
+		while (i < lst_sz)
+		{
+			ret[i] = lst->content.value;
+			i++;
+			lst = lst->next;
+		}
+		sort_arr(ret, lst_sz);
+	}
+	return (ret);
+}
+
+static void	iter(t_list *lst, int *arr, int sz)
+{
+	int	i;
+
+	i = 0;
+	while (i < sz)
+	{
+		if (arr[i] == lst->content.value)
+			lst->content.index = i + 1;
+		i++;
+	}
+}
+
+void	psr_h_indexer(t_list *lst)
+{
+	int	*arr;
+	int	sz;
+
+	sz = lst_size(lst);
+	arr = get_arr(lst, sz);
+	if (arr == NULL)
+	{
+		print_f("Failed to index arr");
+		return ;
+	}
+	while (lst != NULL)
+	{
+		iter(lst, arr, sz);
+		lst = lst->next;
+	}
+	free(arr);
+}
