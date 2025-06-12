@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srt_rotate_rev.c                                   :+:      :+:    :+:   */
+/*   mv_rotate_rev.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "srt.h"
+#include "mv.h"
 
 static int rev_rotate(t_list *lst, char c)
 {
@@ -30,21 +30,21 @@ static int rev_rotate(t_list *lst, char c)
 		lst_tmp = lst_tmp->last;
 	}
 	lst_tmp->content = nbr_tmp;
-	srt_h_print("rr", c);
+	mv_h_print("rr", c);
 	return (1);
 }
 
-void	srt_rotate_rev_a(t_stacks *lsts)
+void	mv_rotate_rev_a(t_stacks *lsts)
 {
 	rev_rotate(lsts->a, 'a');
 }
 
-void	srt_rotate_rev_b(t_stacks *lsts)
+void	mv_rotate_rev_b(t_stacks *lsts)
 {
 	rev_rotate(lsts->b, 'b');
 }
 
-void	srt_rotate_rev_both(t_stacks *lsts)
+void	mv_rotate_rev_both(t_stacks *lsts)
 {
 	int	rot_a;
 	int	rot_b;
@@ -52,13 +52,13 @@ void	srt_rotate_rev_both(t_stacks *lsts)
 	rot_a = rev_rotate(lsts->a, '\0');
 	rot_b = rev_rotate(lsts->b, '\0');
 	if(rot_a && rot_b)
-		srt_h_print("rr", 'r');
+		mv_h_print("rr", 'r');
 	else
 	{
 		if (rot_a)
-			srt_h_print("rr", 'a');
+			mv_h_print("rr", 'a');
 		else
-			srt_h_print("rr", 'b');
+			mv_h_print("rr", 'b');
 		print_f("Rotating both when you shouldn't\n");
 	}
 }

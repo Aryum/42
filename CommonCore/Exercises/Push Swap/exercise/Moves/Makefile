@@ -1,6 +1,6 @@
-NAME := srt.a
+NAME := mv.a
 
-SRC := 	srt_helper.c	srt_push.c	srt_rotate.c	srt_rotate_rev.c	srt_swap.c
+SRC := 	mv_helper.c	mv_push.c	mv_rotate.c	mv_rotate_rev.c	mv_swap.c
 
 HDR_DIR := .
 

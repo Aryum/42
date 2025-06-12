@@ -10,10 +10,10 @@ HLP_ARC := $(HLP_DIR)/Lib/lib.a $(HLP_DIR)/Lst/lst.a $(HLP_DIR)/Print/print.a
 PSR_DIR := Parser
 PSR_ARC := $(PSR_DIR)/psr.a
 
-SRT_DIR := Sorter
-SRT_ARC := $(SRT_DIR)/srt.a
+MV_DIR := Moves
+MV_ARC := $(MV_DIR)/mv.a
 
-ALL_ARC := $(PSR_ARC) $(SRT_ARC) $(HLP_ARC) 
+ALL_ARC := $(PSR_ARC) $(MV_ARC) $(HLP_ARC) 
 
 ALL_C := $(foreach arc, $(ALL_ARC), $(wildcard $(dir $(arc))*.c))
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srt_push.c                                         :+:      :+:    :+:   */
+/*   mv_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "srt.h"
+#include "mv.h"
 
 static void push_first(t_list **lst_add, t_list **lst_take, char c)
 {
@@ -24,15 +24,15 @@ static void push_first(t_list **lst_add, t_list **lst_take, char c)
 	else
 		*lst_add = lst_new((*lst_take)->content);
 	lst_delone(lst_take, *lst_take);
-	srt_h_print("p", c);
+	mv_h_print("p", c);
 }
  
-void srt_push_a(t_stacks *lsts)
+void mv_push_a(t_stacks *lsts)
 {
 	push_first(&(lsts->a), &(lsts->b), 'a'); 
 }
 
-void srt_push_b(t_stacks *lsts)
+void mv_push_b(t_stacks *lsts)
 {
 	push_first(&(lsts->b), &(lsts->a), 'b');
 }
