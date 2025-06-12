@@ -6,14 +6,14 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:15:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 17:01:58 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:05:41 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SRT_H
 # define SRT_H
 
-# include "lst.h"
+# include "../Helpers/Lst/lst.h"
 
 typedef struct s_stacks
 {

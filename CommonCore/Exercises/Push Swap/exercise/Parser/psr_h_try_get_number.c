@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:57:12 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 11:08:59 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:45 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers/psr.h"
+#include "psr.h"
 
 static int	is_digit(char c)
 {

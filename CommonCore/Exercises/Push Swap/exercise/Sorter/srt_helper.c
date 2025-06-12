@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:48:30 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 17:11:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:02 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers/srt.h"
+#include "srt.h"
 
 void	srt_h_print(char *str, char c)
 {

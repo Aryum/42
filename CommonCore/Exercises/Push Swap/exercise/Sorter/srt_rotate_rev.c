@@ -6,16 +6,16 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:20:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 17:14:43 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers/srt.h"
+#include "srt.h"
 
 static int rev_rotate(t_list *lst, char c)
 {
-	t_list *lst_tmp;	
-	int	nbr_tmp;
+	t_list *lst_tmp;
+	t_nbr	nbr_tmp;
 	
 	if (lst == NULL)
 	{

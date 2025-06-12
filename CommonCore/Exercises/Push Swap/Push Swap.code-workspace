@@ -13,7 +13,8 @@
 			"lb.h": "c",
 			"lst.h": "c",
 			"stdlib.h": "c",
-			"psr.h": "c"
+			"psr.h": "c",
+			"lib.h": "c"
 		}
 	}
 }

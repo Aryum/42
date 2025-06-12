@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:34:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 17:19:17 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:07 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers/srt.h"
+#include "srt.h"
 
 static void push_first(t_list **lst_add, t_list **lst_take, char c)
 {
@@ -26,7 +26,7 @@ static void push_first(t_list **lst_add, t_list **lst_take, char c)
 	lst_delone(lst_take, *lst_take);
 	srt_h_print("p", c);
 }
-
+ 
 void srt_push_a(t_stacks *lsts)
 {
 	push_first(&(lsts->a), &(lsts->b), 'a'); 

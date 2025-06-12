@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 11:15:22 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 17:17:40 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:10:23 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers/srt.h"
+#include "srt.h"
 
 static int swap_top(t_list *lst, char c)
 {
-	int	temp;
+	t_nbr	temp;
 
 	if (lst == NULL || lst->next == NULL)
 		return (print_f("List %c is empty or just has 1 item"), 0);
@@ -37,7 +37,6 @@ void	srt_swap_b(t_stacks *lsts)
 
 void	srt_swap_both(t_stacks *lsts)
 {
-
 	int	swap_a;
 	int	swap_b;
 

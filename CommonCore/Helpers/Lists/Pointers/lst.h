@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:33:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 12:18:29 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 11:58:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ void	lst_add_back(t_list **lst, t_list *new);
 void	lst_add_front(t_list **lst, t_list *new);
 
 void	lst_clear(t_list **lst, void (*del)(void*));
+
+int		lst_size(t_list *lst);
 
 #endif

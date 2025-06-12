@@ -6,19 +6,19 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 11:35:16 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/05 12:13:14 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:37:40 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lst.h"
 
-void	lst_iter(t_list *lst, void (*f)(int))
+void	lst_iter(t_list *lst, void (*f)(t_nbr *))
 {
 	if (lst != NULL && f != NULL)
 	{
 		while (lst != NULL)
 		{
-			f((*lst).content);
+			f(&((*lst).content));
 			lst = (*lst).next;
 		}
 	}

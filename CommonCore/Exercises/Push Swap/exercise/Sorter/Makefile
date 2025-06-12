@@ -2,7 +2,7 @@ NAME := srt.a
 
 SRC := 	srt_helper.c	srt_push.c	srt_rotate.c	srt_rotate_rev.c	srt_swap.c
 
-HDR_DIR := Headers
+HDR_DIR := .
 
 FLAGS := -Wall -Wextra -Werror
 
@@ -40,4 +40,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

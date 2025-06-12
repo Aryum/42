@@ -2,7 +2,7 @@ NAME := psr.a
 
 SRC := 	psr_agrs.c	psr_h_try_add_lst.c	psr_h_try_get_number.c
 
-HDR_DIR := Headers
+HDR_DIR := .
 
 FLAGS := -Wall -Wextra -Werror
 

@@ -6,20 +6,20 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:30:04 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/06 15:20:16 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:39:35 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lst.h"
 
-void	lst_add_back(t_list **lst, int nbr)
+void	lst_add_back(t_list **lst, t_nbr new)
 {
 	t_list	*new_node;
 	t_list	*last_node;
 
 	if (lst == NULL)
 		return ;
-	new_node = lst_new(nbr);
+	new_node = lst_new(new);
 	if (new_node == NULL)
 		lst_clear(lst);
 	if (*lst == NULL)

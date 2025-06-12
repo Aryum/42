@@ -52,6 +52,7 @@ endif
 obj:
 	@echo "$(COLOUR_GREEN)Making objects$(COLOR_WHITE)"
 	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make obj && echo$(NEWLINE)$(NEWLINE))
+
 clean:
 	@echo "$(COLOUR_YELLOW)Cleaning objects$(COLOR_WHITE)"
 	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make clean && echo$(NEWLINE)$(NEWLINE))

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/10 16:43:19 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/11 08:52:42 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main()
 {
 	t_stacks stacks;
 
-	stacks.a = NULL;
+	stacks.a = NULL; 
 	stacks.b = NULL;
 
 	//psr_agrs(&(stacks.a), argc, argv);
