@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   mv_calculator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:25:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/13 14:13:20 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/13 16:12:29 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/13 17:03:21 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "mv.h"
 
-# include "Algorithm/Headers/alg.h"
+int	mv_calculate_push(t_stack stack, int tar_index)
+{
+	t_list	*lst;
+	int		counter;
 
-int	print_f(const char *string, ...);
-
-
-#endif
+	counter = 0;
+	lst = stack.lst;
+	while(lst != NULL)
+	{
+		if (tar_index == lst->content.index)
+		{
+			if (stack.size + 1 - counter > counter)
+				return (1);
+			else
+				return (0);
+		}
+		counter++;
+		lst = lst->next;
+	}
+	print_f("Tar index not found on the stack\n");
+	return (-1);
+}

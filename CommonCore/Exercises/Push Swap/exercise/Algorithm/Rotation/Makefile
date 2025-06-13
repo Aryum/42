@@ -1,6 +1,7 @@
-NAME := mv.a
+NAME := rot.a
 
-SRC := 	mv_helper.c	mv_push.c	mv_rotate.c	mv_rotate_rev.c	mv_swap.c
+SRC := 	rot_create.c		\
+		rot_topush.c
 
 HDR_DIR := .
 

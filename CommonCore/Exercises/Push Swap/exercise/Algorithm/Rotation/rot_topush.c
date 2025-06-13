@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   rot_topush.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:25:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/13 14:13:20 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/13 18:39:14 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/13 18:43:25 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "rot.h"
 
-# include "Algorithm/Headers/alg.h"
-
-int	print_f(const char *string, ...);
-
-
-#endif
+void rot_toPush(t_data data, t_rot rot_info)
+{
+	if (rot_info.lst->content.index == rot_info.tar_index)
+		rot_info.push(data);
+	else
+	{
+		rot_info.rotate(data);
+		rot_toPush(data, rot_info);
+	}
+}

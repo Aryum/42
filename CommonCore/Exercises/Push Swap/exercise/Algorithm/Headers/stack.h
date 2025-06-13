@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psr.h                                              :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:27:05 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/12 17:02:00 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/13 17:33:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PSR_H
-# define PSR_H
+#ifndef STACK_H
+# define STACK_H
 
-# include "../Helpers/Lib/lib.h"
+# include "../../Helpers/Lst/lst.h"
 
-# include "../Helpers/Lst/lst.h"
+typedef struct s_stack
+{
+	t_list	*lst;
+	int		size;
+	char	id;
+} t_stack;
 
-int		psr_h_try_add_number(t_list **lst, int nbr);
-
-int		psr_h_try_get_number(char *c, long *nbr);
-
-void	psr_h_indexer(t_list *tab);
-
-int		psr_agrs(t_list **lst, int argc, char **argv);
-
-int		print_f(const char *string, ...);
+typedef struct s_data
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		total_size;
+} t_data;
 
 #endif

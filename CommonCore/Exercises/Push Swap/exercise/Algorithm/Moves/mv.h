@@ -10,45 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef mv_H
-# define mv_H
+#ifndef MV_H
+# define MV_H
 
-# include "../Helpers/Lst/lst.h"
+# include "../Headers/stack.h"
 
-typedef struct s_stacks
-{
-	t_list	*a;
-	t_list	*b;
-} t_stacks;
-
-int	print_f(const char *string, ...);
+int		print_f(const char *string, ...);
 
 void	mv_h_print(char *str, char c);
 
-//push
-void mv_push_a(t_stacks *lsts);
+int		mv_calculate_push(t_stack stack, int tar_index);
 
-void mv_push_b(t_stacks *lsts);
+//push
+void	mv_pushto_a(t_data data);
+
+void	mv_pushto_b(t_data data);
 
 //rotate
-void	mv_rotate_a(t_stacks *lsts);
+void	mv_rotate_a(t_data data);
 
-void	mv_rotate_b(t_stacks *lsts);
+void	mv_rotate_b(t_data data);
 
-void	mv_rotate_both(t_stacks *lsts);
+void	mv_rotate_both(t_data data);
 
 //rev rotate
-void	mv_rotate_rev_a(t_stacks *lsts);
+void	mv_rotate_rev_a(t_data data);
 
-void	mv_rotate_rev_b(t_stacks *lsts);
+void	mv_rotate_rev_b(t_data data);
 
-void	mv_rotate_rev_both(t_stacks *lsts);
+void	mv_rotate_rev_both(t_data data);
 
 //swap
-void	mv_swap_a(t_stacks *lsts);
+void	mv_swap_a(t_data data);
 
-void	mv_swap_b(t_stacks *lsts);
+void	mv_swap_b(t_data data);
 
-void	mv_swap_both(t_stacks *lsts);
+void	mv_swap_both(t_data data);
 
 #endif

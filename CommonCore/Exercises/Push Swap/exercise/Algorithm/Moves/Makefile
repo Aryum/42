@@ -1,6 +1,11 @@
-NAME := psr.a
+NAME := mv.a
 
-SRC := 	psr_agrs.c	psr_h_try_add_lst.c	psr_h_try_get_number.c	psr_h_indexer.c
+SRC := 	mv_helper.c		\
+		mv_push.c		\
+		mv_rotate.c		\
+		mv_rotate_rev.c	\
+		mv_swap.c		\
+		mv_calculator.c
 
 HDR_DIR := .
 
@@ -40,4 +45,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

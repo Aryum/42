@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   alg.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:25:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/13 14:13:20 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/13 16:11:19 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef ALG_H
+# define ALG_H
 
-# include "Algorithm/Headers/alg.h"
+# include "../Moves/mv.h"
+# include "../Parser/psr.h"
 
-int	print_f(const char *string, ...);
-
-
+# include "stack.h"
 #endif

@@ -14,7 +14,8 @@
 			"lst.h": "c",
 			"stdlib.h": "c",
 			"psr.h": "c",
-			"lib.h": "c"
+			"lib.h": "c",
+			"random": "c"
 		}
 	}
 }

@@ -7,13 +7,10 @@ HDR_DIR = .
 HLP_DIR := Helpers
 HLP_ARC := $(HLP_DIR)/Lib/lib.a $(HLP_DIR)/Lst/lst.a $(HLP_DIR)/Print/print.a
 
-PSR_DIR := Parser
-PSR_ARC := $(PSR_DIR)/psr.a
+ALG_DIR := Algorithm
+ALG_ARC := $(ALG_DIR)/Moves/mv.a $(ALG_DIR)/Parser/psr.a $(ALG_DIR)/Rotation/rot.a
 
-MV_DIR := Moves
-MV_ARC := $(MV_DIR)/mv.a
-
-ALL_ARC := $(PSR_ARC) $(MV_ARC) $(HLP_ARC) 
+ALL_ARC := $(ALG_ARC) $(HLP_ARC) 
 
 ALL_C := $(foreach arc, $(ALL_ARC), $(wildcard $(dir $(arc))*.c))
 
@@ -39,8 +36,8 @@ COLOR_WHITE := \033[0m
 all: $(NAME)
 
 $(NAME): $(ALL_ARC) $(NAME_C)
-	@echo "$(COLOUR_GREEN)Made main file$(COLOR_WHITE)"
 	@cc $(FLAGS) -o $@ -I$(HDR_DIR) $(NAME_C) $(ALL_ARC)
+	@echo "$(COLOUR_GREEN)Made main file$(COLOR_WHITE)"
 
 %.a: $(ALL_C)
 ifeq ($($?),)

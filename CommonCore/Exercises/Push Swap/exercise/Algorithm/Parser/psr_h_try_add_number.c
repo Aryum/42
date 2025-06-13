@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   psr_h_try_add_number.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:25:35 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/13 14:13:20 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/05 11:28:30 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/13 14:58:31 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "psr.h"
 
-# include "Algorithm/Headers/alg.h"
+int	psr_h_try_add_number(t_stack *stack, int nbr)
+{
+	t_list	*current;
+	t_nbr	new;
 
-int	print_f(const char *string, ...);
-
-
-#endif
+	current = stack->lst;
+	stack->size = 0;
+	new.index = -1;
+	new.value = nbr;
+	while (current != NULL)
+	{
+		if ((current->content).value == nbr)
+			return (lst_clear(&stack->lst), 0);
+		stack->size++;
+		current = current->next;
+	}
+	lst_add_back(&stack->lst, new);
+	return (1);
+}
