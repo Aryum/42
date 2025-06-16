@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:12:29 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 12:59:38 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:37:34 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	mv_calculate_push(t_stack stack, int tar_index)
 	{
 		if (tar_index == lst->val.index)
 		{
-			if (stack.size + 1 - counter > counter)
-				return (1);
+			if (stack.size - counter > counter)
+				return (counter);
 			else
-				return (0);
+				return (-(stack.size - counter));
 		}
 		counter++;
 		lst = lst->next;
 	}
 	print_f("%d Tar index not found on the stack %c\n", tar_index, stack.id);
-	return (-1);
+	return (0);
 }

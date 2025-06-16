@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 14:54:22 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:54:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_data
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		is_main;
+	int		counter;
 	int		total_size;
 } t_data;
 

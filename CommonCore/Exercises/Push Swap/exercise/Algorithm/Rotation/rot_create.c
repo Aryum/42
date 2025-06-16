@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:30:38 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 15:26:07 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:48:13 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_rot rot_create(t_data data, char pushto, int tar_index)
 	{
 		ret.push = mv_pushto_a;
 		ret.lst = data.b->lst;
-		if (!mv_calculate_push(*data.b, tar_index))
+		ret.cost = mv_calculate_push(*data.b, tar_index);
+		if (ret.cost >= 0)
 			ret.rotate = mv_rotate_b;
 		else
 			ret.rotate = mv_rotate_rev_b;
@@ -31,10 +32,12 @@ t_rot rot_create(t_data data, char pushto, int tar_index)
 	{
 		ret.push = mv_pushto_b;
 		ret.lst = data.a->lst;
-		if (!mv_calculate_push(*data.a, tar_index))
+		ret.cost = mv_calculate_push(*data.a, tar_index);
+		if (ret.cost >= 0)
 			ret.rotate = mv_rotate_a;
 		else
 			ret.rotate = mv_rotate_rev_a;
 	}
+	print_f("Cost to move index %d -> %d\n",tar_index,ret.cost);
 	return ret;
 }
