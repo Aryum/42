@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/13 18:39:30 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:27:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	debug(t_list *lst)
 	}
 	print_f("____________________________\n\n");
 }
+
+
+
+
 void	printlists(t_data stacks)
 {
 	t_list *a = stacks.a->lst;
@@ -88,47 +92,10 @@ int belongs_to2nd(t_list *lst,t_data data)
 	return (lst->content.index >= data.total_size);
 }
 
-int	is_div(t_data stacks)
-{
-	t_list	*temp;
-	
-	temp = stacks.a;
-	while (temp != NULL)
-	{
-		if ( belongs_to2nd(temp, stacks) )
-			return 0;
-		temp = temp->next;
-	}
-	return 1;
-}
-
-t_list *get_lst(char c, t_data data)
-{
-	if(c = 'a')
-		return (data.a);
-	else if (c = 'b')
-		return (data.b);
-	print_f("Wtf u doing\n");
-	return (NULL);
-}
 
 
 
 
-int rec(t_data stacks)
-{
-	t_list	*lst;
-
-	lst = stacks.a;
-	if(!is_div(stacks))
-	{
-		while (lst != NULL)
-		{
-			if (belongs_to2nd(lst,stacks))
-			lst = lst->next;
-		}
-	}
-}
 
 
 int	main(int argc, char **argv)
@@ -140,13 +107,10 @@ int	main(int argc, char **argv)
 	psr_agrs(stacks.a, argc, argv);
 	stacks.total_size = stacks.a->size;
 	debug(stacks.a->lst);
-	test_calc(stacks, 2);
 
-	while (!is_div(stacks))
-	{
-		
-	}
-	//printlists(stacks);
+	t_rot rot = rot_create(stacks,'b', lst_last(stacks.a->lst)->content.index);
+	rot_toPush(stacks,rot);
+	printlists(stacks);
 	/*
 	srt_push_b(&stacks);
 	printlists(stacks, "Push b");
