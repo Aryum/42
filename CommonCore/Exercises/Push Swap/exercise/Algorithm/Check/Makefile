@@ -1,6 +1,6 @@
 NAME := chk.a
 
-SRC := 	chk_sequence.c	chk_stackindex.c
+SRC := 	chk_sequence.c	
 
 HDR_DIR := .
 

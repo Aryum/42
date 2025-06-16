@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 15:51:21 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:48:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ void dividestacks(t_data stacks)
 	int		to_push;
 	t_rot	rot;
 	
-	to_push = chk_stackindex(stacks);
+	to_push = 0;
+	//to_push = chk_stackindex(stacks);
 	printlists(stacks);
 	if (to_push)
 	{
