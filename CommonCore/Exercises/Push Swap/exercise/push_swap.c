@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 12:27:03 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:57:36 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	print(t_nbr *i)
 {
-	print_f("%d index	%d\n",i->index,i->value);
+	print_f("%d index	%d\n",i->index,i->nbr);
 }
 
 void printContent(t_list *lst)
 {
 	if(lst != NULL)
-		print_f("%d", lst->content.index);
+		print_f("%d", lst->val.index);
 }
 
 void	debug(t_list *lst)
@@ -29,7 +29,7 @@ void	debug(t_list *lst)
 	print_f("____________________________\n");
 	while(lst != NULL)
 	{
-		print_f("index %d nbr %d\n", lst->content.index,lst->content.value);
+		print_f("index %d nbr %d\n", lst->val.index,lst->val.nbr);
 		lst = lst->next;
 	}
 	print_f("____________________________\n\n");
@@ -43,7 +43,9 @@ void	printlists(t_data stacks)
 	t_list *a = stacks.a->lst;
 	t_list *b = stacks.b->lst;
 
-	print_f("A	|	B\n");
+	print_f("\n\nA	|	B\n");
+	print_f("____________________________\n");
+
 	while (a != NULL || b != NULL)
 	{
 		printContent(a);
@@ -55,15 +57,20 @@ void	printlists(t_data stacks)
 		if(b != NULL)
 			b = b->next;
 	}
+	print_f("____________________________\n");
+	print_f("%d	|	%d\n", stacks.a->size,stacks.b->size);
+	print_f("____________________________\n\n");
+
 }
 
-t_stack *ini_stack()
+t_stack *ini_stack(char c)
 {
 	t_stack *ret;
 	ret = malloc(sizeof(t_stack));
 	ret->lst = NULL;
 	ret->size = 0;
-
+	ret->id = c;
+	
 	return ret;
 }
 
@@ -89,28 +96,51 @@ void test_calc(t_data stacks, int tar)
 
 int belongs_to2nd(t_list *lst,t_data data)
 {
-	return (lst->content.index >= data.total_size);
+	return (lst->val.index >= data.total_size);
+}
+
+
+int checkbigger(t_list *lst)
+{
+	return lst->val.index > lst->next->val.index; 
 }
 
 
 
-
-
-
+void dividestacks(t_data stacks)
+{
+	int		to_push;
+	t_rot	rot;
+	
+	to_push = chk_stackindex(stacks);
+	if (to_push)
+	{
+		print_f("still needs to divide\n");
+		rot = rot_create(stacks,'b', to_push);
+		rot_toPush(stacks,rot);
+		dividestacks(stacks);
+	}
+}
 
 int	main(int argc, char **argv)
 {
 	t_data stacks;
 
-	stacks.a = ini_stack(); 
-	stacks.b = ini_stack();
+	stacks.a = ini_stack('a'); 
+	stacks.b = ini_stack('b');
 	psr_agrs(stacks.a, argc, argv);
 	stacks.total_size = stacks.a->size;
 	debug(stacks.a->lst);
 
-	t_rot rot = rot_create(stacks,'b', lst_last(stacks.a->lst)->content.index);
-	rot_toPush(stacks,rot);
+	dividestacks(stacks);
 	printlists(stacks);
+	
+	/*
+	t_rot rot = rot_create(stacks,'b', lst_last(stacks.a->lst)->val.index);
+	rot_toPush(stacks,rot);
+	*/
+
+
 	/*
 	srt_push_b(&stacks);
 	printlists(stacks, "Push b");

@@ -20,9 +20,9 @@ static void push_first(t_stack *lst_add, t_stack *lst_take, char c)
 		return ;
 	}
 	if(lst_add->lst != NULL)
-		lst_add_front(&(lst_add->lst), lst_take->lst->content);
+		lst_add_front(&(lst_add->lst), lst_take->lst->val);
 	else
-		lst_add->lst = lst_new(lst_take->lst->content);
+		lst_add->lst = lst_new(lst_take->lst->val);
 	lst_delone(&(lst_take->lst), lst_take->lst);
 	lst_add->size++;
 	lst_take->size--;

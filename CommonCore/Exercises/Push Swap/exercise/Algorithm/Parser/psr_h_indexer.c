@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:13:44 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/13 14:09:56 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:59:21 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	*get_arr(t_list *lst, int lst_sz)
 	{
 		while (i < lst_sz)
 		{
-			ret[i] = lst->content.value;
+			ret[i] = lst->val.nbr;
 			i++;
 			lst = lst->next;
 		}
@@ -75,8 +75,8 @@ static void	iter(t_list *lst, int *arr, int sz)
 	i = 0;
 	while (i < sz)
 	{
-		if (arr[i] == lst->content.value)
-			lst->content.index = i + 1;
+		if (arr[i] == lst->val.nbr)
+			lst->val.index = i + 1;
 		i++;
 	}
 }

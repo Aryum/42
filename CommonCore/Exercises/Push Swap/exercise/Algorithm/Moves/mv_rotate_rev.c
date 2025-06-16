@@ -23,13 +23,13 @@ static int rev_rotate(t_stack *stack, char c)
 		return (0);
 	}
 	lst_tmp = lst_last(stack->lst);
-	nbr_tmp = lst_tmp->content;
+	nbr_tmp = lst_tmp->val;
 	while (lst_tmp->last != NULL)
 	{
-		lst_tmp->content = lst_tmp->last->content;
+		lst_tmp->val = lst_tmp->last->val;
 		lst_tmp = lst_tmp->last;
 	}
-	lst_tmp->content = nbr_tmp;
+	lst_tmp->val = nbr_tmp;
 	mv_h_print("rr", c);
 	return (1);
 }

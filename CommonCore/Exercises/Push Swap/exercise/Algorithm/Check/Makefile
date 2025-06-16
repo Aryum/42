@@ -1,11 +1,6 @@
-NAME := mv.a
+NAME := chk.a
 
-SRC := 	mv_helper.c		\
-		mv_push.c		\
-		mv_rotate.c		\
-		mv_rotate_rev.c	\
-		mv_swap.c		\
-		mv_calculator.c
+SRC := 	chk_sequence.c	chk_stackindex.c
 
 HDR_DIR := .
 

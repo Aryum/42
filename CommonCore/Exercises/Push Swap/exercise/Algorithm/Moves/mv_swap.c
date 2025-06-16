@@ -20,9 +20,9 @@ static int swap_top(t_stack *stack, char c)
 	if (stack->lst == NULL || stack->lst->next == NULL)
 		return (print_f("List %c is empty or just has 1 item"), 0);
 	lst = stack->lst;
-	temp = lst->content;
-	lst->content = lst->next->content;
-	lst->next->content = temp;
+	temp = lst->val;
+	lst->val = lst->next->val;
+	lst->next->val = temp;
 	mv_h_print("s", c);
 	return (1);
 }

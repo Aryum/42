@@ -13,7 +13,7 @@
 #ifndef MV_H
 # define MV_H
 
-# include "../Headers/stack.h"
+# include "../Headers/alg.h"
 
 int		print_f(const char *string, ...);
 

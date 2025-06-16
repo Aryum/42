@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:33:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/12 14:27:32 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:59:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 typedef	struct s_nbr
 {
-	int	value;
+	int	nbr;
 	int	index;
 }	t_nbr;
 
 typedef struct s_list
 {
-	t_nbr	content;
+	t_nbr			val;
 	struct s_list	*next;
 	struct s_list	*last;
 }	t_list;

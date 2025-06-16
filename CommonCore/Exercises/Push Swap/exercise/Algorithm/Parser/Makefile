@@ -27,16 +27,16 @@ all: $(NAME)
 $(NAME): $(SRC)
 	@$(foreach cfile,$(SRC), cc $(FLAGS) -o $(cfile:.c=.o) -c $(cfile) -I$(HDR_DIR) $(NEWLINE))
 	@$(AR) $@ $(SRC:.c=.o)
-	@echo "$(COLOUR_GREEN)	Making $(NAME)"
+	@echo "$(COLOUR_GREEN)	Making $(NAME)$(COLOUR_WHITE)"
 	@$(RM) $(SRC:.c=.o)
 
 clean:
 	@$(RM) $(SRC:.c=.o)
-	@echo "$(COLOUR_YELLOW)	Cleaning objects of $(NAME)"
+	@echo "$(COLOUR_YELLOW)	Cleaning objects of $(NAME)$(COLOUR_WHITE)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(COLOUR_RED)	Cleaning $(NAME)"
+	@echo "$(COLOUR_RED)	Cleaning $(NAME)$(COLOUR_WHITE)"
 
 re: fclean all
 

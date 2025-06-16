@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:20:07 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/12 10:38:27 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:59:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*lst_new(t_nbr content)
 	ret = malloc(sizeof(t_list));
 	if (ret != NULL)
 	{
-		(*ret).content = content;
+		(*ret).val = content;
 		(*ret).next = NULL;
 		(*ret).last = NULL;
 	}

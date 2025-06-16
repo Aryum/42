@@ -20,13 +20,13 @@ static int rotate(t_stack *stack, char c)
 	if (stack->lst == NULL)
 		return (0);
 	lst_tmp = stack->lst;
-	nbr_tmp = stack->lst->content;
+	nbr_tmp = stack->lst->val;
 	while (lst_tmp->next != NULL)
 	{
-		lst_tmp->content = lst_tmp->next->content;
+		lst_tmp->val = lst_tmp->next->val;
 		lst_tmp = lst_tmp->next;
 	}
-	lst_tmp->content = nbr_tmp;
+	lst_tmp->val = nbr_tmp;
 	mv_h_print("r", c);
 	return (1);
 }
