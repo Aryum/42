@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 14:57:36 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:13:40 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void	printlists(t_data stacks)
 t_stack *ini_stack(char c)
 {
 	t_stack *ret;
+
 	ret = malloc(sizeof(t_stack));
 	ret->lst = NULL;
 	ret->size = 0;
 	ret->id = c;
-	
 	return ret;
 }
 
@@ -115,7 +115,6 @@ void dividestacks(t_data stacks)
 	to_push = chk_stackindex(stacks);
 	if (to_push)
 	{
-		print_f("still needs to divide\n");
 		rot = rot_create(stacks,'b', to_push);
 		rot_toPush(stacks,rot);
 		dividestacks(stacks);
