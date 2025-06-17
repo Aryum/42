@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:31:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 17:43:41 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:57:16 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,10 @@ typedef struct s_rot
 	int		cost;
 } t_rot;
 
-typedef struct s_cost
-{
-	int	idx;
-	int	cost;
-} t_cost;
+t_rot	rot_create(t_data data, char pushto, int tar_index);
 
+t_rot	*rot_getrot(t_data data, char pushto, int nbr, int (*func)(int, int));
 
-t_rot rot_create(t_data data, char pushto, int tar_index);
-
-void rot_toPush(t_data data, t_rot rot_info);
+void	rot_sort(t_rot *tab, int size);
 
 #endif

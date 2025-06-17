@@ -6,11 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:40:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 17:40:28 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:57:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "chk.h"
+#include "rot.h"
 
 static int	counter(t_list *lst, int (*func)(int))
 {
@@ -25,37 +25,38 @@ static int	counter(t_list *lst, int (*func)(int))
 	return (ret);
 }
 
-static t_cost create_cost(t_stack stack, int index)
+static t_list *get_lst(t_data data, char pushto)
 {
-	t_cost ret;
-
-	ret.cost = mv_calculate_push(stack, index);
-	ret.idx = index;
-	return ret;
+	if (pushto == 'a')
+		return (data.b);
+	if (pushto == 'b')
+		return (data.a);
+	return (NULL);
 }
-/// @return indexes that needs to be pushed to b
-t_cost	*chk_stackindex(t_stack stack, int (*func)(int))
-{
-	t_list *lst;
-	t_cost	*ret;
+
+/// @return indexes that needs to be pushed to b that me
+t_rot	*rot_getrot(t_data data, char pushto, int nbr, int (*func)(int, int))
+{	
+	t_list	*lst;
+	t_rot	*ret;
 	int		len;
 	int		i;
 
 	i = 0;
-	lst = stack.lst;
+	lst = get_lst(data, pushto);
 	len = counter(lst, func); 
 	ret = lib_calloc(sizeof(int), len + 1);
 	if (ret != NULL)
 	{
-		ret[len].idx = -1;
 		while (lst != NULL)
 		{
-			if (func(lst->val.index))
-				ret[i] = create_cost(stack, lst->val.index);
+			if (func(nbr, lst->val.index))
+				ret[i] = rot_create(data, pushto ,lst->val.index);
 			i++;
 			lst = lst->next;
 		}
+		ret[i].tar_index = -1;
+		rot_sort(ret, len);
 	}
-	
 	return (ret);
 }

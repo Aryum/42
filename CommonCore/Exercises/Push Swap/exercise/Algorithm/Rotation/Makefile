@@ -1,7 +1,9 @@
 NAME := rot.a
 
-SRC := 	rot_create.c		\
-		rot_topush.c
+SRC := 	rot_create.c	\
+		rot_getcost.c	\
+		rot_topush.c	\
+
 
 HDR_DIR := .
 

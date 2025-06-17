@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 17:48:18 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:46:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void dividestacks(t_data stacks)
 	if (to_push)
 	{
 		rot = rot_create(stacks,'b', to_push);
-		rot_toPush(stacks,rot);
+		rot_push(stacks,rot);
 		dividestacks(stacks);
 	}
 }

@@ -6,12 +6,11 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:30:38 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 15:48:13 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/17 10:41:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rot.h"
-
 
 t_rot rot_create(t_data data, char pushto, int tar_index)
 {
@@ -38,6 +37,6 @@ t_rot rot_create(t_data data, char pushto, int tar_index)
 		else
 			ret.rotate = mv_rotate_rev_a;
 	}
-	print_f("Cost to move index %d -> %d\n",tar_index,ret.cost);
+	print_f("ROT CREATE-> Cost to move index %d -> %d\n",tar_index,ret.cost);
 	return ret;
 }
