@@ -1,23 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alg.h                                              :+:      :+:    :+:   */
+/*   srt_three.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 14:06:20 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/17 17:59:23 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALG_H
-# define ALG_H
+#include "srt.h"
 
-# include "stack.h"
-# include "../Moves/mv.h"
-# include "../Parser/psr.h"
-# include "../Rotation/rot.h"
-# include "../Check/chk.h"
-
-
-#endif

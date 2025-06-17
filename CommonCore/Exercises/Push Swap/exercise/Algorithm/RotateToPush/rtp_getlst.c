@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psr.h                                              :+:      :+:    :+:   */
+/*   rtp_getlst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 11:27:05 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 16:25:13 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/17 13:59:37 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/17 16:55:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PSR_H
-# define PSR_H
+#include "rtp.h"
 
-# include "../_Headers/alg.h"
-
-# include "../../Helpers/Lib/lib.h"
-
-int		psr_h_try_add_number(t_stack *stack, int nbr);
-
-int		psr_h_try_get_number(char *c, long *nbr);
-
-void	psr_h_indexer(t_list *lst);
-
-int		psr_agrs(t_stack *stack, int argc, char **argv);
-
-int		print_f(const char *string, ...);
-
-#endif
+t_list *rtp_get_lst(t_data data, char pushto)
+{
+	if (pushto == 'a')
+		return (data.b->lst);
+	if (pushto == 'b')
+		return (data.a->lst);
+	print_f("GET LIST-> wrong char passed\n");
+	return (NULL);
+}

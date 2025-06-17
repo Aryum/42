@@ -1,11 +1,1 @@
-1st organize stacks
-	divide them in 4
-		1st stack -> 4rd quarter and 3th quarter of stack
-		2nd stack -> 1nd quarter and 2st quarter of stack
-
-2nd organize divisions
-	make a checker if the numbers are in sequence
-		if both are then we can sort everyhting
-	organize 4th and 1st quarters
-		check moves than are cheapest
-			check if you can move both stacks to make it simpler
+send max value of the stack to bottom of a no longer needs to be moved

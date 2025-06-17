@@ -8,7 +8,7 @@ HLP_DIR := Helpers
 HLP_ARC := $(HLP_DIR)/Lib/lib.a $(HLP_DIR)/Lst/lst.a $(HLP_DIR)/Print/print.a
 
 ALG_DIR := Algorithm
-ALG_ARC := $(ALG_DIR)/Rotation/rot.a $(ALG_DIR)/Moves/mv.a $(ALG_DIR)/Check/chk.a $(ALG_DIR)/Parser/psr.a 
+ALG_ARC := $(ALG_DIR)/Debug/dbg.a $(ALG_DIR)/RotateToPush/rtp.a $(ALG_DIR)/Check/chk.a $(ALG_DIR)/Moves/mv.a $(ALG_DIR)/Parser/psr.a 
 
 ALL_ARC := $(ALG_ARC) $(HLP_ARC) 
 

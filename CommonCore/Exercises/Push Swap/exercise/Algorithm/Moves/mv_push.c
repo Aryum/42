@@ -12,20 +12,20 @@
 
 #include "mv.h"
 
-static void push_first(t_stack *lst_add, t_stack *lst_take, char c)
+static void push_first(t_stack *stk_add, t_stack *stk_take, char c)
 {
-	if (lst_take->lst == NULL)
+	if (stk_take->lst == NULL)
 	{
 		print_f("Trying to push from list %c that is empty\n", c);
 		return ;
 	}
-	if(lst_add->lst != NULL)
-		lst_add_front(&(lst_add->lst), lst_take->lst->val);
+	if(stk_add->lst != NULL)
+		lst_add_front(&(stk_add->lst), stk_take->lst->val);
 	else
-		lst_add->lst = lst_new(lst_take->lst->val);
-	lst_delone(&(lst_take->lst), lst_take->lst);
-	lst_add->size++;
-	lst_take->size--;
+		stk_add->lst = lst_new(stk_take->lst->val);
+	lst_delone(&(stk_take->lst), stk_take->lst);
+	stk_add->size++;
+	stk_take->size--;
 	mv_h_print("p", c);
 }
  

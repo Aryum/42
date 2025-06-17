@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rot.h                                              :+:      :+:    :+:   */
+/*   dbg.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 18:31:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 20:57:16 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/17 11:23:39 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/17 16:24:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROTINFO_H
-# define ROTINFO_H
+#ifndef DBG_H
+# define DBG_H
 
-#include "../Headers/alg.h"
+# include "../_Headers/alg.h"
 
-typedef struct s_rot
-{
-	t_list	*lst;
-	void	(*push)(t_data);
-	void	(*rotate)(t_data);
-	int		tar_index;
-	int		cost;
-} t_rot;
+int	print_f(const char *string, ...);
 
-t_rot	rot_create(t_data data, char pushto, int tar_index);
-
-t_rot	*rot_getrot(t_data data, char pushto, int nbr, int (*func)(int, int));
-
-void	rot_sort(t_rot *tab, int size);
+void	dbg_print_stack(t_data data);
 
 #endif

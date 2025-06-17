@@ -1,6 +1,6 @@
-NAME := chk.a
+NAME := dbg.a
 
-SRC := 	chk_sequence.c	
+SRC := 	dbg_stack.c	
 
 HDR_DIR := .
 

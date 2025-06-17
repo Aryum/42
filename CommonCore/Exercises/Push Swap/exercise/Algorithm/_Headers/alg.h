@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chk_sequence.c                                     :+:      :+:    :+:   */
+/*   alg.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 12:17:00 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 14:13:52 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/17 18:13:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "chk.h"
+#ifndef ALG_H
+# define ALG_H
 
-/// @brief 
-/// @return index where sequence starts
-int	chk_sequence(t_stack *stack)
+# include "../../Helpers/Lst/lst.h"
+
+typedef struct s_stack
 {
 	t_list	*lst;
-	int		index;
+	int		size;
+	int		mid;
+	char	id;
+	
+} t_stack;
 
-	lst = stack->lst;
-	index = -1;
-	while (lst->next != NULL)
-	{
-		if (lst->val.index + 1 == lst->next->val.index && index == -1)
-			index =  lst->val.index;
-		if (index != -1 && lst->val.index + 1 != lst->next->val.index)
-			return (0);
-		lst = lst->next;
-	}
-	return (index);
-}
+typedef struct s_data
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		total_size;
+} t_data;
+
+# include "../Debug/dbg.h"
+# include "../Moves/mv.h"
+# include "../Parser/psr.h"
+//# include "../RotateToPush/rtp.h"
+
+
+
+
+#endif

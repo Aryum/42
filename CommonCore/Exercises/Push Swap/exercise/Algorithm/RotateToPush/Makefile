@@ -1,9 +1,9 @@
-NAME := rot.a
+NAME := rtp.a
 
-SRC := 	rot_create.c	\
-		rot_getcost.c	\
-		rot_topush.c	\
-
+SRC := 	rtp_create.c	\
+		rtp_push.c		\
+		rtp_sort.c		\
+		rtp_getlst.c
 
 HDR_DIR := .
 

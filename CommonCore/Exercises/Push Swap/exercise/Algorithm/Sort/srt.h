@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   srt.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 17:49:02 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/17 17:12:57 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/17 17:15:27 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
+#ifndef SRT_H
+# define SRT_H
 
-# include "../../Helpers/Lst/lst.h"
+# include "../_Headers/alg.h"
 
-typedef struct s_stack
-{
-	t_list	*lst;
-	int		size;
-	char	id;
-} t_stack;
-
-typedef struct s_data
-{
-	t_stack	*a;
-	t_stack	*b;
-	int		total_size;
-} t_data;
 
 #endif
