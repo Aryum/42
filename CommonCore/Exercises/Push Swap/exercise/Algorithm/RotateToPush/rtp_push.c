@@ -6,46 +6,58 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:45:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 16:55:24 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:57:23 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtp.h"
 
-static void rec(t_data data, t_list *lst, t_rtp rot, int print)
+static void rec(t_data data, t_list *lst, t_rtp rot, int print, int loops)
 {
+	if(loops > 4)
+		return ;
 	if (print)
 		dbg_print_stack(data);
-	if(lst->val.index == rot.tar_index)
-	{
-		rot.push(data);
-		if(rot.on_end != NULL)
-			rot.on_end(data);
-	}
+	if(lst->val.index == rot.tar_idx)
+		rot.psh_info.push(data);
 	else
 	{
 		rot.rotate(data);
-		rec(data, lst, rot, print);
+		rec(data, lst, rot, print, loops + 1);
 	}
 }
 
-void rtp_push_single(t_data data, char pushto, t_rtp rot, int print)
+static void update(t_data data,t_rtp *rots)
 {
-	rec (data, rtp_get_lst(data,pushto), rot, print);
+	int	i;
+
+	i = 0;
+	while(rots[i].tar_idx != -1)
+	{
+		rtp_setrot(data, &rots[i]);
+		i++;
+	}
+	rtp_sort(rots);
 }
 
-int	rtp_push_multiple(t_data data, char pushto, int nbr, int (*func)(int, int))
+void rtp_push_single(t_data data, t_psh p_info, t_rtp rot, int print)
+{
+	rec (data, rtp_get_lst(data,p_info.tolst), rot, print, 0);
+}
+
+int	rtp_push_multiple(t_data data, t_psh p_info, int nbr, int (*func)(int, int))
 {
 	t_rtp	*rots;
 	int		i;
 
-	rots = rtp_create_all(data, pushto, nbr, func);
+	rots = rtp_create_all(data, p_info, nbr, func);
 	i = 0;
 	if (rots != NULL)
 	{
-		while (rots[i].tar_index != -1)
+		while (rots[i].tar_idx != -1)
 		{
-			rtp_push_single(data, pushto, rots[i], 1);
+			rtp_push_single(data, p_info, rots[i], 1);
+			update(data, &rots[i + 1]);
 			i++;
 		}
 		free(rots);

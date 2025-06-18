@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 18:09:23 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 09:34:10 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	is2ndpart(int middle, int index)
 int	main(int argc, char **argv)
 {
 	t_data data;
-
+	//t_psh push_a = rtp_psh_info('a', mv_pushto_a);
+	t_psh push_b = rtp_psh_info('b', mv_pushto_b);
 	data.a = ini_stack('a'); 
 	data.b = ini_stack('b');
 	psr_agrs(data.a, argc, argv);
@@ -75,7 +76,8 @@ int	main(int argc, char **argv)
 	int halfsize = data.total_size / 2;
 	data.a->mid = halfsize + halfsize / 2;
 	data.b->mid = halfsize - halfsize / 2;
-	rot_push_multiple(data, 'b', halfsize, is2ndpart);
+	
+	rtp_push_multiple(data, push_b, halfsize, is2ndpart);
 	dbg_print_stack(data);
 	
 

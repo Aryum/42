@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:40:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 18:17:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:00:25 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	counter(t_list *lst, int tar,int (*func)(int, int))
 	ret = 0;
 	while (lst != NULL)
 	{
-		//lst->val.index <= max_idx
 		if (func(tar, lst->val.index))
 			ret	++;
 		lst = lst->next;
@@ -41,7 +40,7 @@ t_psh rtp_psh_info(char c, void (*func)(t_data))
 	t_psh	ret;
 
 	ret.tolst = c;
-	ret.on_push = func;
+	ret.push = func;
 	return (ret);
 }
 
@@ -49,27 +48,9 @@ t_rtp rtp_create(t_data data, t_psh p_info, int tar_idx)
 {
 	t_rtp	ret;
 
-	ret.tar_index = tar_idx;
-	ret.on_end = p_info.on_push;
-	if (p_info.tolst == 'a')
-	{
-		ret.push = mv_pushto_a;
-		ret.cost = mv_calculate_push(*data.b, tar_idx);
-		if (ret.cost >= 0)
-			ret.rotate = mv_rotate_b;
-		else
-			ret.rotate = mv_rotate_rev_b;
-	}
-	else if (p_info.tolst == 'b')
-	{
-		ret.push = mv_pushto_b;
-		ret.cost = mv_calculate_push(*data.a, tar_idx);
-		if (ret.cost >= 0)
-			ret.rotate = mv_rotate_a;
-		else
-			ret.rotate = mv_rotate_rev_a;
-	}
-	print_f("ROT CREATE-> Cost to move index %d -> %d\n",tar_idx,ret.cost);
+	ret.tar_idx = tar_idx;
+	ret.psh_info = p_info;
+	rtp_setrot(data, &ret);
 	return ret;
 }
 
@@ -96,8 +77,8 @@ t_rtp	*rtp_create_all(t_data data, t_psh p_info, int nbr, int (*func)(int, int))
 			}
 			lst = lst->next;
 		}
-		rtp_sort(ret, len);
-		ret[len].tar_index = -1;
+		ret[len].tar_idx = -1;
+		rtp_sort(ret);
 	}
 	return (ret);
 }

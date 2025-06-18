@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:31:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 17:00:23 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 10:09:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,31 @@
 typedef struct s_psh
 {
 	char	tolst;
-	void	(*on_push)(t_data);
+	void	(*push)(t_data);
 } t_psh;
 
 typedef struct s_rtp
 {
-	void	(*on_end)(t_data);
-	void	(*push)(t_data);
 	void	(*rotate)(t_data);
-	int		tar_index;
+	t_psh	psh_info;
+	int		tar_idx;
 	int		cost;
 } t_rtp;
 
-t_rtp	rtp_create(t_data data, char pushto, int tar_index);
+t_psh rtp_psh_info(char c, void (*func)(t_data));
 
-t_rtp	*rtp_create_all(t_data data, char pushto, int nbr, int (*func)(int, int));
+t_rtp	*rtp_create_all(t_data data, t_psh p_info, int nbr, int (*func)(int, int));
 
-void	rtp_push_single(t_data data, char pushto, t_rtp rot, int print);
+t_rtp rtp_create(t_data data, t_psh p_info, int tar_idx);
 
-int		rtp_push_multiple(t_data data, char pushto, int nbr, int (*func)(int, int));
+void	rtp_push_single(t_data data, t_psh p_info, t_rtp rot, int print);
 
-void	rtp_sort(t_rtp *tab, int size);
+int		rtp_push_multiple(t_data data, t_psh p_info, int nbr, int (*func)(int, int));
+
+void	rtp_sort(t_rtp *tab);
 
 t_list	*rtp_get_lst(t_data data, char pushto);
+
+void	rtp_setrot(t_data data, t_rtp *rtp);
 
 #endif

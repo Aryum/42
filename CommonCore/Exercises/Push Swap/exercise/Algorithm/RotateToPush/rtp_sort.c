@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:17:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 16:55:28 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:59:47 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,43 @@ static void	swap(t_rtp *a, t_rtp *b)
 	*b = temp;
 }
 
-static void updatenegative(t_rtp *tab, int size)
+
+
+static int updatenegative(t_rtp *tab)
 {
 	int	max;
 	int	i;
 
 	i = 0;
 	max = -2147483648;
-	while(i < size)
+	while(tab[i].tar_idx != -1)
 	{
-		if (tab[i].tar_index > max)
-			max = tab->tar_index;
+		if (tab[i].tar_idx > max)
+			max = tab[i].tar_idx;
 		i++;
 	}
 	i = 0;
-	while (i < size)
+	
+	while (tab[i].tar_idx != -1)
 	{
 		if (tab[i].cost < 0)
 			tab[i].cost = max + -1 * tab[i].cost;
 		i++;
 	}
+	return (i);
 }
 
-void	rtp_sort(t_rtp *tab, int size)
+void	rtp_sort(t_rtp *tab)
 {
 	int	i;
 	int	h;
 	int	swapped;
-
+	int	size;
+	
 	i = 0;
 	h = 0;
-	swapped = 1;
-	updatenegative(tab, size);
+	swapped = 0;
+	size = updatenegative(tab);
 	while (i < size)
 	{
 		while (h < size - i - 1)
@@ -60,13 +65,20 @@ void	rtp_sort(t_rtp *tab, int size)
 			if (tab[h].cost > tab[h + 1].cost)
 			{
 				swap(&tab[h], &tab[h + 1]);
-				swapped = 0;
+				swapped = 1;
 			}
 			h++;
 		}
-		if (swapped == 1)
+		if (!swapped)
 			break ;
 		h = 0;
 		i++;
+	}
+
+	i = 0;
+	while(tab[i].tar_idx != -1)
+	{
+		print_f("ROT UPDATE-> Cost to move index %d -> %d\n",tab[i].tar_idx, tab[i].cost);
+		i ++;
 	}
 }
