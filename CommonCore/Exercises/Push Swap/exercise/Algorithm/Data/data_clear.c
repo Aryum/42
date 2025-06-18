@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srt_three.c                                        :+:      :+:    :+:   */
+/*   data_clear.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 14:07:48 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/18 14:35:01 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/18 16:01:24 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "srt.h"
+#include "data.h"
 
-void srt_three(t_stack stack)
+void	stack_clear(t_stack *stack)
 {
-	if (is_sorted(stack))
-		return ;
-	if (is_rev_sorted(stack))
+	if (stack != NULL)
 	{
-		
+		if (stack->lst != NULL)
+			lst_clear(stack->lst);
+		free(stack);
 	}
+}
+
+void	data_clear(t_data data)
+{
+	stack_clear(data.a);
+	stack_clear(data.b);
 }

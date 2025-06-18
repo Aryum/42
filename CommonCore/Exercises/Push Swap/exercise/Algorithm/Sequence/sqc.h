@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srt_check.c                                        :+:      :+:    :+:   */
+/*   sqc.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:14:19 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 17:22:16 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/18 12:26:24 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/18 14:00:55 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "srt.h"
+#ifndef CHK_H
+# define CHK_H
 
-int	is_sorted(t_stack stack)
+# include "../_Headers/alg.h"
+
+typedef enum e_dir
 {
-	t_list *lst;
+	reverse,
+	normal,
+	none
+} t_dir;
 
-	lst = stack.lst;
-	while (lst->next != NULL)
-	{
-		if(lst->val.index + 1 !=  lst->next->val.index)
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
+typedef struct s_sequence
+{
+	t_dir	dir;
+	int		start;
+	int		end;
+
+} t_sequence;
+
+int	is_sorted(t_stack stack);
+
+int	is_rev_sorted(t_stack stack);
+#endif

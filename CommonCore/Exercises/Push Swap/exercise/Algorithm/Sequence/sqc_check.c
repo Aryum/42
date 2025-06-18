@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srt_three.c                                        :+:      :+:    :+:   */
+/*   sqc_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 14:07:48 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/18 12:37:09 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/18 14:06:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "srt.h"
+#include "sqc.h"
 
-void srt_three(t_stack stack)
+int	is_sorted(t_stack stack)
 {
-	if (is_sorted(stack))
-		return ;
-	if (is_rev_sorted(stack))
+	t_list *lst;
+	
+	lst = stack.lst;
+	while (lst->next != NULL)
 	{
-		
+		if(lst->val.index + 1 != lst->next->val.index)
+			return (0);
+		lst = lst->next;
 	}
+	return (1);
+}
+
+int	is_rev_sorted(t_stack stack)
+{
+	t_list *lst;
+
+	lst = stack.lst;
+	while (lst->next != NULL)
+	{
+		if(lst->val.index - 1 != lst->next->val.index)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
 }

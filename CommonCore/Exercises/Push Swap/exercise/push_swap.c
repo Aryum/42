@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 09:34:10 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:46:19 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	main(int argc, char **argv)
 	data.a = ini_stack('a'); 
 	data.b = ini_stack('b');
 	psr_agrs(data.a, argc, argv);
-	data.total_size = data.a->size;
 	start_debug(data.a->lst);
 	int halfsize = data.total_size / 2;
 	data.a->mid = halfsize + halfsize / 2;

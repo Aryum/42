@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:24:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 18:11:27 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:36:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ void	dbg_print_stack(t_data data)
 	}
 	print_f("____________________________\n");
 	print_f(" %d	|	%d Total\n", data.a->size,data.b->size);
-	print_f(" %d	|	%d Mid\n", data.a->mid,data.b->mid);
 	print_f("____________________________\n\n");
 }
