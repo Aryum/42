@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:35:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 15:01:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:16:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	get_nbrs(t_stack *stack, char *c)
 	return (lib_split_clean(nbr_str), 1);
 }
 
-int	psr_agrs(t_data data, int argc, char **argv)
+int	psr_agrs(t_stack_data data, int argc, char **argv)
 {
 	int	arg_i;
 

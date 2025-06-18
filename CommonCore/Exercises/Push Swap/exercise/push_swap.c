@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 14:46:19 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:30:57 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,6 @@ void	start_debug(t_list *lst)
 }
 
 
-t_stack *ini_stack(char c)
-{
-	t_stack *ret;
-
-	ret = malloc(sizeof(t_stack));
-	ret->lst = NULL;
-	ret->size = 0;
-	ret->id = c;
-	ret->mid = 0;
-
-	return ret;
-}
-
-void freeMem(t_data stacks)
-{
-	lst_clear(&(stacks.a->lst));
-	lst_clear(&(stacks.b->lst));
-	free(stacks.a);
-	free(stacks.b);
-}
-
 int	is2ndpart(int middle, int index)
 {
 	return  index <= middle;
@@ -65,19 +44,20 @@ int	is2ndpart(int middle, int index)
 
 int	main(int argc, char **argv)
 {
-	t_data data;
-	//t_psh push_a = rtp_psh_info('a', mv_pushto_a);
-	t_psh push_b = rtp_psh_info('b', mv_pushto_b);
-	data.a = ini_stack('a'); 
-	data.b = ini_stack('b');
-	psr_agrs(data.a, argc, argv);
-	start_debug(data.a->lst);
-	int halfsize = data.total_size / 2;
-	data.a->mid = halfsize + halfsize / 2;
-	data.b->mid = halfsize - halfsize / 2;
+	t_stack_data data;
+	data = data_ini();
+	if (psr_agrs(data, argc, argv))
+	{
+		t_psh push_b = rtp_psh_info('b', mv_pushto_b);
+		start_debug(data.a->lst);
+		int halfsize = data.total_size / 2;
+		rtp_push_multiple(data, push_b, halfsize, is2ndpart);
+		dbg_print_stack(data);
+	}
+	data_clear(data);
 	
-	rtp_push_multiple(data, push_b, halfsize, is2ndpart);
-	dbg_print_stack(data);
+	//t_psh push_a = rtp_psh_info('a', mv_pushto_a);
+	
 	
 
 
@@ -97,5 +77,4 @@ int	main(int argc, char **argv)
 	srt_swap_a(&stacks);
 	printlists(stacks, "Swap a");
 	*/
-	freeMem(data);
 }

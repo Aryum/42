@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:27:05 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 14:44:53 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:26:43 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		psr_h_try_get_number(char *c, long *nbr);
 
 void	psr_h_indexer(t_list *lst);
 
-int		psr_agrs(t_stack *stack, int argc, char **argv);
+int	psr_agrs(t_stack_data data, int argc, char **argv);
 
 int		print_f(const char *string, ...);
 

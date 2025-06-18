@@ -6,18 +6,12 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 16:04:12 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:13:45 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALG_H
 # define ALG_H
-
-typedef enum e_id
-{
-	a,
-	b
-} t_id;
 
 # include "../Data/data.h"
 # include "../Debug/dbg.h"

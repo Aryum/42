@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:23:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/17 16:24:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:16:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 int	print_f(const char *string, ...);
 
-void	dbg_print_stack(t_data data);
+void	dbg_print_stack(t_stack_data data);
 
 #endif

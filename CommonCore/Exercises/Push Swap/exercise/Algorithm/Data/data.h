@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:11:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 16:09:32 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:24:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define DATA_H
 
 # include "../../Helpers/Lst/lst.h"
-# include "../_Headers/alg.h"
 
 typedef enum e_id
 {
@@ -29,25 +28,18 @@ typedef struct s_stack
 	t_id		id;
 } t_stack;
 
-typedef struct s_data
+typedef struct s_stack_data
 {
 	t_stack	*a;
 	t_stack	*b;
 	int		total_size;
-} t_data;
-
-typedef struct s_functions
-{
-	void (*rotate)(t_data);
-	void (*rev_rotate)(t_data);
-	void (*push)(t_data);
-	void (*swap)(t_data);
-} t_functions;
-
-
+} t_stack_data;
 
 void	stack_clear(t_stack *stack);
 
-void	data_clear(t_data data);
+void	data_clear(t_stack_data data);
+
+t_stack_data	data_ini();
+
 
 #endif

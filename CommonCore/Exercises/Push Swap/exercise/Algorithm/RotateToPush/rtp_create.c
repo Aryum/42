@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:40:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 12:00:25 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:16:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	counter(t_list *lst, int tar,int (*func)(int, int))
 	return (ret);
 }
 
-static t_list *get_lst(t_data data, char pushto)
+static t_list *get_lst(t_stack_data data, char pushto)
 {
 	if (pushto == 'a')
 		return (data.b->lst);
@@ -35,7 +35,7 @@ static t_list *get_lst(t_data data, char pushto)
 	return (NULL);
 }
 
-t_psh rtp_psh_info(char c, void (*func)(t_data))
+t_psh rtp_psh_info(char c, void (*func)(t_stack_data))
 {
 	t_psh	ret;
 
@@ -44,7 +44,7 @@ t_psh rtp_psh_info(char c, void (*func)(t_data))
 	return (ret);
 }
 
-t_rtp rtp_create(t_data data, t_psh p_info, int tar_idx)
+t_rtp rtp_create(t_stack_data data, t_psh p_info, int tar_idx)
 {
 	t_rtp	ret;
 
@@ -55,7 +55,7 @@ t_rtp rtp_create(t_data data, t_psh p_info, int tar_idx)
 }
 
 /// @return indexes that needs to be pushed to b that me
-t_rtp	*rtp_create_all(t_data data, t_psh p_info, int nbr, int (*func)(int, int))
+t_rtp	*rtp_create_all(t_stack_data data, t_psh p_info, int nbr, int (*func)(int, int))
 {	
 	t_list	*lst;
 	t_rtp	*ret;

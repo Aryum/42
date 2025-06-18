@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 09:44:33 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 10:01:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:16:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtp.h"
 
-void rtp_setrot(t_data data, t_rtp *rtp)
+void rtp_setrot(t_stack_data data, t_rtp *rtp)
 {
 	if (rtp->psh_info.tolst == 'a')
 	{

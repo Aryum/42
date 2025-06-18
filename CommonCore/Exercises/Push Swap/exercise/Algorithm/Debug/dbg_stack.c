@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:24:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 15:36:03 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:16:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void printContent(t_list *lst)
 		print_f("%d", lst->val.index);
 }
 
-void	dbg_print_stack(t_data data)
+void	dbg_print_stack(t_stack_data data)
 {
 	t_list *a = data.a->lst;
 	t_list *b = data.b->lst;
