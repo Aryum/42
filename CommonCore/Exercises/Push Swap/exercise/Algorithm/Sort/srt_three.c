@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 12:28:18 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:44:55 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void srt_three(t_data data, t_id id)
 {
-	t_stack *stack;
+	t_stack	*stack;
 	t_func	func;
+
 	stack = get_stack(data, id);
 	func = get_func(id);
 	if (is_sorted(*stack))
@@ -25,5 +26,13 @@ void srt_three(t_data data, t_id id)
 		while (stack->lst->val.index != stack->min)
 			func.rev_rot(data);
 	}
+	//swap top
+
+	//swap lower
+
+	//has sequence
+		//lwr is on bottom
+		//bgr is on top
+
 }
 
