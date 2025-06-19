@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sqc.h                                              :+:      :+:    :+:   */
+/*   chk.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:26:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 14:00:55 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:17:26 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,22 @@ typedef struct s_sequence
 
 } t_sequence;
 
+int	next_lower(t_list *lst);
+
+int	next_bigger(t_list *lst);
+
 int	is_sorted(t_stack stack);
 
 int	is_rev_sorted(t_stack stack);
+
+int	is_max_onbottom(t_stack stack);
+
+int	is_max_ontop(t_stack stack);
+
+int	is_min_ontop(t_stack stack);
+
+int	is_min_onbottom(t_stack stack);
+
+//int	has_sequence(t_stack stack, t_sequence *seq);
+
 #endif

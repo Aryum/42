@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:48:10 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,14 @@ int	main(int argc, char **argv)
 	data = data_ini();
 	if (psr_agrs(&data, argc, argv))
 	{
-		t_psh push_b = rtp_psh_info('b', mv_pushto_b);
+		//t_psh push_b = rtp_psh_info('b', mv_pushto_b);
 		start_debug(data.a->lst);
-		rtp_push_multiple(data, push_b, data.total_size / 2, is2ndpart);
+		
+		if (data.total_size == 3)
+			srt_three(data, a);
+		else
+			print_f("More than 3 args");
+		//rtp_push_multiple(data, push_b, data.total_size / 2, is2ndpart);
 		dbg_print_stack(data);
 	}
 	data_clear(data);

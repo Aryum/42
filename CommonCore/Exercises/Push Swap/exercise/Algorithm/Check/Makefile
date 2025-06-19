@@ -1,6 +1,7 @@
-NAME := srt.a
+NAME := chk.a
 
-SRC := 	srt_three.c	\
+SRC := 	chk_edges.c	\
+		chk_sort.c	\
 
 HDR_DIR := .
 

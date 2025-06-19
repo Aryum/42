@@ -12,9 +12,11 @@ HLP_ARC :=	$(HLP_DIR)/Lib/lib.a		\
 ALG_DIR := Algorithm
 ALG_ARC :=	$(ALG_DIR)/Debug/dbg.a			\
 			$(ALG_DIR)/RotateToPush/rtp.a	\
-			$(ALG_DIR)/Moves/mv.a			\
+			$(ALG_DIR)/Sort/srt.a 		\
 			$(ALG_DIR)/Data/data.a			\
-			$(ALG_DIR)/Parser/psr.a 
+			$(ALG_DIR)/Moves/mv.a			\
+			$(ALG_DIR)/Check/chk.a			\
+			$(ALG_DIR)/Parser/psr.a 		\
 
 ALL_ARC := $(ALG_ARC) $(HLP_ARC) 
 
