@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:24:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 16:16:15 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void printContent(t_list *lst)
 		print_f("%d", lst->val.index);
 }
 
-void	dbg_print_stack(t_stack_data data)
+void	dbg_print_stack(t_data data)
 {
 	t_list *a = data.a->lst;
 	t_list *b = data.b->lst;
@@ -37,6 +37,8 @@ void	dbg_print_stack(t_stack_data data)
 			b = b->next;
 	}
 	print_f("____________________________\n");
-	print_f(" %d	|	%d Total\n", data.a->size,data.b->size);
+	print_f(" %d	|	%d	Total\n", data.a->size,data.b->size);
+	print_f(" %d	|	%d	Max\n", data.a->max,data.b->max);
+	print_f(" %d	|	%d	Min\n", data.a->min,data.b->min);
 	print_f("____________________________\n\n");
 }

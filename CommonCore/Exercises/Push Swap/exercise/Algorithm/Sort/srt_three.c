@@ -6,18 +6,24 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 14:07:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:28:18 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "srt.h"
 
-void srt_three(t_stack stack)
+void srt_three(t_data data, t_id id)
 {
-	if (is_sorted(stack))
+	t_stack *stack;
+	t_func	func;
+	stack = get_stack(data, id);
+	func = get_func(id);
+	if (is_sorted(*stack))
 		return ;
-	if (is_rev_sorted(stack))
+	if (is_rev_sorted(*stack))
 	{
-		
+		while (stack->lst->val.index != stack->min)
+			func.rev_rot(data);
 	}
 }
+

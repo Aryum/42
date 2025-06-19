@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:13:44 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 20:10:08 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 11:40:15 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,17 @@ static void	iter(t_list *lst, int *arr, int sz)
 	}
 }
 
-void	psr_h_indexer(t_list *lst)
+void	psr_h_indexer(t_stack *stack)
 {
-	int	*arr;
-	int	sz;
+	t_list	*lst;
+	int		*arr;
+	int		sz;
 
+	lst = stack->lst;
 	sz = lst_size(lst);
 	arr = get_arr(lst, sz);
+	stack->min = 1;
+	stack->max = sz;
 	if (arr == NULL)
 	{
 		print_f("Failed to index arr");

@@ -34,17 +34,17 @@ static int rev_rotate(t_stack *stack, char c)
 	return (1);
 }
 
-void	mv_rotate_rev_a(t_stack_data data)
+void	mv_rotate_rev_a(t_data data)
 {
 	rev_rotate(data.a, 'a');
 }
 
-void	mv_rotate_rev_b(t_stack_data data)
+void	mv_rotate_rev_b(t_data data)
 {
 	rev_rotate(data.b, 'b');
 }
 
-void	mv_rotate_rev_both(t_stack_data data)
+void	mv_rotate_rev_both(t_data data)
 {
 	int	rot_a;
 	int	rot_b;

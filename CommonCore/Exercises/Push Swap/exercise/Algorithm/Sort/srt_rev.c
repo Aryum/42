@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dbg.h                                              :+:      :+:    :+:   */
+/*   srt_rev.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 11:23:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/19 10:52:32 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/19 10:54:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DBG_H
-# define DBG_H
+#include "srt.h"
 
-# include "../_Headers/alg.h"
+void	srt_rev(t_stack stack)
+{
 
-int	print_f(const char *string, ...);
-
-void	dbg_print_stack(t_data data);
-
-#endif
+}

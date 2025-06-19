@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_create.c                                      :+:      :+:    :+:   */
+/*   data_get.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 14:13:58 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/19 12:11:56 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/19 12:24:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 
-static t_stack *ini_stack(t_id id)
+t_stack *get_stack(t_data stack, t_id id)
 {
-	t_stack *ret;
-
-	ret = malloc(sizeof(t_stack));
-	if (ret != NULL)
-	{
-		ret->lst = NULL;
-		ret->size = 0;
-		ret->id = id;
-		ret->max = -1;
-		ret->min = -1;
-	}
-	return (ret);
+	if (id == a)
+		return stack.a;
+	else 
+		return stack.b;
 }
 
-t_data	data_ini()
+t_func get_func(t_id id)
 {
-	t_data	ret;
-
-	ret.a = ini_stack(a);
-	ret.b = ini_stack(b);
-	if (ret.a == NULL || ret.b == NULL)
-		data_clear(ret);
+	t_func ret;
+	if (id == a)
+	{
+		ret.push = mv_pushto_b;
+		ret.rot = mv_rotate_a;
+		ret.push= mv_rotate_rev_a;
+		ret.swap= mv_swap_a;
+	}
+	else
+	{
+		ret.push = mv_pushto_a;
+		ret.rot = mv_rotate_b;
+		ret.push= mv_rotate_rev_b;
+		ret.swap= mv_swap_b;
+	}
 	return (ret);
 }

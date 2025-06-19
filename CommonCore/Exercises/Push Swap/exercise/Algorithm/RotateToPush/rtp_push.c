@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:45:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 16:16:15 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtp.h"
 
-static void rec(t_stack_data data, t_list *lst, t_rtp rot, int print, int loops)
+static void rec(t_data data, t_list *lst, t_rtp rot, int print, int loops)
 {
 	if(loops > 4)
 		return ;
@@ -27,7 +27,7 @@ static void rec(t_stack_data data, t_list *lst, t_rtp rot, int print, int loops)
 	}
 }
 
-static void update(t_stack_data data,t_rtp *rots)
+static void update(t_data data,t_rtp *rots)
 {
 	int	i;
 
@@ -40,12 +40,12 @@ static void update(t_stack_data data,t_rtp *rots)
 	rtp_sort(rots);
 }
 
-void rtp_push_single(t_stack_data data, t_psh p_info, t_rtp rot, int print)
+void rtp_push_single(t_data data, t_psh p_info, t_rtp rot, int print)
 {
 	rec (data, rtp_get_lst(data,p_info.tolst), rot, print, 0);
 }
 
-int	rtp_push_multiple(t_stack_data data, t_psh p_info, int nbr, int (*func)(int, int))
+int	rtp_push_multiple(t_data data, t_psh p_info, int nbr, int (*func)(int, int))
 {
 	t_rtp	*rots;
 	int		i;

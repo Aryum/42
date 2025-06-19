@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:35:01 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 16:25:29 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	stack_clear(t_stack *stack)
 	}
 }
 
-void	data_clear(t_stack_data data)
+void	data_clear(t_data data)
 {
 	stack_clear(data.a);
 	stack_clear(data.b);

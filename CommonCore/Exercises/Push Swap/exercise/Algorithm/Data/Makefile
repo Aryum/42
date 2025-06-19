@@ -1,7 +1,8 @@
 NAME := data.a
 
 SRC := 	data_create.c	\
-		data_clear.c
+		data_clear.c	\
+		data_get.c
 
 HDR_DIR := .
 

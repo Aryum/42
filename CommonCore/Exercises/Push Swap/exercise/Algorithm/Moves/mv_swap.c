@@ -27,17 +27,17 @@ static int swap_top(t_stack *stack, char c)
 	return (1);
 }
 
-void	mv_swap_a(t_stack_data data)
+void	mv_swap_a(t_data data)
 {
 	swap_top(data.a, 'a');
 }
 
-void	mv_swap_b(t_stack_data data)
+void	mv_swap_b(t_data data)
 {
 	swap_top(data.b, 'b');
 }
 
-void	mv_swap_both(t_stack_data data)
+void	mv_swap_both(t_data data)
 {
 	int	swap_a;
 	int	swap_b;
