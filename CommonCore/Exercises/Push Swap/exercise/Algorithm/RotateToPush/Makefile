@@ -3,8 +3,6 @@ NAME := rtp.a
 SRC := 	rtp_create.c	\
 		rtp_push.c		\
 		rtp_sort.c		\
-		rtp_getlst.c	\
-		rtp_setrot.c	
 
 HDR_DIR := .
 

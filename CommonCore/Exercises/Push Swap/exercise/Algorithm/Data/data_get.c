@@ -6,11 +6,21 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:11:56 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 15:56:35 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 13:07:44 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
+
+t_list *get_lst_topush(t_data data, t_id pushto)
+{
+	if (pushto == a)
+		return (data.b->lst);
+	if (pushto == b)
+		return (data.a->lst);
+	print_f("GET LIST-> wrong char passed\n");
+	return (NULL);
+}
 
 t_stack *get_stack(t_data stack, t_id id)
 {

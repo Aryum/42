@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:45:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 13:03:19 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void rec(t_data data, t_list *lst, t_rtp rot, int print, int loops)
 	if (print)
 		dbg_print_stack(data);
 	if(lst->val.index == rot.tar_idx)
-		rot.psh_info.push(data);
+		rot.push(data);
 	else
 	{
 		rot.rotate(data);
@@ -34,29 +34,29 @@ static void update(t_data data,t_rtp *rots)
 	i = 0;
 	while(rots[i].tar_idx != -1)
 	{
-		rtp_setrot(data, &rots[i]);
+		rtp_updaterot(data, &rots[i]);
 		i++;
 	}
 	rtp_sort(rots);
 }
 
-void rtp_push_single(t_data data, t_psh p_info, t_rtp rot, int print)
+void rtp_push_single(t_data data, t_rtp rot, int print)
 {
-	rec (data, rtp_get_lst(data,p_info.tolst), rot, print, 0);
+	rec (data, get_stack(data,rot.tar_id)->lst, rot, print, 0);
 }
 
-int	rtp_push_multiple(t_data data, t_psh p_info, int nbr, int (*func)(int, int))
+int	rtp_push_multiple(t_data data, t_id id, int nbr, int (*func)(int, int))
 {
 	t_rtp	*rots;
 	int		i;
 
-	rots = rtp_create_all(data, p_info, nbr, func);
+	rots = rtp_create_all(data, id, nbr, func);
 	i = 0;
 	if (rots != NULL)
 	{
 		while (rots[i].tar_idx != -1)
 		{
-			rtp_push_single(data, p_info, rots[i], 1);
+			rtp_push_single(data,rots[i], 1);
 			update(data, &rots[i + 1]);
 			i++;
 		}

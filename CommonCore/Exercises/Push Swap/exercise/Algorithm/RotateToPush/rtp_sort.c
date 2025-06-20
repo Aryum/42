@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:17:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/18 11:59:47 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 12:21:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	swap(t_rtp *a, t_rtp *b)
 	*a = *b;
 	*b = temp;
 }
-
-
 
 static int updatenegative(t_rtp *tab)
 {
