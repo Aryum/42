@@ -2,7 +2,8 @@ NAME := chk.a
 
 SRC := 	chk_edges.c	\
 		chk_sort.c	\
-
+		chk_chunk.c
+		
 HDR_DIR := .
 
 FLAGS := -Wall -Wextra -Werror

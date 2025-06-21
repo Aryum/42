@@ -2,7 +2,7 @@ NAME := rtp.a
 
 SRC := 	rtp_create.c	\
 		rtp_push.c		\
-		rtp_sort.c		\
+		rtp_sort.c		
 
 HDR_DIR := .
 

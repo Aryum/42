@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:35:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:41:46 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	psr_agrs(t_data *data, int argc, char **argv)
 {
 	int	arg_i;
 
-	if (argc == 1)
+	if (argc == 1 || data == NULL)
 		return (print_f("Error\n"), 0);
 	arg_i = 1;
 	while (arg_i < argc)

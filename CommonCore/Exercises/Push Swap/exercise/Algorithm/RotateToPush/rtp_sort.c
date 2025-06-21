@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:17:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 12:21:20 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:13:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int updatenegative(t_rtp *tab)
 		i++;
 	}
 	i = 0;
-	
 	while (tab[i].tar_idx != -1)
 	{
 		if (tab[i].cost < 0)
@@ -71,12 +70,5 @@ void	rtp_sort(t_rtp *tab)
 			break ;
 		h = 0;
 		i++;
-	}
-
-	i = 0;
-	while(tab[i].tar_idx != -1)
-	{
-		print_f("ROT UPDATE-> Cost to move index %d -> %d\n",tab[i].tar_idx, tab[i].cost);
-		i ++;
 	}
 }

@@ -47,12 +47,12 @@ static void push_first(t_stack *stk_add, t_stack *stk_take, char c)
 	mv_h_print("p", c);
 }
  
-void mv_pushto_a(t_data data)
+void mv_pushfrom_b(t_data data)
 {
 	push_first(data.a, data.b, 'a'); 
 }
 
-void mv_pushto_b(t_data data)
+void mv_pushfrom_a(t_data data)
 {
 	push_first(data.b, data.a, 'b');
 }

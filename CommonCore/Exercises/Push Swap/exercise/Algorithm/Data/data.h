@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:11:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 13:07:29 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:39:47 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,22 @@ typedef struct s_stack
 	int		min;
 } t_stack;
 
+typedef struct s_chunk
+{
+	int	max;
+	int	min;
+} t_chunk;
+
 typedef struct s_data
 {
 	t_stack	*a;
 	t_stack	*b;
+	t_chunk	chunk_arr[2];
 	int		total_size;
+	int		chunk_size;
 } t_data;
+
+
 
 typedef struct s_func
 {
@@ -52,6 +62,8 @@ void	stack_clear(t_stack *stack);
 void	data_clear(t_data data);
 
 t_data		data_ini();
+
+t_chunk		chunk_ini(int min, int max);
 
 t_stack		*get_stack(t_data stack, t_id id);
 

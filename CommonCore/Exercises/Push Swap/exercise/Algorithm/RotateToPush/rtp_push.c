@@ -6,28 +6,24 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:45:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 13:03:19 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:42:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtp.h"
 
-static void rec(t_data data, t_list *lst, t_rtp rot, int print, int loops)
+static void rec(t_data data, t_list *lst, t_rtp rot, int print)
 {
-	if(loops > 4)
-		return ;
-	if (print)
-		dbg_print_stack(data);
 	if(lst->val.index == rot.tar_idx)
 		rot.push(data);
 	else
 	{
 		rot.rotate(data);
-		rec(data, lst, rot, print, loops + 1);
+		rec(data, lst, rot, print);
 	}
 }
 
-static void update(t_data data,t_rtp *rots)
+static void update(t_data data, t_rtp *rots)
 {
 	int	i;
 
@@ -42,7 +38,7 @@ static void update(t_data data,t_rtp *rots)
 
 void rtp_push_single(t_data data, t_rtp rot, int print)
 {
-	rec (data, get_stack(data,rot.tar_id)->lst, rot, print, 0);
+	rec (data, get_lst_topush(data, rot.from), rot, print);
 }
 
 int	rtp_push_multiple(t_data data, t_id id, int nbr, int (*func)(int, int))

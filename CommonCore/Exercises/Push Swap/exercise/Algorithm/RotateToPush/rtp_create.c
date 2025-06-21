@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:40:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 13:07:42 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:35:10 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	rtp_updaterot(t_data data, t_rtp *rtp)
 	t_stack stack;
 	t_func	func;
 
-	stack = *get_stack(data, rtp->tar_id);
-	func = get_func(rtp->tar_id);
+	stack = *get_stack(data, rtp->from);
+	func = get_func(rtp->from);
 	rtp->push = func.push;
 	rtp->cost = mv_calculate_push(stack, rtp->tar_idx);
 	if (rtp->cost >= 0)
@@ -41,18 +41,16 @@ void	rtp_updaterot(t_data data, t_rtp *rtp)
 		rtp->rotate = func.rev_rot;
 }
 
-t_rtp rtp_create(t_data data, t_id push_to, int tar_idx)
+t_rtp	rtp_create(t_data data, t_id id, int tar_idx)
 {
 	t_rtp	ret;
 	
+	ret.from = id;
 	ret.tar_idx = tar_idx;
-	if (push_to == a)
-		ret.tar_id = b;
-	else
-		ret.tar_id = a;
 	rtp_updaterot(data, &ret);
 	return ret;
 }
+
 
 t_rtp	*rtp_create_all(t_data data, t_id id, int nbr, int (*func)(int, int))
 {	

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 13:05:05 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:45:25 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,25 @@ void	start_debug(t_list *lst)
 }
 
 
-int	is2ndpart(int middle, int index)
+int	is2ndpart(int tar, int index)
 {
-	return  index <= middle;
+	return  index > tar;
 }
-
+void split (t_data data)
+{
+	int	div = 5;
+	int	chunk_size = data.a->size / div;
+	int	size = data.a->size;
+	int	tar = size - (chunk_size * 2);
+	print_f("chunk size %d\na size %d", chunk_size, data.a->size);
+	while (is2ndpart(tar, data.a->max) && data.a->size >= chunk_size)
+	{
+		if(!rtp_push_multiple(data,a, tar, is2ndpart))
+			break;
+		tar -=(chunk_size * 2);
+		print_f("New tar %d\n", tar);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -53,9 +67,9 @@ int	main(int argc, char **argv)
 		if (data.total_size == 3)
 			srt_three(data, a);
 		else
-			print_f("More than 3 args");
+			print_f("More than 3 a rgs");
 		*/
-		rtp_push_multiple(data, b, data.total_size / 2, is2ndpart);
+	split(data);
 		dbg_print_stack(data);
 	}
 	data_clear(data);

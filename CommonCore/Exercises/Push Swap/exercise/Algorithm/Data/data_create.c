@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:13:58 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 12:15:01 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:39:08 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,14 @@ t_data	data_ini()
 	ret.b = ini_stack(b);
 	if (ret.a == NULL || ret.b == NULL)
 		data_clear(ret);
+	return (ret);
+}
+
+t_chunk chunk_ini(int min, int max)
+{
+	t_chunk	ret;
+
+	ret.min = min;
+	ret.max = max;
 	return (ret);
 }
