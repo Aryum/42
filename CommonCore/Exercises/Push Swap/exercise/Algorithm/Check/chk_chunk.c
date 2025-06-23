@@ -6,13 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 17:17:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 17:19:24 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:22:46 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "chk.h"
 
-int	is_inchunk(int i, t_chunk chunk)
+int	is_uprchunk(t_chunk chunk, int i)
 {
-	return (i >= chunk.min && i < chunk.max);
+	if (chunk.min == -1)
+		return (0);
+	return (i > chunk.mid && i <= chunk.max);
 }

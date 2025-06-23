@@ -16,7 +16,8 @@
 			"psr.h": "c",
 			"lib.h": "c",
 			"random": "c",
-			"string": "c"
+			"string": "c",
+			"limits": "c"
 		}
 	}
 }

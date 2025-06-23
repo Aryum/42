@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:26:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 17:19:31 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:20:40 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	is_min_ontop(t_stack stack);
 
 int	is_min_onbottom(t_stack stack);
 
-int	is_inchunk(int i, t_chunk chunk);
+int	is_uprchunk(t_chunk chunk, int i);
 
 //int	has_sequence(t_stack stack, t_sequence *seq);
 

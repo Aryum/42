@@ -25,34 +25,54 @@ static void update_stack(t_stack *stk, t_nbr val)
 		mv_h_update(stk);
 }
 
-static void push_first(t_stack *stk_add, t_stack *stk_take, char c)
+static int push_first(t_stack *stk_add, t_stack *stk_take, char c)
 {
 	t_nbr val;
 
 	if (stk_take->lst == NULL)
 	{
 		print_f("Trying to push from list %c that is empty\n", c);
-		return ;
+		return (0);
 	}
 	val = stk_take->lst->val;
 	if(stk_add->lst != NULL)
 		lst_add_front(&(stk_add->lst), val);
 	else
 		stk_add->lst = lst_new(val);
+	if (stk_add->lst == NULL)
+		return (0);
 	lst_delone(&(stk_take->lst), stk_take->lst);
 	stk_add->size++;
 	stk_take->size--;
 	update_stack(stk_add, val);
 	update_stack(stk_take, val);
 	mv_h_print("p", c);
+	return (1);
 }
  
-void mv_pushfrom_b(t_data data)
+int	mv_pushfrom_b(t_data data)
 {
-	push_first(data.a, data.b, 'a'); 
+	if(push_first(data.a, data.b, 'a'))
+	{
+		
+		return (1);
+	} 
+	else
+		return (0);
 }
 
-void mv_pushfrom_a(t_data data)
+int	mv_pushfrom_a(t_data data)
 {
-	push_first(data.b, data.a, 'b');
+	if (push_first(data.b, data.a, 'b'))
+	{
+		if (is_uprchunk(data.chunk,data.b->lst->val.index))
+		{
+			mv_rotate_b(data);
+			dbg_print_stack(data);
+		}	
+
+		return (1);
+	}
+	else
+		return (0);
 }

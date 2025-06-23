@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:17:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 18:13:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:10:11 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,13 @@ static void	swap(t_rtp *a, t_rtp *b)
 
 static int updatenegative(t_rtp *tab)
 {
-	int	max;
 	int	i;
 
-	i = 0;
-	max = -2147483648;
-	while(tab[i].tar_idx != -1)
-	{
-		if (tab[i].tar_idx > max)
-			max = tab[i].tar_idx;
-		i++;
-	}
 	i = 0;
 	while (tab[i].tar_idx != -1)
 	{
 		if (tab[i].cost < 0)
-			tab[i].cost = max + -1 * tab[i].cost;
+			tab[i].cost *= -1;
 		i++;
 	}
 	return (i);

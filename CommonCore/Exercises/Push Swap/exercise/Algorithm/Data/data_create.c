@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:13:58 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 18:39:08 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:18:37 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static t_stack *ini_stack(t_id id)
 	return (ret);
 }
 
+
 t_data	data_ini()
 {
 	t_data	ret;
@@ -36,14 +37,33 @@ t_data	data_ini()
 	ret.b = ini_stack(b);
 	if (ret.a == NULL || ret.b == NULL)
 		data_clear(ret);
+	ret.chunk_size = 0;
+	ret.total_size = 0;
+	ret.chunk.max = -1;
+	ret.chunk.mid = -1;
+	ret.chunk.min = -1;
 	return (ret);
 }
 
-t_chunk chunk_ini(int min, int max)
+void	update_data(t_data *data, int div)
 {
-	t_chunk	ret;
+	data->total_size = data->a->size;
+	data->chunk_size = data->total_size / div;
+	update_chunk(data, 0);
+}
 
-	ret.min = min;
-	ret.max = max;
-	return (ret);
+void	update_chunk(t_data *data, int min)
+{
+	t_chunk chunk;
+
+	chunk.max = min + (data->chunk_size * 2);
+	if(chunk.max >= data->total_size)
+		chunk.max = data->total_size - 3;
+	chunk.mid = chunk.max - data->chunk_size;
+	chunk.min = chunk.mid - data->chunk_size;
+	data->chunk = chunk;
+	print_f("DATA CREATE-> New chunks\n");
+	print_f("		min %d\n", data->chunk.min);
+	print_f("		mid %d\n", data->chunk.mid);
+	print_f("		max %d\n", data->chunk.max);
 }

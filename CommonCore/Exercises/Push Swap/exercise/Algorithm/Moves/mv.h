@@ -24,9 +24,9 @@ void	mv_h_update(t_stack *stack);
 int		mv_calculate_push(t_stack stack, int tar_index);
 
 //push
-void	mv_pushfrom_b(t_data data);
+int	mv_pushfrom_b(t_data data);
 
-void	mv_pushfrom_a(t_data data);
+int	mv_pushfrom_a(t_data data);
 
 //rotate
 void	mv_rotate_a(t_data data);

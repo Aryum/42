@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:37:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 14:50:31 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:52:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	next_lower(t_list *lst)
 
 int	is_sorted(t_stack stack)
 {
-	t_list *lst;
-	
+	t_list	*lst;
+
 	lst = stack.lst;
 	while (lst->next != NULL)
 	{
