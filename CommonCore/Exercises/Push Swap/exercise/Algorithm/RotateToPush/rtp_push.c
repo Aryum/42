@@ -6,22 +6,20 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:45:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 14:17:39 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:18:54 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtp.h"
 
-static int rec(t_data data, t_list *lst, t_rtp rot, int print)
+static int rec(t_data data, t_list *lst, t_rtp rot)
 {
-	if (print)
-		dbg_print_stack(data);
 	if(lst->val.index == rot.tar_idx)
 		return (rot.push(data));
 	else
 	{
 		rot.rotate(data);
-		return (rec(data, lst, rot, print));
+		return (rec(data, lst, rot));
 	}
 }
 
@@ -41,9 +39,9 @@ static void update(t_data data, t_rtp *rots)
 	}
 }
 
-int rtp_push_single(t_data data, t_rtp rot, int print)
+int rtp_push_single(t_data data, t_rtp rot)
 {
-	return (rec (data, get_lst_topush(data, rot.from), rot, print));
+	return (rec (data, get_lst_topush(data, rot.from), rot));
 }
 
 int	rtp_push_multiple(t_data data, t_id id, int nbr, int (*func)(int, int))
@@ -56,9 +54,10 @@ int	rtp_push_multiple(t_data data, t_id id, int nbr, int (*func)(int, int))
 	i = 0;
 	if (rots != NULL)
 	{
-		while (rots[i].tar_idx != -1)
+		while (rots[i].type != none)
 		{
-			ret = rtp_push_single(data,rots[i], 0); 
+			data.next_rot = rots[i + 1].type; 
+			ret = rtp_push_single(data,rots[i]);
 			if(!ret)
 				break ;
 			update(data, &rots[i + 1]);

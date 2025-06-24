@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 20:17:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 12:10:11 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:18:34 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int updatenegative(t_rtp *tab)
 	int	i;
 
 	i = 0;
-	while (tab[i].tar_idx != -1)
+	while (tab[i].type != none)
 	{
 		if (tab[i].cost < 0)
 			tab[i].cost *= -1;

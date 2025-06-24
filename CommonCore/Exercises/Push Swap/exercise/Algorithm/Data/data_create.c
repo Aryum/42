@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:13:58 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 17:18:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:26:46 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ void	update_chunk(t_data *data, int min)
 	t_chunk chunk;
 
 	chunk.max = min + (data->chunk_size * 2);
-	if(chunk.max >= data->total_size)
+	if(chunk.max >= data->total_size - 3)
 		chunk.max = data->total_size - 3;
 	chunk.mid = chunk.max - data->chunk_size;
 	chunk.min = chunk.mid - data->chunk_size;
 	data->chunk = chunk;
+	/*
 	print_f("DATA CREATE-> New chunks\n");
 	print_f("		min %d\n", data->chunk.min);
 	print_f("		mid %d\n", data->chunk.mid);
 	print_f("		max %d\n", data->chunk.max);
+	*/
 }

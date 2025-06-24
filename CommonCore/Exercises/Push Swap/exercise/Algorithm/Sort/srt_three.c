@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 14:35:48 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:17:34 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int srt_rev(t_data data, t_stack *stack, t_func func)
 	}
 	return (0);
 }
+
 static int top(t_data data, t_stack *stack, t_func func)
 {
 	t_nbr nbr;
@@ -30,7 +31,7 @@ static int top(t_data data, t_stack *stack, t_func func)
 	if (nbr.index == stack->min)
 	{
 		func.swap(data);
-		func.rev_rot(data);
+		func.rot(data);
 		return (1);
 	}
 	else if (nbr.index == stack->max)

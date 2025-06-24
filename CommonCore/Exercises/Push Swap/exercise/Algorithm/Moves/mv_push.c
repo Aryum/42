@@ -54,7 +54,8 @@ int	mv_pushfrom_b(t_data data)
 {
 	if(push_first(data.a, data.b, 'a'))
 	{
-		
+		if (next_lower(data.a->lst))
+			mv_swap_a(data);
 		return (1);
 	} 
 	else
@@ -67,10 +68,11 @@ int	mv_pushfrom_a(t_data data)
 	{
 		if (is_uprchunk(data.chunk,data.b->lst->val.index))
 		{
-			mv_rotate_b(data);
-			dbg_print_stack(data);
-		}	
-
+			if (data.next_rot == normal)
+				mv_rotate_both(data);
+			else
+				mv_rotate_b(data);
+		}
 		return (1);
 	}
 	else

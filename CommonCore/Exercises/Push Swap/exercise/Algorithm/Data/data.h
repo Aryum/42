@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:11:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 17:14:43 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:13:59 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ typedef enum e_id
 	a,
 	b
 } t_id;
+
+typedef enum e_dir
+{
+	normal,
+	reverse,
+	none
+}	t_dir;
 
 typedef struct s_stack
 {
@@ -42,6 +49,7 @@ typedef struct s_data
 	t_stack	*a;
 	t_stack	*b;
 	t_chunk	chunk;
+	t_dir	next_rot;
 	int		total_size;
 	int		chunk_size;
 } t_data;

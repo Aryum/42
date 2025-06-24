@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:12:29 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 17:37:34 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:37:40 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int	mv_calculate_push(t_stack stack, int tar_index)
 		counter++;
 		lst = lst->next;
 	}
-	print_f("%d Tar index not found on the stack %c\n", tar_index, stack.id);
 	return (0);
 }

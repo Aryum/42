@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 11:36:04 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:32:28 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,22 @@ int	is2ndpart(int tar, int index)
 void divide (t_data *data)
 {
 	int	tar = data->chunk_size * 2;
-	print_f("Div size %d\n", data->chunk_size);	
 	while (data->a->size > 3)
 	{
-		if(!rtp_push_multiple(*data, a, tar, is2ndpart) || data->a->size == 3)
+		if(!rtp_push_multiple(*data, a, tar, is2ndpart) )
 			break;
-		dbg_print_stack(*data);
 		update_chunk(data, data->chunk.max + 1);
 		tar = data->chunk.max;
 	}
 	srt_three(*data, a);
+
 }
 
-
+/*
+	store next on data
+	if its better to do both then do it or swap both if needeed
+	check the division count
+*/
 void pushback(t_data *data, t_rtp *arr)
 {
 	int	max;
@@ -75,29 +78,26 @@ void pushback(t_data *data, t_rtp *arr)
 	rtp_sort(arr);
 	if (min == arr[0].tar_idx)
 	{
-		rtp_push_single(*data, arr[0], 0);
-		rtp_push_single(*data, arr[1], 0);
-		mv_swap_a(*data);
+		rtp_push_single(*data, arr[0]);
+		rtp_push_single(*data, arr[1]);
 	}
 	else
-		rtp_push_single(*data, arr[0], 0);
+		rtp_push_single(*data, arr[0]);
 	if (data->b->size > 0)
 		pushback(data, arr);
+	else
+		free(arr);
 }
-/*
-	do an array with 2 elements
-	when one is pushed search next one
 
-
-*/
 int	main(int argc, char **argv)
 {
 	t_data data;
+	int div;
+
+	div = 0;
 	data = data_ini();
 	if (psr_agrs(&data, argc, argv))
 	{
-		dbg_print_stack(data);
-		//start_debug(data.a->lst);
 		if (!is_sorted(*data.a))
 		{
 			if(is_rev_sorted(*data.a))
@@ -105,7 +105,6 @@ int	main(int argc, char **argv)
 				while (data.a->size > 3)
 					mv_pushfrom_a(data);
 				srt_three(data, a);
-				//dbg_print_stack(data);
 				while(data.b->size > 0)
 				{
 					mv_rotate_rev_b(data);
@@ -113,16 +112,23 @@ int	main(int argc, char **argv)
 				}
 				while (data.a->min != data.a->lst->val.index)
 					mv_rotate_rev_a(data);
-
 			}
 			else
 			{
-				update_data(&data, 6);
-				divide(&data);
-				pushback(&data, NULL);
+				if (data.total_size == 3)
+					srt_three(data, a);
+				else
+				{
+					if (data.total_size < 100)
+						div = 4 + (data.total_size > 10) * 2 + (data.total_size > 50) * 2;
+					else
+						div = 8 + (data.total_size / 100) * 2 - (data.total_size % 100 == 0) * 2;
+					update_data(&data, div);
+					divide(&data);
+					pushback(&data, NULL);
+				}
 			}
 		}
-		dbg_print_stack(data);
 	}
 	data_clear(data);
 	

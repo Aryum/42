@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:26:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 17:20:40 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:12:56 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 
 # include "../_Headers/alg.h"
 
-typedef enum e_dir
-{
-	reverse,
-	normal,
-	none
-} t_dir;
-
-typedef struct s_sequence
-{
-	t_dir	dir;
-	int		start;
-	int		end;
-
-} t_sequence;
 
 int	next_lower(t_list *lst);
 
