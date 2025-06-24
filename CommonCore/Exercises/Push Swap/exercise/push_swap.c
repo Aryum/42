@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 17:19:13 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:36:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,38 @@ void divide (t_data *data)
 }
 
 
+void pushback(t_data *data, t_rtp *arr)
+{
+	int	max;
+	int	min;
+
+	max = data->a->min - 1;
+	min = data->a->min - 2;
+	if (arr == NULL)
+	{
+		arr = malloc(sizeof(t_rtp) * 3);
+		arr[2] = rtp_create(*data, b, -1);
+	}
+	arr[0] = rtp_create(*data, b, max);
+	arr[1] = rtp_create(*data, b, min);
+	rtp_sort(arr);
+	if (min == arr[0].tar_idx)
+	{
+		rtp_push_single(*data, arr[0], 0);
+		rtp_push_single(*data, arr[1], 0);
+		mv_swap_a(*data);
+	}
+	else
+		rtp_push_single(*data, arr[0], 0);
+	if (data->b->size > 0)
+		pushback(data, arr);
+}
+/*
+	do an array with 2 elements
+	when one is pushed search next one
+
+
+*/
 int	main(int argc, char **argv)
 {
 	t_data data;
@@ -87,6 +119,7 @@ int	main(int argc, char **argv)
 			{
 				update_data(&data, 6);
 				divide(&data);
+				pushback(&data, NULL);
 			}
 		}
 		dbg_print_stack(data);

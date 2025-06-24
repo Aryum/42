@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:40:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 16:06:50 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:39:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ t_rtp	rtp_create(t_data data, t_id id, int tar_idx)
 	
 	ret.from = id;
 	ret.tar_idx = tar_idx;
-	rtp_updaterot(data, &ret);
+	if (tar_idx != -1)
+		rtp_updaterot(data, &ret);
 	return ret;
 }
 
 
-t_rtp	*rtp_create_all(t_data data, t_id id, int nbr, int (*func)(int, int))
+t_rtp	*rtp_create_all(t_data *data, t_id id, int nbr, int (*func)(int, int))
 {	
 	t_list	*lst;
 	t_rtp	*ret;
@@ -60,7 +61,7 @@ t_rtp	*rtp_create_all(t_data data, t_id id, int nbr, int (*func)(int, int))
 	int		i;
 
 	i = 0;
-	lst = get_lst_topush(data, id);
+	lst = get_lst_topush(*data, id);
 	len = counter(lst, nbr, func); 
 	ret = lib_calloc(sizeof(t_rtp), len + 1);
 	if (ret != NULL)
@@ -69,7 +70,7 @@ t_rtp	*rtp_create_all(t_data data, t_id id, int nbr, int (*func)(int, int))
 		{
 			if (func(nbr, lst->val.index))
 			{
-				ret[i] = rtp_create(data, id,lst->val.index);
+				ret[i] = rtp_create(*data, id,lst->val.index);
 				i++;
 			}
 			lst = lst->next;
