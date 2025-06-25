@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:12:29 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 11:10:59 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:53:13 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	mv_calculate_push(t_stack stack, int tar_index)
 
 	counter = 0;
 	lst = stack.lst;
-	while(lst != NULL)
+	while (lst != NULL)
 	{
 		if (tar_index == lst->val.index)
 		{

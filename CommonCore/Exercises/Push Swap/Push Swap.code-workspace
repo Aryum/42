@@ -17,7 +17,8 @@
 			"lib.h": "c",
 			"random": "c",
 			"string": "c",
-			"limits": "c"
+			"limits": "c",
+			"atomic": "c"
 		}
 	}
 }

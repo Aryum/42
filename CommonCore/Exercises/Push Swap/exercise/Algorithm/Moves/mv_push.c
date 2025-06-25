@@ -12,20 +12,20 @@
 
 #include "mv.h"
 
-static void update_stack(t_stack *stk, t_nbr val)
+static void	update_stack(t_stack *stk, t_nbr val)
 {
 	if (stk->size == 0)
 	{
 		stk->max = -1;
 		stk->min = -1;
 	}
-	else if(val.index >= stk->max || val.index <= stk->min)
+	else if (val.index >= stk->max || val.index <= stk->min)
 		mv_h_update(stk);
 	else if (stk->max == -1 || stk->min == -1)
 		mv_h_update(stk);
 }
 
-static int push_first(t_stack *stk_add, t_stack *stk_take, char c)
+static int	push_first(t_stack *stk_add, t_stack *stk_take, char c)
 {
 	t_nbr val;
 
@@ -66,7 +66,7 @@ int	mv_pushfrom_a(t_data data)
 {
 	if (push_first(data.b, data.a, 'b'))
 	{
-		if (is_uprchunk(data.chunk,data.b->lst->val.index))
+		if (is_uprchunk(data.chunk, data.b->lst->val.index))
 		{
 			if (data.next_rot == normal)
 				mv_rotate_both(data);

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:31:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 17:13:59 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:56:41 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int		rtp_push_single(t_data data, t_rtp rot);
 
 int		rtp_push_multiple(t_data data, t_id push, int nbr, int (*func)(int, int));
 
+int		rtp_push_arr(t_data data, t_rtp *rots);
+
 void	rtp_sort(t_rtp *tab);
+
 
 #endif

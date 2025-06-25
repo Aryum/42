@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:24:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 14:35:47 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:50:04 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ static void printContent(t_list *lst)
 
 void	dbg_print_stack(t_data data)
 {
-	t_list *a = data.a->lst;
-	t_list *b = data.b->lst;
+	t_list	*a;
+	t_list	*b;
 
+	a = data.a->lst;
+	b = data.b->lst;
 	print_f("\n\nA	|	B\n");
 	print_f("____________________________\n");
 	while (a != NULL || b != NULL)

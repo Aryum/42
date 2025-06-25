@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 18:07:58 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:11:56 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,6 @@ void srt_three(t_data data, t_id id)
 	
 	stack = get_stack(data, id);
 	func = get_func(id);
-	if (stack->lst == NULL)
-	{
-		print_f("============================\n");
-		print_f("Nothing to sort lst is null\n");
-		print_f("============================\n\n");
-		return ;
-	}
 	if (is_sorted(*stack))
 		return ;
 	if (!srt_rev(data, stack, func))

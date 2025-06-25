@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:13:58 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 15:26:46 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:51:51 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 
-static t_stack *ini_stack(t_id id)
+static t_stack	*ini_stack(t_id id)
 {
 	t_stack *ret;
 
@@ -62,10 +62,4 @@ void	update_chunk(t_data *data, int min)
 	chunk.mid = chunk.max - data->chunk_size;
 	chunk.min = chunk.mid - data->chunk_size;
 	data->chunk = chunk;
-	/*
-	print_f("DATA CREATE-> New chunks\n");
-	print_f("		min %d\n", data->chunk.min);
-	print_f("		mid %d\n", data->chunk.mid);
-	print_f("		max %d\n", data->chunk.max);
-	*/
 }

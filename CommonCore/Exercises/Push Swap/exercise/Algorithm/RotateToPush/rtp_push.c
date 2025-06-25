@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:45:41 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 11:52:37 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:47:16 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,32 @@ int rtp_push_single(t_data data, t_rtp rot)
 int	rtp_push_multiple(t_data data, t_id id, int nbr, int (*func)(int, int))
 {
 	t_rtp	*rots;
-	int		i;
 	int		ret;
 	
 	rots = rtp_create_all(data, id, nbr, func);
-	i = 0;
 	if (rots != NULL)
 	{
-		while (rots[i].type != none)
-		{
-			data.next_rot = rots[i + 1].type; 
-			data.next_tar = rots[i + 1].tar_idx; 
-			ret = rtp_push_single(data,rots[i]);
-			if(!ret)
-				break ;
-			update(data, &(rots[i + 1]));
-			i++;
-		}
+		ret = rtp_push_arr(data, rots);
 		free(rots);
 		return (ret);
 	}
 	return (0);
+}
+
+int	rtp_push_arr(t_data data, t_rtp *rots)
+{
+	int	ret;
+	int	i;
+
+	i = 0;
+	while (rots[i].type != none)
+	{
+		data.next_rot = rots[i + 1].type; 
+		ret = rtp_push_single(data,rots[i]);
+		if(!ret)
+			break ;
+		update(data, &(rots[i + 1]));
+		i++;
+	}
+	return (ret);
 }

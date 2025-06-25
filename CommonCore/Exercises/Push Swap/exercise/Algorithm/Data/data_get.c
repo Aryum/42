@@ -6,31 +6,30 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:11:56 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 11:53:14 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:52:41 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 
-t_list **get_lst_topush(t_data data, t_id pushfrom)
+t_list	**get_lst_topush(t_data data, t_id pushfrom)
 {
 	if (pushfrom == a)
 		return (&(data.a->lst));
 	if (pushfrom == b)
 		return (&(data.b->lst));
-	print_f("GET LIST-> wrong char passed\n");
 	return (NULL);
 }
 
-t_stack *get_stack(t_data stack, t_id id)
+t_stack	*get_stack(t_data stack, t_id id)
 {
 	if (id == a)
-		return stack.a;
+		return (stack.a);
 	else 
-		return stack.b;
+		return (stack.b);
 }
 
-t_func get_func(t_id id)
+t_func	get_func(t_id id)
 {
 	t_func ret;
 	if (id == a)
