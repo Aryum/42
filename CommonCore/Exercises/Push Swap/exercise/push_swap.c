@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 18:00:00 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 10:47:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void divide (t_data *data)
 		tar = data->chunk.max;
 	}
 	srt_three(*data, a);
-	dbg_print_stack(*data);
 }
 
 /*
@@ -96,11 +95,17 @@ int	main(int argc, char **argv)
 
 	div = 0;
 	data = data_ini();
+
 	if (psr_agrs(&data, argc, argv))
 	{
 		if (!is_sorted(*data.a))
 		{
-			if(is_rev_sorted(*data.a))
+			if(data.a->size == 2)
+			{
+				if (next_lower(data.a->lst))
+					mv_swap_a(data);
+			}
+			else if(is_rev_sorted(*data.a))
 			{
 				while (data.a->size > 3)
 					mv_pushfrom_a(data);
@@ -122,7 +127,7 @@ int	main(int argc, char **argv)
 					if (data.total_size < 100)
 						div = 4 + (data.total_size > 10) * 2 + (data.total_size > 50) * 2;
 					else
-						div = 8 + (data.total_size / 100) * 2 - (data.total_size % 100 == 0) * 2;
+						div = 8 + ((data.total_size / 100) - (data.total_size % 100 == 0)) * 2;
 					update_data(&data, div);
 					divide(&data);
 					pushback(&data, NULL);
@@ -131,7 +136,7 @@ int	main(int argc, char **argv)
 		}
 	}
 	if(!is_sorted(*data.a))
-		dbg_print_stack(data);
+		printContent(data.a->lst);
 	data_clear(data);
 	
 	//t_psh push_a = rtp_psh_info('a', mv_pushto_a);

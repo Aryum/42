@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 15:17:34 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/24 18:07:58 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int top(t_data data, t_stack *stack, t_func func)
 	}
 	else if (nbr.index == stack->max)
 	{
-		func.rev_rot(data);
+		func.rot(data);
 		return (1);
 	}
 	return (0);
