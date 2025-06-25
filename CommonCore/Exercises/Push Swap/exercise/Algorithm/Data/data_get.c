@@ -6,18 +6,18 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:11:56 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 18:40:46 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:53:14 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 
-t_list *get_lst_topush(t_data data, t_id pushfrom)
+t_list **get_lst_topush(t_data data, t_id pushfrom)
 {
 	if (pushfrom == a)
-		return (data.a->lst);
+		return (&(data.a->lst));
 	if (pushfrom == b)
-		return (data.b->lst);
+		return (&(data.b->lst));
 	print_f("GET LIST-> wrong char passed\n");
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:40:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 17:30:58 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:54:39 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_rtp	*rtp_create_all(t_data data, t_id push, int nbr, int (*func)(int, int))
 	int		i;
 
 	i = 0;
-	lst = get_lst_topush(data, push);
+	lst = *get_lst_topush(data, push);
 	len = counter(lst, nbr, func); 
 	ret = lib_calloc(sizeof(t_rtp), len + 1);
 	if (ret != NULL)

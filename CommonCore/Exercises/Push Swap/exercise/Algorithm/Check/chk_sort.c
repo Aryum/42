@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:37:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/23 14:52:51 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:30:09 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int	next_bigger(t_list *lst)
 {
+	if (lst == NULL || lst->next == NULL)
+		return (0);
 	return (lst->val.index + 1 == lst->next->val.index);
 }
 
 int	next_lower(t_list *lst)
 {
+	if (lst == NULL || lst->next == NULL)
+		return (0);
 	return (lst->val.index - 1 == lst->next->val.index);
 }
 
@@ -27,6 +31,8 @@ int	is_sorted(t_stack stack)
 	t_list	*lst;
 
 	lst = stack.lst;
+	if (lst == NULL)
+		return (0);
 	while (lst->next != NULL)
 	{
 		if(!next_bigger(lst))

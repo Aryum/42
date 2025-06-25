@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:15:08 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 10:47:20 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:17:53 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,28 +136,7 @@ int	main(int argc, char **argv)
 		}
 	}
 	if(!is_sorted(*data.a))
-		printContent(data.a->lst);
+		dbg_print_stack(data);
 	data_clear(data);
 	
-	//t_psh push_a = rtp_psh_info('a', mv_pushto_a);
-	
-	
-
-
-	/*
-	srt_push_b(&stacks);
-	printlists(stacks, "Push b");
-
-	srt_push_a(&stacks);
-	printlists(stacks, "Push b");
-
-	srt_rotate_rev_a(&stacks);
-	printlists(stacks, "rev rotate a");
-	
-	srt_rotate_a(&stacks);
-	printlists(stacks, "rotate a");
-	
-	srt_swap_a(&stacks);
-	printlists(stacks, "Swap a");
-	*/
 }

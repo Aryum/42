@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:11:47 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 17:13:59 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:53:26 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_data
 	t_stack	*b;
 	t_chunk	chunk;
 	t_dir	next_rot;
+	int		next_tar;
 	int		total_size;
 	int		chunk_size;
 } t_data;
@@ -74,7 +75,7 @@ t_stack		*get_stack(t_data stack, t_id id);
 
 t_func		get_func(t_id id);
 
-t_list		*get_lst_topush(t_data data, t_id pushto);
+t_list		**get_lst_topush(t_data data, t_id pushto);
 
 void	update_chunk(t_data *data, int min);
 
