@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 14:35:36 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/20 18:41:46 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:18:02 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 static int	get_nbrs(t_stack *stack, char *c)
 {
 	int		i;
-	char	**nbr_str;
-	long	current;
+	char	**arr;
+	long	cur;
 
 	i = 0;
-	nbr_str = lib_split(c, ' ');
-	while (nbr_str[i] != NULL)
+	arr = lib_split(c, ' ');
+	while (arr[i] != NULL)
 	{
-		current = 0;
-		if (psr_h_try_get_number(nbr_str[i], &current))
+		cur = 0;
+		if (lib_strlen(arr[i]) < 12 && psr_h_try_get_number(arr[i], &cur))
 		{
-			if (!psr_h_try_add_number(stack, (int)current))
-				return (lib_split_clean(nbr_str), 0);
+			if (!psr_h_try_add_number(stack, (int)cur))
+				return (lib_split_clean(arr), 0);
 		}
 		else
-			return (lib_split_clean(nbr_str), 0);
+			return (lib_split_clean(arr), 0);
 		i++;
 	}
-	return (lib_split_clean(nbr_str), 1);
+	return (lib_split_clean(arr), 1);
 }
 
 int	psr_agrs(t_data *data, int argc, char **argv)
@@ -40,13 +40,12 @@ int	psr_agrs(t_data *data, int argc, char **argv)
 	int	arg_i;
 
 	if (argc == 1 || data == NULL)
-		return (print_f("Error\n"), 0);
+		return (0);
 	arg_i = 1;
 	while (arg_i < argc)
 	{
 		if (!get_nbrs(data->a, argv[arg_i]))
 		{
-			print_f("Error\n");
 			lst_clear(&(data->a->lst));
 			return (0);
 		}
