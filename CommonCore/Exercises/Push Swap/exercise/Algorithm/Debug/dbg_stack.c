@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:24:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 15:50:04 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:06:40 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dbg.h"
 
-static void printContent(t_list *lst)
+static void	printContent(t_list *lst)
 {
 	if(lst != NULL)
 		print_f("%d", lst->val.index);

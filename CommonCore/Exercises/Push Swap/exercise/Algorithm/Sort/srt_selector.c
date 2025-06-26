@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srt.h                                              :+:      :+:    :+:   */
+/*   srt_selector.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:12:57 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 12:45:27 by ricsanto         ###   ########.fr       */
+/*   Created: 2025/06/26 12:25:13 by ricsanto          #+#    #+#             */
+/*   Updated: 2025/06/26 12:39:31 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SRT_H
-# define SRT_H
+#include "srt.h"
 
-# include "../_Headers/alg.h"
-
-int		srt_rest(t_data *data);
-
-int		srt_rev(t_data data);
-
-int		srt_selector(t_data *data);
-
-void	srt_three(t_data data, t_id id);
-
-void	srt_two(t_data data, t_id id);
-
-#endif
+int	srt_selector(t_data *data)
+{
+	if(is_sorted(*data->a))
+		return (1);
+	else if(data->a->size == 2)
+		return (srt_two(*data, a), 1);
+	else if(data->a->size == 3)
+		return (srt_three(*data, a), 1);
+	else if (is_rev_sorted(*data->a))
+		return (srt_rev(*data));
+	else
+		return (srt_rest(data));
+}

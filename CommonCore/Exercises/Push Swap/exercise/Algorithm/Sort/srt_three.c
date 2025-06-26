@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 15:11:56 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:59:19 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "srt.h"
 
-static int srt_rev(t_data data, t_stack *stack, t_func func)
+static int	rev_sort(t_data data, t_stack *stack, t_func func)
 {
 	if (is_rev_sorted(*stack))
 	{
@@ -23,9 +23,9 @@ static int srt_rev(t_data data, t_stack *stack, t_func func)
 	return (0);
 }
 
-static int top(t_data data, t_stack *stack, t_func func)
+static int	top(t_data data, t_stack *stack, t_func func)
 {
-	t_nbr nbr;
+	t_nbr	nbr;
 
 	nbr = stack->lst->val;
 	if (nbr.index == stack->min)
@@ -42,9 +42,9 @@ static int top(t_data data, t_stack *stack, t_func func)
 	return (0);
 }
 
-static void bottom(t_data data, t_stack *stack, t_func func)
+static void	bottom(t_data data, t_stack *stack, t_func func)
 {
-	t_nbr nbr;
+	t_nbr	nbr;
 
 	nbr = lst_last(stack->lst)->val;
 	if (nbr.index == stack->min)
@@ -55,14 +55,14 @@ static void bottom(t_data data, t_stack *stack, t_func func)
 
 void srt_three(t_data data, t_id id)
 {
-	t_stack		*stack;
-	t_func		func;
-	
+	t_stack	*stack;
+	t_func	func;
+
 	stack = get_stack(data, id);
 	func = get_func(id);
 	if (is_sorted(*stack))
 		return ;
-	if (!srt_rev(data, stack, func))
+	if (!rev_sort(data, stack, func))
 	{
 		if(!top(data, stack, func))
 			bottom(data, stack, func);

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:37:09 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 11:30:09 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:53:17 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,3 @@ int	is_rev_sorted(t_stack stack)
 	}
 	return (1);
 }
-

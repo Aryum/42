@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:22:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 15:58:05 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:52:21 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	inchunk(int tar, int index)
 	return (index <= tar);
 }
 
-static void divide (t_data *data)
+static int divide (t_data *data)
 {
 	int	tar;
 
@@ -25,13 +25,15 @@ static void divide (t_data *data)
 	while (data->a->size > 3)
 	{
 		if(!rtp_push_multiple(*data, a, tar, inchunk))
-			break;
+			return (0);
 		update_chunk(data, data->chunk.max + 1);
 		tar = data->chunk.max;
 	}
+	srt_three(*data, a);
+	return (1);
 }
 
-static void pushback(t_data *data, t_rtp *arr)
+static int pushback(t_data *data, t_rtp *arr)
 {
 	int	max;
 	int	min;
@@ -55,11 +57,20 @@ static void pushback(t_data *data, t_rtp *arr)
 		pushback(data, arr);
 	else
 		free(arr);
+	return (sucess);
 }
 
-void srt_rest(t_data *data)
+int	srt_rest(t_data *data)
 {
-	divide(data);
-	srt_three(*data, a);
-	pushback(data, NULL);
+	int	size;
+	int	div;
+
+	size = data->total_size;
+	if (size < 100)
+		div = 4 + (size > 10) * 2 + (size > 50) * 2;
+	else
+		div = 8 + ((size / 100) - (size % 100 == 0)) * 2;
+	data->chunk_size = size / div;
+	update_chunk(data, 0);
+	return(divide(data) && pushback(data, NULL));
 }

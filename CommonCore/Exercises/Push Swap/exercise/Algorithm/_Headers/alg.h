@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 13:19:11 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/19 15:45:52 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:06:03 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,5 @@
 # include "../RotateToPush/rtp.h"
 # include "../Check/chk.h"
 # include "../Sort/srt.h"
-
-
 
 #endif

@@ -1,6 +1,10 @@
 NAME := srt.a
 
-SRC := 	srt_three.c	\
+SRC := 	srt_rest.c		\
+		srt_rev.c		\
+		srt_selector.c	\
+		srt_three.c		\
+		srt_two.c
 
 HDR_DIR := .
 

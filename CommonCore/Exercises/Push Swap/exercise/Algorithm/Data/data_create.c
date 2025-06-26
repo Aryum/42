@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:13:58 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 15:51:51 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:04:12 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,6 @@ t_data	data_ini()
 	ret.chunk.mid = -1;
 	ret.chunk.min = -1;
 	return (ret);
-}
-
-void	update_data(t_data *data, int div)
-{
-	data->total_size = data->a->size;
-	data->chunk_size = data->total_size / div;
-	update_chunk(data, 0);
 }
 
 void	update_chunk(t_data *data, int min)
