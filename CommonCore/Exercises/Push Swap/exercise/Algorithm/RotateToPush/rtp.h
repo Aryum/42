@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 18:31:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 13:32:28 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:20:20 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_rtp
 {
-	int		(*push)(t_data);
+	void	(*push)(t_data);
 	void	(*rotate)(t_data);
 	t_id	from;
 	t_dir	type;
@@ -31,11 +31,11 @@ t_rtp	*rtp_create_all(t_data data, t_id id, int nbr, int (*func)(int, int));
 
 t_rtp	rtp_create(t_data data, t_id id, int tar_idx);
 
-int		rtp_push_single(t_data data, t_rtp rot);
+void	rtp_push_single(t_data data, t_rtp rot);
 
 int		rtp_push_multiple(t_data data, t_id id, int nbr, int (*func)(int, int));
 
-int		rtp_push_arr(t_data data, t_rtp *rots);
+void	rtp_push_arr(t_data data, t_rtp *rots);
 
 void	rtp_sort(t_rtp *tab);
 

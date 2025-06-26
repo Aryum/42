@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:22:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 13:50:49 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:17:50 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,28 @@ static int	pushback(t_data *data, t_rtp *arr)
 {
 	int	max;
 	int	min;
-	int	sucess;
 
 	max = data->a->min - 1;
 	min = data->a->min - 2;
 	if (arr == NULL)
 	{
 		arr = malloc(sizeof(t_rtp) * 3);
+		if (arr == NULL)
+			return (0);
 		arr[2] = rtp_create(*data, b, -1);
 	}
 	arr[0] = rtp_create(*data, b, max);
 	arr[1] = rtp_create(*data, b, min);
 	rtp_sort(arr);
 	if (min == arr[0].tar_idx)
-		sucess = rtp_push_arr(*data, arr);
+		rtp_push_arr(*data, arr);
 	else
-		sucess = rtp_push_single(*data, arr[0]);
-	if (sucess && data->b->size > 0)
+		rtp_push_single(*data, arr[0]);
+	if (data->b->size > 0)
 		pushback(data, arr);
 	else
 		free(arr);
-	return (sucess);
+	return (1);
 }
 
 int	srt_rest(t_data *data)

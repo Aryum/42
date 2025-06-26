@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:43:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 13:45:08 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 18:11:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 
 typedef struct s_func
 {
-	int		(*push)(t_data);
+	void	(*push)(t_data);
 	void	(*rot)(t_data);
 	void	(*rev_rot)(t_data);
 	void	(*swap)(t_data);
