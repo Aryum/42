@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:33:40 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 11:55:47 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:48:45 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	srt_rev(t_data data)
 {
 	while (data.a->size > 3)
 	{
-		if(!mv_pushfrom_a(data))
+		if (!mv_pushfrom_a(data))
 			return (0);
 	}
 	srt_three(data, a);
-	while(data.b->size > 0)
+	while (data.b->size > 0)
 	{
 		mv_rotate_rev_b(data);
 		if (!mv_pushfrom_b(data))

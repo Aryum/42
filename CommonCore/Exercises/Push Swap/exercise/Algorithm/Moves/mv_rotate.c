@@ -12,9 +12,9 @@
 
 #include "mv.h"
 
-static int rotate(t_stack *stack, char c)
+static int	rotate(t_stack *stack, char c)
 {
-	t_list	*lst_tmp;	
+	t_list	*lst_tmp;
 	t_nbr	nbr_tmp;
 
 	if (stack->lst == NULL)
@@ -48,7 +48,7 @@ void	mv_rotate_both(t_data data)
 
 	rot_a = rotate(data.a, '\0');
 	rot_b = rotate(data.b, '\0');
-	if(rot_a && rot_b)
+	if (rot_a && rot_b)
 		mv_h_print("r", 'r');
 	else
 	{

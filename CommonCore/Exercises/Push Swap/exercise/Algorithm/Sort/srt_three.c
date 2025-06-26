@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:22:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 12:59:19 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:51:56 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	bottom(t_data data, t_stack *stack, t_func func)
 		func.swap(data);
 }
 
-void srt_three(t_data data, t_id id)
+void	srt_three(t_data data, t_id id)
 {
 	t_stack	*stack;
 	t_func	func;
@@ -64,8 +64,7 @@ void srt_three(t_data data, t_id id)
 		return ;
 	if (!rev_sort(data, stack, func))
 	{
-		if(!top(data, stack, func))
+		if (!top(data, stack, func))
 			bottom(data, stack, func);
 	}
 }
-

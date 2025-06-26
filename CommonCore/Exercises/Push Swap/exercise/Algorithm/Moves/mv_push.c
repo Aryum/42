@@ -27,7 +27,7 @@ static void	update_stack(t_stack *stk, t_nbr val)
 
 static int	push_first(t_stack *stk_add, t_stack *stk_take, char c)
 {
-	t_nbr val;
+	t_nbr	val;
 
 	if (stk_take->lst == NULL)
 	{
@@ -35,7 +35,7 @@ static int	push_first(t_stack *stk_add, t_stack *stk_take, char c)
 		return (0);
 	}
 	val = stk_take->lst->val;
-	if(stk_add->lst != NULL)
+	if (stk_add->lst != NULL)
 		lst_add_front(&(stk_add->lst), val);
 	else
 		stk_add->lst = lst_new(val);
@@ -49,15 +49,15 @@ static int	push_first(t_stack *stk_add, t_stack *stk_take, char c)
 	mv_h_print("p", c);
 	return (1);
 }
- 
+
 int	mv_pushfrom_b(t_data data)
 {
-	if(push_first(data.a, data.b, 'a'))
+	if (push_first(data.a, data.b, 'a'))
 	{
 		if (next_lower(data.a->lst))
 			mv_swap_a(data);
 		return (1);
-	} 
+	}
 	else
 		return (0);
 }

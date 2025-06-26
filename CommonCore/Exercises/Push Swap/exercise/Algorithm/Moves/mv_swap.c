@@ -12,7 +12,7 @@
 
 #include "mv.h"
 
-static int swap_top(t_stack *stack, char c)
+static int	swap_top(t_stack *stack, char c)
 {
 	t_list	*lst;
 	t_nbr	temp;
@@ -44,7 +44,7 @@ void	mv_swap_both(t_data data)
 
 	swap_a = swap_top(data.a, '\0');
 	swap_b = swap_top(data.b, '\0');
-	if(swap_a && swap_b)
+	if (swap_a && swap_b)
 		mv_h_print("s", 's');
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:26:24 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/24 17:12:56 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:24:58 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CHK_H
 
 # include "../_Headers/alg.h"
-
 
 int	next_lower(t_list *lst);
 

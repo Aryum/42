@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:13:58 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 12:04:12 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:39:48 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_stack	*ini_stack(t_id id)
 {
-	t_stack *ret;
+	t_stack	*ret;
 
 	ret = malloc(sizeof(t_stack));
 	if (ret != NULL)
@@ -28,8 +28,7 @@ static t_stack	*ini_stack(t_id id)
 	return (ret);
 }
 
-
-t_data	data_ini()
+t_data	data_ini(void)
 {
 	t_data	ret;
 
@@ -47,10 +46,10 @@ t_data	data_ini()
 
 void	update_chunk(t_data *data, int min)
 {
-	t_chunk chunk;
+	t_chunk	chunk;
 
 	chunk.max = min + (data->chunk_size * 2);
-	if(chunk.max >= data->total_size - 3)
+	if (chunk.max >= data->total_size - 3)
 		chunk.max = data->total_size - 3;
 	chunk.mid = chunk.max - data->chunk_size;
 	chunk.min = chunk.mid - data->chunk_size;

@@ -12,11 +12,11 @@
 
 #include "mv.h"
 
-static int rev_rotate(t_stack *stack, char c)
+static int	rev_rotate(t_stack *stack, char c)
 {
-	t_list *lst_tmp;
+	t_list	*lst_tmp;
 	t_nbr	nbr_tmp;
-	
+
 	if (stack->lst == NULL)
 	{
 		print_f("Trying to rotate list %c that is empty\n", c);
@@ -51,7 +51,7 @@ void	mv_rotate_rev_both(t_data data)
 
 	rot_a = rev_rotate(data.a, '\0');
 	rot_b = rev_rotate(data.b, '\0');
-	if(rot_a && rot_b)
+	if (rot_a && rot_b)
 		mv_h_print("rr", 'r');
 	else
 	{

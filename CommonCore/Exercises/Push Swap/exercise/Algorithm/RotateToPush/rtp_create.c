@@ -6,13 +6,13 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:40:27 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/25 14:30:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:29:38 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtp.h"
 
-static int	counter(t_list *lst, int tar,int (*func)(int, int))
+static int	counter(t_list *lst, int tar, int (*func)(int, int))
 {
 	int	ret;
 
@@ -20,7 +20,7 @@ static int	counter(t_list *lst, int tar,int (*func)(int, int))
 	while (lst != NULL)
 	{
 		if (func(tar, lst->val.index))
-			ret	++;
+			ret++;
 		lst = lst->next;
 	}
 	return (ret);
@@ -28,7 +28,7 @@ static int	counter(t_list *lst, int tar,int (*func)(int, int))
 
 void	rtp_updaterot(t_data data, t_rtp *rtp)
 {
-	t_stack stack;
+	t_stack	stack;
 	t_func	func;
 
 	stack = *get_stack(data, rtp->from);
@@ -50,18 +50,18 @@ void	rtp_updaterot(t_data data, t_rtp *rtp)
 t_rtp	rtp_create(t_data data, t_id id, int tar_idx)
 {
 	t_rtp	ret;
-	
+
 	ret.from = id;
 	ret.tar_idx = tar_idx;
 	if (tar_idx != -1)
 		rtp_updaterot(data, &ret);
 	else
 		ret.type = none;
-	return ret;
+	return (ret);
 }
 
 t_rtp	*rtp_create_all(t_data data, t_id push, int nbr, int (*func)(int, int))
-{	
+{
 	t_list	*lst;
 	t_rtp	*ret;
 	int		len;
@@ -69,7 +69,7 @@ t_rtp	*rtp_create_all(t_data data, t_id push, int nbr, int (*func)(int, int))
 
 	i = 0;
 	lst = *get_lst_topush(data, push);
-	len = counter(lst, nbr, func); 
+	len = counter(lst, nbr, func);
 	ret = lib_calloc(sizeof(t_rtp), len + 1);
 	if (ret != NULL)
 	{
@@ -77,7 +77,7 @@ t_rtp	*rtp_create_all(t_data data, t_id push, int nbr, int (*func)(int, int))
 		{
 			if (func(nbr, lst->val.index))
 			{
-				ret[i] = rtp_create(data, push,lst->val.index);
+				ret[i] = rtp_create(data, push, lst->val.index);
 				i++;
 			}
 			lst = lst->next;

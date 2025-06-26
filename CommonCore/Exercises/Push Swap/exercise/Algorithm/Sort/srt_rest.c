@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:22:17 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 12:52:21 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:50:49 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int	inchunk(int tar, int index)
 	return (index <= tar);
 }
 
-static int divide (t_data *data)
+static int	divide(t_data *data)
 {
 	int	tar;
 
 	tar = data->chunk_size * 2;
 	while (data->a->size > 3)
 	{
-		if(!rtp_push_multiple(*data, a, tar, inchunk))
+		if (!rtp_push_multiple(*data, a, tar, inchunk))
 			return (0);
 		update_chunk(data, data->chunk.max + 1);
 		tar = data->chunk.max;
@@ -33,7 +33,7 @@ static int divide (t_data *data)
 	return (1);
 }
 
-static int pushback(t_data *data, t_rtp *arr)
+static int	pushback(t_data *data, t_rtp *arr)
 {
 	int	max;
 	int	min;
@@ -50,7 +50,7 @@ static int pushback(t_data *data, t_rtp *arr)
 	arr[1] = rtp_create(*data, b, min);
 	rtp_sort(arr);
 	if (min == arr[0].tar_idx)
-		sucess = rtp_push_arr(*data,arr);
+		sucess = rtp_push_arr(*data, arr);
 	else
 		sucess = rtp_push_single(*data, arr[0]);
 	if (sucess && data->b->size > 0)
@@ -72,5 +72,5 @@ int	srt_rest(t_data *data)
 		div = 8 + ((size / 100) - (size % 100 == 0)) * 2;
 	data->chunk_size = size / div;
 	update_chunk(data, 0);
-	return(divide(data) && pushback(data, NULL));
+	return (divide(data) && pushback(data, NULL));
 }

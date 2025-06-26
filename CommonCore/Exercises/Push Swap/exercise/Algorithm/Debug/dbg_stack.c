@@ -6,15 +6,15 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:24:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/26 13:06:40 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:24:29 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dbg.h"
 
-static void	printContent(t_list *lst)
+static void	printcontent(t_list *lst)
 {
-	if(lst != NULL)
+	if (lst != NULL)
 		print_f("%d", lst->val.index);
 }
 
@@ -29,18 +29,18 @@ void	dbg_print_stack(t_data data)
 	print_f("____________________________\n");
 	while (a != NULL || b != NULL)
 	{
-		printContent(a);
+		printcontent(a);
 		print_f("	|	");
-		printContent(b);
+		printcontent(b);
 		print_f("\n");
-		if(a != NULL)
+		if (a != NULL)
 			a = a->next;
-		if(b != NULL)
+		if (b != NULL)
 			b = b->next;
 	}
 	print_f("____________________________\n");
-	print_f(" %d	|	%d	Total\n", data.a->size,data.b->size);
-	print_f(" %d	|	%d	Max\n", data.a->max,data.b->max);
-	print_f(" %d	|	%d	Min\n", data.a->min,data.b->min);
+	print_f(" %d	|	%d	Total\n", data.a->size, data.b->size);
+	print_f(" %d	|	%d	Max\n", data.a->max, data.b->max);
+	print_f(" %d	|	%d	Min\n", data.a->min, data.b->min);
 	print_f("____________________________\n\n");
 }

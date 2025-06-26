@@ -6,7 +6,7 @@
 /*   By: ricsanto <ricsanto@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:33:39 by ricsanto          #+#    #+#             */
-/*   Updated: 2025/06/16 12:59:57 by ricsanto         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:23:09 by ricsanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-typedef	struct s_nbr
+typedef struct s_nbr
 {
 	int	nbr;
 	int	index;
