@@ -61,6 +61,8 @@ clean:
 fclean: 
 	@echo "$(COLOUR_YELLOW)Cleaning everything$(COLOR_WHITE)"
 	@$(RM) $(NAME)
+	@$(RM) -r tests
+	@echo "$(COLOUR_RED)	Removed tests folder$(COLOR_WHITE)"
 	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make fclean && echo$(NEWLINE)$(NEWLINE))
 
 re: re_libs all
@@ -69,4 +71,7 @@ re_libs:
 	@echo "$(COLOUR_BLUE)Remaking everything$(COLOR_WHITE)"
 	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make re && echo$(NEWLINE)$(NEWLINE))
 
+test:
+	@echo "$(COLOUR_GREEN)Cloning test$(COLOR_WHITE)"
+	@git clone git@github.com:Aryum/push_swap_test.git tests
 .PHONY: all clean fclean re
