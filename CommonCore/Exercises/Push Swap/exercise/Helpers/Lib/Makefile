@@ -35,8 +35,10 @@ clean:
 	@$(RM) $(SRC:.c=.o)
 	@echo "$(COLOUR_YELLOW)	Cleaning objects of $(NAME)$(COLOUR_WHITE)"
 
-fclean: clean
+
+fclean:
 	@$(RM) $(NAME)
+	@$(RM) $(SRC:.c=.o)
 	@echo "$(COLOUR_RED)	Cleaning $(NAME)$(COLOUR_WHITE)"
 
 re: fclean all

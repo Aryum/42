@@ -54,13 +54,9 @@ ifeq ($($?),)
 	@touch $@
 endif
 
-obj:
-	@echo "$(COLOUR_GREEN)Making objects$(COLOR_WHITE)"
-	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make obj && echo$(NEWLINE)$(NEWLINE))
-
 clean:
-	@echo "$(COLOUR_YELLOW)Cleaning objects$(COLOR_WHITE)"
-	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make clean && echo$(NEWLINE)$(NEWLINE))
+	@echo "$(COLOUR_YELLOW)Cleaning archives$(COLOR_WHITE)"
+	@$(foreach dir,$(dir $(ALL_ARC)), cd $(dir) && make fclean && echo$(NEWLINE)$(NEWLINE))
 
 fclean: 
 	@echo "$(COLOUR_YELLOW)Cleaning everything$(COLOR_WHITE)"
